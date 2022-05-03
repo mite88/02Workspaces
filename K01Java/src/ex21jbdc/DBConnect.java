@@ -1,0 +1,28 @@
+package ex21jbdc;
+
+import java.sql.*;
+
+public class DBConnect {
+
+	public static void main(String[] args) {
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String id = "hr";
+			String pass ="1234";
+			
+			Connection con = DriverManager.getConnection(url, id, pass);
+			
+			if(con != null) {
+				System.out.println("Oracle 연결성공");
+			}else {
+				System.out.println("Oracle 연결실패");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Oracle 연결시 예외발생");
+			e.printStackTrace();
+		}
+	}
+
+}
