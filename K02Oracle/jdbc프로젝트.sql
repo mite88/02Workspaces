@@ -115,8 +115,6 @@ create or replace trigger shop_log_trigger
     Insert or delete 
     on sh_goods
     for each row
-DECLARE
-     trigger_action sh_goods_log.p_action%type;
 begin 
 
     if Inserting then 
