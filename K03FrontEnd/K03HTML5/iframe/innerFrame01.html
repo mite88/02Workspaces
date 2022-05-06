@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>innerFrame01.html</title>
+</head>
+
+<body>
+
+    <h2>innerFrame01페이지</h2>
+    <!--
+        a태그의 target속성
+        _self: 자기자신
+        _parent : 한단계부모
+        _top :최상위부모
+    -->
+
+    <h4>창의이름 : innerWin01</h4>
+    <iframe src="innerFrame02.html" 
+    name="innerWin01"   width="300" height="200" 
+    frameborder="1" scrolling="auto"></iframe>
+    <p>
+        <a href="http://daum.net" target="_self">
+            _self에서 이동
+        </a>
+        <a href="http://daum.net" target="_parent">
+            _parent에서 이동
+        </a>
+        <a href="http://daum.net" target="_top">
+            _top에서 이동
+        </a>
+    </p>
+
+</body>
+
+</html>

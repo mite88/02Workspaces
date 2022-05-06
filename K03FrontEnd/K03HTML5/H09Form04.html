@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H09Form04.html</title>
+</head>
+
+<body>
+    <h2>HMTL5에서 지원하는 input의 다양한 속성</h2>
+
+    <form action="" method="get" name="frm">
+        <table cellpadding="10" cellspacing="1" border="1" width="800">
+            <colgroup>
+                <col style="width: 40%;">
+                <col style="width: auto">
+            </colgroup>
+            <tr>
+                <td>placeholder : 텍스트박스의 힌트표시</td>
+                <td>
+                    <input type="text" placeholder="힌트를 표시합니다.">
+                </td>
+            </tr>
+            <tr>
+                <td>autofocus : 입력 커서 표시하기</td>
+                <td>
+                    <input type="text" autofocus size="40" placeholder="페이지 로딩시 커서가 자동으로 이동됨">
+                </td>
+            </tr>
+            <tr>
+                <td>required : 필수입력사항표시</td>
+                <td>
+                    <input type="text" required>
+                </td>
+            </tr>
+            <tr>
+                <td>type="number" : 숫자를 스핀박스를 이용하여 입력함</td>
+                <td>
+                    <input type="number">
+                </td>
+            </tr>
+            <tr>
+                <td>type="range"</td>
+                <!--(js)nextElementSibling 다음요소 선택하기-->
+                <td>
+                    <input type="range" value="2" min="1" max="10" step="1" name="rangeNum"
+                        oninput="this.nextElementSibling.value = this.value">
+                    <output>2</output>
+                </td>
+            </tr>
+            <tr>
+                <td>type="color"</td>
+                <td>
+                    <input type="color">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="background-color: #466ae6;">
+                    <button type="submit">전송하기</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

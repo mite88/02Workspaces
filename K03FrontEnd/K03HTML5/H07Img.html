@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H07Img.html</title>
+</head>
+<body>
+    <h2>img 태그</h2>
+    
+    <h3>이미지를 원본크기대로표시하기</h3>
+    <img src="/images/1.png" alt="스펀지밥">
+
+    <h2>이미지크기설정</h2>
+    <!--가로사이즈만 설정시 세로는 비율에 맞게 조절됨-->
+    <img src="./images/1.png" width="100" alt="스펀지밥">
+    <!--강제 사이즈 조절-->
+    <img src="./images/2.png" width="100" height="200" alt="징징이">
+    <img src="./images/2.png" alt="징징이">
+
+    <h2>이미지에 링크걸기</h2>
+    <a href="http://ikosmo.co,kr/" target="_blank">
+        <img src="https://s.pstatic.net/static/www/mobile/edit/20220503/mobile_2018301937.gif" alt="한국직업전문학교">
+    </a>
+
+    <h2>이미지맵사용하기</h2>
+    <img src="./images/Map01.png" usemap="#image-map">
+
+    <map name="image-map">
+        <area target="" alt="naver" title="naver" href="http://naver.com" coords="169,231,74,130" shape="rect">
+        <area target="" alt="daum" title="daum" href="http://daum.net" coords="248,180,51" shape="circle">
+        <area target="" alt="google" title="google" href="http://google.com" coords="372,129,309,229,435,231" shape="poly">
+        <area target="" alt="image-map" title="image-map" href="https://www.image-map.net/" coords="497,129,483,162,446,178,483,196,497,228,515,196,548,180,510,160" shape="poly">
+    </map>
+   
+    </body>
+</html>

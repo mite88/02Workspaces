@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H09Form02.html</title>
+</head>
+<body>
+
+    <h2>from태그의 하위요소가 되는 태그들</h2>
+
+    <h3>input 계열의 type="text"</h3>
+
+    <form name="frm1">
+        <input type="text" name="n1" value="성낙현">
+        <br><br>
+
+        disabled 속성
+        <input type="text" name="n2" size="40" maxlength="5"
+        value="속성추가" disabled>
+        <br>
+
+        maxlength속성
+        <input type="text" name="jumin1" size="6" maxlength="6">
+        -
+        <input type="password" size="7" aria-modal="7">
+        <br> <br>
+
+        readonly 속성
+        <input type="text" name="homepage" value="http://" readonly>
+        <br><br>
+
+        <input type="submit" value="서버로 전송하기"><br>
+    </form>
+    <br><br>
+
+    <h3>input태그의 type속성보기 </h3>
+    <form name="frm2">
+
+        text:<input type="text" size="6">
+        <br><br>
+        password:<input type="password" size="6">
+        <br><br>
+        checkbox:<input type="checkbox" name="ch" size="6">
+        <br><br>
+        text:<input type="text" name="ra" size="6">
+        <br><br>
+        hidden:<input type="hidden" name="hi" value="값이 존재하고 전송됨">
+        <br><br>
+        <input type="submit" value="서버로 전송하기">
+    </form>
+
+    <h3>type="checkbox"</h3>
+
+    <fieldset>
+        <legend>당신의 관심사항은 뭔가요?</legend>
+        <form action="form3">
+            <input type="checkbox" name="inter" value="pol" checked > 정치
+            &nbsp;&nbsp;
+            <input type="checkbox" name="inter" value="pol">경제
+            &nbsp;&nbsp;
+            <input type="checkbox" name="inter" value="pol">연예
+            &nbsp;&nbsp;
+            <input type="checkbox" name="inter" value="pol">스포츠
+            &nbsp;&nbsp;
+
+            <input type="submit" value="체크박스 전송하기">
+        </form>
+
+    </fieldset>
+
+    <h3>type="radio"</h3>
+
+    <fieldset>
+        <legend>당신의 관심사항은 뭔가요?</legend>
+        <form action="form4">
+            <input type="radio" name="gender" value="M" checked > 남
+            &nbsp;&nbsp;
+            <input type="radio" name="gender" value="W">여
+            &nbsp;&nbsp;
+            <input type="radio" name="gender" value="T">트랜스젠더
+            &nbsp;&nbsp;
+        
+            <input type="submit" value="라디오박스 전송하기">
+        </form>
+
+    </fieldset>
+
+    <h3>select태그-하나만선택</h3>
+
+    <fidldset>
+        <legend>당신의 최종학력은 무엇인가요?</legend>
+        <form action=""></form>
+        <select name="grede" id="">
+            <option value="ele">초등학교</option>
+            <option value="mid">중학교</option>
+            <option value="high">고등학교</option>
+            <option value="uni">대학교</option>
+            <option value="uni2">대학원</option>
+            &nbsp;&nbsp;
+            <input type="image" src="/images/button.jpg">
+        </select>
+    </fidldset>
+
+    <h3>select태그-여러개선택</h3>
+
+    <fidldset>
+        <legend>당신이 좋아하는 걸그룹은?(다중선택가능, ctrl키)</legend>
+        <form action=""></form>
+        <select name="girl_group" id="" multiple size="7">
+            <option value="T">트와이스</option>
+            <option value="M">모모랜드</option>
+            <option value="R">레드밸벳</option>
+            <option value="G">여자친구</option>
+            <option value="B">블랙핑크</option>
+            &nbsp;&nbsp;
+            <input type="image" src="/images/button.jpg">
+        </select>
+    </fidldset>
+
+    <h3>type="file"</h3>
+    기본:
+    <input type="file" name="userfile1">
+    <br>
+    속성추가:
+    <input type="file" name="userfile2" accept=".jpg, .png, .gif" value="첨부파일추가">
+    <br><br>
+
+
+    <script>
+        function textAreaInput(){
+            alert("버튼누름");
+            var a = document.getElementById('intro').value;
+            console.log('텍스트에어리어',a);
+        }
+
+    </script>
+    <!--textarea태그 사이의 값이 value이기에 붙여서적어주세여 ㅇㅊㅇ-->
+    <h3>textarea태그</h3>
+    <textarea name="intro" id="intro" cols="70" rows="5">내용입력</textarea>
+    <input type="button" value="내용변경" onclick="textAreaInput()">
+
+    
+    <h3>type="hidden"</h3>
+    <form action="">
+        <input type="hidden" name="member_id" value="kosmo">
+        <input type="submit" value="hidden값 전송">
+    </form>
+
+</body>
+</html>

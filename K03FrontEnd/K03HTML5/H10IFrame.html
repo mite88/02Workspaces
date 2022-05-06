@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H10IFrame.html</title>
+</head>
+
+<body >
+    <!--유튭에서 가져와보자-->
+    <iframe width="738" height="415" src="https://www.youtube.com/embed/pb--2PiwUC8" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+
+    <!--
+        iframe태그 : Inline frame으로 페이지내의 또 다른 페이지 삽입시 사용
+            src : 프래임경로
+            scrolling: 스크롤바 생성여부 (yes/no/auto)
+        인라인엘리먼트, 가로형 배치
+    -->
+    <h4>iframe의 이름 : topWin</h4>
+    <iframe src="./iframe/innerFrame01.html" name="topWin"
+    frameborder="1" scrolling="auto" width="500" height="500"></iframe>
+
+    <h2>iframe Buttom(하단)</h2>
+    <!--부모페이지에서 자식페이지로 링크를 걸때 target 지정시 프레임 name을 사용함-->
+    <p>
+        <a href="http://daum.net" target="topWin">topWin에서 이동함</a>
+        &nbsp;&nbsp;&nbsp;
+        <a href="http://nate.com" target="innerWin01">innerWin01에서 이동함</a>
+    </p>
+</body>
+
+</html>

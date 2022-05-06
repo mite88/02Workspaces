@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>H06A.html</title>
 </head>
 <body>
     <!--
@@ -24,19 +24,42 @@
         옥션상품보기
     </a>
 
+    <!--
+        링크경로
+        
+        절대경로 : 현재의 위치가 변경되어도 주소가 변하지 않는 절대적인경로
+        주로 http://(외부링크), /(홈디렉토리 root)로 사용
+
+        상대경로 : 현재 페이지의 위치에따라 상대적으로 변하는 경로
+        ./ : 현재경로(생략가능)
+        ../ : 상위경로
+        ../../ : 2단계상위경로
+    -->
     <h2>상대경로와 절대경로 알아보기</h2>
 
-    <h3></h3>
+    <h3>상대경로로 링크걸기</h3>
     <ul>
-        <li><a href=""></a></li>
-        <li><a href=""></a></li>
+        <li><a href="./SubFolder1/SubFolder1.html">서브파일1</a></li>
+        <li><a href="./SubFolder1/SubFolder2/SubFolder2.html">서브파일2</a></li>
     </ul>
 
-    <h3></h3>
+    <h3>절대경로로 링크걸기</h3>
     <ul>
-        <li><a href=""></a></li>
-        <li><a href=""></a></li>
+        <li><a href="/K03HTML5/SubFolder1/SubFolder1.html">서브파일1</a></li>
+        <li><a href="/K03HTML5/SubFolder1/SubFolder2/SubFolder2.html">서브파일2</a></li>
     </ul>
 
+    <!--
+    <ul>
+        <li><a href="/K03HTML5/H06A.html">H06A.html</a></li>
+        <li><a href="/K03HTML5/SubFolder1/SubFolder2/SubFolder2.html">서브파일2</a></li>
+    </ul>
+
+    <ul>
+        <li><a href="/K03HTML5/H06A.html">H06A.html</a></li>
+        <li><a href="/K03HTML5/SubFolder1/SubFolder1.html">서브파일1</a></li>
+    </ul>
+    -->
+    
 </body>
 </html>

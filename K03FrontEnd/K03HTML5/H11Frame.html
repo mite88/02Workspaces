@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocumH11Frame.html</title>
+</head>
+<!--body안에서쓰면안나옴-->
+<!--
+    frameset : 해당페이지를 가로 or 세로로 나눠서 구성할때
+    사용하는 태그
+      rows : 세로형 나눌때 사용
+      cols : 가로형 나눌때 사용
+
+    frame : frameset 하위 태그, 실제 표현할 페이지 경로지정
+      src : 경로
+      noresize : 프레임크기를 마우수로 조정할수 없게 하는 옵션
+-->
+<!--블럭1,3은 절대크기로 지정하고 블럭2는 * 로지정하여 상대크기로 하였음-->
+<frameset rows="100px, *, 50px" border="5" framborder="1">
+    <!--블럭1-->
+    <frame src="./frame/topFrame.html" name="topFrame"
+    scrolling="no" marginwidth="0" marginheight="0"
+    noresize>
+        <frameset cols="300px, *" border="5" frameborder="1">
+            <!--블럭2:가로형-->
+            <frame src="./frame/leftFrame.html" name="leftFrame">
+            <frame src="./frame/contentFrame.html" name="contentFrame">
+        </frameset>
+    <!--블럭3-->
+    <frame src="./frame/bottomFrame.html" name="bottomFrame" scrolling="no"
+    marginwidth="0" marginheight="0">
+</frameset> 
+<noframes>이브라우져는 프레임을 지원하지 않습니다.</noframes>

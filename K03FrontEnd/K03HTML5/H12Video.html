@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H12Video.html</title>
+</head>
+<body>
+    <H2>기본 video 태그</H2>
+    <!--
+        controls속성:동영상플레이시 컨트롤바 여부지정
+        autoplay속성:자동재생 옵션
+    -->
+    <video src="media/video.mp4" autoplay controls width="300" height="200">
+        해당브라우저가 video태그를 지원하지 않는 경우
+        <a href="media/video.mp4">여기</a>를 클릭하세요
+    </video>
+
+    <!--
+        source하위태그 : 여러항목중 해당 브라우저가 지원하는
+        포맷의 파일을 찾아 플레이 할수 있도록함
+    -->
+    <h2>video 하위태그 source</h2>
+    <video autoplay controls width="300" height="200">
+        <source src="media/video.3gp"/>
+        <source src="media/video.mp4"/>
+
+        <a href="media/video.mp4">여기</a>를 클릭하세요
+    </video>
+</body>
+</html>

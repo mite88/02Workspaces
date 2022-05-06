@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H09Form01.html</title>
+</head>
+<body>
+    <!--
+        form 태그
+        클라이언트가 입력한 값을 서버로 전송시 사용하는 태그
+        name : 폼이름, 2개이상시 구분하는용도
+        action : 입력값 전송페이지 지정
+        method:전송방식
+    -->
+    <h2>form태그로 데이터 전송하기</h2>
+
+    <!--get방식 : 주소뒤에 전송할값을 쿼리스트링으로 변환하여 서버전송-->
+    <h3>GET방식</h3>
+    <form action="http://itempage3.auction.co.kr/DetailView.aspx" method="get">
+        아이디:<input type="text" name="itemno" value="B822353472">
+        <br>
+        <input type="submit" value="전송">
+    
+    </form>
+
+    <!--post방식 : 전송값이 노출안됨-->
+    <h3>POST방식</h3>
+    <form action="./form/request_form.html" method="post">
+        아이디:<input type="text" name="user_id">
+        <br>
+        패스워드:<input type="password" name="user_pwd">
+        <br>
+        <input type="submit" value="전송">
+    
+    </form>
+
+</body>
+</html>

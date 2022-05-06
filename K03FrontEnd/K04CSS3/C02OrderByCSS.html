@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C02OrderByCSS.html</title>
+
+    <style>
+        h2{color: blue;}
+        h2{color: red;}
+
+        #mnt{color: gray !important;}
+        dd{color: green;}
+    </style>
+
+    <link rel="stylesheet" href="./style/style.css"/>
+</head>
+<body>
+    
+    <h2>선택자 종류에 따른 css 적용순서</h2>
+    <ul>
+        <li class="mountain">관악산</li>
+        <li class="mountain" style="color: violet;" id="mnt">설악산</li>
+        <li class="mountain">지리산</li>
+        <li class="mountain">한라산</li>
+    </ul>
+
+    <h2>css적용 스타일에 따른 적용순서</h2>
+    <dl>
+        <dd>종로구</dd>
+        <dd>강동구</dd>
+        <dd>금천구</dd>
+        <dd style="color: red;">강남구</dd>
+    </dl>
+
+</body>
+</html>

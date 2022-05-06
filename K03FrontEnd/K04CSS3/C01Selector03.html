@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C01Selector03.html</title>
+
+    <style>
+        #content{width: 300px; background-color: yellow;}
+        
+        /*list-style : li좌측블릿 속성(제거는 none)*/
+        ul li{
+            list-style: none; border: 1px solid green;
+            font-size: 24px; font-weight: blod; height: 50px;
+        }
+
+        /*
+        구조선택자 : 동일한 수준의 태그중 수식에 맞는 엘리먼트 선택하여적용
+        n은 1부터 시작함
+          ex)nth-child(2n+1) : 홀수번째의 엘리먼트 선택
+
+        nth-child(수식 및 숫자), first-child, last-child
+        */
+        div#content ul li:nth-child(2n+1){background-color: #820f6b;}
+        div#content ul li:first-child{
+            background-color: red; color: #fff;
+        }
+        div#content ul li:last-child{
+            background-color: blue; color: #fff;
+        }
+
+        li:nth-child(2){color: red;}
+
+        /*
+        문자선택자 : 특정 요소의 글자를 선택하여 효과를 지정
+
+          선택요소:first-letter {  … }
+          선택요소:first-line {  … }
+        */
+        /*첫번째문자*/
+        #start::first-letter, #end::first-letter{font-size: 30px;}
+        #start::first-line, #end::first-line{
+            color: red; font-weight: bold;
+        }
+        /*첫번째라인*/
+        #character p:first-child::selection{
+            color: yellow; background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <h2>구조선택자</h2>
+    <div id="content">
+        <ul>
+            <li>메뉴1</li>
+            <li>메뉴2</li>
+            <li>메뉴3</li>
+            <li>메뉴4</li>
+            <li>메뉴5</li>
+            <li>메뉴6</li>
+        </ul>
+    </div>
+
+    <h2>문자선택자</h2>
+    <div id="character">
+        <p id="start">강의시작날짜 <br>19년 04월 10일</p>
+        <p id="end">강의종료날짜 <br>19년 10월 15일</p>
+    </div>
+    <div>
+        <ul>
+            <li>메뉴1</li>
+            <li>메뉴2</li>
+            <li>메뉴3</li>
+            <li>메뉴4</li>
+            <li>메뉴5</li>
+        </ul>
+    </div>
+</body>
+</html>
