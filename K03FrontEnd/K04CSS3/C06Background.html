@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C06Background.html</title>
+
+    <style>
+        #back1 div{
+            width: 80%; height: 400px;
+            background-image: url('./images/3.png');
+            background-repeat: repeat-y;
+        }
+
+        #back1 div:first-child{border: 1px solid red;}
+        #back1 div:last-child{border: 1px solid blue;}
+
+        #back2{
+            background-image: url('./images/apple.png');
+            background-repeat: repeat;
+            background-position: 20px 40px;
+            width: 400px; height: 250px;
+        }
+
+        #back3{
+            background: url('./images/banana.png') 20px 40px
+             yellow repeat-x;
+             width: 400px; height: 250px;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>배경관련 css 속성</h2>
+
+    <div>
+        <!--
+            블랙엘리먼트 : 컨텐츠와 상관없이 배경색지정
+            인라인엘리먼트 : 컨텐츠크기만큼 배경색지정
+        -->
+        <h3>배경색 지정</h3>
+        <div style="background-color: #ff0000;">블럭엘리먼트</div>
+        <span style="background-color: #0f0;">인라인엘리먼트<br>인라인엘리먼트</span>
+    </div>
+
+    <div id="back1">
+        <div>안녕하세요? 저는 뚱이입니다.</div>
+        <div>반가워용~~</div>
+    </div>
+
+    <div id="back2">div태그는 Division의 줄임말입니다.</div>
+    <div id="back3">background속성을동시에 사용하기</div>
+</body>
+</html>

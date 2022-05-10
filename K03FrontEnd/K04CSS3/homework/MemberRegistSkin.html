@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        section.member {
+            border: 1px solid rgb(199, 199, 199);
+            width: 100%;
+            text-align: center;
+            padding-top: 30px;
+            padding-bottom: 30px;
+
+        }
+
+        #sub_description,
+        table {
+            margin: auto;
+            vertical-align: middle;
+            width: 1260px;
+        }
+
+        #sub_description {
+            text-align: right;
+            display: inline-block;
+            color: #888;
+            padding-right: 10px;
+            padding-bottom: 10px;
+        }
+
+        .mark {
+            color: red;
+        }
+
+        table,
+        table th,
+        table td {
+            border-collapse: collapse;
+            border: 1px solid rgb(199, 199, 199);
+            line-height: 3rem;
+        }
+
+        table th,
+        table td {
+            vertical-align: middle;
+            height: 40px;
+            padding-left: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #eee;
+            width: 20%;
+            text-align: left;
+            margin: 10px;
+        }
+
+        table td,
+        span {
+            color: #888;
+        }
+
+        table button,
+        input[type='submit'],
+        input[type='reset'] {
+            background-color: #555;
+            color: #fff;
+            padding: 2px 10px;
+            border: none;
+            border-radius: .3rem;
+            height: 25px;
+        }
+
+        input,
+        select {
+            padding: 2px 10px;
+            height: 26px;
+            border: none;
+            border: 1px solid rgb(199, 199, 199);
+        }
+
+        [type='radio'] {
+            height: auto;
+        }
+
+        input[type='input'] {
+            width: 200px;
+        }
+
+        input[name='u_id'],
+        input[name='u_name'] {
+            width: 230px;
+        }
+
+        input[name='u_birth1'] {
+            width: 80px;
+        }
+
+        input[name='u_birth2'],
+        input[name='u_birth3'] {
+            width: 50px;
+        }
+
+        input[name='u_zip'] {
+            width: 150px;
+        }
+
+        input[name='u_addr1'] {
+            width: 95%;
+        }
+
+        input[name='u_addr2'] {
+            width: 70%;
+        }
+
+        input[name='u_phone1'],
+        input[name='u_mphone1'] {
+            width: 80px;
+        }
+
+        input[name='u_phone2'],
+        input[name='u_phone3'],
+        input[name='u_mphone2'],
+        input[name='u_mphone3'] {
+            width: 120px;
+        }
+
+        select[name='u_field'],
+        select[name='u_route'] {
+            width: 50%;
+        }
+
+        #btn_result>* {
+            padding: 5px 15px;
+            margin: auto 10px;
+            width: 200px;
+            color: #fff;
+            height: 40px;
+            margin-top: 30px;
+        }
+
+        input[type='submit'] {
+            background-color: red;
+        }
+
+        input[type='reset'] {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <section class="member">
+            <div id="sub_description"><span class="mark">*</span> 필수 입력</div>
+            <table>
+                <tr>
+                    <th><span class="mark">*</span> 아이디</th>
+                    <td>
+                        <input type="text" size="15" maxlength="15" name="u_id" />
+                        <button>중복확인</button>
+                        &nbsp;&nbsp;&nbsp;
+                        <span>+ 4~15자, 첫 영문자, 영문자와 숫자 조합</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><span class="mark">*</span> 비밀번호</th>
+                    <td>
+                        <input type="password" name="u_pw1" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><span class="mark">*</span> 비밀번호 확인</th>
+                    <td>
+                        <input type="password" name="u_pw2" />
+                        <span>(확인을 위해 다시 입력해 주세요.)</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><span class="mark">*</span> 이름</th>
+                    <td><input type="text" name="u_name" /></td>
+                </tr>
+
+                <tr>
+                    <th>&nbsp;&nbsp;생년월일</th>
+                    <td>
+                        <input type="radio" name="gender" value="M" checked> 남자
+                        &nbsp;&nbsp;
+                        <input type="radio" name="gender" value="W">여자
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="number" min="1900" max="9999" name="u_birth1">년
+                        <input type="number" min="1" max="12" name="u_birth2">월
+                        <input type="number" min="1" max="31" name="u_birth3">일
+                        &nbsp;&nbsp;<span>(예:2000년01월31일)</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th rowspan="2"><span class="mark">*</span> 이메일</th>
+                    <td>
+                        <input type="text" name="u_email1" />
+                        @
+                        <input type="text" name="u_email2" />
+                        <select name="u_email_select" id="">
+                            <option value="">직접입력</option>
+                            <option value="naver.com">naver.com</option>
+                            <option value="hanmail.net">hanmail.net</option>
+                            <option value="nate.com">nate.com</option>
+                            <option value="gmail.com" selected>gmail.com</option>
+                        </select>
+
+
+                        <input type="radio" name="mail_chk" value="Y"> 수신허용
+                        &nbsp;&nbsp;
+                        <input type="radio" name="mail_chk" value="N" checked>수신불가
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>※hanmail.net은 메일 수신이 어려울 수 있으니 가급적 다른 메일을 이용하시기 바랍니다.</span></td>
+                </tr>
+
+                <tr>
+                    <th rowspan="3">&nbsp;&nbsp;주소</th>
+                    <td>
+                        <button>주소찾기</button>
+                        <input type="text" name="u_zip" size="5" maxlength="5">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="u_addr1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="u_addr2">
+                        &nbsp;&nbsp;<span>+ 나머지 주소</span>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>&nbsp;&nbsp;전화번호</th>
+                    <td>
+                        <input type="text" name="u_phone1" size="4" maxlength="4"> -
+                        <input type="text" name="u_phone2" size="4" maxlength="4"> -
+                        <input type="text" name="u_phone3" size="4" maxlength="4">
+                        &nbsp;&nbsp;
+                        <input type="radio" name="sms_chk" value="Y"> SMS 수신허용
+                        &nbsp;&nbsp;
+                        <input type="radio" name="sms_chk" value="N" checked> SMS 수신불가
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><span class="mark">*</span> 휴대전화</th>
+                    <td>
+                        <input type="text" name="u_mphone1" size="4" maxlength="4"> -
+                        <input type="text" name="u_mphone2" size="4" maxlength="4"> -
+                        <input type="text" name="u_mphone3" size="4" maxlength="4">
+                    </td>
+                </tr>
+                <tr>
+                    <th><span class="mark">*</span> 관심분야</th>
+                    <td>
+                        <select name="u_field" id="">
+                            <option value="" selected>:: 관심분야선택 ::</option>
+                            <option value="배구">배구</option>
+                            <option value="축구">축구</option>
+                            <option value="야구">야구</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th><span class="mark">*</span> 가입경로</th>
+                    <td>
+
+                        <select name="u_route" id="">
+                            <option value="" selected>:: 가입경로선택 ::</option>
+                            <option value="검색">검색</option>
+                            <option value="지인">지인</option>
+                            <option value="기타">기타</option>
+                        </select>
+                    </td>
+                </tr>
+
+
+            </table>
+
+            <div id="btn_result">
+                <input type="submit" value="등록하기">
+                <input type="reset" value="새로쓰기">
+            </div>
+        </section>
+    </form>
+</body>
+
+</html>

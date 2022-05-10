@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C04Paragraph.html</title>
+</head>
+<body>
+    <!--
+        수평정렬
+        블럭엘리먼트:컨텐츠크기와 별도로 하나의 블럭을 차지하여 정렬됨
+        인라인엘리먼트: 컨텐츠크기만큼 영역차지, 정렬x
+        (정렬시 부모에 text-align 설정)
+    -->
+    <h2>문단관련 css 속성들</h2>
+
+    <div style="border: 1px blue dotted; width: 400px;">
+        <h2>컨텐츠 수평 방향 정렬</h2>
+        <div style="border: 1px solid red; text-align: right;">
+            블럭엘리먼트
+        </div>
+        <span style="border: 1px solid blue; text-align: right;">
+            인라인엘리먼트
+        </span>
+    </div>
+
+    <!--
+        line-height(줄간격)
+        블럭엘리먼트:세로영역늘어남, 줄간격생긴거같이 보임
+        인라인엘리먼트:컨텐츠영역변화x, 지정된 크기만큼 줄간격이 생김
+    -->
+    <h3>줄사이의 간격</h3>
+    <h4 style="line-height: 5em; border: 1px solid blue;">
+        블럭엘리먼트1에 줄간격 적용
+    </h4>
+    <h4 style="border: 1px solid black;">블럭 엘리먼트2</h4>
+    <h4 style="border: 1px solid black;">블럭 엘리먼트3</h4>
+
+    <div class="inline">
+        <span style="line-height: 5em; border: 1px solid black;">
+            인라인엘리먼트1
+        </span>
+        <span style="border: 1px solid black;">인라인엘리먼트2</span>
+        <br>
+        <span style="border: 1px solid black;">인라인엘리먼트3</span>
+    </div>
+
+
+    <h3>수직상태에서의 가운데 정렬</h3>
+    <!--
+        div태그의 값 height = line-height
+        * 단점: 줄넘어가면 줄간격이 늘어나서 범위를벗어남
+    -->
+    <h4>블럭엘리먼트 사용시 방법1</h4>
+    <div style="border: 1px solid black; 
+    height: 200px; width: 200px; line-height: 200px;">
+        나는 텍스트1 
+    </div>
+
+    <!--
+        div태그 내부에 padding 지정하여 아래로 밈
+    -->
+    <h4>블럭엘리먼트 사용시 방법2</h4>
+    <div style="border: 1px solid red; 
+    height: 100px; width: 200px; padding-top: 84px;">
+        나는 텍스트2
+    </div>
+
+    <!--vertical-align 사용-->
+    <h4>인라인엘리먼트 사용시</h4>
+    <table border="1" width="300">
+        <tr>
+            <td style="height: 100px; vertical-align: top;">
+                인라인엘리먼트 세로정렬
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 100px; vertical-align: middle;">
+                인라인엘리먼트 세로정렬
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 100px; vertical-align: bottom;">
+                인라인엘리먼트 세로정렬
+            </td>
+        </tr>
+    </table>
+
+    <h2>배분정렬</h2>
+    <p style="border: 1px solid blue; text-align: justify;">
+        문재인 대통령은 임기가 끝나는 9일 차기 정부를 향해 
+        "이전 정부들의 축적된 성과를 계승하고 발전시켜 
+        성공하는 대한민국의 역사를 계속 이어나가길 기대한다"고 말했다.
+        <br>
+        문 대통령은 이날 청와대 본관 앞에서 퇴임연설을 하면서 
+        "대통령으로서 무거운 짐을 내려놓는다. 
+        이제 평범한 시민의 삶으로 돌아가 국민 모두의 행복을 기원하겠다"며 
+        이같이 밝혔다.
+        <br>
+        문 대통령은 특히 "국민의 마음을 하나로 모으는 것이 
+        무엇보다 중요하다"며 " 선거 과정에서 더욱 깊어진 갈등의 골을 
+        메우며 국민 통합의 길로 나아갈 때 대한민국은 
+        진정한 성공의 길로 더욱 힘차게 전진할 것"이라고 강조했다.
+        <br>
+        문 대통령은 남북관계에 대해서는 "우리 국민은 평화와 
+        번영의 새로운 한반도 시대에 대한 희망을 키웠다"고 평가했다.
+        <br>
+        이어 "더는 앞으로 나아가지 못한 것은 우리의 
+        의지와 노력이 부족한 탓만은 아니었다.
+        우리의 의지만으로 넘기 힘든 장벽이 있었다"고 말했다.
+    </p>
+
+    <!--
+        text-indent(들여쓰기)
+        블럭엘리먼트: 적용o
+        인라인엘리먼트:적용x
+        (적용시 부모에서 padding-left 적용하여 전체를 밈)
+    -->
+    <h2>들여쓰기</h2>
+    <div style="border: 1px solid red; text-indent: 1em;">
+        블럭엘리먼트&nbsp;블럭엘리먼트&nbsp;블럭엘리먼트&nbsp;
+        블럭엘리먼트&nbsp;블럭엘리먼트&nbsp;블럭엘리먼트&nbsp;
+        블럭엘리먼트&nbsp;블럭엘리먼트&nbsp;블럭엘리먼트&nbsp;
+    </div>
+
+    <div style="border: 1px solid blue; padding-left: 10px;">
+        <span style="text-indent: 1em;">
+            인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;
+            인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;
+            인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;
+        </span>
+    </div>
+</body>
+</html>

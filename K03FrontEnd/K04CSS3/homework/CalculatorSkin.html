@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-size: 24px;
+        }
+
+        section#calculator {
+            border: 1px solid rgb(199, 199, 199);
+            width: 100%;
+            text-align: center;
+            padding-top: 30px;
+            padding-bottom: 30px;
+
+        }
+
+        #calculator,
+        table {
+            margin: auto;
+            vertical-align: middle;
+            width: 600px;
+            background-color: #eee;
+            border-radius: .4rem;
+            border: 1px solid #eee;
+            border-spacing: 10px;
+        }
+
+        table td,
+        table td>div {
+            font-weight: bold;
+            margin: auto;
+            vertical-align: middle;
+            height: 60px;
+            text-align: center;
+            padding: 10px;
+            border-radius: .4rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        table .calc_result {
+            text-align: right;
+            background-color: #04d704;
+            color: #333;
+            font-size: 34px;
+        }
+
+        table .number,
+        table .op_result,
+        table .op_back,
+        .op_reset {
+            background-color: #333;
+            line-height: 60px;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        table .op_back,
+        .op_reset {
+            width: 50%;
+            background-color: #666;
+        }
+
+        table .op_symbol {
+            background-color: orange;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <tr>
+            <td colspan="4" class="calc_result">123+456</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="op_back">BackSpace</td>
+            <td colspan="2" class="op_reset">C</td>
+        </tr>
+        <tr>
+            <td class="number">1</td>
+            <td class="number">2</td>
+            <td class="number">3</td>
+            <td class="op_symbol">/</td>
+        </tr>
+        <tr>
+            <td class="number">4</td>
+            <td class="number">5</td>
+            <td class="number">6</td>
+            <td class="op_symbol">X</td>
+        </tr>
+        <tr>
+            <td class="number">7</td>
+            <td class="number">8</td>
+            <td class="number">9</td>
+            <td class="op_symbol">+</td>
+        </tr>
+        <tr>
+            <td class="op_result">=</td>
+            <td class="number">0</td>
+            <td class="number">.</td>
+            <td class="op_symbol">-</td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

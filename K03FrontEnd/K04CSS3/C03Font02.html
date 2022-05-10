@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C03Font02.html</title>
+
+    <style>
+        *{font-size: 12px;} /*기본폰트지정*/
+
+        a{text-decoration: none; color: black;}
+        
+         /* 마우스 포인터가 오버랩됐을 때의 하이퍼링크 효과 */
+        a:hover{
+            text-decoration: underline; color: green; 
+            font-size: 30px; font-weight: bold;
+        }
+        /* 클릭된 상태의 하이퍼링크 효과 */
+        a:active{text-decoration: overline; color: red;}
+         /* 방문한 적이 있는 하이퍼링크 효과 */
+        a:visited{color: blue;}
+
+        /*a태그중 other클래스를가진 요소 선택*/
+        a.other{text-decoration: none; color: brown;}
+        a.other:hover
+        {
+            text-decoration: underline; color: #eee; 
+            font-size: 20px; font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>텍스트 꾸미기</h2>
+    <div>
+        <ul class="link">
+            <li><a href="http://naver.com">네이봐</a></li>
+            <li><a href="http://nate.com">너이트</a></li>
+            <li><a href="http://daum.net">다움</a></li>
+            <li><a href="http://google.com">가글</a></li>
+            <li><a href="http://ikosmo.co.kr">코수모</a></li>
+            <li><a href="http://yahoo.com">야후</a></li>
+        </ul>
+    </div>
+
+    <div>
+        <a href="" class="other">다른효과주기</a>
+    </div>
+</body>
+</html>

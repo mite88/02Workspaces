@@ -5,15 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C02OrderByCSS.html</title>
-
+    <!--css 적용방식 : Embadding스타일 style태그 사용-->
     <style>
         h2{color: blue;}
-        h2{color: red;}
+        h2{color: red;} /*o*/
 
+        /*!important : 가장 높은 우선순위를 가짐*/
         #mnt{color: gray !important;}
         dd{color: green;}
     </style>
 
+    <!--css 적용방식 : External 스타일 외부파일로 만든후 문서 링크함-->
     <link rel="stylesheet" href="./style/style.css"/>
 </head>
 <body>
@@ -21,6 +23,7 @@
     <h2>선택자 종류에 따른 css 적용순서</h2>
     <ul>
         <li class="mountain">관악산</li>
+        <!--css 적용방식 : Inline스타일 적용하고자 하는태그의 style 속성지정-->
         <li class="mountain" style="color: violet;" id="mnt">설악산</li>
         <li class="mountain">지리산</li>
         <li class="mountain">한라산</li>

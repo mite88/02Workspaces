@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C05Border03.html</title>
+
+    <style>
+        /*전체 지정*/
+        *{margin: 0px; padding: 0px;}
+
+        /*div공통속성*/
+        div{
+            width: 200px; height: 200px; line-height: 200px;
+            text-align: center; border:1px solid red; padding: 10px;
+         }
+
+         #box1{border: 0; padding: 0px; background-color: orange;}
+         #box2{background-color: purple; box-sizing: border-box;}
+         #box3{background-color: #cecece; box-sizing: content-box;}
+   </style>
+</head>
+<body>
+   
+    <h2>box-sizing 속성</h2>
+    <div id="box1">box1</div>
+    <br>
+    <div id="box2">box2</div>
+    <br>
+    <div id="box3">box3</div>
+</body>
+</html>

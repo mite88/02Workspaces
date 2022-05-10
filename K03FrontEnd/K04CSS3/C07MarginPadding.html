@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C07MarginPadding.html</title>
+
+    <style>
+        #div1{border: 1px solid gray; 
+            padding-top: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+        }
+        #div2{border: 1px solid red; padding: 20px;}
+        #div3{border: 1px solid blue; padding: 30px 50px;}
+        #div4{border: 1px solid green; padding: 30px 100px 10px;}
+        #div5{border: 1px solid black; padding: 10px 30px 50px 70px;}
+    </style>
+</head>
+    <h2>여백관련속성</h2>   
+    <h3>padding(안쪽여백) 관련 속성</h3>
+    <h4>블럭엘리먼트</h4>
+    <div id="div1">"상우하좌" 여백 각각 지정하기</div>
+    <div id="div2">"상우하좌" 여백 동시 지정하기</div>
+    <div id="div3">"상하" "좌우" 여백 각각 지정하기</div>
+    <div id="div4">"상" "좌우" 여백 각각 지정하기</div>
+    <div id="div5">"상" "우" "하" "좌" 여백 각각 지정하기</div>
+
+    <h4>인라인 엘리먼트</h4>
+    <span style="border: 1px solid orange;
+    padding:20px 30px 20px 20px;">
+        나는 span 태그입니다. 인라인엘림먼트이죠~~
+    </span><br>
+    span태그 아래쪽 텍스트~~~~
+
+    <!------------------------------------------>
+
+    <style>
+        /*
+        블럭엘리먼트에서
+        margin의 경우 큰걸로 적용되어 .box1속성을 따라간다
+        */
+        .box1{border: 1px solid red; margin-bottom: 100px;}
+        .box2{border: 1px solid green; margin-top: 70px;}
+    </style>
+
+    <h4>block와 block의 margin</h4>
+    
+    <fieldset>
+        <legend>Case1</legend>
+        <div class="box1">Block1번</div>
+        <div class="box2">Block2번</div>
+    </fieldset>
+
+    <h4>block와 inline의 margin</h4>
+
+    <!--
+      inline에서 적용한 마진은 적용되지 않음, 
+    패딩과 같이 좌우마진만적용됨
+    -->
+    <fieldset>
+        <legend>Case2</legend>
+        <div class="box1">inline의1번</div>
+        <span class="box2" style="margin-left: 50px;">inline의2번</span>
+    </fieldset>
+
+
+
+    <h4>inline와 inline의 margin</h4>
+
+    <!--
+      lnline에서 적용한 마진은 적용되지 않음, 
+    패딩과 같이 좌우마진만적용됨
+    (설정은 각각들어감)
+    -->
+    <fieldset>
+        <legend>Case2</legend>
+        <span class="box1" style="margin-right: 10px;">inline의1번</span>
+        <span class="box2" style="margin-left: 20px;">inline의2번</span>
+    </fieldset>
+</body>
+</html>

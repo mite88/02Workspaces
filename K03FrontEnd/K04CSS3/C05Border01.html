@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C05Border01.html</title>
+
+    <style>
+        /*div 박스 공통 스타일*/
+        div div{
+            text-align: center; width: 200px; height: 200px;
+            line-height: 200px;
+        }
+
+        /*테두리모양*/
+        #border1{
+            border-style: dashed;/*굵은점선*/
+            border-right-style: dotted;/*얇은검선*/
+            border-bottom-style: solid;/*실선*/
+            border-left-style: double;/*이중실선*/
+        }
+
+        /*테두리 색*/
+        #border2{
+            border-style: dashed;
+
+            border-top-color: green;
+            border-right-color: red;
+            border-bottom-color: blue;
+            border-left-color: coral;
+
+            /*축약형 top, right, bottom, left*/
+           /*  border-color: green red blue coral; */
+        }
+
+        /*테두리 두께*/
+        #border3{
+            border-style: dotted;
+
+            /* border-top-width: 10px;
+            border-right-width: 15px;
+            border-bottom-width: 20px;
+            border-left-width: 25px; */
+
+            /*축약형 top, right, bottom, left*/
+            border-width: 10px 15px 20px 25px;
+        }
+
+        /*테두리 색상&두께&스타일 동시지정*/
+        #border4{border: double red 5px;}
+
+        /*테두리 전체 제거 후 스타일 지정*/
+        #border5{
+            border: none; 
+            border-bottom: 2px solid green;
+            border-left: 2px gray solid;
+        }
+    </style>
+</head>
+<body>
+    <body>
+        <h2>테두리 관련 CSS 속성</h2>
+        <div>
+            <h2>테두리 스타일</h2>
+            <div id="border1">
+                border-style	
+            </div>
+        
+            <h2>테두리 색상</h2>
+            <div id="border2">
+                border-color	
+            </div>
+        
+            <h2>테두리 두께</h2>
+            <div id="border3">
+                border-width	
+            </div>
+        
+            <h2>테두리 색상&두께&스타일 동시지정</h2>
+            <div id="border4">
+                border	
+            </div>
+        
+            <h3>폼의 하위요소인 input에 적용하기</h3>
+            <input type="text" id="border5" />		
+        </div>
+    </body>
+    
+    
+</body>
+</html>
