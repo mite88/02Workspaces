@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J13Window01Location.html</title>
+
+    <script>
+        /*
+        location객체
+        a태그와 동일하게 페이지 이동시 사용
+        */
+        function fnLogin(){
+            //id/pw입력값 얻기
+            var id = document.getElementById("user_id");
+            var pw = document.getElementById("user_pw");
+
+            //정보가 맞을때...
+            if(id="Kim" && pw == "1234"){
+                window.location.href = "./pages/history01.html";
+            }else{
+                window.location.href = "./pages/history02.html";
+            }
+        }
+
+        //타켓지정시 location객체 앞에서 타켓명지정
+        function fnLoginframe(){
+            frmArea.location.href ="./pages/history01.html";
+        }
+    </script>
+</head>
+<body>
+    <h2></h2>
+    아 이 디:<input type="text" name="" id="user_id">
+    <br>
+    패스워드:<input type="password" name="" id="user_pw">
+    <br>
+    <input type="button" value="로그인" onclick="fnLogin();">
+    <br>
+    <input type="button" value="로그인[iframe]" onclick="fnLoginframe();">
+    <hr>
+
+    <iframe src="" frameborder="1" name="frmArea" 
+    width="300" height="200"></iframe>
+</body>
+</html>

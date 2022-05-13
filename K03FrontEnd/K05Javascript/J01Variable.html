@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J01Variable.html</title>
+    <script>
+
+        var num;
+        document.write("<h2>변수초기화전</h2>");
+        document.write("num의 자료형:" + typeof (num) + ", num에 저장된 데이터:" + num);//undefined
+
+        num = 100;
+        document.write("<h2>변수 초기화 후</h2>");
+        document.write("num의 자료형:" + typeof (num) + ", num에 저장된 데이터:" + num);//number 타입
+
+        num = '문자열입니다';
+        document.write("<br/>num의 자료형:" + typeof (num) + ", num에 저장된 데이터:" + num);//string 타입
+
+        num = true;
+        document.write("<br/>num의 자료형:" + typeof (num) + ", num에 저장된 데이터:" + num);//boolean 타입  
+
+        var num1 = 10, num2, str1 = "자바스크립트", str2;
+        document.write("<br/>num1+num2=" + (num1 + num2));
+
+        if (isNaN(num1 + num2)) {
+            alert("NaN이다. 즉 숫자가 아니다");
+        }
+        else {
+            alert("NaN이 아니다. 즉 숫자이다");
+        }
+
+        document.write("<br/>str1+str2=" + (str1 + str2));
+        document.write("<br/>num1+str1=" + (num1 + str1));
+
+
+        document.write("<h2>기타자료형</h2>");
+        var date = new Date();
+        document.write("date의 자료형:" + typeof (date) + ", date에 저장된 데이터" + date);
+        document.write("<br/>" + (date.getYear() + 1900) + "년 "
+            + (date.getMonth() + 1) + "월 "
+            + date.getDate() + "일");
+
+
+        var nullvar = null;
+        document.write("<br/>nullvar의 자료형:" + typeof (nullvar)
+            + ", nullvar에 저장된 데이터:" + nullvar);
+        document.write("<br/>document의 자료형:" + typeof (document)
+            + ", document에 저장된 데이터" + document);
+
+
+        document.write("<h2>novar 출력</h2>");
+        document.write("<br/>novar=" + novar);
+        var novar = 100;
+        document.write("<br/>novar=" + novar +
+            ", novar의 자료형:" + typeof (novar));
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

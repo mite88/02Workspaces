@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J04ForWhile.html</title>
+
+    <script type="text/javascript">
+        /*
+        js에선 지역변수의 개념이 넓어서
+        Spring 태그내에 선언된 변수는 해당 페이지의 모든 영역에서
+        사용가능해서 (함수로 선언한 경우함수내에서만 가능)
+        안에다써도 출력이 됨
+        */
+
+        for (var i = 0; i < 5; i++) {
+            var varInFor = 100;
+            document.write("i=" + i + "<br>");
+        }
+
+        //실행됨
+        document.write("for문이 끝난 후 i의 값" + i + "<br>");
+        document.write("for문 안에서 선언한 변수 varInfor:" +
+            varInFor);
+
+        //시나리오]for문으로 다음 모양을 만들기
+        /*
+        1 0 0 0 0 
+        0 1 0 0 0 
+        0 0 1 0 0 
+        0 0 0 1 0 
+        0 0 0 0 1 
+        */
+        document.write("<h2>이중 for문을 통한 출력</h2>");
+
+        for (var i = 1; i <= 5; i++) {
+            for (var j = 1; j <= 5; j++) {
+                if (i == j) {
+                    document.write("1&nbsp;");
+                } else {
+                    document.write("0&nbsp;");
+                }
+            }
+            document.write("<br>");
+        }
+
+        document.write("<br>");
+        document.write("<h2>이중while문으로 하기</h2>");
+
+        var x = 1;
+        var y = 1;
+
+        while(x<=5){
+            y=1;
+            while(y<=5){
+                if (x == y) {
+                    document.write("1&nbsp;");
+                } else {
+                    document.write("0&nbsp;");
+                }
+                y++;
+               
+            }
+            x++;
+             document.write("<br>");
+            
+        }
+
+    </script>
+</head>
+
+<body>
+    <script>
+
+        /*head영역에 작성한 변수를 body에 가져와도 사용됨*/
+        document.write("for문이 끝난 후 i의 값" + i + "<br>");
+        document.write("for문 안에서 선언한 변수 varInfor:" +
+        varInFor);
+
+        function gugudanPrint() {
+            /*
+            html 요소중 id 값을 통해 DOM객체 얻어오고 
+            value 속성 가져와서 변수 저장
+            */
+            var dan = document.getElementById('dan').value;
+            var su = document.getElementById('su').value;
+
+            /*
+            읽어온 dan만큼 행추가, su만큼 열추가하여
+            strGugu에 누적함
+            */
+            var strGugu = "<table border='1'>";
+            for (var x = 2; x <= dan; x++) {
+                strGugu += "<tr>";
+
+                for (var y = 1; y <= su; y++) {
+                    strGugu += "<td>"+x+"*"+y+"="+(x*y)+"</td>";
+                }
+                strGugu += "</tr>";
+            }
+            strGugu += "</table>";
+
+            //strGugu에 누적한 내용을 innerHTML속성을 통해 동적출력
+            document.getElementById('here_gugudan').innerHTML = strGugu;
+        }
+    </script>
+    <!-- table>tr*3>td*2 -->
+    <table border=1>
+        <tr>
+            <td>단</td>
+            <td>
+                <input type="text" id="dan" />
+            </td>
+        </tr>
+        <tr>
+            <td>수</td>
+            <td>
+                <!-- select>option*9 -->
+                <select id="su">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" value="구구단출력" onclick="gugudanPrint();" />
+            </td>
+        </tr>
+    </table>
+    <div>
+        <span id="here_gugudan">
+            구구단은 여기에 출력됩니다.
+        </span>
+    </div>
+
+
+</body>
+
+</html>

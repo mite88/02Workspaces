@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J03If.html</title>
+
+    <script type="text/javascript">
+        /*
+        java와 다르게 0,null, false이외 true라서
+        산술식으로 조건 사용 가능 
+        */
+
+        var nullvar = null, num1 = num2 =10;
+
+        if(num1-num2){
+            document.write("num1-num2는 참<br>");
+        }else{
+            document.write("num1-num2는 거짓<br>");
+        }
+
+        //삼항연산자(java에서 하는법이외 다음과같이 사용이 가능함)
+        //조건에따라 참 or 거짓일때는 결과없이 가능
+        num1 > num2 ? 
+        document.write(num1+"이 "+num2+"보다 큼<br>")
+        :
+        document.write(num1+"이 "+num2+"보다 크지 않음<br>");
+
+        //삼항연산자의 결과값을 변수로 받음
+        var result = num1 > num2 ?
+        num1+"이 "+num2+"보다 큼<br>"
+        :
+        num1+"이 "+num2+"보다 크지않음<br>";
+
+        document.write(result);
+
+        //학점계산용 함수 (function 키워드를 이용하여 함수 생성함)
+        function getGrade(){
+            /*
+            parseInt : 문자형 -> 숫자형
+
+            document.getElementById('id값').value : 
+            element 안의 html요소 중 id가 같은 값을 찾고 거기의 value속성 값을 찾아줌
+            해당값은 문자열이 라서 형변환 한것임 
+            */
+            var kor= parseInt(document.getElementById('kor').value);
+            var eng= parseInt(document.getElementById('eng').value);
+            var math= parseInt(document.getElementById('math').value);
+
+            var avg =(kor+eng+math)/3;
+
+            var strGrade = "";//학점변수저장용
+            if(avg>90){
+                strGrade="A학점";
+            }else if(avg>80){
+                strGrade="B학점";
+            }else if(avg>70){
+                strGrade="C학점";
+            }else if(avg>60){
+                strGrade="D학점";
+            }else{
+                strGrade="<del>F학점</del>";
+            }
+
+            /*
+            innerHTML
+            태그 자체를 가져오거나 바꾸는 기능 
+            (바뀌는 범위 : (<태그>텍스트</태그>) => 전체 다 바뀜)
+            */
+            document.getElementById("gradePrint").innerHTML = strGrade;
+
+            /*
+            innerText
+            태그 안의 텍스트를 가져오거나 바꾸는 기능 
+            (바뀌는 범위 : <태그>(텍스트)</태그> => 텍스트만 바뀜)
+            */
+            ///document.getElementById("gradePrint").innerText = strGrade;
+        }
+
+    </script>
+</head>
+<body>
+    <h2>if문을 이용한 학점 출력하기</h2>	
+	<table border="1">
+		<tr>
+			<td>국어</td>
+			<td><input type="text" id="kor"/></td>
+		</tr>
+		<tr>
+			<td>영어</td>
+			<td><input type="text" id="eng"/></td>
+		</tr>
+		<tr>
+			<td>수학</td>
+			<td><input type="text" id="math"/></td>
+		</tr>
+		<tr>
+			<td>학점</td>
+			<td id="gradePrint">학점은 요기에@.@</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align:center;">
+				<button type="button" 
+				onclick="getGrade();">학점계산하기</button>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>

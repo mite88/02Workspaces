@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C13Transform02.html</title>
+
+    <style>
+        .rect1, .rect2{
+            width: 100px; height: 100px;
+
+            /*
+            변형시 css속성을 묶어 지정하여 속도를 조절할수있음 
+            */
+            transition-property: background-color, width,height;
+            transition-duration: 5s, 1s, 7s;
+        }
+
+        .rect1{background-color: red;}
+        .rect2{background-color: green;}
+
+        .rect1:hover{
+            background-color: #076738; width: 300px; height: 200px;
+        }
+        .rect2:hover{
+            background-color: #Ba0a0a; width: 200px; height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Transform(변형2)</h2>
+    <div id="content">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+    </div>
+
+    <div style="width:100px; height: 100px; background-color: blue;">
+        BOX
+    </div>
+
+</body>
+</html>

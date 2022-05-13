@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J12DOM01.html</title>
+</head>
+<body>
+    <script>
+        var getString = function(param){
+            //영문값을 한글로 변환 후 반환
+            switch(param){
+                case "POL": return "정치";
+                case "ECO": return "경제";
+                case "ENT": return "연예";
+                default: return "모름";
+            }
+        }
+
+        function fnGetElementsByTag(){
+            //HTML문서의 모든 input태그를 얻어 배열로 저장
+            var inputs = document.getElementsByTagName("input");
+            var checkString ="",inputString;
+
+            //input갯수만큼 반복
+            for (var i = 0; i < inputs.length; i++) {
+                //checkbox중 체크된거 찾기
+                if(inputs[i].type == 'checkbox'
+                && inputs[i].checked == true){
+                    checkString +=getString(inputs[i].value)+" ";
+
+                    //checkbox의 속성을 변경하여 버튼으로 만들어버림
+                    inputs[i].type ="button";
+                    inputs[i].value ="동적버튼변경";
+                }
+
+                //input태그의 typedl text이고 name이 txt인 값 확인
+                if(inputs[i].type =="text" 
+                && inputs[i].name =="txt"){
+                    inputString = inputs[i].value;
+                }
+            }
+            //내용 확인
+            alert("선택한값:"+checkString+", 입력한값:"+inputString);
+        }
+
+        //a태그의 href속성의 도메인중에서 www들어간 값 찾기
+        function fnGetDomain(){
+            var a_tags = document.getElementsByTagName("a");
+            for (var i = 0; i < a_tags.length; i++) {
+
+
+                if(a_tags[i].href.toLocaleUpperCase().indexOf("WWW")!= -1){
+                    alert(a_tags[i].href);
+                }
+            }
+        }
+    </script>
+
+    <h2>DOM객체 사용하기</h2>
+
+    <h3>태그명으로 객체얻기1</h3>
+    <input type="checkbox" name="inter" value="POL" checked>정치 
+    <input type="checkbox" name="inter" value="ECO">경제 
+    <input type="checkbox" name="inter" value="ENT" checked>연예 
+    <input type="text" name="txt">
+    <input type="button" value="태그명으로DOM객체 얻기"
+    onclick="fnGetElementsByTag();">
+
+    <h2>태그명으로 객체얻기2</h2>
+    <ul>
+        <li><a href="http://www.naver.com">네이바</a></li>
+        <li><a href="http://daum.net">도움</a></li>
+        <li><a href="http://www.nate.com">너이트</a></li>
+    </ul>
+
+    <button onclick="fnGetDomain();">도메인얻어오기</button>
+</body>
+</html>

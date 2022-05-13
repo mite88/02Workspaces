@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        *{margin:0px auto; font-size: 12px;font-family: Verdana, Geneva, Tahoma, sans-serif;}
+        .tblTitle{background-color: #E4E5E9;font-weight: bold;
+            padding: 10px;}
+        .tblContent{background-color: #FFFFFF;padding: 10px;}
+        input[type=button]{background-color: #000000;
+            color: #FFFFFF;border: 1px solid gray;}
+        input[type=text]{border: 1px solid #e0e0e0;height: 20px;}
+        .tbl_top{text-align: right;width: 700px;margin-bottom: 5px;}
+        #btnRed{background-color: red;color: white;
+            font-size: 14px;font-weight: bold;width: 100px;
+            height: 27px;}
+        #btnGray{background-color: gray;color: white;
+            font-size: 14px;font-weight: bold;width: 100px;
+            height: 27px;}
+    </style>
+    <h2>회원가입폼 만들기</h2>
+    
+    <div class="tbl_top">
+        <span style="color:red;">*</span> 필수입력 &nbsp;&nbsp;&nbsp;
+    </div>
+
+
+<div style="border:1px solid red;">
+    <table border="1" align="center">
+        <tr>
+            <td>11dfdfdfdf1</td>
+            <td>2dddddddddddd22</td>
+        </tr>
+        <tr>
+            <td>111</td>
+            <td>ddddddddddd2dddddddddddd22</td>
+        </tr>
+    </table>
+</div>
+
+
+<div>
+    <table border="0" width="700" style="background-color:silver; border-spacing:1px;">        
+        <colgroup>
+            <col width="20%">
+            <col width="80%">
+        </colgroup>
+        <tr>
+            <td class="tblTitle"><span style="color:red;">*</span> 아이디</td>
+            <td class="tblContent">
+                <input type="text" size="15">
+                <input type="button" value="중복확인">
+                + 4~15자, 첫 영문자, 영문자와 숫자 조합
+            </td>
+        </tr>
+        <tr>
+            <td class="tblTitle"><span style="color:red;">*</span> 비밀번호</td>
+            <td class="tblContent">
+                <input type="text" size="12">
+            </td>
+        </tr>
+        <tr>
+            <td class="tblTitle" rowspan="3">주소</td>
+            <td class="tblContent">
+                <input type="button" value="주소찾기">
+                <input type="text" size="8">
+            </td>
+        </tr>
+        <tr>
+            <!-- <td class="tblTitle"></td> -->
+            <td class="tblContent">
+                <input type="text" style="width:98%;">
+            </td>
+        </tr>
+        <tr>
+            <!-- <td class="tblTitle"></td> -->
+            <td class="tblContent">
+                <input type="text" style="width:85%;">
+            </td>
+        </tr>
+    </table>
+    <div style="width: 700px;border:1px solid red;text-align: center;
+        padding:20px;">
+        <input type="button" value="등록하기" id="btnRed">
+        <input type="button" value="새로쓰기" id="btnGray">
+    </div>
+</div>    
+</body>
+</html>

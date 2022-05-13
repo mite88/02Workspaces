@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu04.html</title>
+
+    <script>
+        document.write("<h2>document.write()로 표만들기</h2>");
+        document.write("<hr>");
+
+        var table_text = "";
+
+        table_text += "<table border='1'>";
+        for (var i = 0; i < 2; i++) {
+            table_text += "<tr>";
+
+            for (var j = 0; j <= 10; j++) {
+                table_text += "<td>";
+                if (i == 0 && j == 0) {
+                    table_text += "<b>n</b>";
+                } else if (i == 1 && j == 0) {
+                    table_text += "<b>n<sup>2</sup></b>";
+                } else {
+                    if (i == 0) {
+                        table_text += (j-1);
+                    } else if (i == 1) {
+                        //table_text += ((j-1) * (j-1));
+                        table_text += Math.pow((j-1),2);
+                    }
+                }
+
+
+                table_text += "</td>";
+            }
+
+            table_text += "</tr>";
+        }
+
+        table_text += "</table>";
+
+        document.write(table_text);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

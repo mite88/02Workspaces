@@ -7,10 +7,216 @@
     <title>C10FloatClearPosition.html</title>
 
     <style>
-       
+        .div1, .div2, .div3{color: #fff;}
+       .div1{background-color: red;}
+       .div2{background-color: green;}
+       .div3{background-color: blue;}
     </style>
 </head>
 <body>
-    
+
+    <!--
+        float:css 배치에 사용
+    -->
+    <h2>Div 배치(레이아웃)관련 속성</h2>
+
+     <!--
+        엘리먼트 사이즈 미지정시 
+        float속성을 부여한 아래쪽 엘리먼트가 우측으로 붙음
+        ->div1에 float속성 부여시 div2가 올라와서 붙음
+    -->
+    <fieldset>
+        <legend>float속성(div의 width미지정)</legend>
+        <div class="div1" style="float: left;">div1</div>
+        <div class="div2" style="float: right;">div2</div>
+        <div class="div3">div3</div>
+    </fieldset>
+
+    <!--
+        엘리먼트 사이즈 지정시 
+        정렬하고자 하는 엘리먼트 및 뒤에 잇는 엘리먼트
+        모두 float속성으로 만약 div3에 float속성 제거시
+        아래로 떨어짐
+    -->
+    <fieldset>
+        <legend>float속성(div의 width지정)</legend>
+        <div class="div1" style="width: 100px; float: left;">div1</div>
+        <div class="div2" style="width: 100px; float: left;">div2</div>
+        <div class="div3" style="width: 100px; float: right;">div3</div>
+    </fieldset>
+
+    <!--
+        clear : 앞에서의 div에 float속성값이 남아있어
+        뒤에 정의한 div에 영향을 줄경우 folat속성을 파괴하기위해 사용
+    -->
+    <fieldset>
+        <legend>float속성제거 > clear</legend>
+        <div class="div1" 
+        style="width:100px; height: 100px; float: left;">
+            div1
+        </div>
+        <div class="div2" 
+        style="width:100px; height: 100px; float: left;">
+            div2
+        </div>
+        <div style="clear: both;"></div>
+        <div class="div3" style="width:250px; height: 120px;">
+            div3
+        </div>
+    </fieldset>
+
+
+    <!---------------------------------------------------->
+
+    <style>
+        /*공통속성지정*/
+        .w100{width: 100px;}
+        .h100{height: 100px;}
+    </style>
+    <!--
+        position: 엘리먼트 위치에 따른 속성
+
+        - static: (기본값)자동 배치
+        - absolute: 절대 좌표
+        - relative: 원래 있던 위치를 기준으로 좌표 지정
+        - fixed: 스크롤과 상관없이 항상 문서 좌측상단을 기준으로 좌표 고정
+    -->
+    <fieldset>
+        <legend>position:relative</legend>
+        <!--class 속성의 경우 띄어쓰기로 2개이상을 지정이 가능-->
+        <!--
+            relative : 부모엘리먼트 기준
+            여기선 left속성을 주어 100px 왼쪽으로 이동시켰다
+        -->
+        <div class="div1 w100 h100" 
+        style="left: 100px; position:relative">
+            relative
+        </div>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>position:static</legend>
+        <!--
+            static : 기본값으로 자동으로 배치
+            위치의 변화를 주더라도 이동하지 않음
+        -->
+        <div class="div1 w100 h100" 
+        style="left: 100px; top:100px; position:static">
+            static
+        </div>
+    </fieldset>
+
+    <fieldset style="position: relative;">
+        <legend>position:absolute</legend>
+        <!--
+            absolute : 절대좌표(화면의 최상단왼쪽)를 기준이므로 
+            보통 부모의 속성을 부여하여 기준위치를 지정
+
+            - 부모엘리먼트에 position(x) : 웹브라우져 화면기준
+            - 부모엘리먼트에 position(o : 보통은 relative) : 현 태그 기준
+            * static속성을 부여 시 위치 변화가 되지 않으므로 사용하지 말것
+        -->
+        <div class="div1 w100 h100" 
+        style="position:absolute; left: 100px; top:100px;">
+            absolute
+        </div>
+
+        <div class="div2 w100 h100" 
+        style="position:absolute; left: 0px; top:0px;">
+            absolute
+        </div>
+    </fieldset>
+
+    <p style="height: 200px;"></p>
+
+    <fieldset>
+        <legend>position:fixed</legend>
+        <!--
+            fixed : 고정위치로
+            스크롤을 내려도 항상 고정된 위치로 잡히게 됨
+        -->
+        <div class="div2 w100 h100" 
+        style="right: 100px; top:0px; position:fixed">
+            fixed
+        </div>
+    </fieldset>
+
+    <!------------------------------------------------------------>
+    <hr>
+    <p style="height: 100px;"></p>
+
+    <!--static : 위치값지정x-->
+    <fieldset style="position: static;">
+        <legend>position:static</legend>
+        <div class="div1 w100 h100" 
+        style="left: 0px; top:0px; position:static">
+            div(0,0)
+        </div>
+
+        <div class="div2 w100 h100" 
+        style="left: 50px; top:50px; position:static">
+            div(50,50)
+        </div>
+
+        <div class="div3 w100 h100" 
+        style="left: 100px; top:100px; position:static">
+            div(100,100)
+        </div>
+    </fieldset>
+
+    <!--
+        relative :  상대위치로 
+        이전에 배치된 엘리먼트의 위치를 기준으로 배치되므로
+        다른 엘리먼트의 영향을 받으며 상황에 따라선 겹쳐질수도 있음
+    -->
+     <fieldset style="position: relative;">
+        <legend>position:relative</legend>
+        <div class="div1 w100 h100" 
+        style="left: 0px; top:0px; position:relative">
+            div(0,0)
+        </div>
+
+        <div class="div2 w100 h100" 
+        style="left: 50px; top:10px; position:relative">
+            div(50,10)
+        </div>
+
+        <div class="div3 w100 h100" 
+        style="left: 100px; top:0px; position:relative">
+            div(100,0)
+        </div>
+    </fieldset>
+
+    <!--
+    absolute :  절대위치로 
+        현재는 부모 엘리먼트의 위치를 기준으로 배치되므로
+        다른 엘리먼트의 영향을 받지 않아 각 독립적으로 잡히게 된다.
+    -->
+    <!--
+        z-index:(정수) : 
+        이렇게 겹치는 경우 순서를 지정할수 있음
+        숫자가 높을수록 앞에 배치됨
+    -->
+     <fieldset style="position: relative;">
+        <legend>position:absolute</legend>
+        <div class="div1 w100 h100 " 
+        style="left: 0px; top:0px; position:absolute; z-index:9999;">
+            div(0,0)
+        </div>
+
+        <div class="div2 w100 h100" 
+        style="left: 50px; top:50px; position:absolute; z-index:2;">
+            div(50,50)
+        </div>
+
+        <div class="div3 w100 h100" 
+        style="left: 100px; top:100px; position:absolute; z-index:1;">
+            div(100,100)
+        </div>
+    </fieldset>
+
+
+
 </body>
 </html>

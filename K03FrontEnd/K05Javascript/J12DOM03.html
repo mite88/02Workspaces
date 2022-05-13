@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J13Window01Location.html</title>
+    <style>
+        div{border:1px solid blue;}
+        #mydiv{font-size: 24px;}
+        .mycls{padding: 5px;}
+    </style>
+</head>
+
+<body>
+    <script>
+        function myDivId(){
+            var divId = document.getElementById("mydiv");
+
+            divId.style.color = "#ff0000";
+        }
+
+        function myDivClass(){
+            var divClass = document.getElementsByClassName("mycls");
+            
+            for (var i = 0; i < divClass.length; i++) {
+                divClass[i].style.color = "#008800";
+            }
+        }
+    </script>
+
+<div id="mydiv" class="mycls">Mydiv1</div>
+<div id="mydiv" class="mycls">Mydiv2</div>
+<div id="mydiv" class="mycls">Mydiv3</div>
+<div id="mydiv" class="mycls">Mydiv4</div>
+
+<button type="button" onclick="myDivId()">id버튼</button>
+<button type="button" onclick="myDivClass()">class버튼</button>
+
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> J08Function02.html</title>
+
+    <script>
+        /*
+        this.변수명 : 전역변수
+        변수명 : 지역변수
+        -키워드 this는 JS에서 window객체를가르키는것으로 전역변수 구분시 사용
+        */
+        document.write("<h2>지역변수와 전역변수</h2>");
+        var globalVar = 100;//전역변수
+
+        function conflict(globalVar){
+            /*
+            전역변수와 지역변수명이 같아서 구분을 위해 
+            전역변수로 쓰기위해this사용
+            */
+
+            //전역변수:200 지역변수:100*2
+            this.globalVar = globalVar* 2;
+            document.write("함수안 globalVar="+globalVar+"<br>"); //지역변수:100
+            document.write("함수안 globalVar="+this.globalVar+"<br>");//전역변수:200
+        }
+
+        conflict(globalVar);//전역변수를 이용하여 함수호출
+
+        document.write("함수밖 globalVar="+globalVar+"<br>");//전역변수
+
+        function conflict2(localVar){
+            /*
+            해당 함수에는 변수명 충돌이 없으니
+            this사용을 안해도됨
+            */
+            globalVar = localVar + 50;//전역변수 250
+            localVar = localVar + 80; //지역변수 280
+
+            document.write("함수2안 globalVar="+globalVar
+        +",localVar="+localVar+"<br>");
+        }
+
+        conflict2(globalVar); //전역변수:200
+
+
+        //localVar은 지역변수라서 불러오지못함(에러)
+        document.write("함수2밖 globalVar="+globalVar
+        +",localVar="+localVar+"<br>");
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

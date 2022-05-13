@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemberFindSkin.html</title>
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0 auto;
+            text-align: center;
+            width: 100%;
+            height: 100vh;
+        }
+
+        #memberfind_section {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+        }
+
+        #memberfind_section form,  #memberfind_section form > *{
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+        }
+
+        #mf_title{
+            text-align: left !important;
+            padding-left: 10px;
+        }
+
+        #mf_content{
+            padding: 50px 50px 40px 50px;
+            border: 1px solid #222;
+        }
+
+        input[type="text"], input[type="password"],select{ 
+            border: 1px solid rgb(146, 146, 146);
+            height: 30px;
+        }
+
+        input[type="text"], input[type="password"]{
+            padding: 10px;
+        }
+
+
+        #mf_content ul li {
+            list-style-type: none;
+
+            text-align: left;
+            width: 100%;
+            padding: 5px;
+        }
+
+
+        li::before{
+            content: '>';
+            color: red;
+            font-weight: 600;
+            top:4px;
+            width: 10px;
+            height: 10px;
+        }
+
+        #mf_content ul li label{
+            width: 25%;
+            display: inline-block;
+        }
+        #mf_content ul li span{width: auto;}
+
+        select{width: 100%;}
+
+        input[name="u_id"], input[name="u_name"]{width: 70%;}
+        input[name^="u_email"]{width: 21.5%;}
+
+        select[name="u_email_select"]{width: 20%;}
+        .hr_div{
+            border-top: 1px dotted rgb(146, 146, 146); 
+            margin-top: 20px;
+        }
+
+        .fr_footer{
+            text-align: center; 
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!--section id="memberfind_section">
+        <form action="">
+            <div id="mf_title">
+                <input type="radio" name="memberfind_chk" value="id" checked> 아이디 찾기
+                &nbsp;&nbsp;
+                <input type="radio" name="memberfind_chk" value="pw"> 비밀번호 찾기
+            </div>
+
+            <div id="mf_content">
+                <ul>
+                    <li>
+                        <label>이름(대표자명)</label>
+                        <span>
+                            <input type="text" name="u_name" >
+                        </span>
+                    </li>
+                    <li>
+                    <label>
+                        <select name="u_select" id="">
+                            <option value="">선택</option>
+                            <option value="phone" selected>휴대전화</option>
+                            <option value="email">이메일</option>
+                        </select>
+                    </label>
+                        <span>
+                            <input type="text" name="u_phone1" size="4" maxlength="4"> -
+                            <input type="text" name="u_phone2" size="4" maxlength="4"> -
+                            <input type="text" name="u_phone3" size="4" maxlength="4">
+                        </span>
+                   
+                </li>
+                </ul>
+
+                <div class="hr_div"></div>
+
+                <div class="fr_footer">아이디를 찾기 위해서 이름과 휴대번호 혹은 이메일을 입력하세요.</div>
+            </div>
+
+
+        </form>
+    </section-->
+
+
+    <section id="memberfind_section">
+        <form action="">
+            <div id="mf_title">
+                <input type="radio" name="memberfind_chk" value="id" > 아이디 찾기
+                &nbsp;&nbsp;
+                <input type="radio" name="memberfind_chk" value="pw" checked> 비밀번호 찾기
+            </div>
+
+            <div id="mf_content">
+                <ul>
+                    <li>
+                        <label>아이디</label>
+                        <span>
+                            <input type="text" name="u_id" >
+                        </span>
+                    </li>
+                    <li>
+                        <label>이름(대표자명)</label>
+                        <span>
+                            <input type="text" name="u_name" >
+                        </span>
+                    </li>
+                    <li>
+                    <label>
+                        <select name="u_select" id="">
+                            <option value="">선택</option>
+                            <option value="phone" >휴대전화</option>
+                            <option value="email" selected>이메일</option>
+                        </select>
+                    </label>
+                        <span>
+                            <input type="text" name="u_email1" />
+                            @
+                            <input type="text" name="u_email2" />
+
+                            <select name="u_email_select" id="">
+                                <option value="">이메일</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="hanmail.net">hanmail.net</option>
+                                <option value="nate.com">nate.com</option>
+                                <option value="gmail.com" selected>gmail.com</option>
+                            </select>
+                        </span>
+                   
+                </li>
+                </ul>
+
+                <div class="hr_div"></div>
+
+                <div class="fr_footer">비밀번호를 찾기 위해서 아이디, 이름과 휴대전화 혹은 이메일을 입력하세요.</div>
+            </div>
+
+
+        </form>
+    </section>
+
+</body>
+</html>

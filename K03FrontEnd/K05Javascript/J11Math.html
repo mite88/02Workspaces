@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J11Math.html</title>
+
+    <script>
+        document.write("JS의 core객체 - Math");
+
+        document.write("-10의 절대값 : " + Math.abs(-10) + "<br/>");
+        document.write("2의 3승:" + Math.pow(2, 3) + "<br/>");
+        document.write("3.159의 반올림:" + Math.round(3.159) + "<br/>");
+        document.write("3.159의 올림:" + Math.ceil(3.159) + "<br/>");
+        document.write("3.159의 내림:" + Math.floor(3.159) + "<br/>");
+
+        /*난수 :
+        0~1까지의 실수값을 랜덤하게 반환해서 정수로 사용시
+        수를 급한 후 소수점을 제거함
+        */
+        document.write("난수발생1:" + Math.random() + "<br/>");
+        document.write("난수발생2(1~10):" + parseInt((Math.random() * 10) + 1) + "<br/>");
+
+        document.write("최소값:" + Math.min(1, 10, -100, -10, 1000, 0) + "<br/>");
+        document.write("최대값:" + Math.max(1, 10, -100, -10, 1000, 0) + "<br/>");
+
+    </script>
+</head>
+
+<body>
+
+    <script>
+         var setOrdering = function (arr) {
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = 0; j < (arr.length - 1) - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+        }
+
+        //로또번호 생성+정렬
+        function getLotto(){
+            var lottoStr = "";
+            var lottoNum = [0, 0, 0, 0, 0, 0]; //크기가 6인배열 생성 및 초기화
+            var index = 0; //배열 인덱스용
+            var flag = false; //중복값 확인용
+
+            //배열에 중복되지 않는 난수를 하나씩 채우면서 1씩증가 
+            //6까지....
+            while (index < 6) {
+                var randomNum = parseInt(Math.random() * 45) + 1;
+
+                //중복검사 후 배열에 넣기
+                for (var i = 0; i < lottoNum.length; i++) {
+                    //난수 일치시 flag를 true함
+                    if (lottoNum[i] == randomNum) {
+                        flag = true;
+                    }
+                }
+
+                if (flag == true) {
+                    //중복된 값이면 처음으로 가서 다시 난수생성
+                    flag = false;
+                    continue;
+                } else {
+                    //중복된 값이 아니면 배열에 추가후 인덱스 증가
+                    lottoNum[index++] = randomNum;
+                }
+            }
+            //오름차순 정렬
+            setOrdering(lottoNum);
+
+            for (var i = 0; i < lottoNum.length; i++) {
+                lottoStr += lottoNum[i] + "&nbsp;";
+            }
+
+            document.getElementById("lottoNumber").innerHTML = lottoStr;
+        }
+    </script>
+
+    <h2>Lotto(1~45) 번호 생성하기</h2>
+    <button type="button" onclick="getLotto();">
+        로또번호생성하기
+    </button>
+    <!--span#lottoNumber-->
+    <span id="lottoNumber" style="font-size:2em; color:red;">
+        생성된 로또번호는 여기에 출력됩니다.
+    </span>
+
+</body>
+
+</html>

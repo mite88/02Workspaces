@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J08Function03.html</title>
+
+    <script>
+        /*
+        Call By Value
+        값에 의한 호출
+        값을 매개변수르 전달시 메모리상에 복사가 일어나 전달
+        함수내에선 지역변수라서 종료시 자동 소멸
+        */
+       //전역변수 생성
+        var param = 100, args = 1;
+
+        document.write("<h2>Call By Value</h2>");
+        document.write("초기값 param:"+param+", args:"+args+"<br>");
+
+        function callByValue(param, args) {
+            //지역변수 
+            /*
+            현재 전역변수와 이름이 같아 충돌이지만
+            지역변수가 우선순위높아서 별도로 this를 할필요가 없음
+            */
+            var temp = param;
+            param = args;
+            args = temp;//[출력결과 다름]
+            document.write
+            ("함수안의 param=" + param + ", args=" + args+"<br>");
+        }
+        callByValue(param, args);
+
+        //함수 종료시 지역변수는 소멸하기에 기존값이 유지됨
+        document.write
+        ("함수밖의 param=" + param + ", args=" + args+"<br>");
+
+
+        /*
+        Call By Reference
+        참조에 의한 호출
+        값이 아닌 주소값을 전달하여 지역 상관없이 동일한 객체의
+        참조가 가능
+        */
+        document.write("<h2>Call By Reference</h2>");
+        var array = [100, 1];
+        document.write
+        ("초기값 array[0]:"+array[0]+", array[1]:"+array[1]+"<br>");
+
+        function callByReference(arr) {
+            var temp = arr[0];
+            arr[0] = arr[1];
+            arr[1] = temp;//[출력결과 같음]
+            document.write
+            ("함수안 arr[0]=" + arr[0] + ", arr[1]=" + arr[1]+"<br>");
+        }
+        //배열변수의 주소값을 매개변수로 전달
+        callByReference(array);
+        //함수안에서의 출력이 밖에서의 출력과 같음
+        document.write
+        ("함수밖 array[0]=" + array[0] + ", array[1]=" + array[1]+"<br>");
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

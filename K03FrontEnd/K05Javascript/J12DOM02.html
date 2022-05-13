@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J13Window01Location.html</title>
+</head>
+
+<body>
+    <script>
+        //input의 name속성을 통해 DOM객체 얻어옴
+        //체크박스 토글
+        function fnGetElementsByName() {
+            var names = document.getElementsByName("inter");
+
+            /*
+            checkbox에서...
+            체크 : true or "checked"
+            해제 : false or null
+            */
+            for (var i = 0; i < names.length; i++) {
+                if (names[i].checked == true) {
+                    //체크한건 체크해제
+                    names[i].checked = null;
+                    //names[i].checked = false;
+                } else if (names[i].checked == false) {
+                    //체크안된건 체크해줌
+                    names[i].checked = "checked"
+                    //names[i].checked = true;
+                }
+               
+                //토글로 이용하기 (ie빼고 가능함)
+                //names[i].toggleAttribute("checked");
+
+            }
+        }
+
+        //class명을 통해 DOM객체 얻은 후 배열 저장
+        function fnGetElementsClass() {
+            var portals = document.getElementsByClassName("portal");
+            for (var i = 0; i < portals.length; i++) {
+                //alert에선 html태그가 그대로 출력됨
+                alert(portals[i].innerHTML);
+            }
+
+        }
+    </script>
+
+    <h3>이름으로 얻어오기</h3>
+
+    <input type="checkbox" name="inter" id="" value="POL" checked>정치  
+    <input type="checkbox" name="inter" id="" value="ECO">경제
+    <input type="checkbox" name="inter" id="" value="ENT" checked>연예
+    <input type="button" value="name속성에 지정된 값으로 DOM객체 얻기"
+    onclick="fnGetElementsByName();">
+
+    <h2>클래스명으로 얻어오기</h2>
+    <ul>
+        <li> <a href="#" class="portal">네<b>이</b>버</a></li>
+        <li><a href="#" class="portal">다음</a></li>
+        <li><a href="#" class="portal">네이트</a></li>
+    </ul>
+
+    <button onclick="fnGetElementsClass();">클래스명으로 DOM객체 얻어오기</button>
+
+    <script>
+        //클릭시 이미지바꾸기
+        function fnChangeImg(imgNum){
+            //아이디속성을 통해 DOM객체 얻어옴
+            var img_tag = document.getElementById("trump");
+            console.log(img_tag); 
+            img_tag.src= "./images/"+imgNum+".jpg";
+            img_tag.width = parseInt(imgNum * 50);
+        }
+    </script>
+
+    <h2>동적으로 이미지 교체하기(ID로 DOM객체얻기)</h2>
+
+    <fieldset>
+        <legend>이미지 동적 교체</legend>
+        <a href="javascript:fnChangeImg(1);" onmouseover="fnChangeImg(1)">1번이미지</a>
+        <a href="javascript:fnChangeImg(2);">2번이미지</a>
+        <a href="javascript:fnChangeImg(3);">3번이미지</a>
+        <a href="javascript:fnChangeImg(4);">4번이미지</a>
+        <a href="javascript:fnChangeImg(5);">5번이미지</a>
+        <a href="javascript:fnChangeImg(6);">6번이미지</a>
+        <a href="javascript:fnChangeImg(7);">7번이미지</a>
+        <a href="javascript:fnChangeImg(8);">8번이미지</a>
+        <a href="javascript:fnChangeImg(9);">9번이미지</a>
+        <a href="javascript:fnChangeImg(10);">10번이미지</a>
+        <hr>
+        <img id="trump" src="" width="100" alt="이미지교체하기">
+    
+    </fieldset>
+</body>
+
+</html>

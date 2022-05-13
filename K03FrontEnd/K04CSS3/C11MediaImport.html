@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C11MediaImport.html</title>
+
+    <style>
+        /*
+         @import
+         - <link> 대체
+         - style태그안에 사용 + 최상단
+         - css오류시x
+        */
+        @import url('./style/import.css');
+        .content{background-color: black; color: red;}
+
+         /*
+         @media
+         - 디바이스에 따라 다르게 화면을 구성할때 사용
+          - screen : 모니터용
+          - print : 프린트용
+        */
+        @media screen {
+            .content{background-color: black; color: white;}
+        }
+
+        @media print {
+            .content{background-color: red; color: yellow;}
+        }
+
+        /*반응형의 예) 최소최대px을 기준으로 지정 (자세한 사항은 위의 블로그참고)*/
+        @media screen and (max-width:639px) {
+            .content{background-color: navy; color: white;}
+        }
+
+        @media screen and (min-width:640px) and (max-width:1000px) {
+            .content{background-color: rebeccapurple; color: white;}
+        }
+
+
+    </style>
+</head>
+<body>
+    <h2>media 속성</h2>
+    <div class="content">
+        <p>
+            <h3>[尹정부 출범] 역대 대통령 취임사와 비교해보니</h3>
+
+            (서울=연합뉴스) 류미나 김서영 기자 = 대통령 취임사는 
+            새 정부 5년의 비전을 집약한 국정운영의 청사진이다.<br><br>
+
+            역대 대통령은 취임사를 통해 국정 최고책임자로서의 국정목표와 원칙을 밝히며 구체적 국정과제를 밝혔다.
+
+            윤석열 대통령이 10일 취임사의 화두를 '자유민주주의와 시장경제의 회복'으로 정한 
+            것도 이런 상황 인식에 따른 향후 국정운영 철학을 제시한 것이다.<br><br>
+
+            취임사 서두에서 "이 나라를 자유민주주의와 시장경제 체제를 기반으로 국민이 
+            진정한 주인인 나라로 재건하고, 국제사회에서 책임과 역할을 다하는 나라로 
+            만들어야 하는 시대적 소명"을 강조한 것도 대북 문제를 포함한 안보이슈와 대내외적 경제환경 등을 
+            핵심 도전과제로 인식하고 적극적인 대응 의지를 표현한 것으로 보인다.
+        </p>
+    </div>
+</body>
+</html>

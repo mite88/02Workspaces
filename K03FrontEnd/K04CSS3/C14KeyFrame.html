@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C14KeyFrame.html</title>
+    <style>
+        #rect{
+            width: 100px; height: 100px; background-color: red;
+            line-height: 100px;
+
+            animation-duration: 3s; /*애니메이션적용시간*/
+            animation-timing-function: ease-in-out;/*시간에대한 효과*/
+            animation-name: my_ani;/*키프레임 생성 후 이름지정*/
+        }
+        /*키프레임 지정 : from(시작)~to(종료)*/
+        @keyframes my_ani {
+            from{width: 100px;}
+            to{width: 400px;}
+        }
+
+        /*position을 통해 위치를 지정할 수 있는상태가 되야 이동가능함*/
+        #circ1{
+            width: 100px; height: 100px;
+            line-height: 100px; text-align: center;
+            background-color: green; border-radius: 50px;
+            position: absolute; left: 0; top: 200px;
+            font-size: 1.5em;
+
+            animation-duration: 3s;
+            animation-name: my_ani2;
+        }
+        @keyframes my_ani2 {
+            from{
+                left: 0; width: 100px; height: 100px;
+                line-height: 100px; border-radius: 50px;
+                transform: rotate(0deg);
+                font-size: 1.5em;
+            }
+        
+            to{
+                left: 400px; width: 200px; height: 200px;
+                line-height: 200px; border-radius: 100px;       
+                transform: rotate(180deg); /*시계방향회전*/
+                font-size: 2.5em;
+            }
+        }
+
+        #circ2{
+            width: 50px; height: 50px; background-color: blue;
+            position: absolute; left: 0; top: 220px;
+            color: yellow; line-height: 50px;
+            border-radius: 25px; text-align: center;
+
+            animation-duration: 3s;
+            animation-name: my_ani3;
+            /*animation-iteration-count - 반복횟수(숫자 및 infinite) */
+            animation-iteration-count: infinite;/*무한반복*/
+        }
+        @keyframes my_ani3 {
+            from{left: 0; top: 220px;}
+            to{left: 200px; top: 420px;} 
+        }
+
+        #circ2:hover{animation-play-state: paused;}
+    </style>
+</head>
+<body>
+    <H2>keyframe을 이용한 애니메이션</H2>
+
+    <div id="wrap">
+        <div id="rect"></div>
+        <div id="circ1">동그라미</div>
+        <div id="circ2">원2</div>
+    </div>
+    
+</body>
+</html>
