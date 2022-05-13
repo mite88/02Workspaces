@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J15Event01.html</title>
+
+    <script>
+       function loadEventFunc(){
+           alert("해당문서의 load가 완료");//2
+       }
+    </script>
+
+</head>
+<!--
+    load이벤트 : html로딩 후 발생하는 이벤트
+    (특정태그에 속성으로 이벤트핸들러를 부착하고호출 함수 기술)
+-->
+<body onload="loadEventFunc();">
+    <h2>이벤트 - load 첫번째</h2>
+    <script>
+        alert("문서끝나기 직전");  //1
+    </script>
+    
+</body>
+</html>

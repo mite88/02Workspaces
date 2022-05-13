@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J14Window04Interval.html</title>
+    <script>
+        function fnOnce(){alert("5초후 딱 한번만 실행됨");}
+        function fnContunue(){alert("3초마다 매번 실행됨");}
+    
+        //전역변수
+        var timerOnce, timerMode;
+
+        function fnCallAfter(flag){
+            /*
+            타이머관련 함수 사용시 다른함수를 호출할때는 
+            더블쿼테이션으로감싸서 문자열형태로 기술
+            */
+            if(flag == "T"){
+                //5초 후 한번실행
+                timerOnce = window.setTimeout("fnOnce()", 5000);
+            }else{
+                //3초마다 실행
+                timerMode = window.setInterval("fnContunue()", 3000);
+            }
+        }
+
+        //함수 실행 취소
+        function fnCallBreak(flag){
+            if(flag == 1){
+                clearTimeout(timerOnce);
+            }else{
+                clearInterval(timerMode);
+            }
+        }
+    
+        function displayTime(){
+            var date = new Date();
+            //console.log(date);
+
+            var displayClock = document.getElementById("clock");
+
+            displayClock.innerHTML = date.getHours()+"시 "
+            +date.getMinutes()+"분 "
+            +date.getSeconds()+"초";
+        }
+
+        function displayTimeCall(){
+            setInterval("displayTime()", 1000);
+        }
+    </script>
+</head>
+<body>
+    <h2>setInterval(), setTimeout 함수</h2>
+    <h3>일정 시간후 함수실행</h3>
+
+    <input type="button" value="5초후함수실행" 
+    onclick="fnCallAfter('T');">
+    <input type="button" value="함수호출중지"
+    onclick="fnCallBreak(1);">
+
+    <h3>일정 시간마다 함수실행</h3>
+    
+    <input type="button" value="3초마다 함수실행"
+    onclick="fnCallAfter('I');">
+    <input type="button" value="함수호출중지"
+    onclick="fnCallBreak(2);">
+
+    <h3>간단한 디지털 시계 구현하기</h3>
+    <span id="clock" style="color: red; 
+        font-size: 1.8em; font-weight: bold;"></span>
+
+    <button type="button" onclick="displayTimeCall();">
+        디지털시계</button>
+</body>
+</html>

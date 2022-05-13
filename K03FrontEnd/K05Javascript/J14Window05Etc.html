@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J14Window05Etc.html</title>
+
+    <script>
+        /*
+        escape() : 영어, 숫자를 제외한 다른 언어들은 유니코드를 사용하는데
+        유니코드를 UTF-8로 인코딩시 사용
+
+        unescape() : 디코딩
+        */
+        document.write("<h3>escape()/unescape()함수</h3>");
+        var escapeStr = window.escape("안녕 Hello 1234");
+        document.write("인코딩:"+escapeStr+"<br>");
+        document.write("디코딩:"+unescape("%uC548%uB155%20Hello%201234"));
+       
+        /*
+        eval() : 문자열형태로 주어진 코드를 실제 자바스크립트의 코드로 인식하여 실행
+        */
+        document.write("<h3>eval()함수</h3>");
+        document.write("alert('나는 alert함수다')");
+        eval("alert('나는 alert함수다')");
+        document.write("<br>1+2+3<br>");
+        document.write(eval("1+2+3"));
+
+        /*
+        isNaN() : 숫자가 아닌지판단하여 아닐때 true반환
+        */
+        document.write("<h3>isNaN함수</h3>");
+        isNaN("12A") ? document.write("숫자형식 아님")
+        :document.write("숫자형식임");
+        isNaN("12") ? document.write("숫자형식 아님")
+        :document.write("숫자형식임");
+
+        /*parseInt() : 문자열에서 숫자부분만 반환 
+        (중간에 문자가 있다면 바로전까지의 숫자만 반환됨)*/
+        document.write("<h3>parseInt()함수</h3>");
+        document.write("12A를 숫자로변환:"+parseInt("12A"));
+        document.write("<br>A12를 숫자로변환:"+parseInt("A12"));
+        document.write("<br>12A34를 숫자로변환:"+parseInt("12A34"));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

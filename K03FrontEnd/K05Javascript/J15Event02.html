@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J15Event02.html</title>
+
+    <script>
+        window.onload = function(){
+            alert("문서의 load 완료");
+        };
+
+        /*
+        onload핸들러 밖에서 실행하면 해당코드가 실행되는 
+        시점에서 정의된 엘리먼트가 없어서 DOM에서 가져오지 못함
+        */
+        //var i = document.getElementById("myInput").value;
+        
+    </script>
+
+</head>
+<!--
+   window객체에 이벤트 핸들러 부착
+-->
+<body>
+    <h2>이벤트 - load 두번째</h2>
+    <script>
+        alert("문서끝나기 직전");  //1
+    </script>
+
+    <input type="text" id="myInput" value="안녕하세요">
+    
+</body>
+</html>

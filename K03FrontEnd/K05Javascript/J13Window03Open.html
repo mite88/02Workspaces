@@ -21,6 +21,36 @@
             location, toolbar, menubar, scrollbars, resizable은 ie에만 적용되어서 현재는 사용x
             */
         }
+
+        //open() 함수가 반환하는 윈도우 객체를 저장하기 위한 전역변수
+        var winObj1;
+
+        function popFirst(){
+            //팝업열기 : open() 함수가 반환하는 윈도우 객체 저장
+            winObj1 = window.open("./pages/popup01.html", "pop1",
+            "width=300, height=300, left=0, top=0;");
+        }
+
+        function popClose(){
+            alert("팝업창1을 닫습니다");
+            winObj1.close();//저장한 윈도우 객체를 통해 자식창닫기
+        }
+
+
+        function screenCenterPop(){
+            //모니터해상도구하기
+            var s_width = window.screen.width;
+            var s_height = window.screen.height;
+
+            alert(s_width+"/"+s_height);
+
+            //팝업창 크기가 300이라 좌측상단으로 150만큼이동해야 중앙에 위치
+            var leftVal= (s_width/2 - (300/2));
+            var topVal= (s_height/2 - (300/2));
+
+            window.open("./pages/popup01.html", "pop1",
+            "width=300, height=300, left="+leftVal+", top="+topVal+";");
+        }
     </script>
 </head>
 <body>
@@ -51,6 +81,18 @@
             </tr>
         </table>
     </fieldset>
+
+    <h2>부모창에서 팝업창 제어하기</h2>
+    <p style="text-align: center;">
+        <button onclick="popFirst();">첫번째 팝업창 열기</button>
+        <button onclick="popClose();">첫번째 팝업창 닫기</button>
+    </p>
+
+    <h2>회면의해상도 얻어와서 스크린 중간에팝업띄우기</h2>
+    <p style="text-align: center;">
+        <button onclick="screenCenterPop();">화면중간에 팝업띄우기</button>
+    </p>
+
 
 </body>
 </html>
