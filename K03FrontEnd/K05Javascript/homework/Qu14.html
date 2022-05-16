@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu14.html</title>
+
+    <style>
+        .color_div {
+            display: flex;
+        }
+        .color_div > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width:20%;
+            height: 100px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>17가지의 css2 색이름과 색</h2>
+    <hr>
+
+    <script>
+        var colorNames = ["maroon", "red", "orange", 
+        "yellow", "olive", "purple", "fuchsia", "white",
+         "lime", "green", "navy", "blue", "aqua", "teal",
+         "black", "silver", "gray", "lightskyblue"];
+
+         document.write("<div class='color_div' style='width:1000px'>");
+
+         for (var i = 0; i < colorNames.length; i++) {
+
+            if( i != 0 && (i % 5 == 0)){
+                document.write("</div>");
+                document.write("<div class='color_div' style='width:1000px'>");
+            }
+                document.write("<div style='background-color:"+colorNames[i]+"'");
+                document.write(">"+colorNames[i]+"</div>");
+            
+            
+        }
+
+        document.write("</div>");
+    </script>
+</body>
+</html>
