@@ -6,15 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qu01.html</title>
 
+</head>
+<body>
+    <h2>특수기호를 인자갯수만큼 출력하기</h2>
+    <hr>
+
+    <span id="text01"></span>
+
     <script>
 
         function pr(str, repat){
-            var prText;
+            var text =  document.getElementById("text01");
+            var prText="";
             for (var i = 0; i < repat; i++) {
-                prText += (str+"<br>");
+                prText += (str);
             }
-            
-            document.getElementById("q01text").innerHTML = prText;
+           // alert(text.innerHTML);
+           document.write(text.innerHTML+"<br>"+prText);
 
         }
 
@@ -22,14 +30,6 @@
         pr('*', 10);
         pr('#', 15);
     </script>
-
-</head>
-<body>
-    <h2>특수기호를 인자갯수만큼 출력하기</h2>
-    <hr>
-
-    <span id="q01text">
-    </span>
 
 </body>
 </html>

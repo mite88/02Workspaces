@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu07.html</title>
+</head>
+<body>
+    <script>
+        function bing(str1, str2){
+            var strResult = 0;
+            //alert(str1);
+            strResult = parseInt(str1) > parseInt(str2) ? str1 : str2;
+
+            return strResult;
+        }
+    </script>
+
+    <script>
+        var b = bing("625", "555");
+        document.write("큰수="+b);   
+    </script>
+</body>
+</html>

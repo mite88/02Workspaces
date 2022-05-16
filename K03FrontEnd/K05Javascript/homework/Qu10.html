@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu10.html</title>
+</head>
+<body>
+    <h2>정수 5개 입력받아 역순으로 출력</h2>
+    <hr>
+
+    <script>
+        var numArr = new Array(5);//배열생성
+        var temp; //중간저장용
+
+        for (var i = 0; i < numArr.length; i++) {
+            //입력창 5번입력하여 저장
+            numArr[i] = parseInt(prompt("5번의 정수 중"+i+"번째 정수를 입력합시다."));
+        }
+        document.write("입력된 수의 배열<br>");
+        document.write(numArr.toString().replaceAll(",", " ")+"<br><hr>");
+        
+        //뒤집기 : 순서뒤집기의 경우 양쪽을 뒤집기에 중간위치까지만 돌리면됨
+        for (var j = 0; j < (numArr.length/2); j++) {
+            //첫요소 중간값저장
+            temp = numArr[j];
+            //처음과 마지막 요소 교환
+            numArr[j] = numArr[numArr.length-1-j];
+            //중간값을 마지막요소에 저장
+            numArr[numArr.length-j-1] = temp;
+        }
+        document.write("역순으로 재정렬된 배열<br>");
+        document.write(numArr.toString().replaceAll(",", " "));
+
+    </script>
+    
+</body>
+</html>

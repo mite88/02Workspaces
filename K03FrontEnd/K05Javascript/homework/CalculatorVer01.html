@@ -111,62 +111,61 @@
         }
 
         function inputStr(str){
-            var result=document.getElementsByClassName('calc_result')[0];
+            var result= document.getElementsByClassName('calc_result')[0];
             var result_Text = "";
             if(result.innerText.indexOf("0") != -1){
                 result.innerText = '';
             }
             
-            if(str.innerText.indexOf("=") != -1){
+            if(str.indexOf("=") != -1){
 
                 //result_Text=eval(document.getElementsByClassName('calc_result').innerText);
-                result_Text=result.innerText;
+                result_Text=result.innerText.replaceAll("×", "*");
                 result.innerHTML = eval(result_Text);
                 //alert( eval(result_Text));
             }else{
-                result.innerText += str.innerText; 
+                result.innerText += str; 
             }
-            
-
         }
+
+      
     </script>
 
 
 </head>
 
 <body>
-
     <table>
         <tr>
-            <td colspan="4" class="calc_result">0</td>
+            <td colspan="4" class="calc_result" onchange="commaText(this);">0</td>
         </tr>
         <tr>
             <td colspan="2" class="op_back" onclick="back_btn();">BackSpace</td>
             <td colspan="2" class="op_reset" onclick="reset_btn();">C</td>
         </tr>
         <tr>
-            <td class="number" onclick="inputStr(this);">1</td>
-            <td class="number" onclick="inputStr(this);">2</td>
-            <td class="number" onclick="inputStr(this);">3</td>
-            <td class="op_symbol" onclick="inputStr(this);">/</td>
+            <td class="number" onclick="inputStr('1');">1</td>
+            <td class="number" onclick="inputStr('2');">2</td>
+            <td class="number" onclick="inputStr('3');">3</td>
+            <td class="op_symbol" onclick="inputStr('+');">+</td>
         </tr>
         <tr>
-            <td class="number" onclick="inputStr(this);">4</td>
-            <td class="number" onclick="inputStr(this);">5</td>
-            <td class="number" onclick="inputStr(this);">6</td>
-            <td class="op_symbol" onclick="inputStr(this);">*</td>
+            <td class="number" onclick="inputStr('4');">4</td>
+            <td class="number" onclick="inputStr('5');">5</td>
+            <td class="number" onclick="inputStr('6');">6</td>
+            <td class="op_symbol" onclick="inputStr('-');">-</td>
         </tr>
         <tr>
-            <td class="number" onclick="inputStr(this);">7</td>
-            <td class="number" onclick="inputStr(this);">8</td>
-            <td class="number" onclick="inputStr(this);">9</td>
-            <td class="op_symbol" onclick="inputStr(this);">+</td>
+            <td class="number" onclick="inputStr('7');">7</td>
+            <td class="number" onclick="inputStr('8');">8</td>
+            <td class="number" onclick="inputStr('9');">9</td>
+            <td class="op_symbol" onclick="inputStr('×');">×</td>
         </tr>
         <tr>
-            <td class="op_result" onclick="inputStr(this);">=</td>
-            <td class="number" onclick="inputStr(this);">0</td>
-            <td class="number" onclick="inputStr(this);">.</td>
-            <td class="op_symbol" onclick="inputStr(this);">-</td>
+            <td class="op_result" onclick="inputStr('=');">=</td>
+            <td class="number" onclick="inputStr('0');">0</td>
+            <td class="number" onclick="inputStr('.');">.</td>
+            <td class="op_symbol" onclick="inputStr('/');">÷</td>
         </tr>
     </table>
 

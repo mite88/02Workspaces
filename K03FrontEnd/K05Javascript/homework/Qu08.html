@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu08.html</title>
+
+    <script>
+        var inputNum = parseInt(prompt("숫자를 입력하세요"));//입력창
+        var firstNum =0;//첫번째 자리수
+        var num = inputNum; //중간저장용
+        var lastNum = inputNum % 10;
+
+        //입력한 숫자자리수 만큼 돌리기 
+        while(num != 0){
+            firstNum = num;
+            num = Math.floor(num / 10);
+        }
+
+        //alert(lastNum +"/"+firstNum);
+
+        if(lastNum == firstNum){
+            document.write(inputNum + ": 같음");
+
+        }else{
+            document.write(inputNum1 + ": 다름");
+        }
+    </script>
+</head>
+<body>
+    <h2>숫자의 첫째자리와 마지막자리가 같은지 비교</h2>
+    <hr>
+
+</body>
+</html>

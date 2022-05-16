@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu09.html</title>
+</head>
+<body>
+    <h2>난수10개 생성</h2>
+    <hr>
+
+    <script>
+        var num = 0; //가장큰수 저장용
+        var numArr = new Array(10);//배열생성
+        var strText ="";
+        //이전값과 현재값을 비교해서 큰수를 저장함
+
+        for (var i = 0; i < numArr.length; i++) {
+            var randomNum = parseInt(Math.random() * 100) + 1;
+            //alert(parseInt(randomNum));
+            strText +=parseInt(randomNum)+" ";
+            numArr[i] =parseInt(randomNum);
+        }
+        document.write(strText+"<br><hr>");
+        //document.write(numArr.toString().replaceAll(",", " ") +"<br><hr>");
+        document.body.append(Math.max(...numArr));
+         
+    </script>
+</body>
+</html>
