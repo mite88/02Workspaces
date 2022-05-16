@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J15Event07.html</title>
+</head>
+<body>
+    
+    <h2>마우스 이벤트</h2>
+    
+    <h3>mouseover / mouseout 이벤트</h3>
+	<table style="border-spacing:1px; width:400px; background-color:gray;">
+		<tr style="background-color:yellow;">
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+		</tr> 
+		<!-- 
+		JS가 아닌 HTML태그 자체 속성값을 통해 DOM객체를 처리하는 경우 
+		this를 통해 설정할수 있다. 
+		 -->
+		<tr style="background-color:gray;"
+			onmouseover="this.style.backgroundColor='green';"
+			onmouseout="this.style.backgroundColor='gray';">
+			<td>1</td>
+			<td>어벤져스</td>
+			<td>페이즈1</td>
+		</tr>
+		<tr style="background-color:white;"
+			onmouseover="this.style.backgroundColor='green';"
+			onmouseout="this.style.backgroundColor='white';">
+			<td>2</td>
+			<td>어벤져스2-울트론의시대</td>
+			<td>페이즈2</td>
+		</tr>
+		<tr style="background-color:gray;"
+		onmouseover="this.style.backgroundColor='green';"
+		onmouseout="this.style.backgroundColor='gray';">
+			<td>3</td>
+			<td>어벤져스3-인피니티워</td>
+			<td>페이즈3</td>
+		</tr>
+		<tr style="background-color:white;"
+		onmouseover="this.style.backgroundColor='green';"
+		onmouseout="this.style.backgroundColor='white';">
+			<td>4</td>
+			<td>어벤져스4-엔드게임</td>
+			<td>페이즈4</td>
+		</tr>
+	</table>
+        
+	<!-- 
+		mousedown : 마우스를 클릭했을때 발생되는 이벤트
+		mouseup : 클릭 후 땠을때 발생되는 이벤트
+	 -->
+	<h3 id="title">mousedown/mouseup 이벤트</h3>
+	<h4>스케일 및 색상변경</h4>	
+	<div onmousedown="fnScale(1);" onmouseup="fnScale(2);"
+		style="background-color:red; width:100px; height:100px;">
+		여기를 클릭해보세요
+	</div>    
+
+    <script>
+        function fnScale(flag){
+            var title = document.getElementById('title');
+            var div = document.getElementsByTagName('div')[0];
+
+            if(flag == 1){
+                title.innerHTML = "<big>mousedown 이벤트 발생</big>";
+                div.style.backgroundColor ='green' ;
+                div.style.width =parseInt(div.style.width)*2 +"px";
+                div.style.height =parseInt(div.style.height)*2 +"px";
+            }else if(flag == 2){
+                title.innerHTML = "<big>mouseup 이벤트 발생</big>";
+                div.style.backgroundColor ='red' ;
+                div.style.width ="100px";
+                div.style.height ="100px";
+            }
+        }
+    </script>
+
+
+	<h3>mousedown이벤트</h3>
+	<h4>div상자의 위치이동</h4>
+	<div onmousedown="setTimer(this);" style="left: 0; top:0; 
+	position: relative; width: 100px; height: 100px; background-color: blue;">
+	</div>
+
+	<script>
+		var timer, count =1,divObj;
+
+		//해당엘리먼트 클릭시 호출
+		function setTimer(obj){
+			divObj = obj; //DOM객체 전역변수에저장
+			timer= setInterval("moveObj()", 300);//0.3초에 한번 함수호출
+		}
+
+		function moveObj(){
+			//함수 3번호출시 삭제하여 중지
+			if(count % 3 == 0){
+				clearInterval(timer);
+			}
+			count++;
+
+			//div박스의 left속성값을 이용하여 50더하여 적용
+			var left = parseInt(divObj.style.left);
+			divObj.style.left=(left+50)+"px";
+		}
+
+	</script>
+
+
+	<!-- 
+	연습문제] 아래 트럼프 이미지에 마우스를 
+		오버했을때 2.jpg로 교체한다.[mouseoverFunc()]
+		아웃했을때 1.jpg로 교체한다.[mouseoutFunc()]
+		다운했을때 이미지크기를 2배로 늘린다.[mousedownFunc()]
+		업했을때 이미지크기를 원래대로 돌린다.[mouseupFunc()]
+	-->
+	<script>
+		
+
+		function mouseoverFunc(obj){
+			obj.src="./images/2.jpg";
+		}
+
+		function mouseoutFunc(){
+			var img = document.getElementsByTagName("img");
+			img[0].src="./images/1.jpg";
+		}
+
+		var dom_obj;
+
+		function mousedownFunc(){
+			console.log("!"+dom_obj.alt);
+			dom_obj.style.width = (parseInt(dom_obj.style.width)*2)+"px";
+			dom_obj.style.height = (parseInt(dom_obj.style.height)*2)+"px";
+		}
+
+		function mouseupFunc(){
+			console.log("!!");
+			dom_obj.style.width = (parseInt(dom_obj.style.width)/2)+"px";
+			dom_obj.style.height = (parseInt(dom_obj.style.height)/2)+"px";
+		}
+
+		//해당 html문서의 로드가 마친 후 무기명 함수 실행
+		window.onload = function(){
+			//해당 이미지DOM객체를 얻어옴
+			dom_obj = document.getElementsByTagName("img")[0];
+
+			//img에 이벤트를 연결함 
+			dom_obj.onmousedown = mousedownFunc;
+			dom_obj.onmouseup = mouseupFunc;
+		}
+	</script>
+	<h3>이미지에 마우스 이벤트 적용하기</h3>
+	<img src="./images/1.jpg" alt="하트" style="width:225px;height:313px;"
+		onmouseover="mouseoverFunc(this);" 
+		onmouseout="mouseoutFunc();"
+		/>
+
+
+
+</body>
+</html>

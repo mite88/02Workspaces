@@ -120,7 +120,7 @@
             if(str.indexOf("=") != -1){
 
                 //result_Text=eval(document.getElementsByClassName('calc_result').innerText);
-                result_Text=result.innerText.replaceAll("×", "*");
+                result_Text=result.innerText.replaceAll("×", "*").replaceAll("÷", "/");
                 result.innerHTML = eval(result_Text);
                 //alert( eval(result_Text));
             }else{
@@ -165,7 +165,7 @@
             <td class="op_result" onclick="inputStr('=');">=</td>
             <td class="number" onclick="inputStr('0');">0</td>
             <td class="number" onclick="inputStr('.');">.</td>
-            <td class="op_symbol" onclick="inputStr('/');">÷</td>
+            <td class="op_symbol" onclick="inputStr('÷');">÷</td>
         </tr>
     </table>
 

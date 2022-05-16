@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-size: 24px;
+        }
+
+        section#calculator {
+            border: 1px solid rgb(199, 199, 199);
+            width: 100%;
+            text-align: center;
+            padding-top: 30px;
+            padding-bottom: 30px;
+
+        }
+
+        #calculator,
+        table {
+            margin: auto;
+            vertical-align: middle;
+            width: 600px;
+            background-color: #eee;
+            border-radius: .4rem;
+            border: 1px solid #eee;
+            border-spacing: 10px;
+        }
+
+        /*table에서 넘침처리하는법*/
+        table{table-layout: fixed;}
+
+        table td{
+            overflow:hidden;
+            white-space : nowrap;
+            text-overflow: ellipsis;
+        }
+
+        table td,
+        table td>div {
+            font-weight: bold;
+            margin: auto;
+            vertical-align: middle;
+            height: 60px;
+            text-align: center;
+            padding: 10px;
+            border-radius: .4rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        table .calc_result {
+            text-align: right;
+            background-color: #04d704;
+            color: #333;
+            font-size: 34px;
+            overflow: hidden;
+        }
+
+        table .number,
+        table .op_result,
+        table .op_back,
+        .op_reset {
+            background-color: #333;
+            line-height: 60px;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        table .op_back,
+        .op_reset {
+            width: 50%;
+            background-color: #666;
+        }
+
+        table .op_symbol {
+            background-color: orange;
+            cursor: pointer;
+        }
+    </style>
+
+
+    <script> 
+       
+       
+        function reset_btn(){
+            var result=document.getElementsByClassName('calc_result')[0];
+            var cal_hidden = document.getElementsByName('cal_hidden')[0]; 
+            var op_hidden = document.getElementsByName('op_hidden')[0]; 
+           // var reset = document.getElementsByClassName('op_reset')[0];
+            result.innerText = 0;
+            cal_hidden.value='';
+            op_hidden.value='';
+        }
+
+        function back_btn(){
+            var result=document.getElementsByClassName('calc_result')[0];
+            var cal_hidden = document.getElementsByName('cal_hidden')[0]; 
+            var op_hidden = document.getElementsByName('op_hidden')[0]; 
+
+            var result_txt = result.innerText;
+            result_txt=result_txt.substring(0, result_txt.length - 1);
+            //alert(result_txt);
+
+            if(result.innerText.length == 1){
+                result.innerText = "0";
+                cal_hidden.value='';
+                op_hidden.value='';
+            }else{
+                result.innerText = result_txt;
+            }
+        }
+
+        function inputStr(str){
+
+            //console.log(str);
+            var result= document.getElementsByClassName('calc_result')[0];
+            var cal_hidden = document.getElementsByName('cal_hidden')[0]; 
+            var op_hidden = document.getElementsByName('op_hidden')[0]; 
+
+            var result_Text = "";
+            //0일때 다지우기
+            if(result.innerText.indexOf("0") != -1){
+                result.innerText = '';
+                cal_hidden.value='';
+                op_hidden.value='';
+            }
+            
+            //수식 = 입력시
+            if(str.innerText.indexOf("=") != -1){
+                result_Text=cal_hidden.value.replaceAll("×", "*").replaceAll("÷", "/"); //변환
+
+                //console.log(result_Text +"/"+ result_Text.substring(result_Text.length-1, result_Text.length));
+
+                //수식 = 입력시 끝에 수식이 들어간 경우
+                if(op_bl(result_Text.substring(result_Text.length-1, result_Text.length)) ){
+                    if(result_Text.indexOf(".")!= -1){
+                        result.innerHTML = eval(result_Text.substring(0, result_Text.length-1)).toFixed(2); //소수점하는법
+                    }else{
+                        result.innerHTML = eval(result_Text.substring(0, result_Text.length-1));
+                    }
+
+                }else{
+                    //일반적인 결과
+                    if(result_Text.indexOf(".")!= -1){
+                    result.innerHTML = eval(result_Text).toFixed(2); //소수점하는법
+                    }else{
+                        result.innerHTML = eval(result_Text);
+                    }
+                }
+
+                //일반계산 후 이어지지 않게 초기화하기
+                cal_hidden.value='';
+                op_hidden.value='';
+                
+            }else{
+                //기타 수식 입력시
+
+                var last_text = str.innerText.substring(str.innerText.length-1, str.innerText.length);
+                var cal_text_d1= cal_hidden.value.substring(cal_hidden.value.length-1, cal_hidden.value.length);
+                var cal_text_d2= cal_hidden.value.substring(cal_hidden.value.length-2, cal_hidden.value.length);
+
+               // console.log(op_bl(last_text)+"/"+ isNaN(cal_text_d1)+"/"+isNaN(cal_text_d2));
+              
+                //일반연산
+                if(op_bl(last_text) && isNaN(cal_text_d1)==false ){
+                    //console.log("1");
+                    op_hidden.value=last_text;
+                    cal_hidden.value += op_hidden.value; 
+                  
+                    //글자의 끝에서 두번째가 전부 연산이 있을경우
+                }else if(op_bl(last_text) && isNaN(cal_text_d2)){
+                    //console.log("2");
+                    op_hidden.value=last_text; 
+                    cal_hidden.value=(cal_hidden.value.substring(0, cal_hidden.value.length-1)+op_hidden.value);
+                }
+                 //숫자입력시
+                else{
+                    //console.log("4");
+
+                    if(op_hidden.value == '' ){
+                        //일반계산(연산누르기 전)
+                        cal_hidden.value+=str.innerText; 
+                        result.innerText= cal_hidden.value;
+                    }else if(op_hidden.value != '' ){
+                        //사칙연산 추가될시 계산
+                        cal_hidden.value+=str.innerText; 
+                        result.innerText = cal_hidden.value.substring(
+                            cal_hidden.value.lastIndexOf(op_hidden.value)+1, cal_hidden.value.length); 
+                       //op_hidden.value ='';     
+                    } 
+
+                }
+                
+            }
+        }
+
+        //사칙연산이 들어갔는지 찾는 조건식
+        function op_bl(ob){
+            //console.log(ob);
+            return (ob.indexOf("+")!= -1 || ob.indexOf("-")!= -1
+                ||ob.indexOf("×")!= -1 ||ob.indexOf("÷")!= -1 
+                ||ob.indexOf("/")!= -1 ||ob.indexOf("*")!= -1);
+        }
+      
+    </script>
+
+
+</head>
+
+<body>
+    <input type="hidden" name="cal_hidden">
+    <input type="hidden" name="op_hidden">
+    <table>
+        <tr>
+            <td colspan="4" class="calc_result" onchange="commaText(this);">0</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="op_back" onclick="back_btn();">BackSpace</td>
+            <td colspan="2" class="op_reset" onclick="reset_btn();">C</td>
+        </tr>
+        <tr>
+            <td class="number" onclick="inputStr(this);">1</td>
+            <td class="number" onclick="inputStr(this);">2</td>
+            <td class="number" onclick="inputStr(this);">3</td>
+            <td class="op_symbol" onclick="inputStr(this);">+</td>
+        </tr>
+        <tr>
+            <td class="number" onclick="inputStr(this);">4</td>
+            <td class="number" onclick="inputStr(this);">5</td>
+            <td class="number" onclick="inputStr(this);">6</td>
+            <td class="op_symbol" onclick="inputStr(this);">-</td>
+        </tr>
+        <tr>
+            <td class="number" onclick="inputStr(this);">7</td>
+            <td class="number" onclick="inputStr(this);">8</td>
+            <td class="number" onclick="inputStr(this);">9</td>
+            <td class="op_symbol" onclick="inputStr(this);">×</td>
+        </tr>
+        <tr>
+            <td class="op_result" onclick="inputStr(this);">=</td>
+            <td class="number" onclick="inputStr(this);">0</td>
+            <td class="number" onclick="inputStr(this);">.</td>
+            <td class="op_symbol" onclick="inputStr(this);">÷</td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

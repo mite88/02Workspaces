@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu12.html</title>
+</head>
+<body>
+    <h2>문자열 배열 다루기</h2>
+    <hr>
+
+    <script>
+        var names = new Array("wonsun", "jaemoonlee", "kitae", "gracehwang");
+
+        //1. names 배열에 들어있는 각 이름을 출력하라
+        var namesText = "";//이름추출용
+        for (var i = 0; i < names.length; i++) {
+            namesText += names[i]+" ";
+        }
+
+        document.write("이름:"+namesText+"<br>");
+
+        //2.가장 긴 이름을 출력하라.
+        var longText ="";
+        for (var i = 0; i < names.length; i++) {
+            if(names[i].length >  longText.length){
+                longText=names[i];
+            }
+        }
+
+        document.write("가장 긴 이름:"+longText+"<br>");
+
+        //3~4 사전에서 가장 먼저 나오는 이름 + 배열을 증가순으로 재 정렬
+        names.sort();
+        document.write("가장 먼저 나오는 이름:"+names[0]+"<br>");
+
+        document.write("증가순 이름:");
+        for (var i = 0; i < names.length; i++) {
+            document.write(names[i]+" ");
+        }
+
+    </script>
+</body>
+</html>
+

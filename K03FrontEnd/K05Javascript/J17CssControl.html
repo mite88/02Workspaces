@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J17CssControl.html</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Dongle&display=swap" rel="stylesheet">
+
+    <script>
+        //전역변수
+        var pTag, pSize;
+
+        //문서 로드시 기사부분 DOM 및 폰트 크기 얻어옴
+        window.onload = function () {
+            pTag = document.getElementById("article");
+            pSize = parseInt(pTag.style.fontSize);
+        }
+
+        function fnArticle(flag) {
+            /*
+            JS에서 CSS 속성 컨트롤
+            DOM.style.css속성 = "속성값"
+            -css 속성시 하이픈이 있을경우 : 하이픈지우고 다음 글자를 대문자로 
+            */
+
+            switch (flag) {
+                case "+":
+                    pSize += 10;
+                    pTag.style.fontSize = pSize + "px";
+                    break;
+                case "-":
+                    pSize -= 10;
+                    pTag.style.fontSize = pSize + "px";
+                    break;
+                case "R":
+                    pTag.style.color = "red";
+                    break;
+                case "G":
+                    pTag.style.color = "green";
+                    break;
+                case "B":
+                    pTag.style.color = "blue";
+                    break;
+                case "Bo":
+                    pTag.style.fontWeight = "bold";
+                    break;
+                case "No":
+                    pTag.style.fontWeight = "normal";
+                    break;
+                case "Ce":
+                    pTag.style.textAlign = "center";
+                    break;
+                case "Le":
+                    pTag.style.textAlign = "left";
+                    break;
+                case "B_red":
+                    pTag.style.backgroundColor= "red";
+                    break;
+                case "B_silver":
+                    pTag.style.backgroundColor = "silver";
+                    break;
+                case "B_white":
+                    pTag.style.backgroundColor = "white";
+                    break;
+                default:
+                    pTag.style.color = "black";
+            }
+        }
+
+        var fontToggle = 0;
+        function setFont(){
+           console.log(fontToggle);
+            var font_list = ['굴림', '궁서', '바탕','Dokdo', 'Dongle'];
+
+             //font_list
+            //var ramdom_font = parseInt(Math.random() * 5) ;
+            var idx =fontToggle % 5;
+            pTag.style.fontFamily = font_list[idx] + ", cursive, sans-serif";
+            pTag.style.fontWeight = "normal";
+            fontToggle++;
+               
+        }
+    </script>
+</head>
+
+<body>
+    <h2>자바스크립트로 CSS제어</h2>
+    <input type="button" value="글꼴바꾸기" onclick="setFont();">
+    <fieldset>
+        <legend>신문기사</legend>
+        <button onclick="fnArticle('+');">+</button>
+        <button onclick="fnArticle('-');">-</button>
+        <button onclick="fnArticle('R');">Red</button>
+        <button onclick="fnArticle('G');">Green</button>
+        <button onclick="fnArticle('B');">Blue</button>
+        <button onclick="fnArticle('');">Black</button>
+        <button onclick="fnArticle('Bo');">볼드체</button>
+        <button onclick="fnArticle('No');">보통체</button>
+        <button onclick="fnArticle('Ce');">가운데정렬</button>
+        <button onclick="fnArticle('Le');">좌측정렬</button>
+        <button onclick="fnArticle('B_red');">배경색(red)</button>
+        <button onclick="fnArticle('B_silver');">배경색(sliver)</button>
+        <button onclick="fnArticle('B_white');">배경색(white)</button>
+    </fieldset>
+
+    <p style="font-size: 12px;" id="article">
+        오늘의 뉴스 <br>
+        "구성원들이 전부 똑똑한 사람들입니다. 워라밸이 보장되는 데다 단점이 없고 성장 가능성이 무궁무진합니다."<br>
+
+        지난해 10월 출범한 SK이노베이션의 배터리 자회사 SK온이 직장인들 사이서 주목을 받았다. <br>
+        이 회사에 몸담은 1512명의 직원들의 SK온 평가는 한결같다.
+        국내 굴지의 로펌과 투자은행(IB)을 마다하고 이 회사로 입사한 임직원들도 적잖다.<br><br>
+
+        SK온은 이달 법무법인 화우 변호사인 박성욱 법률자문역(Legal Advisor) 부사장을 선임했다. <br>
+        1973년생으로 서울대 경영학부와 하버드대 로스쿨을 졸업한 그는 영국계 로펌인 알렌앤오베리,
+        헤지펀드·사모펀드 자문로펌 슐츠로스앤드자벨, 국내 로펌인 김앤장 등에서 근무했다. <br>
+        크로스보더(국경 간 거래) 인수·합병(M&A) 거래 과정에서 다국적 기업들을 자문한 풍부한 경험이 있다.<br>
+
+        2019년부터 최근까지 CJ대한통운 상무로 근무한 박노훈 부사장도 이달에 영입됐다. <br>
+        박 부사장은 JP모간과 미래에셋대우증권에서 M&A 어드바이저로 근무했다. 그는 지난 2012년 미래에셋대우증권
+        IB에서 M&A 자문 업무를 총괄한 뒤 2018년 CJ대한통운으로 자리를 옮긴 바 있다.<br>
+    </p>
+</body>
+
+</html>

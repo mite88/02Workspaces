@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J16MakeObject02.htm</title>
+</head>
+<body>
+    
+    <script>
+    
+        /*
+        생성자 이용
+        이때 멤버변수와 멤버함수 선언시 반드시 this 사용해야함
+        */
+       
+        var Account= function(owner, code, balance){
+            //멤버변수 : this없으면 undefined됨
+           this.owner = owner;
+           this.code = code;
+           this.balance = balance;
+
+            //멤버함수 : this없으면 에러남
+            this.inquiry = function(){
+                return this.balance;
+            }
+
+            this.deposit = function(money){
+                this.balance += money;
+            }
+
+            this.withdraw = function(money){
+                this.balance -= money;
+                return money;
+            }
+
+           //반드시해야함
+            return this;
+
+        };
+    </script>
+
+    <h2>리터럴 표기법으로 사용자 객체 만들기</h2>
+
+    <script>
+        var account = new Account("코스모","12345-789", 1500000);
+        document.write("account객체 => <br>");
+        document.write("소유자:"+account.owner+"<br>");
+        document.write("계좌번호:"+account.code+"<br>");
+        document.write("잔액:"+account.balance+"<br>");
+
+        account.deposit(15000);
+        document.write("15000원 입금 후 잔액 : "+account.inquiry()+"<br>");
+
+        account.withdraw(20000);
+        document.write("20000원 출금 후 잔액 : "+account.inquiry()+"<br>");
+    </script>
+
+</body>
+</html>

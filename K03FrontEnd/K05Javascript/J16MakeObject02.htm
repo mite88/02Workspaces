@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J16MakeObject02.htm</title>
+</head>
+<body>
+    
+    <script>
+    
+        /*
+        리터럴 표기법을 이용하여 선언
+        정규화되지 않은 방법같지만
+        표현이 간소해지고 웹브라우저의 해석속도가 빨라짐
+        차후 API통신을 위한 JSON에서 객체를 표현하는 방법으로 사용됨
+        */
+        var account={
+            //맴버변수 : = 대신 :
+           owner : "홍길동",
+            code : "12345-78-999",
+            balance : 1000000,
+
+            //멤버함수
+            inquiry: function(){
+                return this.balance;
+            },
+            deposit : function(money){
+                this.balance += money;
+            },
+            withdraw : function(money){
+                this.balance -= money;
+            }
+
+        };
+    </script>
+
+    <h2>리터럴 표기법으로 사용자 객체 만들기</h2>
+
+    <script>
+        document.write("account객체 => <br>");
+        document.write("소유자:"+account.owner+"<br>");
+        document.write("계좌번호:"+account.code+"<br>");
+        document.write("잔액:"+account.balance+"<br>");
+
+        account.deposit(15000);
+        document.write("15000원 입금 후 잔액 : "+account.inquiry()+"<br>");
+
+        account.withdraw(20000);
+        document.write("20000원 출금 후 잔액 : "+account.inquiry()+"<br>");
+    </script>
+
+</body>
+</html>
