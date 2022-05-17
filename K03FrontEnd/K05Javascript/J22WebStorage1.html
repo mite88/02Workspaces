@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J22WebStorage1.html</title>
+    <script>
+        //전역변수 생성
+        var content, span1, span2;
+        window.onload = function () {
+            //DOM얻기
+            content = document.getElementById("content");
+            span1 = document.getElementById("visitor1");
+            span2 = document.getElementById("visitor2");
+    
+            //웹스토리지 지원브라우져 확인
+            if (typeof(Storage) != undefined) {
+                content.innerHTML = "웹스토리지를 지원하는 브라우져입니다.";
+
+                /*
+                로컬스토리지 : 웹브라우져를 종료시 정보가 삭제되지 않음 
+                */
+                //저장된 정보 읽어옴
+                var visitVar1 = localStorage.getItem("visitCnt1");
+                if (visitVar1 == null) {
+                    //정보 없을시 생성함
+                    localStorage.setItem("visitCnt1", 1);
+                    span1.innerHTML = "첫방문이시네요";
+                }
+                else {
+                    //정보 있을 시 업데이트
+                    span1.innerHTML = visitVar1 + "번째 방문이시네요";
+                    visitVar1++;
+                    localStorage.setItem("visitCnt1", visitVar1);
+                }
+    
+                /*
+                세션스토리지 : 사용법은 같지만 브라우져 종료시 정보가 삭제됨
+                */
+                var visitVar2 = sessionStorage.getItem("visitCnt2");
+                if (visitVar2 == null) {
+                    sessionStorage.setItem("visitCnt2", 1);
+                    span2.innerHTML = "첫방문이시네요";
+                }
+                else {
+                    span2.innerHTML = visitVar2 + "번째 방문이시네요";
+                    visitVar2++;
+                    sessionStorage.setItem("visitCnt2", visitVar2);
+                }
+            }
+            else {
+                content.innerHTML = "웹스토리지를 지원하지 않습니다.";
+            }
+        }
+        //삭제시에는 removeItem()을 사용한다. 
+        function removeLocal(){
+            localStorage.removeItem("visitCnt1");
+            span1.innerHTML = "방문횟수가 초기화 되었습니다.";
+        }
+        function removeSession(){
+            sessionStorage.removeItem("visitCnt2");
+            span2.innerHTML = "방문횟수가 초기화 되었습니다.";
+        }
+
+
+        /*웹스토리지는 오직 문자형데이터 타입만 지원함*/
+    </script>
+    </head>
+    <body>
+        <h2>웹스토리지</h2>
+        <span id="content" style="color:black; font-size: 1.5em;"></span>
+        
+        <h3>로컬 스토리지</h3>
+        방문자수 : <span id="visitor1" style="color:red; font-size: 1.5em;"></span>
+        <button onclick="removeLocal();">로컬 스토리지 삭제</button>
+    
+        <h3>세션 스토리지</h3>
+        방문자수 : <span id="visitor2" style="color:blue; font-size: 1.5em;"></span>
+        <button onclick="removeSession();">세션 스토리지 삭제</button>
+    </body>
+
+</html>

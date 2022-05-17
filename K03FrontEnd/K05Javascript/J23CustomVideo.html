@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J23CustomVideo.html</title>
+
+    <script>
+        var video;//전역변수
+
+        //페이지로드 
+        window.onload = function(){
+            var currentSpan = document.getElementById('currenttime');
+            var totalSpan = document.getElementById('totaltime');
+            video = document.getElementById('video');
+
+            video.volumn = 0.5; //초기 볼륨
+
+            /*
+            동영상 재생시 지속적으로 timeupdate이벤트가 생성됨
+            currentTime : 현재재생시간
+            duration : 총 재생시간
+            */
+            video.addEventListener("timeupdate", function(){
+                //timeShow()로 인해 초를 시분초 형태로 변환
+                currentSpan.innerHTML = timeShow(video.currentTime);
+                totalSpan.innerHTML = video.duration; //timeShow(video.duration);
+            
+                //반환되는 시간을 통한 프로그래스바 설정
+                progress.max = video.duration;
+                progress.value = video.currentTime;
+            
+            });
+        }
+
+        //재생
+        function play(){
+            video.hidden ='';//화면숨기기 속성
+            video.play();
+        }
+
+        //일시정지
+        function stop(){
+            //video.hidden =true;
+            video.pause();
+        }
+
+        //처음부터 재생
+        function start(){
+            video.currentTime =0; //재생시간 강제로 0
+            video.play();
+        }
+
+        /*
+        timeupdate 이벤트로 인해 반환받은 재생시간을
+        가독성을 톺이기 위해 변환후 출력하기 위한 함수
+        */
+        function timeShow(seconds){
+            seconds = Math.round(seconds);
+            var h = parseInt(seconds / 3600); //시
+            var m = parseInt((seconds % 3600) / 60); //분
+            var s = seconds % 60; //초
+
+            //10이하일 경우 0을 붙어서 포멧만들어줌
+            var hour = (h < 10) ? '0'+ h : h;
+            var min = (m < 10) ? '0'+ m : m;
+            var sec = (s < 10) ? '0'+ s : s;
+
+            return hour+":"+min+":"+sec;
+        }
+
+        //볼륨조절 0~1
+        function setVolumn(value){
+            //볼륨이 0이면 음소거
+            if(value == 0){
+                video.muted = true;
+            }
+            else{
+                video.muted = false; //음소거해제
+                var nowVolume = video.volume;
+
+                //최대가 1이므로 1초과시 1로 맞츰
+                if(value == 1){
+                    nowVolume += 0.1 ;
+                    video.volume = (nowVolume > 1) ? 1 : nowVolume;
+                }else{
+                    //최소가 0이므로 0이하시 0으로 맞춤
+                    nowVolume -= 0.1 ;
+                    video.volume = (nowVolume < 0) ? 0 : nowVolume;
+                }
+            }
+        }
+
+        //재생속도
+        function setPlaybackRate(value){
+            if(value == 1){
+                video.playbackRate += 0.25;
+            }else{
+                video.playbackRate -= 0.25;
+            }
+        }
+
+        //건너뛰기 (10초)
+        function setTime(value){
+            if(value == 1){
+                video.currentTime += 10;
+            }else{
+                video.currentTime -= 10;
+            }
+        }
+    </script>
+
+    <style>
+    div {
+        border: 1px solid red;
+        width: 300px;
+    }
+    input {
+        position: relative;	z-index: 2; height: 40px; line-height: 35px;
+        background-color: #333;	border: 2px solid #333;
+        color: #fff;
+    }
+    input:hover {
+        background-color: #fff; border-color: #59b1eb; color: #59b1eb;
+    }
+    input::before, input::after {
+        top: 0; width: 50%; height: 100%;
+        background-color: #333;
+    }
+    input:hover::before, input:hover::after {
+        width: 0; background-color: #59b1eb;
+    }
+
+    </style>
+</head>
+<body>
+    <h2>javascript를 이용한 커스텀 비디오 만들기</h2>
+    <div>
+        <!--
+            muted : 음소거
+            autoplay : 자동재생
+            controls : 컨트롤 바 보음 설정
+            poster : 인트로화면 이미지로 대체
+        -->
+        <video src="./media/video.mp4" width="300" height="200" 
+        id="video" muted autoplay controls poster="./images/html5.png"></video>
+    </div>
+
+    <!--진행사항 표시-->
+    <div>
+        <progress value="0" id="progress" style="width: 300px;"></progress>    
+    </div>
+
+    <!--현재재생시간 / 총재생시간-->
+    <div>
+        <span id="currenttime"></span> /
+        <span id="totaltime"></span>
+    </div>
+
+    <!--버튼-->
+    <input type="button" value="재생하기" onclick="play();">
+    <input type="button" value="일시정지" onclick="stop();">
+    <input type="button" value="처음부터재상하기" onclick="start();">
+    <input type="button" value="볼륨+" onclick="setVolumn(1);">
+    <input type="button" value="볼륨-" onclick="setVolumn(-1);">
+    <input type="button" value="음소거" onclick="setVolumn(0);">
+    <input type="button" value="재생속도+" onclick="setPlaybackRate(1);">
+    <input type="button" value="재생속도-" onclick="setPlaybackRate(-1);">
+    <input type="button" value="10초앞으로" onclick="setTime(1);">
+    <input type="button" value="10초뒤로" onclick="setTime(-1);">
+    
+</body>
+</html>

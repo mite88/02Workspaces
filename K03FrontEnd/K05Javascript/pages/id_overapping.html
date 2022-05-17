@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>id_overapping.html </title>
+
+    <script>
+        function idIUse(){
+            /*보모창 제어*/
+            opener.document.registFrm.id.value =
+            document.overlapFrm.retype_id.value;
+
+            self.close();
+        }
+
+        //주소창의 url을 얻어와 파라미터로 전달된 id를 출력함
+        window.onload = function(){
+            var url = location.href;
+            console.log(url);
+            var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+            console.log(parameters[0]); 
+            returnValue = parameters[0].split('=')[1];
+            document.getElementById('user_id').innerHTML = returnValue;
+        }
+
+
+    </script>
+</head>
+<body>
+    <h2>아이디 중복확인 하기</h2>
+
+    <h3>부모창에서 입력한 아이디 : <snpn id="user_id"><%=request.getParameter("id") %></snpn></h3>
+
+    <h3>아이디가 중복되었을때 재입력한 아이디</h3>
+    <form name="overlapFrm">
+        <input type="text"name="retype_id" size="20">
+        <input type="button" value="아이디사용하기" onclick="idIUse();">
+    </form>
+</body>
+</html>

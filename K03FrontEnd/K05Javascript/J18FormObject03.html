@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J18FormObject03.html</title>
+    <style>        
+        input[type='checkbox']:disabled::after{
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            top: -2px;
+            left: -1px;
+            position: relative;
+            background-color: #d1d3d1;
+            content: '';
+            display: inline-block;
+            visibility: visible;
+            border: 2px solid white;
+        } 
+    </style>
+    
+    
+</head>
+
+<body>
+    <h2>radio / checkbox 응용하기</h2>
+
+    <form name="choiceFrm">
+        <fieldset>
+            <!--
+                체크박스 및 라디오의 선택범위를 넓히는 방법
+                 - input태그와 텍스트 전체를 label태그로 감싸기
+                 - input태그의 id속성과 label의 for속성을 일치
+            -->
+            <legend>You 운동?? or 공부??</legend>
+            <label>
+                <input type="radio" name="rad" value="1" onclick="choiceOne(this.value);" /> 운동
+            </label>
+            <input type="radio" name="rad" value="2" id="rad_2" onclick="choiceOne(this.value);" />
+            <label for="rad_2">공부</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>좋아하는 운동 2개만 선택하셈</legend>
+            <input type="checkbox" name="s1" onclick="spoChoice();" />야구
+            <input type="checkbox" name="s1" onclick="spoChoice();" />농구
+            <input type="checkbox" name="s1" onclick="spoChoice();" />축구
+            <input type="checkbox" name="s1" onclick="spoChoice();" />배구
+            <input type="checkbox" name="s1" onclick="spoChoice();" />핸드볼
+            <input type="checkbox" name="s1" onclick="spoChoice();" />테니스
+        </fieldset>
+
+        <fieldset>
+            <legend>좋아하는 과목 3가지만 고르삼</legend>
+            <input type="checkbox" name="t1" onclick="subChoice();" />국어
+            <input type="checkbox" name="t1" onclick="subChoice();" />영어
+            <input type="checkbox" name="t1" onclick="subChoice();" />수학
+            <input type="checkbox" name="t1" onclick="subChoice();" />역사
+            <input type="checkbox" name="t1" onclick="subChoice();" />물리
+            <input type="checkbox" name="t1" onclick="subChoice();" />화학
+            <input type="checkbox" name="t1" onclick="subChoice();" />전산
+        </fieldset>
+    </form>
+</body>
+
+</html>
+<script>
+    //운동 or 공부중 하나만 선택하도록 처리
+    function choiceOne(flag){
+        //form태그의 name속성을 통해 DOM 얻음
+        var f = document.choiceFrm;
+
+        //운동
+        if(flag == 1){
+            //운동활성화
+            for (var i = 0; i < f.t1.length; i++) { 
+                f.t1[i].disabled =true;
+            }
+            //공부 비활성화
+            for (var i = 0; i < f.s1.length; i++) {
+                f.s1[i].disabled =false;
+            }
+        //공부
+        }else if(flag == 2){
+            //공부활성화
+            for (var i = 0; i < f.s1.length; i++) {
+                f.s1[i].disabled =true;
+            }
+            //운동비활성화
+            for (var i = 0; i < f.t1.length; i++) {
+                f.t1[i].disabled =false;
+            }
+        }
+
+    }
+
+    //운동체크박스 체크
+    function spoChoice(){
+        var fn = document.choiceFrm;        
+        var chkNum = 0;
+
+        for(var i=0 ; i<fn.s1.length ; i++){
+            if(fn.s1[i].checked==true) chkNum++;
+        }        
+        //2개선택시 선택하지 않은 거 disabled
+        if(chkNum>=2){
+            console.log("1");
+            for(var i=0 ; i<fn.s1.length ; i++){
+                if(fn.s1[i].checked==false){
+                    fn.s1[i].disabled = true;
+                }
+            }
+        }
+        else{
+            for(var i=0 ; i<fn.s1.length ; i++){
+                fn.s1[i].disabled = false;
+            }	
+        }
+    }
+    
+    //공부체크박스 체크
+    function subChoice(){
+        var fn = document.choiceFrm;        
+        var chkNum = 0;
+        for(var i=0 ; i<fn.t1.length ; i++){
+            if(fn.t1[i].checked==true) chkNum++;
+        }        
+         //3개선택시 선택하지 않은 거 disabled
+        if(chkNum>=3){
+            for(var i=0 ; i<fn.t1.length ; i++){
+                if(fn.t1[i].checked==false){
+                    fn.t1[i].disabled = true;
+                }
+            }
+        }
+        else{
+            for(var i=0 ; i<fn.t1.length ; i++){
+                fn.t1[i].disabled = false;
+            }	
+        }
+    }
+
+
+
+</script>

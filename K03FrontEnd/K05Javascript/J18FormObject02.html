@@ -5,19 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>J18FormObject02.html</title>
+
+    <script>
+        //input태그의 name속성을 통해 checkbox전체를 배열로 얻기
+        var chkArr = document.getElementsByName("spo");
+
+        //전체선택
+        function allChecked(){
+            for (var i = 0; i < chkArr.length; i++) {
+                //체크하는방법
+               chkArr[i].checked = 'checked';
+               //chkArr[i].checked = true;
+            }
+        }
+
+        //전체선택해제
+        function allUnChecked(){
+            for (var i = 0; i < chkArr.length; i++) {
+                //체크해제하는방법
+               chkArr[i].checked = null;
+               //chkArr[i].checked = false;
+            }
+        }
+
+        //선택반전
+        function allReverse(){
+            for (var i = 0; i < chkArr.length; i++) {
+               if( chkArr[i].checked == true){
+                    chkArr[i].checked = false;
+               }else{
+                chkArr[i].checked = true;
+               }
+            }
+        }
+    </script>
 </head>
 <body>
-    <h2>redio / checkbox 응용하기</h2>  
-    
-    <form action="" name="choiceFrm">
-        <lagend></lagend>
-        <label for="">
-            <input type="radio" name="rad" id="1"
-            onclick="choiceOne(this.value);">운동
-        </label>
+    <body>
+        <h2>checkbox 전체선택/해제/반전하기</h2>
+        
+        <fieldset>
+            <legend>좋아하는 운동을 선택하세욤</legend>
+            <input type="checkbox" name="spo" value="야구" />야구
+            <input type="checkbox" name="spo" value="농구" />농구
+            <input type="checkbox" name="spo" value="축구" />축구
+            <input type="checkbox" name="spo" value="배구" />배구
+            <input type="checkbox" name="spo" value="핸드볼" />핸드볼
+            <input type="checkbox" name="spo" value="테니스" />테니스
+            <input type="checkbox" name="spo" value="골프" />골프
+        </fieldset>
+        
+        <p>	
+            <button type="button" onclick="allChecked()">
+                전체선택하기</button>
+            <button type="button" onclick="allUnChecked()">
+                전체해제하기</button>
+            <button type="button" onclick="allReverse()">
+                반전선택하기</button>
+        </p>	
+    </body>
 
-        <input type="radio" name="rad" id="rad_2" value="2"
-        onclick="choiceOne(this.value);"> <label for="rad_2">공부</label>
-    </form>
 </body>
 </html>

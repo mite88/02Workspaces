@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J21Cookie.html</title>
+
+    <style>
+        .model {
+            background-color: rgba(0, 0, 0, .3);
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            padding: 15px;
+            display: none;/*깜밖임 방지로 none한후 스크립트에서 처리*/
+        }
+
+        /*중앙배치*/
+        .popupWin {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 5px 10px 10px 1px rgba(0, 0, 0, .3);
+            z-index: 10000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        /*반응형용*/
+        img{width: 100%; height: auto; }
+    </style>
+
+    <script>
+        /*
+        쿠키생성
+
+        매개변수로 전달된 exp가 양수면 미래시간으로 쿠키가 생성
+        (음수면 삭제)
+        */
+        //쿠키명, 쿠키값, 유효시간
+        var setCookie = function (name, value, exp) {
+            var date = new Date();
+            //date.getTime() : 1970-01-01부터 지금까지의 초
+            //매개변수로 전달된 날짜(exp)에 하루에 해당하는 초를 곱해 유효기간 계산
+            date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+            //쿠키생성 : 쿠키명=쿠키값;유효시간;적용경로;
+            document.cookie = name + "=" + value + ";expires="
+                + date.toUTCString() + ";path=/";
+        };
+
+        /*
+        쿠키 읽기
+        쿠키는 ;으로 구분되므로 1차에 split(), =로 2차 split()
+        한 후 쿠키값 가져옴
+
+        popup1=팝업창열기;expires=내일날짜;path=/
+
+        1차 
+        ;로 split()
+        =>[0] : popup1=팝업창열기
+        =>[1] : expires=내일날짜
+        =>[2] : path=/
+
+        2차
+        [0]번인덱스의 = 로  split()
+        쿠키명 : popup1
+        쿠키값 : 팝업창열기
+        */
+        var getCookie = function (name) {
+            var values = document.cookie.split(";");
+            for (var i = 0; i < values.length; i++) {
+                var unit = values[i].trim();
+                var value = unit.split('=');
+                if (value[0] == name) {
+                    return unescape(value[1]);
+                }
+            }
+            return null
+        };
+
+        //쿠키생성
+        function makeCookie() {
+            var cName = document.getElementById('cName').value;
+            var cValue = document.getElementById('cValue').value;
+
+            //쿠키생성시 양수로전달 - 미래날짜
+            setCookie(cName, cValue, 1);
+            alert("쿠키생성");
+            location.reload(); //새로고침
+        }
+
+        //쿠키읽기
+        function readCookie() {
+            //읽어올쿠키명 가져옴
+            var cName = document.getElementById('cName').value;
+
+            //쿠키 있으면 읽어옴
+            var readValue = getCookie(cName);
+            if (readValue == null) {
+                alert("해당 이름으로 생성된 쿠키가 없습니다");
+            } else {
+                alert("쿠키값:" + readValue);
+            }
+        }
+
+        function deleteCookie() {
+            var cName = document.getElementById('cName').value;
+
+            setCookie(cName, cValue, -1);
+            alert("쿠키삭제");
+            location.reload();
+        }
+
+        //팝업창 테스트
+        function popup_result() {
+            var ch = document.getElementsByName('popup_cookie')[0];
+            //하루동안보지않기 체크시....
+            if (ch.checked == true) {
+                setCookie('popupWin', 'off', 1); //쿠키생성
+            }
+            //팝업닫으면 숨김처리함
+            document.getElementsByClassName('model')[0].style.display = 'none';
+            //location.reload();
+        }
+
+        //HTML문서 로드시 쿠기 읽어옴
+        window.onload = function () {
+            //쿠키생성시
+            if (getCookie('popupWin') == 'off') {
+                //숨김처리함
+                document.getElementsByClassName('popupWin')[0].style.display = 'none';
+                document.getElementsByClassName('model')[0].style.display = 'none';
+            }else{
+                document.getElementsByClassName('popupWin')[0].style.display = 'block';
+                document.getElementsByClassName('model')[0].style.display = 'block';
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="model">
+        <div class="popupWin">
+            <img src="./images/popup1.jpg" alt="팝업창"><br>
+            <span style="width: 400px;">
+                <label>
+                    <input type="checkbox" name="popup_cookie">
+                    하루동안보지않기
+                </label>
+
+                <button style="float: right;" type="button" onclick="popup_result();">닫기</button>
+            </span>
+        </div>
+    </div>
+
+    <h2>쿠키생성하기</h2>
+    <form>
+        쿠키명:<input type="text" id="cName" value="popup1"><br>
+        쿠키에 저장할 값: <input type="text" id="cValue" value="팝업창열기">
+        <button type="button" onclick="makeCookie();">쿠키생성</button>
+        <button type="button" onclick="readCookie();">쿠키읽기</button>
+        <button type="button" onclick="deleteCookie();">쿠키삭제</button>
+    </form>
+</body>
+
+</html>

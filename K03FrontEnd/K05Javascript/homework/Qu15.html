@@ -7,16 +7,16 @@
     <title>Qu15.html</title>
     <style>
         .color_div {
-            display: flex;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 100px;
+            height: 100px;
         }
         .color_div > div {
             display: flex;
-            justify-content: center;
             align-items: center;
-            width:25%;
-            height: 100px;
-            font-size: 1.5em;
-            text-align: center;
+            justify-content: center;
         }
     </style>
 
@@ -29,18 +29,18 @@
     <script>
         var colorNames = new Array(16);
 
-         document.write("<div class='color_div' style='width:1000px'>");
+         document.write("<div class='color_div' >");
 
          for (var i = 0; i < colorNames.length; i++) {
-            var rgb_r = parseInt(Math.random() * 226) ;
-            var rgb_g = parseInt(Math.random() * 226) ;
-            var rgb_b = parseInt(Math.random() * 226) ;
+            var rgb_r = parseInt(Math.random() * 256) ;
+            var rgb_g = parseInt(Math.random() * 256) ;
+            var rgb_b = parseInt(Math.random() * 256) ;
 
             var random_rgb = "background-color:rgb("+rgb_r+", "+ rgb_g+", "+rgb_b+")";
 
             if( i != 0 && (i % 4 == 0)){
                 document.write("</div>");
-                document.write("<div class='color_div' style='width:1000px'>");
+                document.write("<div class='color_div' >");
             }
                 document.write("<div style='"+random_rgb+"'");
                 document.write(">"+random_rgb.split(":")[1]+"</div>");

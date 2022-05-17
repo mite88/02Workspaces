@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J22WebStorage2.html</title>
+    <script type="text/javascript">
+        var key, val, result;
+        window.onload = function () {
+            key = document.getElementById("key");
+            val = document.getElementById("val");
+            result = document.getElementById("result");
+        }
+        var save = function () {
+            if (key.value == "") {
+                alert("키를 입력하세요."); key.focus(); return;
+            }
+            if (val.value == "") {
+                alert("값을 입력하세요."); val.focus(); return;
+            }
+            localStorage.setItem(key.value, val.value);
+            alert("로컬 스토리지에 저장되씸");
+            key.value = "";
+            val.value = "";
+            key.focus();
+        }
+        var selectOne = function () {
+            if (key.value == "") {
+                alert("조회할 키를 입력하세요");
+                key.focus(); return;
+            }
+            var sValue = localStorage.getItem(key.value);
+            alert("'" + key.value + "'로 조회한 결과:" + sValue);
+        }
+        var selectAll = function () {
+            result.value = "";
+            for (var i = 0; i < localStorage.length; i++) {
+                result.value += localStorage.key(i) + ":"
+                    + localStorage.getItem(localStorage.key(i)) + "\r\n";
+            }
+        }
+        var removeOne = function () {
+            if (key.value == "") {
+                alert("키를 입력하신후 삭제해주세요.");
+                key.focus();
+                return;
+            }
+            localStorage.removeItem(key.value);
+            alert("해당 키가 삭제되었습니다.");
+        }
+        var removeAll = function () {
+            localStorage.clear();
+            alert("웹스토리지에 저장된 모든 데이터가 삭제되었습니다");
+        }
+    </script>
+</head>
+
+<body>
+    <h2>웹스토리지 - 저장/조회/삭제</h2>
+    <table border='1'>
+        <tr>
+            <td style="width:15%;">키(Key)</td>
+            <td>
+                <input type="text" id="key" />
+            </td>
+        </tr>
+        <tr>
+            <td>값(value)</td>
+            <td>
+                <input type="text" id="val" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center;">
+                <input type="button" value="저장하기" onclick="save();" />
+                <input type="button" value="하나 삭제" onclick="removeOne();" />
+                <input type="button" value="모두 삭제" onclick="removeAll();" />
+                <input type="button" value="키로 조회" onclick="selectOne();" />
+                <input type="button" value="모두 조회" onclick="selectAll();" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea id="result" style="width:100%;height:200px;"></textarea>
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

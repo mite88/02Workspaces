@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J19GeoLocation01.html</title>
+
+    <script>
+        /*
+        gelocation : 위치정보 서비스로 웹브라우저가 현재 위도 및
+        경도를 JS코드에서 제공하는 서비스
+        */
+        var span;
+
+        window.onload = function () {
+            span = document.getElementById("result");
+
+            //웹브라우저의 지원 여부 확인
+            if (navigator.geolocation) {
+                span.innerHTML = "Geolocation API를 지원";
+                //옵션설정 : 정확도, 대기시간, 캐시위치값
+                var options = {
+                    enableHighAccurcy: true,
+                    timeout: 5000,
+                    maximumAge: 3000 //0으로 할시 항상 최신위치 수집함
+                }
+                /*
+                현재 위치의 위, 경도얻기
+                navigator.geolocation.getCurrentPosition 
+                    (showPosition, , // 위치얻기 성공시 콜백함수
+                    showError);//위치얻기 실패시 콜백함수
+                */
+                navigator.geolocation.getCurrentPosition
+                    (showPosition,  showError );
+            }
+        };
+
+        //위치얻기 성공시 콜백함수
+        var showPosition = function(position) {
+
+            //위도/경도 얻기
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+             //웹브라우져 출력
+            span.innerHTML = "위도 : " + latitude + ", 경도:" + longitude;
+
+            document.getElementById("lat").value = latitude;
+            document.getElementById("lng").value = longitude;
+
+        }
+
+        var showError = function(error) {
+
+            switch (error.code) {
+                case error.UNKNOWN_ERROR:
+                    loc.innerHTML = "알수없는오류발생"
+                    break;
+                case error.PERMISSION_DENIED:
+                    loc.innerHTML = "권한이 없습니다"
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    loc.innerHTML = "위치 확인불가"
+                    break;
+                case error.TIMEOUT:
+                    loc.innerHTML = "시간초과"
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+        <fieldset>
+            <lagend></lagend>
+            <span id="result"></span>
+        </fieldset>
+
+        위도:<input id="lat"></input>
+        경도:<input id="lng"></input>
+
+    
+</body>
+
+</html>
