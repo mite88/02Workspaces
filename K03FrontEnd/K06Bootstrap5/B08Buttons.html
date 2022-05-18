@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B08Buttons.html</title>
+
+    <link rel="stylesheet" href="./bootstrap-5.1.3/css/bootstrap.min.css">
+    <script src="./bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>기본 버튼 스타일</h2>
+
+        <h3 class="pt-3">button태그</h3>
+        <button type="button" class="btn">Basic</button>
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-secondary">Secondary</button>
+        <button type="button" class="btn btn-success">Success</button>
+
+        <h3 class="pt-3">input태그</h3>
+        <input type="button" value="HTML 기본버튼">
+        <input type="button" value="primary기본버튼" class="btn btn-primary">
+        <input type="button" value="danger기본버튼" class="btn btn-danger">
+
+
+        <h3 class="pt-3">a태그</h3>
+        <a href="#" class="btn btn-warning">나는 Warning링크</a>
+
+        <hr>
+        <h3 class="pt-3">외곽선버튼</h3>
+        <button type="button" class="btn btn-outline-danger">Danger</button>
+        <button type="button" class="btn btn-outline-dark">Dark</button>
+        <button type="button" class="btn btn-outline-light text-dark">Light</button>
+
+        <hr>
+        <h2 class="pt-3">여러가지 버튼의형태</h2>
+
+        <div class="row">
+            <div class="col-sm-12 d-grid">
+
+                <button type="button" class="btn btn-primary btn-block">
+                    꽉찬버튼
+                </button>
+            </div>
+
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-sm-4 d-grid">
+                <button type="button" class="btn btn-primary btn-block">
+                    <span class="spinner-border spinner-border-sm"></span> 스피너적용
+                </button>
+            </div>
+
+            <div class="col-sm-8 d-grid ">
+                <button type="button" class="btn btn-primary btn-block disabled">
+                    <span class="spinner-grow spinner-grow-sm"></span>
+                    Loading..
+                </button>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row pt-3">
+            <div class="col-12 d-grid">
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">Apple</button>
+                    <button type="button" class="btn btn-primary">Samsung</button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle"
+                            data-bs-toggle="dropdown">Sony</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Tablet</a></li>
+                            <li><a class="dropdown-item" href="#">Smartphone</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B06Images.html</title>
+
+    <link rel="stylesheet" href="./bootstrap-5.1.3/css/bootstrap.min.css">
+    <script src="bootstrap-5.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>이미지</h2>
+
+        <!--
+            더미 이미지 - placeimg
+            <img src="https://placeimg.com/가로크기/세로크기0/카테고리" />
+
+            카테고리종류 : animals, arch, nature, people, tech
+            필터 종류 : grayscale, sepia
+        -->
+        <h3 class="pt-3">라운딩처리</h3>
+        <img src="https://placeimg.com/100/100/animals/sepia" class="rounded" alt="image1"> 
+
+        <h3 class="pt-3">원형처리</h3>
+        <img src="https://placeimg.com/100/100/animals/arch" class="rounded-circle" alt="image2">
+        
+        <h3 class="pt-3">썸네일</h3>
+        <img src="https://placeimg.com/100/100" class="rounded-thumbnail" alt="image3"> 
+
+        <h3 class="pt-3">정렬</h3>
+        <img src="https://placeimg.com/100/100/nature" class="float-start">
+        <img src="https://placeimg.com/100/100/people" class="float-end">
+
+        <!--clear속성으로 전에 쓴 float속성을 초기화해보고 넣어보자-->
+        <div class="pt-3" style="clear: both;">
+            <h3>이미지 가운데정렬</h3>
+            <img src="https://placeimg.com/100/100/tech" class="mx-auto d-block">
+        </div>
+
+        <h3 class="pt-3">반응형이미지</h3>
+        <img src="https://placeimg.com/800/200/tech" class="img-fluid pb-3">
+
+    </div>
+</body>
+</html>

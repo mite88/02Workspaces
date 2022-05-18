@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B12BtnListGroups.html</title>
+
+    <link rel="stylesheet" href="./bootstrap-5.1.3/css/bootstrap.min.css">
+    <script src="./bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>그룹화된 버튼 or 리스트</h2>
+        <div class="row my-2">
+            <div class="col-sm-12 d-grid">
+
+                <div class="btn-group">
+                   
+                    <button type="button" class="btn btn-info">Apple</button>
+                    <button type="button" class="btn btn-info">Samsung</button>
+                    <button type="button" class="btn btn-info dropdown-toggle"
+                        data-bs-toggle="dropdown">Sony</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Tablet</a>
+                        <a class="dropdown-item" href="#">Smartphone</a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item" href="#">카메라</a>
+                        <a class="dropdown-item" href="#">워크맨</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!--그리드 시스템으로 3:6:auto(3)로 분리-->
+        <div class="row my-5">
+            <div class="col-sm-3">
+                <h2>좌측메뉴</h2>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">회원가입</a>
+                    <a href="#" class="list-group-item list-group-item-action active">로그인</a>
+                    <a href="#" class="list-group-item list-group-item-action">아이디/비번찾기</a>
+                </div>
+            </div>
+
+            <div class="col-sm-6">여기는 컨텐츠</div>
+
+            <div class="col d-grid">
+                <h2>우측메뉴</h2>
+                <!--dropstart, dropend : 화살표 시작변경-->
+                <div class="btn-group-vertical float-end">
+                    <button type="button" class="btn btn-outline-secondary">Apple</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown">Samsung</button>
+                        <div class="dropdown-menu w-100">
+                            <a class="dropdown-item" href="#">갤럭시S</a>
+                            <a class="dropdown-item" href="#">갤럭시노트</a>
+                            <hr class="dropdown-divider">
+                            <a class="dropdown-item" href="#">갤럭시BOOK</a>
+                        </div>
+
+                    <button type="button" class="btn btn-outline-secondary">Sony</button>
+                </div>
+                  
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <!--list-group-horizontal : 수평방향리스트 그룹을 통한 네비게이션 메뉴 구현-->
+                <div class="list-group list-group-horizontal text-center">
+                    <a href="#" class="list-group-item list-group-item-action">회원정보변경</a>
+                    <a href="#" class="list-group-item list-group-item-action active">로그아웃</a>
+                    <a href="#" class="list-group-item list-group-item-action">마이페이지</a>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</body>
+
+</html>

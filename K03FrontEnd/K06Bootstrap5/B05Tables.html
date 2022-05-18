@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B05Tables.html</title>
+
+    <link rel="stylesheet" href="./bootstrap-5.1.3/css/bootstrap.min.css">
+    <script src="bootstrap-5.1.3/js/bootstrap.min.js"></script>
+
+    <style>
+        * {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>기본테이블(여러클래스 적용하기)</h2>
+        <!--
+            .table : 기본테이블 클래스
+             - <thead>을 title로인식하여 강조
+             - 테이블에서 제공하는 striped, bordered, hover를 동시 적용가능함
+        -->
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <!--
+                bootstrap에선 th태그를 사용해도 글자가 중앙정렬이 안되서 
+                별도로 정렬해야함
+            -->
+                <tr class="text-center">
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                </tr>
+                <tr>
+                    <td>Mary</td>
+                    <td>Moe</td>
+                    <td>mary@example.com</td>
+                </tr>
+                <tr>
+                    <td>July</td>
+                    <td>Dooley</td>
+                    <td>july@example.com</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h2 class="pt-5">테이블색상</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>기본값:흰색</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Default</td>
+                    <td>Defaultson</td>
+                    <td>기본</td>
+                </tr>
+                <tr class="table-primary">
+                    <td>Primary</td>
+                    <td>Joe</td>
+                    <td>파란색</td>
+                </tr>
+                <tr class="table-success">
+                    <td>Success</td>
+                    <td>Doe</td>
+                    <td>녹색</td>
+                </tr>
+                <tr class="table-danger">
+                    <td>Danger</td>
+                    <td>Moe</td>
+                    <td>빨간색</td>
+                </tr>
+                <tr class="table-info">
+                    <td>Info</td>
+                    <td>Dooley</td>
+                    <td>하늘색</td>
+                </tr>
+                <tr class="table-warning">
+                    <td>Warning</td>
+                    <td>Refs</td>
+                    <td>노란색</td>
+                </tr>
+                <tr class="table-active">
+                    <td>Active</td>
+                    <td>Activeson</td>
+                    <td>회색</td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>Secondary</td>
+                    <td>Secondson</td>
+                    <td>active보다 조금 진한회색</td>
+                </tr>
+                <tr class="table-light">
+                    <td>Light</td>
+                    <td>Angie</td>
+                    <td>밝은회색</td>
+                </tr>
+                <tr class="table-dark">
+                    <td>Dark</td>
+                    <td>Bo</td>
+                    <td>어두운회색</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

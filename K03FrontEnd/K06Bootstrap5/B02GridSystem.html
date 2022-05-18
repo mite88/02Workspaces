@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B02GridSystem.html</title>
+
+    <link rel="stylesheet" href="./bootstrap-5.1.3/css/bootstrap.min.css">
+    <script src="bootstrap-5.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!--
+            .row : inline(가로형)배치
+            .col : 리드드시스템 사용을 위한 클래스, 가로컬럼의 크기 결정
+                   col-화면사이즈-가로크기 
+                   총 12이며 나누고 싶은 사이즈를 사용하면됨
+        -->
+        <h2>3개의 동일한 열</h2>
+        <div class="row">
+            <div class="col bg-primary">.col</div>
+            <div class="col bg-dark text-white">.col</div>
+            <div class="col bg-info">.col</div>
+        </div>
+
+        <h2>반응형 열</h2>
+        <div class="row">
+            <div class="col-sm-3 bg-primary">.col-sm-3</div>
+            <div class="col-sm-3 bg-warning">.col-sm-3</div>
+            <div class="col-sm-3 bg-danger">.col-sm-3</div>
+            <div class="col-sm-3 bg-info">.col-sm-3</div>
+        </div>
+
+        <h2>2개의 동일하지 않은 반응 열</h2>
+        <div class="row">
+            <div class="col-xl-12 bg-warning">Top Navi</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 bg-primary">.col-lg-4</div>
+            <div class="col-lg-8 bg-info">.col-lg-8</div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 bg-danger">.col-lg-4</div>
+            <div class="col-lg-9 bg-secondary">.col-lg-8</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

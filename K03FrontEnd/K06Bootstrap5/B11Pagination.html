@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B11Pagination.html</title>
+
+    <link rel="stylesheet" href="./bootstrap-5.1.3/css/bootstrap.min.css">
+    <script src="./bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+
+    @media (max-width: 720px) { 
+        table{
+            display:flex;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        tbody
+        {display:flex}
+
+        th,td{display:block}
+    }
+     
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>게시판 목록에 페이지 번호 적용하기</h2>
+
+        <table class="table table-hover">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                <tr>
+                    <td>100</td>
+                    <td>
+                        <a href="#" class="text-decoration-none">오늘의 날씨</a>
+                        <span class="badge rounded-pill bg-danger">New</span>
+                    </td>
+                    <td>미세먼지</td>
+                    <td>2022.05.18</td>
+                </tr>
+                <tr>
+                    <td>99</td>
+                    <td>오늘의 날씨-2 <span class="badge bg-primary">4</span></td>
+                    <td>미세먼지</td>
+                    <td>2022.05.17</td>
+                </tr>
+
+                <tr>
+                    <td>98</td>
+                    <td>오늘의 날씨-1</td>
+                    <td>미세먼지</td>
+                    <td>2022.05.17</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <!--
+            pagination정렬(기본은 좌측정렬)
+
+            pagination justify-content-center : 중앙
+            pagination justify-content-end :오른쪽
+        -->
+        <div class="mb-1 mx-auto">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled"><a class="page-link " href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>

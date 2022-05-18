@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B09Badges.html</title>
+
+    <link rel="stylesheet" href="./bootstrap-5.1.3/css/bootstrap.min.css">
+    <script src="./bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Badges</h2>
+        <h1>Example heading <span class="badge bg-secondary">New</span></h1>
+        <h2>Example heading <span class="badge bg-secondary">New</span></h2>
+        <hr>
+
+        <h2>Contextual Badges</h2>
+        <span class="badge bg-primary">Primary</span>
+        <span class="badge bg-secondary">Secondary</span>
+        <span class="badge bg-success">Success</span>
+        <span class="badge bg-danger">Danger</span>
+        <hr>
+
+        <h2>Pill Badges</h2>
+        <span class="badge rounded-pill bg-warning">Warning</span>
+        <span class="badge rounded-pill bg-info">Info</span>
+        <span class="badge rounded-pill bg-light">Light</span>
+        <span class="badge rounded-pill bg-dark">Dark</span>
+        <hr>
+
+        <h2>Badge inside an Element</h2>
+        <div class="mb-1 float-end"> 
+            <button type="button" class="btn btn-primary">
+                Messages <span class="badge bg-danger">4</span>
+              </button>
+        </div>
+
+        <hr>
+
+        <h2>게시판 목록에 적용하기</h2>
+        <div class="mb-1 float-end"> 
+            <button type="button" class="btn btn-success">글쓰기</button> 
+        </div>
+
+        <table class="table table-hover">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                <tr>
+                    <td>100</td>
+                    <td>
+                        <a href="#" class="text-decoration-none">오늘의 날씨</a>  
+                        <span class="badge rounded-pill bg-danger">New</span>
+                    </td>
+                    <td>미세먼지</td>
+                    <td>2022.05.18</td>
+                </tr>
+                <tr>
+                    <td>99</td>
+                    <td>오늘의 날씨-2 <span class="badge bg-primary">4</span></td>
+                    <td>미세먼지</td>
+                    <td>2022.05.17</td>
+                </tr>
+
+                <tr>
+                    <td>98</td>
+                    <td>오늘의 날씨-1</td>
+                    <td>미세먼지</td>
+                    <td>2022.05.17</td>
+                </tr>
+            </tbody>
+            
+        </table>
+
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B14Collapse.html</title>
+
+    <link rel="stylesheet" href="./bootstrap-5.1.3/css/bootstrap.min.css">
+    <script src="./bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="accordion">
+
+            <h2>첫번째 텍스트 설명</h2>
+            <!--버튼 클릭시 텍스트 부분을 보임/숨김처리-->
+            <button type="button" class="btn btn-primary" 
+            data-bs-toggle="collapse" data-bs-target="#demo1">
+                Simple collapsible
+            </button>
+            
+            <div id="demo1" class="collapse">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut 
+                aliquip ex ea commodo consequat.
+            </div>
+
+            <h2 class="pt-5">두번째 텍스트 설명</h2>
+            <button type="button" class="btn btn-primary" 
+            data-bs-toggle="collapse" data-bs-target="#demo2">
+                Simple collapsible
+            </button>
+            
+            <div id="demo2" class="collapse">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut 
+                aliquip ex ea commodo consequat.
+            </div>
+
+
+            <h2 class="pt-5">기본 보임상태</h2>
+            <button type="button" class="btn btn-primary" 
+            data-bs-toggle="collapse" data-bs-target="#demo3">
+                Simple collapsible
+            </button>
+            
+            <div id="demo3" class="collapse show">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut 
+                aliquip ex ea commodo consequat.
+            </div>
+
+
+            <hr>
+
+            <h2 class="pt-5">아코디언메뉴</h2>
+            <div class="card">
+              <div class="card-header">
+                <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                  Collapsible Group Item #1
+                </a>
+              </div>
+              <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body">
+                  Lorem ipsum..
+                </div>
+              </div>
+            </div>
+          
+            <div class="card">
+              <div class="card-header">
+                <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+                  Collapsible Group Item #2
+                </a>
+              </div>
+              <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                <div class="card-body">
+                  Lorem ipsum..
+                </div>
+              </div>
+            </div>
+          
+            <div class="card">
+              <div class="card-header">
+                <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+                  Collapsible Group Item #3
+                </a>
+              </div>
+              <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+                <div class="card-body">
+                  Lorem ipsum..
+                </div>
+              </div>
+            </div>
+          
+          </div>
+          
+    </div>
+</body>
+</html>

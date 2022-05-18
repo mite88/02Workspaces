@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J23AudioList.html</title>
+    <script>
+        //재생곡 목록 ,오디오객체, select객체, 인덱스
+        var divMsg, audio, select, index = 0;
+
+        window.onload = function(){
+            divMsg = document.getElementById("msg");
+            audio = document.getElementById("audio");
+            select = document.getElementById("select");
+
+            //한곡재생완료시 이벤트
+            audio.onended = function(e){
+                index++; //인덱스증가
+                //select가 가진 option의 수로 나누어 index부여
+                index %= select.length;
+                myPlay(index);
+            };
+        };
+
+        //select의 change이벤트발생시 곡재생
+        function changePlay(){
+            //선택한 option태그의 index를 얻어와재생
+            myPlay(select.selectedIndex);
+            //다음곡으로 전역변수 변경
+            index = select.selectedIndex;
+        }
+
+        function control(e){
+            /*
+            매개변수로 전달되는 이벤트 객체를 console에서 확인시
+            많은 정보가 저장되어있는데 이를 통해 눌러진 버튼식별이 가능함
+            (개발자모드)
+            */
+            if(e.target.id == 'play'){
+                console.log("플레이버튼");
+                myPlay(index);
+            }else if(e.target.id == 'next'){
+                console.log("넥스트버튼");
+                index++;
+                //option태그의 0~3번인덱스까지 토글하여 재생
+                index %= select.length;
+                myPlay(index);
+                select.selectedIndex = index;
+            }
+        }
+
+        function myPlay(idx){
+            //매개변수로 전달된 인덱스를 통해 option선택
+            //선택한 option의 value(음원경로)는 audio의 src에 적용 
+            audio.src = select.options[idx].value;
+            audio.play(); //재생
+            //현재 재생음원 출력
+            divMsg.innerHtml = select.options[idx].text+"을 재생합니다.";
+        }
+    </script>
+</head>
+<body>
+    
+    <h2>오디오 리스트 연속재생</h2>
+    <hr>
+    <p>
+        <li>처음 play버튼을 누르면 리스트에 있는 곡이 연속하여 자동재생 됩니다.</li>
+        <li>마우스로 다른 곡을 선택하며 곡이 바뀝니다.</li>
+        <li>next버튼을 누르면 다음 곡으로 넘어갑니다.</li>
+    </p>
+    <hr>
+
+    <audio src="" id="audio" controls>
+        <p>브라우저가 audio태그를 지원하지 않습니다</p>
+    </audio>
+    <br>
+    <select name="" id="select" size="5" onchange="changePlay();">
+        <option value="./media/I_Remember_You.mp3">I_Remember_You</option>
+        <option value="./media/Kissing_A-Fool.mp3">Kissing_A-Fool</option>
+        <option value="./media/When_I_First-Kissed_You.mp3">When_I_First-Kissed_You</option>
+        <option value="./media/Bring_It_All_Back.mp3">Bring_It_All_Back</option>
+        <option value="./media/My_Love.mp3">My_Love</option>
+    </select>
+
+    <button id="play" onclick="control(event);">Play</button>
+    <button id="next" onclick="control(event);">Next</button>
+    <br>
+    <div id="msg">현재 연주되는 곡명이 보입니다</div>
+</body>
+</html>

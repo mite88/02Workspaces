@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B01GetStartedCDN.html</title>
+
+    <!--
+        Bootstrap 사용방법 - CDN
+    -->
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        div{border: 2px solid blueviolet; background: burlywood;}
+    </style>
+
+</head>
+<body>
+    <!--
+    .container : 반응형 고정 너비 컨테이너
+    .container-fluid :  뷰포트의 전체 너비에 걸쳐 있는 전체 너비 컨테이너
+    -->
+    <div class="container">
+        <h2>container영역</h2>
+        <p>
+            해당컨테이너는 좌우측의 약간의 여백이 있는 반응형가로영역입니다.
+        </p>
+    </div>
+
+    <div class="container-md">
+        <h2>container-md영역</h2>
+        <p>
+            <!--
+                Class	
+                Extra small<576px	
+                Small≥576px	
+                Medium≥768px	
+                Large≥992px	
+                Extra large≥1200px	
+                XXL≥1400px
+            -->
+
+            .container-md	100%	100%	720px	960px	1140px	1320px
+        </p>
+    </div>
+
+    <div class="container-fluid">
+        <h2>container-fluid영역</h2>
+        <p>
+            해당컨테이너는 좌우측의 여백이 없는 반응형가로영역입니다.
+        </p>
+    </div>
+</body>
+</html>
