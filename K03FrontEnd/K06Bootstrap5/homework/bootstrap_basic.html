@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="../bootstrap-5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
     <script src="../bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+
+    </style>
 </head>
 
 <body>
@@ -25,7 +29,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarsExample02">
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav ma-auto">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
@@ -33,17 +37,14 @@
                             <a class="nav-link" href="#">Link</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link px-2 text-white dropdown-toggle"
-                                data-bs-toggle="dropdown">FAQs</a>
-                                <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">갤럭시S</a>
-                                <a class="dropdown-item" href="#">갤럭시노트</a>
-                                <hr class="dropdown-divider">
-                                <a class="dropdown-item" href="#">갤럭시BOOK</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown Link</a>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#">Link 1</a>
+                              <a class="dropdown-item" href="#">Link 2</a>
+                              <a class="dropdown-item" href="#">Link 3</a>
                             </div>
-
-                        </li>
+                          </li>
 
                         <li>
                             <div class="input-group">
@@ -53,9 +54,14 @@
                         </li>
 
                     </ul>
-                    <form>
-                        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                    </form>
+
+                    <div class="navbar-nav ms-auto p-4 p-lg-0 ms-2">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                    </div>
+
                 </div>
             </div>
         </nav>
