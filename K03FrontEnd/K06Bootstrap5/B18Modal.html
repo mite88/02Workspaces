@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B18Modal.html</title>
+
+    <link rel="stylesheet" href="./bootstrap-5.1.3/css/bootstrap.min.css">
+    <script src="./bootstrap-5.1.3/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <!--
+        값일치 : data-bs-target = 클래스,odel의 id 속성
+    -->
+    <div class="container mt-3">
+        <h3>Modal창 띄우기1</h3>
+        <p>애니메이션 효과 없sms 기본형 Model</p>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal01">
+            기본형 Model열기
+        </button>
+    </div>
+
+    <div class="container mt-3">
+        <h3>페이드 효과 적용된 Model 띄우기</h3>
+        <p>애니메이션 효과 적용된 Model</p>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal02">
+            애니메이션 적용된 Model열기
+        </button>
+    </div>
+
+
+    <!--
+          model 바깥영역 클릭시 닫침방지
+          data-bs-backdrop="static" data-bs-keyboard="false"
+      -->
+    <!-- The Modal -->
+    <div class="modal" id="myModal01" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--
+        fade : Model창 닫을 시 fade효과
+        modal-dialog-centered : model 중앙위치, 두번째 엘리먼트에 추가
+    -->
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal02">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                   <table class="table table-bordered"> 
+                    <tr>
+                        <td rowspan="3">
+                            <img src="https://placeimg.com/180/210/nature" alt="">
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" name="title" style="width: 100%;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea class="form-control" name="contents" style="width: 100%; height: 100px;"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <input type="submit" value="전송하기" class="btn btn btn-warning">
+                        </td>
+                    </tr>
+                   </table>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

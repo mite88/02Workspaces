@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B22Flex.html.html</title>
+
+    <link rel="stylesheet" href="./bootstrap-5.1.3/css/bootstrap.min.css">
+    <script src="./bootstrap-5.1.3/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+        <!--
+            flex-row : 왼쪽방향부터출발
+            flex-row-reverse : 오른쪽방향부터출발
+        -->
+        <h2>수평방향설정</h2>
+
+        <div class="d-flex flex-row bg-secondary">
+            <div class="p-2 bg-info">Flex item 1</div>
+            <div class="p-2 bg-warning">Flex item 2</div>
+            <div class="p-2 bg-primary">Flex item 3</div>
+        </div>
+
+        <div class="d-flex flex-row-reverse bg-secondary">
+            <div class="p-2 bg-info">Flex item 1</div>
+            <div class="p-2 bg-warning">Flex item 2</div>
+            <div class="p-2 bg-primary">Flex item 3</div>
+        </div>
+
+        <!--
+            flex-column : 윗방향부터출발
+            flex-column-reverse : 아랫방향부터출발
+        -->
+        <h2>수직방향설정</h2>
+        <div class="d-flex flex-column">
+            <div class="p-2 bg-info">Flex item 1</div>
+            <div class="p-2 bg-warning">Flex item 2</div>
+            <div class="p-2 bg-primary">Flex item 3</div>
+        </div>
+
+        <div class="d-flex flex-column-reverse">
+            <div class="p-2 bg-info">Flex item 1</div>
+            <div class="p-2 bg-warning">Flex item 2</div>
+            <div class="p-2 bg-primary">Flex item 3</div>
+        </div>
+
+        <!--
+            justify-content-start : 좌측정렬
+            justify-content-end : 우측정렬
+            justify-content-center : 가운데
+            justify-content-between : 좌우측 공간 없는 전체 배분정렬
+            justify-content-around : 좌우측 공간 있는 배분 정렬
+        -->
+        <h2>박스배분정렬</h2>
+        <div class="d-flex justify-content-start bg-secondary mb-3">
+            <div class="p-2 bg-info">Flex item 1</div>
+            <div class="p-2 bg-warning">Flex item 2</div>
+            <div class="p-2 bg-primary">Flex item 3</div>
+        </div>
+        <div class="d-flex justify-content-end bg-secondary mb-3">
+            <div class="p-2 bg-info">Flex item 1</div>
+            <div class="p-2 bg-warning">Flex item 2</div>
+            <div class="p-2 bg-primary">Flex item 3</div>
+        </div>
+        <div class="d-flex justify-content-center bg-secondary mb-3">
+            <div class="p-2 bg-info">Flex item 1</div>
+            <div class="p-2 bg-warning">Flex item 2</div>
+            <div class="p-2 bg-primary">Flex item 3</div>
+        </div>
+        <div class="d-flex justify-content-between bg-secondary mb-3">
+            <div class="p-2 bg-info">Flex item 1</div>
+            <div class="p-2 bg-warning">Flex item 2</div>
+            <div class="p-2 bg-primary">Flex item 3</div>
+        </div>
+        <div class="d-flex justify-content-around bg-secondary mb-3">
+            <div class="p-2 bg-info">Flex item 1</div>
+            <div class="p-2 bg-warning">Flex item 2</div>
+            <div class="p-2 bg-primary">Flex item 3</div>
+        </div>
+
+        <h2>동일한 크기로 블럭만들기</h2>
+        <div class="d-flex">
+            <div class="p-2 bg-info flex-fill">Flex item 1</div>
+            <div class="p-2 bg-warning flex-fill">Flex item 2</div>
+            <div class="p-2 bg-primary flex-fill">Flex item 3</div>
+        </div>
+
+        <h2>블럭에 가중치 부여</h2>
+        <div class="d-flex">
+            <div class="p-2 bg-info">Flex item 1</div>
+            <div class="p-2 bg-warning">Flex item 2</div>
+            <div class="p-2 bg-primary flex-grow-1">Flex item 3</div>
+        </div>
+
+        <h2>박스순서</h2>
+        <div class="d-flex bg-secondary">
+            <div class="p-2 bg-info order-3">Flex item 1(order-3)</div>
+            <div class="p-2 bg-warning order-2">Flex item 2(order-2)</div>
+            <div class="p-2 bg-primary order-1">Flex item 3(order-1)</div>
+        </div>
+
+        <!--
+            .ms-auto(항목을 오른쪽으로 푸시)
+            .me-auto(항목을 왼쪽으로 푸시 )
+        -->
+        <h2>자동마진</h2>
+        <div class="d-flex bg-secondary">
+            <div class="p-2 ms-auto bg-info">Flex item 1</div>
+            <div class="p-2 bg-warning">Flex item 2</div>
+            <div class="p-2 bg-primary">Flex item 3</div>
+        </div>
+
+        <div class="d-flex bg-secondary">
+            <div class="p-2 bg-info">Flex item 1</div>
+            <div class="p-2 bg-warning">Flex item 2</div>
+            <div class="p-2 me-auto bg-primary">Flex item 3</div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

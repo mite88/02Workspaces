@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ01HellojQuery.html</title>
+
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+        /*
+        jQuery의 Entry point를 표현하는 4가지방식
+        로드 후실행됨 
+        */
+        /* $(document).ready(		
+            function(){
+                alert("jQeury 시작1");//2
+            }
+        ); */
+
+        /* $().ready(		   
+            function(){
+                alert("jQeury 시작2");//2
+            }
+        ); */
+
+        /* $(		
+            function(){
+                alert("jQeury 시작3");//2
+            }
+        ); */
+
+        jQuery(		
+            function(){
+                alert("jQeury 시작4");//2
+            }
+        );
+    </script>
+</head>
+<body>
+    <h2>jQuery 시작</h2>
+
+    <script>
+        alert("문서끝"); //1
+    </script>
+</body>
+</html>

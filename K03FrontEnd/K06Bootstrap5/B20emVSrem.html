@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B20emVSrem.html</title>
+
+    <link rel="stylesheet" href="./bootstrap-5.1.3/css/bootstrap.min.css">
+    <script src="./bootstrap-5.1.3/js/bootstrap.min.js"></script>
+
+    <style>
+        /*
+            최상위 부모의 사이즈에 대해...
+
+            em : 부모사이즈에영향을받음(상속)
+            rem : 부모사이즈에 영향을 받지 않음, 최상위 부모의 영향을 받음(상속 x)
+        */
+        html{font-size: 12px;}
+        body{font-size: 1.5em;} /* 12px * 1.5 = 18px */
+
+        .p1{font-size: 2em;}  /* 18px * 2 = 36px */
+        .p2{font-size: 2rem;}  /* 12 * 2 = 24px */
+    </style>
+
+</head>
+<body>
+  
+    <h1>em과 rem의 차이를 알아봅시다</h1>
+    <h2>em 단위설정</h2>
+    <p>
+        html의 사이즈 12px, body는 상위요소인 html의 1.5배인 18px로 지정
+    </p>
+
+    <div class="p1">
+        p1클래스 엘리먼트
+        <br>
+        18 * 2 = 36px
+    </div>
+
+    <div class="p2">
+        p2클래스 엘리먼트
+        <br>
+        12 * 2 = 24px
+    </div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ02Get.html</title>
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+    <script>
+        /*
+        get() : javascript DOM객체선택시 사용
+        */
+       //jQury
+        $(function () {
+            //id가 naver인 엘리먼트 클릭시 ...
+            $('#naver').click(function () {
+                //네이버 링크의 DOM의 href 속성을 출력함
+                alert($('#naver').get(0).href);
+            });
+        });
+
+        //javascript
+        function daumClick() {
+            //id가 daum DOM얻기
+            var daum = document.getElementById("daum");
+            alert(daum.href); //그 DOM의 href 속성을 출력함
+        }
+    </script>
+</head>
+
+<body>
+    <h2>get()메소드</h2>
+    <ul>
+        <li>
+            <a href="#http://www.naver.com" id="naver">
+                네이버
+            </a>
+        </li>
+        <li>
+            <a href="#Daum" alt="Daum입니다." id="daum" onclick="daumClick();">
+                다음
+            </a>
+        </li>
+    </ul>
+
+    <script>
+        $(function () {
+            $("#btn1").click(function(){
+                //클래스 셀렉터를 통해 엘리먼트를 얻은 후 0번인덱스 선택
+                var tx = $('.kosmo').get(0);
+                //선택한 엘리먼트의 li태그사이 내용 콘솔출력
+                console.log(tx.innerText);
+            });
+
+            $("#btn2").click(function(){
+                var tx = $('.kosmo').get(2);
+                /*
+                get()함수를 통해 얻어온 DOM객체는 JS속성으로만 사용가능
+                */
+                console.log(tx.innerText);
+            });
+
+            $("#btn3").click(function(){
+                var tx = $('.kosmo').get(3);
+                /*
+                get(0)을 통해 얻어온 DOM객체는 jQuery함수사용 불가
+                */
+                console.log(tx.text()); //error
+            });
+        });
+
+    </script>
+    <ul>
+        <li class="kosmo">꿈의방</li>
+        <li class="kosmo">열정의방</li>
+        <li class="kosmo">도전의방</li>
+        <li class="kosmo">희망의방</li>
+    </ul>
+
+    <input type="button" id="btn1" value="꿈버튼">
+    <input type="button" id="btn2" value="도전버튼">
+    <input type="button" id="btn3" value="버튼(error)">
+
+    <script>
+        $(function () {
+            /*
+            get() 함수 사용시 인덱스 없으면 엘리먼트 전체를 배열로 얻어옴
+            */
+            $('#button1').click(function(){
+                var tx = $('.gasan').get();
+
+                for (var i = 0; i < tx.length; i++) {
+                    console.log(tx[i].innerHTML);
+                }
+            });
+        });
+
+    </script>
+
+    <ul>
+        <li class="gasan">대륭포스트</li>
+        <li class="gasan">월드메르디앙</li>
+        <li class="gasan">SK</li>
+        <li class="gasan">하이엔드</li>
+    </ul>
+    <input type="button" id="button1" value="배열로 가져오기">
+</body>
+
+</html>

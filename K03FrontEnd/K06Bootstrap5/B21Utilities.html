@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B21Utilities.html</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="./bootstrap-5.1.3/css/bootstrap.min.css">
+    <script src="./bootstrap-5.1.3/js/bootstrap.min.js"></script>
+
+    <style>
+        span {
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            margin: 6px;
+            background-color: #f9f9f9;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>테두리설정</h2>
+        <span class="border"></span>
+        <span class="border border-0"></span>
+        <span class="border border-top-0"></span>
+        <span class="border border-end-0"></span>
+        <span class="border border-bottom-0"></span>
+        <span class="border border-start-0"></span>
+        <br>
+
+        <!--테두리방향-->
+        <span class="border-top"></span>
+        <span class="border-end"></span>
+        <span class="border-bottom"></span>
+        <span class="border-start"></span>
+
+        <h2>테두리두께</h2>
+        <span class="border border-1"></span>
+        <span class="border border-2"></span>
+        <span class="border border-3"></span>
+        <span class="border border-4"></span>
+        <span class="border border-5"></span>
+
+        <h2>둥근모서리</h2>
+        <span class="border border-primary rounded"></span>
+        <span class="border border-secondary rounded-top"></span>
+        <span class="border border-success rounded-end"></span>
+        <span class="border border-danger"></span>
+        <span class="border border-warning"></span>
+        <span class="border border-info"></span>
+        <span class="border border-light"></span>
+        <span class="border border-dark"></span>
+        <span class="border border-white"></span>
+
+        <h2>플로팅 속성을 통한 좌/우 정렬</h2>
+        <div class="clearfix">
+            <span class="float-start">Float left</span>
+            <span class="float-end">Float right</span>
+        </div>
+
+        <!--
+            mx-auto : 블럭엘리먼트 가운데정렬(div, li, p ....)
+            text-align : 인라인엘리먼트 가운데 정렬(a, img, span ....)
+        -->
+        <h2>정렬</h2>
+        <div class="mx-auto bg-warning" style="width:150px">Centered</div>
+
+        <!--
+            {property}{slides}-{size} :{패딩or마진}{뱡향}-{사이즈(0~5)}
+            {property}{slides}-{breakpoint}-{size} :{패딩or마진}{뱡향}-{모니터크기}-{사이즈(0~5)}
+        -->
+        <h2>Spacing - 마진과 패딩</h2>
+        <p>
+        <pre>
+                m - 여백 설정
+                p - 패딩 설정
+
+                t - margin-top 또는 padding-top 설정
+                b - margin-bottom 또는 padding-bottom 설정
+                s - 왼쪽 여백 또는 왼쪽 여백을 설정
+                e - margin-right 또는 padding-right를 설정
+                x - 왼쪽 여백과 오른쪽 여백 또는 왼쪽 여백과 오른쪽 여백을 모두 설정
+                y - padding-top 및 padding-bottom 또는 margin-top 및 margin-bottom 모두 설정
+                block - 요소의 4면 모두에 여백 또는 패딩을 설정
+
+                0 - 여백 또는 패딩을 0으로 설정
+                1 - 여백 또는 패딩을 .25rem으로 설정
+                2 - 여백 또는 패딩을 .5rem으로 설정
+                3 - 여백 또는 패딩을 1rem으로 설정
+                4 - 여백 또는 패딩을 1.5rem으로 설정
+                5 - 여백 또는 패딩을 3rem으로 설정
+                auto - 여백을 자동으로 설정
+            </pre>
+        </p>
+        <div class="pt-4 bg-warning">I only have a top padding (1.5rem)</div>
+        <div class="p-5 bg-success">I have a padding on all sides (3rem)</div>
+        <div class="m-5 pb-5 bg-info">I have a margin on all sides (3rem) and a bottom padding (3rem)</div>
+
+
+        <style>
+            div#vAlign span {
+                display: inline;
+            }
+        </style>
+        <h2>수직정렬</h2>
+        <div id="vAlign" style="height: 100px;" class="border border-3 mb-3">
+            <span class="align-baseline">baseline</span>
+            <span class="align-top">top</span>
+            <span class="align-middle">middle</span>
+            <span class="align-bottom">bottom</span>
+            <span class="align-text-top">text-top</span>
+            <span class="align-text-bottom">text-bottom</span>
+        </div>
+
+
+        <h2>동영상비율</h2>
+        <!-- Aspect ratio 16:9 -->
+        <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+        </div>
+
+        <h2>가시성</h2>
+        <div class="visible">I am visible</div>
+        <div class="" id="showBox">I am invisible</div>
+
+        <button type="button" id="vOn">보임처리</button>
+        <button type="button" id="vOff">숨김처리</button>
+
+        <script>
+            $(function () {
+                $('#vOff').on('click', function () {
+                    $("#showBox").addClass("invisible");
+                    $("#showBox").removeClass("visible");
+                    $("#showBox").removeClass("bg-danger");
+                    $("#showBox").removeClass("p-5");
+                });
+
+                $('#vOn').on('click', function () {
+                    $("#showBox").removeClass("invisible");
+                    $("#showBox").addClass("visible bg-danger p-5");
+                });
+
+            });
+
+            //invisible
+        </script>
+    </div>
+</body>
+
+</html>
