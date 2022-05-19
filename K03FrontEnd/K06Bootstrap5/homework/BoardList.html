@@ -85,6 +85,8 @@
 </script>
 <style>
     /*기본*/
+    *{box-sizing: border-box;}
+
     hr {
         margin-top: 1rem;
         margin-bottom: 1rem;
@@ -99,6 +101,9 @@
     }
 
     /*header*/
+    header * {
+        font-size: .925rem;
+    }
 
     .navbar .navbar-nav .nav-link {
         padding: 0.6em;
@@ -120,8 +125,8 @@
     }
 
     /*상단 왼쪽메뉴*/
-    .header_left_menu {
-        font-size: .8rem;
+    .header_left_menu *{
+        font-size: .8rem !important;
     }
 
     /*왼쪽메뉴*/
@@ -182,7 +187,7 @@
     /*footer*/
     .footer_right{font-size: 1.5rem;}
 
-    @media (max-width: 767.99px) {
+    @media only screen and (max-width: 767.99px) {
         header .dropdown:hover .dropdown-content {
             margin-top: 0px;
             margin-bottom: 15px;
@@ -202,8 +207,8 @@
 
     }
 
-    @media (max-width: 991.99px) {
-        
+    @media only screen and (max-width: 991.99px) {
+     
         #bottom_btn_group {
             flex-direction: column;
             width: 100%;
@@ -211,7 +216,11 @@
         }
     }
 
-    @media (min-width: 768px) {
+    @media only screen and (max-width: 1199.99px) {
+        header .navbar-nav li.d-flex{display: block !important;}
+    }
+
+    @media only screen and (min-width: 768px) {
         .sub_left_menu  .dropdown-content {
             inset: 0px auto auto 0px;
             margin: 0px;
@@ -224,15 +233,19 @@
     }
 
     @media only screen and (min-width: 992px) {
-    .navbar {
-        padding: 0;
+        .navbar {
+            padding: 0;
+        }
+        .navbar .navbar-nav .nav-link {
+            padding: 1em 0.7em;
+        }
+        .navbar .navbar-brand {
+            padding: 0 0.8em;
+        }
     }
-    .navbar .navbar-nav .nav-link {
-        padding: 1em 0.7em;
-    }
-    .navbar .navbar-brand {
-        padding: 0 0.8em;
-    }
+
+    @media only screen and (min-width: 1200px) {
+        header .navbar-nav li.d-flex{display: flex !important;}
     }
 </style>
 </head>
