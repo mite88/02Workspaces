@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ04Trigger.html</title>
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(function(){
+            //로딩시 btnClick에 click이벤트 바인딩
+            $('#btnClick').bind('click', function(){
+                alert('버튼을 클릭하셨습니다');
+            });
+
+            //무서로딩시 자동 click이벤트 트리거
+            $('#btnClick').trigger('click');
+        });
+    </script>
+
+</head>
+<body>
+    <h2>trigger() 메서드</h2>
+    <button id="btnClick">난버튼</button>
+</body>
+</html>

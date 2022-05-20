@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ16Attr.html</title>
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+        /*
+        attr() - DOM객체 속성 부여 및 얻을때
+        $(셀렉터).attr('속성','값')
+        $(셀렉터).attr({'속성':'값', '속성':'값'}})
+        
+        removeAttr() - 속성제거시..
+         $(셀렉터).removeAttr('속성','값')
+        */
+        $(function () {
+            $('#btn1').click(function () {
+                $('#viewImg').attr('src', '../images/amazon.png')
+                    .attr('width','300px');
+            });
+
+            $('#btn2').click(function () {
+                $('#viewImg').attr('src', '../images/naver.png')
+                    .attr('width', function(){return '200px'});
+            });
+
+            $('#btn3').click(function () {
+                $('#viewImg').attr({src: '../images/chosun.png', width: '400px'});
+            });
+
+            $('#btnDel').click(function () {
+                var attrName = $('#attrSelect option:selected').val();
+                
+                $('#viewImg').removeAttr(attrName);
+                alert(attrName+"속성이 제거됨");
+
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <h2>attr(), removeAttr() 메서드</h2>
+
+    <div>
+        <img src="../images/amazon.png" id="viewImg" />
+    </div>
+
+    <div>
+        <button id="btn1">amazon.png이미지로변경</button>
+        <button id="btn2">naver.png이미지로변경</button>
+        <button id="btn3">chosun.png이미지로변경</button>
+    </div>
+
+    <div>
+        <h3>위 변경 이미지를 먼저 누른후 속성제거 버튼을 누르시오</h3>
+        <select id="attrSelect">
+            <option value="src">src속성</option>
+            <option value="width">width속성</option>
+        </select>
+        <button id="btnDel">속성제거</button>
+    </div>
+</body>
+
+</html>

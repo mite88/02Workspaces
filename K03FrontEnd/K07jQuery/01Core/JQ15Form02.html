@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ15Form02.html</title>
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(function () {
+            /*
+            $('input') : input태그만선택
+            $(':input') : input태그 및 모든 폼 하위의 엘리먼트
+                          (textarea, select 등)도 선택
+            */
+            $('#btn1').click(function () {
+                alert('input의갯수:' + $('input').length);
+                alert('문서내 모든 폼요소의 갯수:' + $(':input').length);
+            });
+
+            /*
+            태그명 : 선택자.get(0).tagName, (this시 :  this or $(this))
+            속성값 : 선택자.attr(thrtjdaud) (this시 :  $(this))
+            */
+            $('#btn2').click(function () {
+                var str = '';
+                $(':input').each(function () {
+                    str += '태그명:' + this.tagName;
+                    str += '/n';
+                    str += 'Typed의 속성값:' + $(this).attr('type');
+                    str += '/n';
+                });
+
+                alert(str);
+            });
+
+            //val() - value 얻거나 설정시 사용
+            $('#btn3').click(function () {
+                $(':text').css('backgroundColor', 'silver');
+                alert('#text1의 value값:' + $('#text1').val());
+
+                var textVal = +$('#text2').val($('#text1').val());
+                alert('txt1의 내용이 txt2로 복사됨');
+            });
+
+            $('#btn4').click(function () {
+                var a = $(':text').length;
+                var b = $(':checkbox').length;
+                var C= $(':radio').length;
+                var d = $(':password').length;
+
+                console.log('text타입', a);
+                console.log('checkbox타입', b);
+                console.log('radio타입', c);
+                console.log('password타입', d);
+            });
+
+        });
+    </script>
+
+</head>
+
+<body>
+    <h2>form요소와 jQuery</h2>
+
+    <input type="text" name="text1" id="text1" value="노트북" />
+    <br />
+    <input type="text" name="text2" id="text2" value="" />
+    <br />
+    <input type="password" name="passwd" />
+    <br />
+    <textarea name="textarea" cols="50" rows="10">나는개발자다</textarea>
+    <br />
+    <select name="select">
+        <option value="A">에이</option>
+        <option value="B">비이</option>
+        <option value="C">씨이</option>
+    </select>
+    <br />
+    <input type="checkbox" name="checkbox" />나는체크박스다
+    <br />
+    <input type="hidden" value="hidden" />여긴hidden박스
+    <br />
+    <input type="submit" value="submit버튼" />
+    <br />
+
+    <div style="margin-top:50px;">
+        <button id="btn1">버튼1</button>
+        <button id="btn2">버튼2</button>
+        <button id="btn3">버튼3</button>
+        <button id="btn4">버튼4</button>
+    </div>
+
+    <script>
+        $(function () {
+            /*
+            연습문제]비밀번호 확인기능 구현하기
+            1.암호1을 입력할때 무조건 암호2 부분을 비워준다.
+            2.암호2 부분을 입력할때 암호가 일치하게 되면 
+                <span id="msg"> 부분의 텍스트를 빨간색으로 표현한다.
+            3.암호가 틀렸을때 -> 암호가틀립니다(검은색)
+                암호가 일치할때 -> 암호가일치합니다(빨간색)		
+                해당 조건을 만족하는 jQuery코드를 작성하시오.
+            */
+
+            //1번항목
+            $('#pwd1').on('keydown keyup', function () {
+                $('#msg').text(''); //글자입력초기화
+                $('#pwd2').val(''); //paw2 내용삭제
+            });
+
+            //2, 3번항목
+            $('#pwd2').on('keydown keyup', function () {
+
+                if ($('#pwd1').val() == $('#pwd2').val()) {
+                    $('#msg').text('암호가일치합니다');
+                    $('#msg').css("color", "red");
+
+                } else {
+                    $('#msg').text('암호가틀립니다');
+                    $('#msg').css("color", "black");
+                }
+
+            });
+
+            //이메일
+            $('#selectEmail').on('change', function () {
+                //var value = $(this).val();
+                var value = $('#selectEmail option:selected').val();
+
+                if (value == 'direct') {
+                    $('#email2').removeAttr('readonly');
+                    //$('#email2').attr('readonly',false);
+                    $('#email2').val('');
+                }else if (value == '') {
+                    $('#email2').attr('readonly',true);
+                    $('#email2').val('');
+                }else{
+                    $('#email2').val(value);
+                    $('#email2').attr('readonly',true);
+                }
+
+            });
+
+        });
+    </script>
+
+    <h3>비밀번호 확인기능</h3>
+    <span id="msg"></span>
+    <br />
+    암호입력 : <input type="password" id="pwd1" />
+    <br />
+    암호확인 : <input type="password" id="pwd2" />
+
+
+    <h3>선택상자에서 선택된값을 텍스트상자에 출력하기</h3>
+    이메일 : <input type="text" id="email1" style="width:100px;" />
+    @ <input type="text" id="email2" style="width:150px;" readonly />
+    <select id="selectEmail">
+        <option value="">--선택하세요--</option>
+        <option value="direct">직접입력</option>
+        <option value="naver.com">네이버</option>
+        <option value="hanmail.net">다음(한메일)</option>
+        <option value="gmail.com">구글(gmail)</option>
+    </select>
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+</body>
+
+</html>

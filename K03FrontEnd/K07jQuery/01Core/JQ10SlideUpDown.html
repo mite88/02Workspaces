@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ10SlideUpDown.html</title>
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(function(){
+            $('.content').hide();//내용숨기기
+            //제목 css 지정
+            $('.title').css('fontSize','1.5em').css('cursor','pointer');
+
+            /*
+            slideToggle() - 주어진시간만큼 슬라이드 업/다운 토글
+            slideUp() - 패널닫침
+            slideDown() - 패널열림
+            */
+            $('.title').click(function(){
+                $(this).next().slideToggle(1000);
+            })
+
+            $('.s_up').click(function(){
+                //slow, fast, normal
+                $('#panel').slideUp('slow');
+            })
+
+            $('.s_down').click(function(){
+                //slow, fast, normal
+                $('#panel').slideDown('fast');
+            })
+        });
+    </script>
+
+    <style>
+        div{margin: 10px;}
+
+        #panel, #flip{
+            padding: 5px; text-align: center;
+            background-color: #e5eecc;
+            border: 1px solid #c3c3c3;
+        }
+        #panel{padding: 50px;}
+        .title{background-color: #ff99ff;}
+        .content{background-color: #ffff33;}
+    </style>
+
+</head>
+<body>
+	<h2>slideUp() / slideDown() / slideToggle() 메소드</h2>
+	
+	<div class="title">
+		제목1입니다.
+	</div>
+	<div class="content">
+		내용1입니다.<br/>
+		내용1입니다.<br/>
+		내용1입니다.<br/>
+		내용1입니다.<br/>
+	</div>	
+	
+	<div class="title">
+		제목2입니다.
+	</div>
+	<div class="content">
+		내용2입니다.<br/>
+		내용2입니다.<br/>
+		내용2입니다.<br/>
+		내용2입니다.<br/>
+	</div>
+	
+	<div class="title">
+		제목3입니다.
+	</div>
+	<div class="content">
+		내용3입니다.<br/>
+		내용3입니다.<br/>
+		내용3입니다.<br/>
+		내용3입니다.<br/>
+	</div>
+	
+	<div id="flip">
+		<button class="s_up">slideup()메소드</button>
+		<button class="s_down">slidedown()메소드</button>
+	</div>
+	<div id="panel">
+		Hello Panel...!!! <br />
+		Hello Panel...!!! <br />
+		Hello Panel...!!! <br />
+		Hello Panel...!!! <br />
+	</div>
+</body>
+</html>

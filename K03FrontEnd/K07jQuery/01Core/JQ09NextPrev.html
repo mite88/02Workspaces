@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ09NextPrev.html</title>
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+        /*
+        next() - 엘리먼트의 이전 요소 선택
+        prev() - 엘리먼트의 다음 요소 선택
+        */
+        $(function(){
+            //button태그 중 id가 next인 엘리먼트 선택
+            $('button#next').click(function(){
+                //li태그중 class 가 third 엘리먼트의 이전, 다음요소 스타일지정
+                $('li.third').prev().css('backgroundColor','blue');
+                $('li.third').next().css('fontSize','2em');
+            });
+
+            $('button#prev').click(function(){
+                $('li.third').prev().css('backgroundColor','yellow');
+                $('li.third').next().css('fontSize','1.2em');
+            });
+
+            var i = 0;
+            var size = $('li').length;
+
+              /*eq() -  선택한 엘리먼트가 여러개일 때 인덱스를 통해 선택*/
+            $('button#continue').click(function(){
+                $('li').eq(i).prev().css('backgroundColor','white');
+                $('li').eq(i).css('backgroundColor','yellow');
+
+                // i가 0이면 이전요소가 없어 마지막요소를 선택함
+                if(i == 0){
+                    $('li').eq(size-1).css('backgroundColor','white');
+                }
+
+                //li태그끝까지 index 증가시 처음으로 돌리기 위해 0으로 초기화
+                if((size - 1) == i){
+                    i = 0;
+                }else{
+                    i++;
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+	<h2>next() / prev() 메소드</h2>
+	
+	<button id="next">JSP의 다음요소 얻어오기</button>
+	<button id="prev">JSP의 이전요소 얻어오기</button>
+	<button id="continue">연속해서 배경색 바꾸기</button>
+	
+	<ul>
+		<li>JAVA</li> 0번인덱스
+		<li>HTML5</li>
+		<li class="third">JSP->여기가third</li>
+		<li>jQuery</li>
+		<li>Spring</li> 4번인덱스
+	</ul>
+</body>
+</html>

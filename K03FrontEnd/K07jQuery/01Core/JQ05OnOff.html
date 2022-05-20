@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ05OnOff.html</title>
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+        /*
+        on() : 기본사용법은 bind()와 동일, 엘리먼트에 이벤트 부여 시 사용
+               단, 동적으로 생성된 엘리먼트에도 이벤트 부여가능
+
+        off() : on()으로 부여된 이벤트 제거
+        */
+        $(function(){
+            $('#onMethod').on('click', function(){
+                alert('#onMethod 버튼 클릭됨');
+            });
+
+            $('#offMethod').on('click', function(){
+                $('#onMethod').off('click');
+                alert('#onMethod의 click 이벤트 해제');
+            });
+
+            $('#div1').on('click', function(){
+                alert('클릭이벤트 발생됨');
+                 //after() : 선택한 요소의 바로 뒤쪽에 새로운 요소나 콘텐츠를 추가
+                $(this).after('<div style="background-color:green;">'
+                +'동적으로 생성한 div</div>');
+            });
+
+            $('.div2 button').on('click', function(){
+                /*append() : 선택된 요소의 마지막에 새로운 요소나 콘텐츠를 추가 */
+                $('.div2 ul').append('<li>추가된 li태그</li>');
+            });
+
+            //동적으로 생성된 엘리먼트에 on()을 사용해 이벤트 부여 가능
+            $('.div2').on('click', function(){
+               //css() : css적용
+                $(this).css('color','red').css('fontSize','1.8em');
+            });
+        });
+    </script>
+
+    <style>
+        div{width: 200px; height: 50px; margin: 20px;}
+    </style>
+
+</head>
+<body>
+	<h2>on() / off() 메소드</h2>
+	
+	<div id="div1" style="background-color:red;">
+		미리 생성한 div(요기를 눌러보삼)
+	</div>
+	
+	<button id="onMethod">on()메소드호출</button>
+	<button id="offMethod">off()메소드호출</button>
+	
+	<div class="div2">
+		<button>아이템추가하기</button>
+		<ul>
+			<li>기존아이템1</li>
+			<li>기존아이템2</li>
+		</ul>
+	</div>
+</body>
+
+</html>

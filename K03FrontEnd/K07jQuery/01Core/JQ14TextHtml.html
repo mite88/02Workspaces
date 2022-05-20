@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ14TextHtml.html</title>
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+        /*
+        text() - JS의 innerText와 동일
+        hetml() - JS의 innerHTML와 동일(여러개일시 첫번째만 읽어옴)
+        */
+        $(function(){
+            //읽어온 전체 요소 출력
+            $('#btn1').click(function(){
+                alert($('div').text());
+            });
+
+            //첫번째 요소만 출력
+            $('#btn2').click(function(){
+                alert($('div').html());
+            });
+
+            $('#btn3').click(function(){
+                //div태그 중 첫번째 요소의 text읽음
+                var txt1 = $('div:first').text();
+                alert(txt1);
+
+                $('div:first').text('<h2>new div1입니다.</h2>');
+            });
+
+            $('#btn4').click(function(){
+                var txt2 = $('div:last').prev().text();
+                alert(txt2);
+
+                $('div:last').prev().html('<h2>new div4입니다.</h2>');
+            });
+        });
+    </script>
+
+</head>
+<body>
+	<h2>text() / html() 메소드</h2>
+	
+	<div>div1입니다.</div>	
+	<div>div2입니다.</div>
+	<div>div3입니다.</div>
+	<div>div4입니다.</div>
+	
+	<div>
+		<button id="btn1">text()로 읽어오기</button>
+		<button id="btn2">html()로 읽어오기</button>
+		<button id="btn3">text()로 설정하기</button>
+		<button id="btn4">html()로 설정하기</button>
+	</div>
+
+</body>
+</html>
