@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>00Callback.html</title>
+</head>
+<body>
+    <script>
+        window.onload = function(){
+            //보모페이지의 DOM객체를 얻어온 뒤 텍스트 설정
+            parent.document.getElementById('callBackData')
+            .innerHTML ='콜백되었습니다.';
+        }
+
+        /*
+        콜백 함수는 요청 완료시 자동호출되어
+        호출에 대한 처리가 되었는지 확인이 가능함
+        */
+    </script>
+    <h2>00CallBack.html 파일입니다.</h2>
+</body>
+</html>

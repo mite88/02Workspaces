@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ02Get.html</title>
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+        /*
+        $.get()
+        html get방식을 통해 서버전송시 사용하는 메서드
+        */
+        $(function () {
+            $('#btnXml').click(function () {
+                $.get(
+                    './common/02NameCard.xml',//요청 url
+                    //파라미터 생략
+
+                    //콜백함수
+                    function (data) {
+                        //성공시 xml파일의 모든 내용이 콜백함수에 전달
+                        console.log(data);
+
+                        /*
+                        콜백된 내용 Parsing(파싱)
+                        find()를 통해 xml의노드를 찾고
+                        attr(), text() 등을 이용해 접근함
+                        */
+                        //'명함'이라는 엘리먼트를 찾음
+                        $(data).find("명함").each(function () {
+                            //하위노드의 엘리먼트 조회해서 반복하여 출력
+                            var html = '<div>이름:' +
+                                $(this).find("성명").attr("이름") + "</div>";
+
+                            html += '<div>주소:' +
+                                $(this).find("주소").text() + "</div>";
+
+                            html += '<div>직위:' +
+                                $(this).find("직위").text() + "</div>";
+
+                            html += '<div>e-mail:' +
+                                $(this).find("e-mail").text() + "</div>";
+
+                            html += '<div>Mobile:' +
+                                $(this).find("Mobile").text() + "</div>";
+
+                            html += '<div>전화번호:' +
+                                $(this).find("TEL").text() + "</div>";
+
+                            html += '<div>카피라이트:' +
+                                $(this).find("copyright").text() + "</div>";
+
+                            $('#xmlDisplay').html(html);
+
+                        });
+                        //each end
+                    }
+                );//get end
+            });//end click
+        });
+
+        function locationGo(link){
+            window.open('./common/02NameCard.xml','xml',
+            'width=500, height=500');
+        }
+    </script>
+</head>
+
+<body>
+    <h2>$.get() 메소드 사용하기</h2>
+
+    <h3>xml파일 읽어오기</h3>
+    <button onclick="locationGo('');">NameCard.xml바로가기</button>
+    <button id="btnXml">XML데이터 읽어오기</button>
+    <div class="displayDiv" id="xmlDisplay">
+        XML데이터 정보를 디스플레이합니다.
+    </div>
+</body>
+
+</html>

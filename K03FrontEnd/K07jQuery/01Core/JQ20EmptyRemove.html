@@ -8,13 +8,40 @@
     <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
 
     <script>
+        /*
+        empty :  선택된 요소의 하위요소들만 제거
+        remove : 선택된요소를 포함, 하위요소들을 제거
+        */
         $(function(){
-
+            $('button').click(function(){
+                if(this.id == 'empty'){
+                    //엘리먼트 유지한채 내용만삭제
+                    $('div').empty();
+                    $('div').html('내용이 empty 되었습니다');
+                }else{
+                    //엘리먼트 자체를 지움
+                    $('div').remove();
+                    $('div').html('내용이 remove 되었습니다');
+                }
+            });
         });
     </script>
 
+    <style>
+        div{
+            border: 1px green dotted;
+            height: 50px;
+        }
+    </style>
+
 </head>
 <body>
-    
+	
+	<h2>empty() / remove() 메소드</h2>
+	
+	<button id="empty">Empty()호출하기</button>
+	<button id="remove">Remove()호출하기</button>	
+	
+	<div>div태그안의 텍스트</div>
 </body>
 </html>

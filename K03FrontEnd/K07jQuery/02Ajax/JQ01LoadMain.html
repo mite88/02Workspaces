@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ01LoadMain.html</title>
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        /*
+        $.load()
+        외부의 문서를 동적으로 로드(포함)시킬때 사용
+
+        */
+
+        //javascript
+        var loadCode = function(){
+            $('#loadView').load('./common/01LoadSub.html');
+                alert('문서가 로드되었습니다.');
+        };
+
+        //jquery
+        $(function(){
+            $('#loadTxtBtn').click(function(){
+                $('#loadTxt').load('./common/01LoadTxt.txt');
+                alert('txt문서가 로드되었습니다.');
+            });
+        });
+    </script>
+
+    <style>
+        /*현 문서엔 없지만 load() 메서드로 다른 문서를
+        불러올 경우 적용가능해짐*/
+        span#article{
+            border: 2px dotted red;
+            background-color: aqua;
+        }
+    </style>
+
+</head>
+<body>
+    <h2>$.load() 메소드 사용하기</h2>
+
+    <h3>html파일 로드하기</h3>
+    <div id="loadView">
+        여긴 loadView 입니다.
+    </div>
+    <button type="button" onclick="loadCode();">버튼1</button>
+
+    <h3>txt파일 로드하기</h3>
+    <div id="loadTxt">
+        여긴 loadTxt입니다.
+        텍스트파일의 내용을 비동기방식으로 로드합니다.
+    </div>
+    <button type="button" id="loadTxtBtn">버튼2</button>
+</body>
+</html>

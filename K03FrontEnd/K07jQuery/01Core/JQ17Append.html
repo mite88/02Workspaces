@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,21 +9,57 @@
     <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(function(){
+        /*
+        [기존 요소의 내부에 추가]
+        .append()	    선택된 요소의 마지막에 새로운 요소나 콘텐츠를 추가
+        .prepend()	    선택된 요소의 첫번째에 새로운 요소나 콘텐츠를 추가
+        .appendTo()	    선택된 요소를 해당 요소의 마지막에 추가
+        .prependTo()    선택된 요소를 해당 요소의 첫번째에 추가
 
+        [기존 요소의 외부 추가]
+        .before()       선택한 요소의 바로 앞쪽에 새로운 요소나 콘텐츠를 추가
+        .after()        선택한 요소의 바로 뒤쪽에 새로운 요소나 콘텐츠를 추가
+        .insertBefore() 선택한 요소를 해당 요소의 앞쪽에 추가
+        .insertAfter()  선택한 요소를 해당 요소의 뒤쪽에 추가
+
+        */
+        $(function () {
+            $('#btn').click(function () {
+                var row = $('#row').val();
+                var col = $('#col').val();
+
+                var table = '<table board="1">';
+                for (var i = 0; i <= row; i++) {
+                    table += '<tr>';
+
+                    for (var j = 0; j <= col; j++) {
+                        table += '<td>'+i+'행'+j+'열</td>';
+                    }
+                    table += '</tr>';
+                }
+
+                table += '</table>';
+                $('#appendDisplay').append(table);
+                //$('#appendDisplay').before(table);
+                //$(table).prependTo('#appendDisplay');
+                //$('#appendDisplay').html(table); //삭제후 생성됨
+
+            });
         });
     </script>
 
 </head>
+
 <body>
-	<h2>append() 메소드</h2>
-	
-	<input type="number" id="row" value="2" />행
-	<input type="number" id="col" value="2" />열
-	<input type="button" id="btn" value="동적테이블추가" />
-	<div id="appendDisplay">
-		여기에 생성됨
-	</div>	
- 
+    <h2>append() 메소드</h2>
+
+    <input type="number" id="row" value="2" />행
+    <input type="number" id="col" value="2" />열
+    <input type="button" id="btn" value="동적테이블추가" />
+    <div id="appendDisplay" style="border: 1px solid blue; padding: 10px;">
+        여기에 생성됨
+    </div>
+
 </body>
+
 </html>

@@ -8,13 +8,50 @@
     <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
 
     <script>
+        //페이지 로드 후 값 설정, 주로 정보수정에 사용됨
+        //HTML 문서 로드 후 실행되므로 우선순위가 더 높음
         $(function(){
+            //select, check, radio등은 배열로 표현
+            $('input:text').val('홍길순');
+            $('input:radio').val(['여자']);
+            $('#sel').val(['pol','ent']);
+            $('input:checkbox').val(['트와이스','블랙핑크']);
 
+            $('input:button').click(function(){
+                var msg ='';
+
+                msg +=$('#txt').val()+'\n';
+                msg +=$('input:radio[name=gender]:checked').val()+'\n';
+                msg +=$('#sel').val();
+
+                alert(msg);
+            })
         });
     </script>
 
 </head>
 <body>
-    
+	<h2>val()메소드</h2>
+	
+	텍스트박스 : <input type="text" id="txt" value="홍길동" />
+	<br />
+	라디오박스 :
+	<input type="radio" name="gender" value="남자" checked />Man
+	<input type="radio" name="gender" value="여자"   />Woman
+	<br />
+	셀렉트리스트:
+	<select id="sel" multiple size="3">
+		<option value="pol">정치</option>
+		<option value="eco" selected>경제</option>
+		<option value="ent">연예</option>
+	</select>	
+	<br />
+	체크박스 :
+	<input type="checkbox" name="favo" value="트와이스" />트와이스
+	<input type="checkbox" name="favo" value="모모랜드" />모모랜드
+	<input type="checkbox" name="favo" value="블랙핑크" />블랙핑크
+	<input type="checkbox" name="favo" value="레드밸벳" />레드밸벳
+	<br />
+	<input type="button" value="확인" />
 </body>
 </html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ04AjaxSetup.html</title>
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(function () {
+            /*
+             $.ajaxSetup
+             동일하게 반복되는 $.ajax()의 인자를 설정하여 생략가능함
+             type, dataType 등 기본적으로 사용되는 인자를 묶어줌
+            */
+            $.ajaxSetup({
+                url: './common/04JSONData.json',
+                dataType: 'json'
+            })//ajaxSetup end
+
+            $('#btn').click(function () {
+                $.ajax({
+                    success: function (responseData) {
+                        /*
+                        json은 원소갯수만큼 each() 함수를 통해 반복가능
+                        */
+                        $.each(responseData, function (index, value) {
+                            /*
+                            each() : 함수 호출시 파라미터는 2가지 사용가능
+                            index - 반복시 사용할 인덱스
+                            value -  반환 원소 or 데이터
+                            */
+                            console.log(index, value);
+
+                            //파싱시 .과[] 형태로 사용가능
+                            var htmlStr = '<tr>';
+                            htmlStr += '<td>' + (index + 1) + '</td>';
+                            htmlStr += '<td>' + value.name + '</td>';
+                            htmlStr += '<td>' + value['age'] + '</td>';
+                            htmlStr += '<td>' + value['주소'] + '</td>';
+                            htmlStr += '</tr>';
+
+                            $('#tbl1').append(htmlStr);
+                        });//each end
+
+
+                        /*
+                        $.each(responseData.members, function(index, value){
+                            console.log(index, value);
+
+                            var htmlStr = '<tr>';
+                            htmlStr += '<td>'+(index + 1)+'</td>';   
+                            htmlStr += '<td>'+value.name+'</td>';   
+                            htmlStr += '<td>'+value['age']+'</td>';   
+                            htmlStr += '<td>'+value['powers']+'</td>';   
+                            htmlStr += '</tr>';
+
+                            $('#tbl2').append(htmlStr);
+                        })
+                        */
+                    },
+                    //실패시 콜백함수를 외부 js로 선언
+                    error: errFunc
+                });//ajax end
+            });//click end
+
+        });
+
+
+        function errFunc(errData) {
+            alert(errData.state, errData.statusText);
+        }
+    </script>
+
+</head>
+
+<body>
+    <h2>$.ajaxSetup() 메소드 사용하기</h2>
+
+    <table id="tbl1">
+        <tr>
+            <td>NO</td>
+            <td>이름</td>
+            <td>나이</td>
+            <td>출신지역</td>
+        </tr>
+    </table>
+
+    <!-- <table id="tbl2">
+        <tr>
+            <td>NO</td>
+            <td>이름</td>
+            <td>나이</td>
+            <td>secretIdentity</td>
+            <td>powers</td>
+        </tr>
+    </table> -->
+
+    <button id="btn">JSON데이터 가져오기</button>
+</body>
+
+</html>

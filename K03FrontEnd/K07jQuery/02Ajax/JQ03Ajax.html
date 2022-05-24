@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ03Ajax.html</title>
+    <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+        /*
+        $.ajax()
+        load(), get(), post()메서드의 모든 기능을 가지고 있음
+        별도의 인자가 없고 json형태로 사용함
+        */
+        $(function(){
+            //버튼클릭시 js파일 내용읽어서 현재 문서에 로드
+            $('#ajaxBtn').click(function(){
+               $.ajax({
+                    url : './common/03JsData.js',
+                    type : 'get',
+                    dataType : 'script',//스크립트방식으로 받을것임
+                    /*success : function(resData){
+                        //1번방식
+                        //요청성공시...
+
+                        //매개변수 resData로 js파일의 모든 내용전달
+                        //MyAlert() 함수가 해당문서에 호출
+                        MyAlert('Hello','AJAX');
+                        $('#ajaxDisplay').html(resData); 
+                    },*/
+                    success : sucFunc, //2번방식
+                    //2번방식에선 함수명만 명시해야함
+                    error : function(errData){
+                        //에러발생시..
+                        //발생된 에러르 매개변수로 전달함
+                        console.log(errData.state, errData.statusText);
+                    }
+               })//ajax end
+            });//click end
+        });
+
+        //콜백함수는 jquery외부에 js함수로 정의 후 호출 가능
+        // 사용시 함수명으로....
+        function sucFunc(resData){
+            alert("$.ajax() 메소드 요청 성공");
+            MyAlert('Hello2','AJAX');
+            $('#ajaxDisplay').html(resData);
+        }
+    </script>
+
+</head>
+<body>
+    <h2>$.ajax() 메소드 사용하기</h2>
+
+    <button id="ajaxBtn">ajax() 메소드 실행하기</button>
+
+    <div id="ajaxDisplay">
+        ajax결과를 여기에 디스플레이
+    </div>
+</body>
+</html>

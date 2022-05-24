@@ -8,13 +8,59 @@
     <script src="../common/jQuery/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(function(){
+        /*
+        .siblings()	선택한 요소의 형제(sibling) 요소 중에서 지정한 
+                    선택자에 해당하는 요소를 모두 선택
 
+        .next()	    선택한 요소의 바로 다음에 위치한 형제 요소를 선택
+        .nextAll()	선택한 요소의 다음에 위치한 형제 요소를 모두 선택
+        .nextUntil()선택한 요소의 형제 요소 중에서 지정한 선택자에 
+                    해당하는 요소 바로 이전까지의 요소를 모두 선택
+
+        .prev()	    선택한 요소의 바로 이전에 위치한 형제 요소를 선택
+        .prevAll()	선택한 요소의 이전에 위치한 형제 요소를 모두 선택
+        .prevUntil()선택한 요소의 형제 요소 중에서 지정한 선택자에 
+                    해당하는 요소 바로 다음까지의 요소를 모두 선택
+        */
+        $(function(){
+            $("#btn1").click(function(){
+                $('li').css('background-color','white');
+                $('li.third-item').siblings().css('backgroundColor','red');
+            });
+
+            $("#btn2").click(function(){
+                $('li').css('background-color','white');
+                $('li.third-item').next().css('backgroundColor','red');
+            });
+
+            $("#btn3").click(function(){
+                $('li').css('background-color','white');
+                $('li.third-item').nextAll().css('backgroundColor','red');
+            });
+
+            $("#btn4").click(function(){
+                $('li').css('background-color','white');
+                $('li.third-item').nextUntil('#here')
+                .css('backgroundColor','red');
+            });
         });
     </script>
 
 </head>
 <body>
-    
+    <ul>
+        <li>임춘</li>
+        <li>오세재</li>
+        <li class="third-item">이인로</li>
+        <li>조통</li>
+        <li>황보향</li>
+        <li id="here">이담지</li>
+        <li>함순</li>
+    </ul>
+
+    <input type="button" value="siblings()" id="btn1">
+    <input type="button" value="next()" id="btn2">
+    <input type="button" value="nextAll()" id="btn3">
+    <input type="button" value="nextUntil(#here)" id="btn4">
 </body>
 </html>
