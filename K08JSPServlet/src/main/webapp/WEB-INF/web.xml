@@ -13,6 +13,25 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>NewFile.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<!-- 오라클 접속정보를 컨텍스트 초기화 파라미터로등록함 -->
+	<context-param>
+		<param-name>OracleDriver</param-name>
+		<param-value>oracle.jdbc.OracleDriver</param-value>
+	</context-param>
+	<context-param>
+		<param-name>OracleURL</param-name>
+		<param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
+	</context-param>
+	<context-param>
+		<param-name>OracleId</param-name>
+		<param-value>musthave</param-value>
+	</context-param>
+	<context-param>
+		<param-name>OraclePwd</param-name>
+		<param-value>1234</param-value>
+	</context-param>
+	
 
 	<!-- 전역변수 개념처럼 됨, 컨텍스트 초기화 파라미터(매개변수) -->
 	<context-param>

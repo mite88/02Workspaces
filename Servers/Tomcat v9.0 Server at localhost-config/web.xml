@@ -4730,4 +4730,10 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+	<!-- 세션유지시간 설정 : web.xml에서 분단위로 지정 -->
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>
+    
+
 </web-app>
