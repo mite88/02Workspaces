@@ -38,6 +38,7 @@ request.setAttribute("rAttr", "계백");
 	<%-- <jsp:forward page="/07ActionTag/ForwardSub.jsp"></jsp:forward> --%>
 	
 	<%
+		//java코드로 한 포워딩
 		request.getRequestDispatcher("ForwardSub.jsp").
 		forward(request, response);
 	%>
