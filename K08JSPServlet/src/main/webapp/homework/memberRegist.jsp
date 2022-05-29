@@ -53,7 +53,7 @@
     }
     </script>
 <script>
-	//dbguy
+	//회원가입 유효성검사
     function registValdidate(form){
     	//이번엔 참고하시라고 유효성검사에 정규식을 조금 넣어볼까합니다만...
     	var id_RegExp = /^[a-zA-Z0-9]{8,16}$/; //id 정규식

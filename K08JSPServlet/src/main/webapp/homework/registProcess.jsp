@@ -31,12 +31,12 @@
 	dto.setZipcode(request.getParameter("zipcode"));
 	dto.setAddress1(request.getParameter("address1"));
 	dto.setAddress2(request.getParameter("address2"));
+	dto.setMoblie(mobile_str);
 	dto.setEmail(email_str);
 	if(tel_str.length() >= 3 ){
 		//내용존재시만 넣기위한거
-		dto.setMoblie(mobile_str);
+		dto.setTel(tel_str);
 	}
-	dto.setTel(tel_str);
 	
 	MembershipDAO dao = new MembershipDAO(application); 
 	

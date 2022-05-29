@@ -1,19 +1,21 @@
 package homework;
 
+import java.sql.Timestamp;
+
 //DTO 클래스
 public class MembershipDTO {
-	private String userid;
-	private String pass; 
-	private String name;
-	private String gender;
-	private String birthday;
-	private String zipcode;
-	private String address1;
-    private String address2;
-    private String email;
-    private String moblie;
-    private String tel;
-    private java.sql.Date signdate;
+	private String userid; //아이디
+	private String pass;  //비번
+	private String name; //이름
+	private String gender; //성별
+	private String birthday; //생년월일
+	private String zipcode; //주소
+	private String address1; //주소
+    private String address2; //상세주소
+    private String email; //이메일
+    private String moblie; //폰번호
+    private String tel; //전화번호
+    private Timestamp signdate; //회원가입일
     
     
 	public String getUserid() {
@@ -82,10 +84,10 @@ public class MembershipDTO {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public java.sql.Date getSigndate() {
+	public Timestamp getSigndate() {
 		return signdate;
 	}
-	public void setSigndate(java.sql.Date signdate) {
+	public void setSigndate(Timestamp signdate) {
 		this.signdate = signdate;
 	}
     
