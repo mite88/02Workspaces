@@ -52,6 +52,18 @@
 		<param-name>INIT_PARAM</param-name>
 		<param-value>web.xml에 저장한 초기화 매개변수</param-value>
 	</context-param>
+	
+	
+	<!-- 페이징용 -->
+	<context-param>
+		<param-name>POSTS_PER_PAGE</param-name>
+		<param-value>10</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>POSTS_PER_BLOCK</param-name>
+		<param-value>5</param-value>
+	</context-param>
 
 	<!-- 웹어플리케이션의 예외(에러)처리 -->
 	<!-- <error-page> <error-code>404</error-code> <location>/02ImplicitObject/Exception.jsp</location> 
