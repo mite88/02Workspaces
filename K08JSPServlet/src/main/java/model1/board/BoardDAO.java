@@ -246,6 +246,8 @@ public class BoardDAO extends JDBConnect {
 		}
 		query += "        order by num desc) Tb" + ")" 
 		+ " where rNum between ? and ?";
+		
+		//문자열 연결시 StringBuffer클래스 활용하면 유용함
 
 		// query문 확인
 		System.out.println("selectListstPage:" + query);

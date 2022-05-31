@@ -55,13 +55,15 @@
 	
 	
 	<!-- 페이징용 -->
+	<!-- 한 페이지에 출렬할 게시물 수 -->
 	<context-param>
 		<param-name>POSTS_PER_PAGE</param-name>
 		<param-value>10</param-value>
 	</context-param>
 	
+	<!-- 한페이지당 출력할 페이지 수  -->
 	<context-param>
-		<param-name>POSTS_PER_BLOCK</param-name>
+		<param-name>PAGES_PER_BLOCK</param-name>
 		<param-value>5</param-value>
 	</context-param>
 

@@ -10,6 +10,7 @@
  *2022. 5. 30.    mite88   
  */
 --%>
+<%@page import="utils.JSFunction"%>
 <%@page import="model1.board.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

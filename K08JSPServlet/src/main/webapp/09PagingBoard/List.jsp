@@ -11,6 +11,7 @@
  */
 --%>
 
+<%@page import="utils.BoardPage"%>
 <%@page import="java.util.*"%>
 <%@page import="model1.board.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -41,9 +42,36 @@ if(searchWord != null){
 }
 
 int totalCount = dao.selectCount(param); //게시물수
-//수정
-param.put("start", 1);
-param.put("end", 10);
+
+/*페이징 start**********************************************************/
+//파라미터를 얻은후 사칙연산을 위해 정수로 변환
+int pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
+int blockPage = Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
+//전체 페이지 계산
+int totalPage = (int)Math.ceil((double)totalCount / pageSize);
+
+/*
+목록에 첫 진입시 페이지 관련 파라미터가 없기에
+1페이지로 지정하고
+pageNum이 존재하는경우 파라미터를 읽어 페이지 번호를 지정함
+
+List.jsp : 파라미터 없음
+List.jsp?pageNum= : 파라미터는 있지만 값이 없음
+*/
+int pageNum = 1;
+String pageTemp = request.getParameter("pageNum");
+if(pageTemp != null && !pageTemp.equals("")){
+	pageNum = Integer.parseInt(pageTemp);
+}
+
+//게시물의 구간 계산
+int start = (pageNum - 1) * pageSize + 1; //시작번호
+int end = pageNum * pageSize; //종료번호
+//계산된 값을 DAO로 전달하기위해 Map컬렉션에 저장
+param.put("start", start);
+param.put("end", end);
+
+/*페이징 end************************************************************/
 List<BoardDTO> boardLists = dao.selectListstPage(param); //리스트
 dao.close(); //자원해제
 %>
@@ -58,7 +86,7 @@ dao.close(); //자원해제
 	<div class="container">
 		<jsp:include page="../Common/Link.jsp" />
 
-		<h2>목록보기(List)</h2>
+		<h2>목록보기(List) - 현재페이지 : <%= pageNum%> (전체 : <%= totalPage%>)</h2>
 
 		<!-- form태그에 action속성이 존재하지 않을 시 폼값이 현재페이지로 전송됨 -->
 		<form method="get">
@@ -99,12 +127,15 @@ dao.close(); //자원해제
 			}else{
 				//게시물 존재 시 출력
 			  	int virtualNum = 0; //게시물 출력번호용
+			  	int countNum = 0;
 			  	
 			  	//게시판 갯수만큼 반복
 			    for (BoardDTO dto : boardLists)
 			    {
+			    	//현 페이지 번호를 적용할 가상번호 계산
+			    	virtualNum = totalCount - (((pageNum -1) * pageSize) + countNum++);
 			    	//전체레코드 수를 감소시키면서 리스트에 출력
-			        virtualNum = totalCount--;  
+			        //virtualNum = totalCount--;  
 			%>
 			        <tr align="center">
 			            <td><%= virtualNum %></td>  
@@ -122,6 +153,20 @@ dao.close(); //자원해제
     	</table>
    
 	    <table class="table">
+	    	<tr align="center">
+	            <td>
+	            	<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+							<!--  
+	            request.getRequestURI()
+	            request내장 객체를 통해 현 페이지의 host부분을 빼고 나머지 경로명 얻음 
+	            -->
+							<%=BoardPage.pageingStr(totalCount, pageSize, blockPage, pageNum,request.getRequestURI(), 
+									request.getParameter("searchField"), request.getParameter("searchWord") ) %>
+						</ul>
+					</nav>
+				</td>
+	        </tr>
 	        <tr align="right">
 	            <td>
 	            	<button class ="btn btn-outline-secondary" type="button" onclick="location.href='Write.jsp';">글쓰기
