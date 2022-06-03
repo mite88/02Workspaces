@@ -34,11 +34,21 @@ public class BoardPage {
 		 * */
 		if(pageTemp != 1) {
 			pageingStr += "<li class='page-item'>";
-			pageingStr +="<a class='page-link' href='"+reqUrl+"?pageNum=1&searchField="+searchField+"&searchWord="+searchWord+"'>[첫페이지]</a>";
+			if(searchWord != null && searchWord !="") {
+				pageingStr +="<a class='page-link' href='"+reqUrl+"?pageNum=1&searchField="+searchField+"&searchWord="+searchWord+"'>[첫페이지]</a>";
+			}else {
+				pageingStr +="<a class='page-link' href='"+reqUrl+"?pageNum=1'>[첫페이지]</a>";
+			}
+			
 			pageingStr +="</li>";
 			pageingStr += "<li class='page-item'>";
-			pageingStr +="<a class='page-link' href='"+reqUrl+"?pageNum="+(pageTemp - 1)+
-					"&searchField="+searchField+"&searchWord="+searchWord+"'>[이전블록]</a>";
+			if(searchWord != null && searchWord !="") {
+				pageingStr +="<a class='page-link' href='"+reqUrl+"?pageNum="+(pageTemp - 1)+
+						"&searchField="+searchField+"&searchWord="+searchWord+"'>[이전블록]</a>";
+			}else {
+				pageingStr +="<a class='page-link' href='"+reqUrl+"?pageNum="+(pageTemp - 1)+"'>[이전블록]</a>";
+			}
+			
 			pageingStr +="</li>";
 		}
 		
@@ -53,14 +63,24 @@ public class BoardPage {
 				//현페이지일때는 링크 안걸리게 해놓음
 				pageingStr += "<li class='page-item active'>";
 				//pageingStr += ""+pageTemp+"";
-				pageingStr += "<a class='page-link ' href='"+reqUrl+"?pageNum="+pageTemp
+				if(searchWord != null && searchWord !="") {
+					pageingStr += "<a class='page-link ' href='"+reqUrl+"?pageNum="+pageTemp
 						+"&searchField="+searchField+"&searchWord="+searchWord+"'>"+pageTemp+"</a>";
+				}else {
+					pageingStr += "<a class='page-link ' href='"+reqUrl+"?pageNum="+pageTemp+"'>"+pageTemp+"</a>";
+				}
+				
 				pageingStr +="</li>";
 			}else {
 				//현 페이지가 아닐때 링크 걸기
 				pageingStr += "<li class='page-item'>";
-				pageingStr += "<a class='page-link' href='"+reqUrl+"?pageNum="+pageTemp
-						+"&searchField="+searchField+"&searchWord="+searchWord+"'>"+pageTemp+"</a>";
+				if(searchWord != null && searchWord !="") {
+					pageingStr += "<a class='page-link' href='"+reqUrl+"?pageNum="+pageTemp
+							+"&searchField="+searchField+"&searchWord="+searchWord+"'>"+pageTemp+"</a>";
+				}else {
+					pageingStr += "<a class='page-link' href='"+reqUrl+"?pageNum="+pageTemp+"'>"+pageTemp+"</a>";
+				}
+				
 				pageingStr +="</li>";
 			}
 			
@@ -71,15 +91,25 @@ public class BoardPage {
 		//다음페이지 블록 바로가기 링크 출력
 		if(pageTemp <= totalPages) {
 			pageingStr += "<li class='page-item'>";
-			pageingStr += "<a class='page-link' href='"+reqUrl+"?pageNum="+pageTemp
+			if(searchWord != null && searchWord !="") {
+				pageingStr += "<a class='page-link' href='"+reqUrl+"?pageNum="+pageTemp
 					+"&searchField="+searchField+"&searchWord="+searchWord+"'>[다음블록]</a>";
+			}else {
+				pageingStr += "<a class='page-link' href='"+reqUrl+"?pageNum="+pageTemp+"'>[다음블록]</a>";
+			}
+			
 			pageingStr +="</li>";
 			
 			pageingStr += "";
 			
 			pageingStr += "<li class='page-item'>";
-			pageingStr += "<a class='page-link' href='"+reqUrl+"?pageNum="+totalPages
-					+"&searchField="+searchField+"&searchWord="+searchWord+"'>[마지막페이지]</a>";
+			if(searchWord != null && searchWord !="") {
+				pageingStr += "<a class='page-link' href='"+reqUrl+"?pageNum="+totalPages
+						+"&searchField="+searchField+"&searchWord="+searchWord+"'>[마지막페이지]</a>";
+			}else {
+				pageingStr += "<a class='page-link' href='"+reqUrl+"?pageNum="+totalPages+"'>[마지막페이지]</a>";
+			}
+			
 			pageingStr +="</li>";
 		}
 	
