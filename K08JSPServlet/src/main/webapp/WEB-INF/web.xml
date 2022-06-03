@@ -28,6 +28,18 @@
 	</filter-mapping>
 
 
+	<!-- 서블릿 매핑 -->
+	<servlet>
+		<servlet-name>HelloServlet</servlet-name>
+		<servlet-class>servlet.HelloServlet</servlet-class>
+	</servlet>
+	<!-- 상대경로로 /포함해서 해주세여 ㅇㅊㅇ -->
+	<servlet-mapping>
+		<servlet-name>HelloServlet</servlet-name>
+		<url-pattern>/13Servlet/HelloServlet.do</url-pattern>
+	</servlet-mapping>
+
+
 	<!-- 오라클 접속정보를 컨텍스트 초기화 파라미터로등록함 -->
 	<context-param>
 		<param-name>OracleDriver</param-name>
