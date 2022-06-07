@@ -626,9 +626,9 @@
   <!-- You can set the default session timeout (in minutes) for all newly   -->
   <!-- created sessions by modifying the value below.                       -->
 
-    <session-config>
+    <!--session-config>
         <session-timeout>30</session-timeout>
-    </session-config>
+    </session-config-->
 
 
   <!-- ===================== Default MIME Type Mappings =================== -->

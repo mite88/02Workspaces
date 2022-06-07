@@ -115,4 +115,6 @@ public class BoardPage {
 	
 		return pageingStr;
 	}
+
+
 }

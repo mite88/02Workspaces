@@ -21,7 +21,7 @@ nav .navbar-nav  a.nav-link.active {
 	max-height: 500px;
 }
 
-#carouselExampleDark .carousel-item {
+#carouselExampleDark .carousel-item{
 	background-image: url('resources/img/c.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;

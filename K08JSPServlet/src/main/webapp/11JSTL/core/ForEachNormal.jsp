@@ -77,7 +77,7 @@
 	0 0 0 0 1
 	-->
 
-	<c:forEach begin="1" end="5" var="i">
+	<%-- <c:forEach begin="1" end="5" var="i">
 		<c:forEach begin="1" end="5" var="j">
 				<c:if test="${i eq j}" var="result">1&nbsp;</c:if>
 				<c:if test="${not result}" >0&nbsp;</c:if>
@@ -89,7 +89,7 @@
 			
 		</c:forEach>
 		<br/>
-	</c:forEach>
+	</c:forEach> --%>
 
 </body>
 </html>

@@ -38,7 +38,45 @@
 		<servlet-name>HelloServlet</servlet-name>
 		<url-pattern>/13Servlet/HelloServlet.do</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 서블릿등록 -->
+	<servlet>
+		<servlet-name>DirectServletPrint</servlet-name>
+		<servlet-class>servlet.DirectServletPrint</servlet-class>
+	</servlet>
+	<!-- 서블릿과 요청명 매핑 -->
+	<servlet-mapping>
+		<servlet-name>DirectServletPrint</servlet-name>
+		<url-pattern>/13Servlet/DirectServletPrint.do</url-pattern>
+	</servlet-mapping>
 
+	<!-- MVC패턴으로 회원인증 -->
+	<servlet>
+		<servlet-name>MemberAuth</servlet-name>
+		<servlet-class>servlet.MemberAuth</servlet-class>
+		<!-- 해당서블릿에서만 쓸수있는 초기화 파라미터 -->
+		<init-param>
+			<param-name>admin_id</param-name>
+			<param-value>nakja</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MemberAuth</servlet-name>
+		<url-pattern>/13Servlet/MemberAuth.mvc</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 서블릿 매핑 -->
+	<servlet>
+		<servlet-name>MVCBoardList</servlet-name>
+		<servlet-class>model2.mvcboard.ListController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>MVCBoardList</servlet-name>
+		<url-pattern>/mvcboard/list.do</url-pattern>
+	</servlet-mapping>
+	
 
 	<!-- 오라클 접속정보를 컨텍스트 초기화 파라미터로등록함 -->
 	<context-param>
@@ -70,13 +108,13 @@
 	<!-- 한 페이지에 출렬할 게시물 수 -->
 	<context-param>
 		<param-name>POSTS_PER_PAGE</param-name>
-		<param-value>10</param-value>
+		<param-value>2</param-value>
 	</context-param>
 	
 	<!-- 한페이지당 출력할 페이지 수  -->
 	<context-param>
 		<param-name>PAGES_PER_BLOCK</param-name>
-		<param-value>5</param-value>
+		<param-value>2</param-value>
 	</context-param>
 
 	<!-- 웹어플리케이션의 예외(에러)처리 -->
