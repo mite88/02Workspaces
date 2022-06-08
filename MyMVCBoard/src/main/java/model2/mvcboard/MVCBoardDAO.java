@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Vector;
 
 import common.DBConnPool;
-import fileupload.MyfileDTO;
-import model1.board.BoardDTO;
 
 public class MVCBoardDAO extends DBConnPool {
 	public MVCBoardDAO() {

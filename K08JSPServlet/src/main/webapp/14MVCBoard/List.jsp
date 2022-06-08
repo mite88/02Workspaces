@@ -94,7 +94,7 @@ a {
 						게시물수 - ((( 페이지 번호 -1) * 페이지당 게시물수) + 해당 loop.index)
 						 -->
 						<td>${map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}</td>
-						<td align="left"><a href="../mvcboard/view.do?num=${row.idx}">${row.title}</a>
+						<td align="left"><a href="../mvcboard/view.do?idx=${row.idx}">${row.title}</a>
 						</td>
 						<td align="center">${row.name}</td>
 						<td align="center">${row.visitcount}</td>

@@ -15,10 +15,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="resources/jQuery/jquery-3.6.0.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/jQuery/jquery-3.6.0.min.js"></script>
+<link href="<%=request.getContextPath() %>/resources/bootstrap-5.1.3/css/bootstrap.min.css"	rel="stylesheet">
+<script src="<%=request.getContextPath() %>/resources/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
 
-<link href="resources/bootstrap-5.1.3/css/bootstrap.min.css" rel="stylesheet">
-<script src="resources/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 1234567890

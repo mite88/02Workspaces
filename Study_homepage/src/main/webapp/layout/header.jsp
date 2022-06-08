@@ -25,7 +25,7 @@ nav .navbar-nav  a.nav-link.active {
 		style="z-index: 2000;">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="${pageContext.request.contextPath}"> <img alt="Vue logo"
-				src="resources/img/logo.png" style="height: 35px;" />
+				src="<%=request.getContextPath()%>/resources/img/logo.png" style="height: 35px;" />
 			</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#mynavbar">

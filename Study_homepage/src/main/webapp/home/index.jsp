@@ -24,7 +24,7 @@
 
 	<header>
 		<jsp:include page="/layout/header.jsp" />
-		<jsp:include page="carouse1.jsp" />
+		<jsp:include page="carousel1.jsp" />
 	</header>
 
 	<div class="container">
