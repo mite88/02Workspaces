@@ -3,11 +3,7 @@ package model2.mvcboard;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
-
 import common.DBConnPool;
-import fileupload.MyfileDTO;
-import model1.board.BoardDTO;
 
 public class MVCBoardDAO extends DBConnPool {
 	public MVCBoardDAO() {
@@ -215,6 +211,82 @@ public class MVCBoardDAO extends DBConnPool {
 			System.out.println("다운로드 수 증가 중 예외");
 			e.printStackTrace();
 		}
+	}
+	
+	//비번검증
+	public boolean confirmPassword(String pass, String idx) {
+		boolean isCorr = true;
+		try {
+			String sql = "select count(*) from mvcboard where pass = ? and idx = ?";
+
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, pass);
+			psmt.setString(2, idx);
+			
+			rs = psmt.executeQuery();
+			rs.next();
+			//결과 없으면 false
+			if(rs.getInt(1) == 0) {
+				isCorr = false;
+			}
+			
+		} catch (Exception e) {
+			isCorr = false;
+			e.printStackTrace();
+		}
+		
+		return isCorr;
+	}
+	
+	// 삭제하기
+	public int deletePost(String idx) {
+		int result = 0;
+
+		try {
+			String query = "delete from mvcboard where idx = ?";
+
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, idx);
+
+			result = psmt.executeUpdate(); // 적용된행의갯수반환
+		} catch (Exception e) {
+			System.out.println("게시물 삭제 중 예외");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	// 수정하기
+	public int updateEdit(MVCBoardDTO dto) {
+		int result = 0;
+
+		try {
+			String query = "update mvcboard set " 
+		+ "title=?, name=?, content=?, ofile=?, sfile=? " 
+					+ "where idx=? and pass=?";
+
+			// query문 확인
+			System.out.println("updateEdit:" + query);
+
+			// 동적쿼리문 실행을 위한 prepared객체 생성
+			psmt = con.prepareStatement(query);
+			// 인파라미터 설정
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getName());
+			psmt.setString(3, dto.getContent());
+			psmt.setString(4, dto.getOfile());
+			psmt.setString(5, dto.getSfile());
+			psmt.setString(6, dto.getIdx());
+			psmt.setString(7, dto.getPass());
+			// 쿼리문실행
+			result = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("게시물 수정 중 예외");
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 }

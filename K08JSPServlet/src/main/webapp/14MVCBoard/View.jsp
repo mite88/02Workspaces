@@ -13,6 +13,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +52,15 @@
 				첨부된 파일이 있을 경우 파일명과 다운로드 링크 출력
 				완료시 카운터를 위해 일련번호를 파라미터로 받음
 				 -->
-				<c:if test="${not empty dto.ofile}">
+				<c:set var="filetype" value="${fn:split(dto.ofile, '.')}" />
+				<c:set var="filetype_img" 
+				value="${(filetype[fn:length(filetype)-1] eq 'jpg')  
+				or (filetype[fn:length(filetype)-1] eq 'png') 
+				or (filetype[fn:length(filetype)-1] eq 'jpeg') 
+				or filetype[fn:length(filetype)-1] eq 'gif'}" />
+				
+				<c:if test="${not empty dto.ofile and filetype_img}">
+				
 					${dto.ofile}
 					<a href="../mvcboard/download.do?ofile=${dto.ofile}&sfile=${dto.sfile}&idx=${dto.idx}">
 					[다운로드]</a>

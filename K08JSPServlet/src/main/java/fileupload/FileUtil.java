@@ -80,4 +80,21 @@ public class FileUtil {
 		}
 
 	}
+	
+	
+	//파일삭제
+	public static void deleteFile(HttpServletRequest req, String diretory, String filename) {
+		//디렉토리의 절대경로 얻기
+		String sDirectory = req.getServletContext().getRealPath(diretory);
+		
+		//물리적경로와 파일명으로File 객체생성
+		//separator: 운영체제에서사용하는 경로의 구분기호자동삽입
+		File file = new File(sDirectory+File.separator+filename);
+		
+		//파일존재시 삭제
+		if(file.exists()) {
+			file.delete();
+		}
+	}
+	
 }

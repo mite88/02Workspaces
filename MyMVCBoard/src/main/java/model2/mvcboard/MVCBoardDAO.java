@@ -135,7 +135,7 @@ public class MVCBoardDAO extends DBConnPool {
 
 	// 게시물 조회
 	public MVCBoardDTO selectView(String idx) {
-		//조회된 레코드르 DTO객체에 저장후 반환
+		// 조회된 레코드르 DTO객체에 저장후 반환
 		MVCBoardDTO dto = new MVCBoardDTO();
 		// 작성자명을 위해 join문사용함
 		String query = "select * from mvcboard where idx =?";
@@ -144,7 +144,7 @@ public class MVCBoardDAO extends DBConnPool {
 		System.out.println("selectView:" + query);
 
 		try {
-			//쿼리실행을 위한 객체 생성 및 인파라미터 설정
+			// 쿼리실행을 위한 객체 생성 및 인파라미터 설정
 			psmt = con.prepareStatement(query);
 
 			psmt.setString(1, idx);
@@ -177,8 +177,7 @@ public class MVCBoardDAO extends DBConnPool {
 	public void updateVisitCount(String idx) {
 		try {
 			// 일련번호를 매개변수로 받아 조회수 1증가함
-			String query = "update mvcboard set " 
-			+ "visitcount = visitcount+1 where idx=?";
+			String query = "update mvcboard set " + "visitcount = visitcount+1 where idx=?";
 
 			// query문 확인
 			System.out.println("updateVisitCount:" + query);
@@ -193,13 +192,12 @@ public class MVCBoardDAO extends DBConnPool {
 			e.printStackTrace();
 		}
 	}
-	
-	//파일 다운로드
+
+	// 파일 다운로드
 	public void downCountPlus(String idx) {
 		try {
 			// 일련번호를 매개변수로 받아 조회수 1증가함
-			String query = "update mvcboard set " 
-			+ "downcount = downcount+1 where idx=?";
+			String query = "update mvcboard set " + "downcount = downcount+1 where idx=?";
 
 			// query문 확인
 			System.out.println("downCountPlus:" + query);
@@ -213,6 +211,81 @@ public class MVCBoardDAO extends DBConnPool {
 			System.out.println("다운로드 수 증가 중 예외");
 			e.printStackTrace();
 		}
+	}
+
+	// 비번검증
+	public boolean confirmPassword(String pass, String idx) {
+		boolean isCorr = true;
+		try {
+			String sql = "select count(*) from mvcboard where pass = ? and idx = ?";
+
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, pass);
+			psmt.setString(2, idx);
+
+			rs = psmt.executeQuery();
+			rs.next();
+			// 결과 없으면 false
+			if (rs.getInt(1) == 0) {
+				isCorr = false;
+			}
+
+		} catch (Exception e) {
+			isCorr = false;
+			e.printStackTrace();
+		}
+
+		return isCorr;
+	}
+
+	// 삭제하기
+	public int deletePost(String idx) {
+		int result = 0;
+
+		try {
+			String query = "delete from mvcboard where idx = ?";
+
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, idx);
+
+			result = psmt.executeUpdate(); // 적용된행의갯수반환
+		} catch (Exception e) {
+			System.out.println("게시물 삭제 중 예외");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	// 수정하기
+	public int updateEdit(MVCBoardDTO dto) {
+		int result = 0;
+
+		try {
+			String query = "update mvcboard set " + "title=?, name=?, content=?, ofile=?, sfile=? "
+					+ "where idx=? and pass=?";
+
+			// query문 확인
+			System.out.println("updateEdit:" + query);
+
+			// 동적쿼리문 실행을 위한 prepared객체 생성
+			psmt = con.prepareStatement(query);
+			// 인파라미터 설정
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getName());
+			psmt.setString(3, dto.getContent());
+			psmt.setString(4, dto.getOfile());
+			psmt.setString(5, dto.getSfile());
+			psmt.setString(6, dto.getIdx());
+			psmt.setString(7, dto.getPass());
+			// 쿼리문실행
+			result = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("게시물 수정 중 예외");
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 }

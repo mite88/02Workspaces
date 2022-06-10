@@ -13,12 +13,12 @@ import fileupload.FileUtil;
 import utils.JSFunction;
 
 //어노테이션을 통한 요청명매핑
-@WebServlet("/mvcboard/pass.do")
+@WebServlet("/BoardSkin/pass.do")
 public class PassController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		/*
-		/mvcboard/pass.do?mode=delete&idx=323
+		/BoardSkin/pass.do?mode=delete&idx=323
 		
 		요청명을 이와 같아 파라미터를 받아오는 작업을 해야하는데
 		방법1. request내장객체이용: req.getParameter(파라미터명)
@@ -27,7 +27,7 @@ public class PassController extends HttpServlet {
 		req.setAttribute("mode", req.getParameter("mode"));
 		
 		//파라미터를 request영역에 저장후 포워드
-		req.getRequestDispatcher("/14MVCBoard/Pass.jsp").forward(req, resp);
+		req.getRequestDispatcher("/BoardSkin/Pass.jsp").forward(req, resp);
 	}
 	
 	//폼값을 받아 수정 및 삭제 페이지 이동에 따른 처리
@@ -50,7 +50,7 @@ public class PassController extends HttpServlet {
 				//수정
 				HttpSession session = req.getSession();
 				session.setAttribute("pass", pass);
-				resp.sendRedirect("../mvcboard/edit.do?idx="+idx);
+				resp.sendRedirect("../BoardSkin/edit.do?idx="+idx);
 			}else if(mode.equals("delete")){
 				//삭제
 				
@@ -68,7 +68,7 @@ public class PassController extends HttpServlet {
 					String saveFileName = dto.getSfile();
 					FileUtil.deleteFile(req, "/Uploads", saveFileName);
 				}
-				JSFunction.alertLocation(resp, "삭제완료", "../mvcboard/list.do");
+				JSFunction.alertLocation(resp, "삭제완료", "../BoardSkin/list.do");
 			}
 			
 		}else {
