@@ -76,7 +76,7 @@ function loginCheck(form) {
 								<h3 >로그인페이지</h3>
 								<p class="text-muted mb-4">로그인페이지입니다.</p>
 								
-								<form onsubmit="return loginCheck(this);">
+								<form onsubmit="return loginCheck(this);" method="post">
 									<div class="form-group mb-3">
 										<input name="user_id" type="text" placeholder="id입력" class="form-control rounded-pill border-0 shadow-sm px-4">
 									</div>

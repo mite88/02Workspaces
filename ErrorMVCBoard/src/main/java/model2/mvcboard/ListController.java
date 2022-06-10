@@ -53,7 +53,7 @@ public class ListController extends HttpServlet {
          */
         int pageNum = 1;  
         //파라미터로 넘어오는 pageNum이 있다면 값을 얻어와서..
-        String pageTemp = req.getParameter("pageNum9");
+        String pageTemp = req.getParameter("pageNum");
         //정수로 변환한 후 현제 페이지번호로 지정한다.
         if (pageTemp != null && !pageTemp.equals(""))
             pageNum = Integer.parseInt(pageTemp);  

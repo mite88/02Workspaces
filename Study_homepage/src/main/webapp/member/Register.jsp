@@ -22,93 +22,92 @@
 <script>
 	//회원가입 유효성검사
     function registValdidate(form){
-    	//이번엔 참고하시라고 유효성검사에 정규식을 조금 넣어볼까합니다만...
-    	var id_RegExp = /^[a-zA-Z0-9]{8,16}$/; //id 정규식
-    	var pw_RegExp = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,20}$/; //password 정규식
-    	var name_RegExp = /^[가-힣]{2,}|[a-zA-Z]{2,}$/; //name 정규식(|로 하여 구분함)
-    	var email_RegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//email정규식
-    	var mobile_RegExp = /^\d{3}-\d{3,4}-\d{4}$/; //폰번호 정규식
-		var tel_RegExp = /^\d{2,3}-\d{3,4}-\d{4}$/;//일반전화 정규식
-    	
-    	var email_str = form.email1.value+"@"+form.email2.value; //이메일
-    	var mobile_str = form.mobile1.value+"-"+form.mobile2.value+"-"+form.mobile3.value;//폰전화
-    	var tel_str = form.tel1.value+"-"+form.tel2.value+"-"+form.tel3.value;//일반전화
-    	//alert(form.mobile1.value);
+
+		var email_str = form.user_email1.value+"@"+form.user_email2.value; //이메일
 		
-    	if(!checkExistData(form.userid.value, id_RegExp,
-    			"아이디를 입력해주세요", "아이디는  8~16자의 영문과 숫자만 가능합니다.")){
-    		//id
+    	if(!checkExistData(form.user_id.value,"아이디를 입력해주세요")){
     		
-    		form.userid.focus();
+    		form.user_id.focus();
     		return false;
-    	}else if(!checkExistData(form.pass1.value, pw_RegExp,
-    			"비밀번호를 입력해주세요"
-    			, "비밀번호는 영문/숫자/특수문자 조합 6~20자 이상 입력해주세요.")){
+    	}else if(!checkExistData(form.user_pw1.value,"비밀번호를 입력해주세요")){
     		//pw
-    		
-    		form.pass1.focus();
+    		form.user_pw1.focus();
     		return false;
-    	}else if(form.pass1.value!= form.pass2.value){
+    	}else if(form.user_pw1.value!= form.user_pw2.value){
     			alert("비밀번호가 다릅니다. 다시입력해주세요");
-    			form.pass1.value="";
-    			form.pass2.value="";
-        		form.pass1.focus();
+    			form.user_pw1.value="";
+    			form.user_pw2.value="";
+        		form.user_pw1.focus();
         		return false;
-        }else if(!checkExistData(form.name.value, name_RegExp,
-    			"이름을 입력해주세요"
-    			, "이름은 최소 2자 이상으로 적어주세요")){
+        }else if(!checkExistData(form.user_name.value, "이름을 입력해주세요")){
     		//이름:길이
-    		form.name.focus();
+    		form.user_name.focus();
     		return false;
-    	}else if(form.birthday.value ==''){
-    		//생일
-    		alert("생년월일을 입력해주세요");
-    		form.birthday.focus();
-    		return false;
-    	}else if(form.zipcode.value =='' || form.address1.value =='' || form.address2.value ==''){
-    		//주소
-    		alert("주소를 입력해주세요");
-    		return false;
-    	}else if(!checkExistData(email_str, email_RegExp,
-    			"이메일을 입력해주세요"
-    			, "이메일을 입력해주세요")){
+    	}else if(!checkExistData(email_str, "이메일을 입력해주세요")){
     		//이메일
-    		form.email1.focus();
+    		form.user_email1.focus();
     		return false;
-    	}else if(!checkExistData(mobile_str, mobile_RegExp,
-    			"폰번호를 입력해주세요"
-    			, "폰번호를 입력해주세요")){
-    		//폰번호
-    		form.mobile2.focus();
-    		return false;
-    	}else if(form.tel1.value != ''){
-    		//전호번호 - 선택사항
-    		if(!checkExistData(tel_str, tel_RegExp,
-        			"전화번호를 입력해주세요"
-        			, "전화번호를 입력해주세요")){
-        		//전화번호
-        		form.tel2.focus();
-        		return false;
-        	}
-    	} 	 
+    	}else if(form.user_phone1.value == '' || form.user_phone2.value == '' || form.user_phone3.value == ''){
+    		//휴대폰번호
+    		alert("휴대폰번호를 입력해주세요");
+       		form.user_phone1.focus();
+       		return false;
+        	
+    	}else if(checkboxes(form.user_hoddy) < 1){
+    		//관심분야
+    		/*
+    		checbox의 경우 같은name이 여러개이기 때문에 다음과 같은 방법으로 
+    		갯수를 체크해야한다
+    		*/
+    		alert("관심분야를 입력해주세요");
+       		return false;
+        	
+    	}else if(form.user_job.value == ''){
+    		//직업
+    		alert("직업을 선택해주세요");
+       		form.user_job.focus();
+       		return false;
+        	
+    	}	 
     	
     }
     
     function idCheck(form){
     	alert("아이디 중복체크는 하지않습니다.");
     }
+    
+    //이메일 select 선택시
     function inputEmail(form){
     	//alert(form.email_domain.value);
     	var e_domain_str = form.email_domain.value;
     	if(e_domain_str ==""){
-    		form.email2.readOnly = false; 
-    		form.email2.value ='';
+    		form.user_email2.readOnly = false; 
+    		form.user_email2.value ='';
     	}else{
-    		form.email2.readOnly = true;
-    		form.email2.value =e_domain_str;
+    		form.user_email2.readOnly = true;
+    		form.user_email2.value =e_domain_str;
     	}
     
     }
+    
+    //체크박스 체크한 갯수구하기
+    function checkboxes(tagName)
+    {
+     var count = 0;
+
+      for (var i=0; i<tagName.length; i++) {       
+         if (tagName[i].type == "checkbox" && tagName[i].checked == true){
+            count++;
+         }
+
+      }
+      
+      alert("!"+count);
+      return count;
+   }
+    
+    
+    
     function commonFocusMove(obj, charLen, nextObj){
     	
          if(obj.value.length == charLen){
@@ -120,19 +119,11 @@
     
 	
 	// 유효검사 알림창 전용함수    
-	function checkExistData(inp,  RegExp, msg1, msg2) {
-		//단순 글자 입력(두번째는 이메일 전용)
-		if (inp == "" || inp == "@") {
+	function checkExistData(inp, msg1) {
+		if (inp == "" || inp == "@" ) {
 			alert(msg1);
 			return false;
 		}
-		
-		//정규식이 맞지않을때
-		if(inp != "" && !RegExp.test(inp)){
-			alert(msg2);
-			return false;
-		}
-		
 		
 		return true;
 	}
@@ -183,19 +174,20 @@
 							<div class="col-12">
 								<label for="user_email" class="form-label">이메일</label>
 								<div class="input-group has-validation">
-									<input type="text" class="form-control" id="user_email1" placeholder="user_email1">
+									<input type="text" class="form-control" id="user_email1" name="user_email1" placeholder="user_email1">
 									<span class="input-group-text">@</span> 
 									
-									<input type="text" class="form-control" id="user_email2" placeholder="user_email2">
-									<div class="invalid-email"></div>
+									<input type="text" class="form-control" id="user_email2" name="user_email2" placeholder="user_email2">
 									
-									<select class="form-select" id="email_domain" name="email_domain">
+									
+									<select class="form-select" id="email_domain" name="email_domain" onchange="inputEmail(this.form);">
 										<option value="" selected="selected">Choose...</option>
 									    <option value="naver.com">naver.com</option>
 									    <option value="hanmail.net">hanmail.net</option>
 									    <option value="gmail.com">gmail.com</option>
 									</select> 
 								</div>
+								<div class="invalid-email"></div>
 							</div>
 
 							<div class="col-12">
@@ -210,12 +202,10 @@
 									    <option value="018">018</option>
 									    <option value="019">019</option>
 									</select> 
-									<input type="text" class="form-control" id="user_phone2"
-										placeholder="user_phone2"> <span
-										class="input-group-text">-</span> <input type="text"
-										class="form-control" id="user_phone3"
-										placeholder="user_phone3">
-									<div class="invalid-email"></div>
+									<input type="text" class="form-control" id="user_phone2" name="user_phone2" placeholder="user_phone2"> 
+									<span class="input-group-text">-</span> 
+									<input type="text" class="form-control" id="user_phone3" name="user_phone3" placeholder="user_phone3">
+									<div class="invalid-phone"></div>
 								</div>
 							</div>
 							
@@ -226,13 +216,13 @@
 									<input class="form-check-input" type="checkbox" name="user_hoddy" value="캠핑" id="ch1">
 									<label class="form-check-label" for="ch1">캠핑&nbsp;&nbsp;</label>
 									
-									<input class="form-check-input" type="checkbox" name="user_hoddy" value="캠핑" id="ch2">
+									<input class="form-check-input" type="checkbox" name="user_hoddy" value="등산" id="ch2">
 									<label class="form-check-label" for="ch2">등산&nbsp;&nbsp;</label>
 									
-									<input class="form-check-input" type="checkbox" name="user_hoddy" value="캠핑" id="ch3">
+									<input class="form-check-input" type="checkbox" name="user_hoddy" value="영화" id="ch3">
 									<label class="form-check-label" for="ch3">영화&nbsp;&nbsp;</label>
 									
-									<input class="form-check-input" type="checkbox" name="user_hoddy" value="캠핑" id="ch4">
+									<input class="form-check-input" type="checkbox" name="user_hoddy" value="독서" id="ch4">
 									<label class="form-check-label" for="ch4">독서</label>
 								</div>
 								

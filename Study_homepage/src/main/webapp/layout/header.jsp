@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,10 +39,23 @@ nav .navbar-nav  a.nav-link.active {
 					<li class="nav-item "><a class="nav-link active" href="${pageContext.request.contextPath}">홈
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/member/login.do">로그인</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/member/register.do">회원가입</a></li>
+					<c:choose>
+						<c:when test="${empty USER_ID}">
+							<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/member/login.do">로그인</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="${pageContext.request.contextPath}/member/register.do">회원가입</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/member/modify.do">회원수정</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
+						
+						</c:otherwise>
+					
+					</c:choose>
+					
 				</ul>
 
 				<form class="d-flex">

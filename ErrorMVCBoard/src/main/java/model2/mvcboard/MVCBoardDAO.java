@@ -144,7 +144,7 @@ public class MVCBoardDAO extends DBConnPool {
                 dto.setSfile(rs.getString(7));
                 dto.setDowncount(rs.getInt(8));
                 dto.setPass(rs.getString(9));
-                dto.setVisitcount(rs.getInt(9));
+                dto.setVisitcount(rs.getInt(10));
             }
         }
         catch (Exception e) {

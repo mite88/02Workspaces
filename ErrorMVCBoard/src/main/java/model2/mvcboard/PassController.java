@@ -46,7 +46,6 @@ public class PassController extends HttpServlet {
         MVCBoardDAO dao = new MVCBoardDAO();
         boolean confirmed = dao.confirmPassword(pass, idx);
         dao.close();
-
                 
         if (confirmed) {
         	/*

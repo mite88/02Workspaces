@@ -32,7 +32,7 @@ View에서 확인할수 있지만, EL을 이용하면 해당 과정없이 param�
 잠깐 수정한 후 값이 제대로 입력되었는지 반드시 확인해야 한다.  
 -->
 <input type="hidden" name="idx" value="${param.idx }" />
-<input type="hidden" name="mode" value="${mode}" />
+<input type="hid-den" name="mode" value="${mode}" />
       
 <table border="1" width="90%">
     <tr>

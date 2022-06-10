@@ -157,7 +157,7 @@
       
       
       
-      <Context docBase="ErrorMVCBoard" path="/ErrorMVCBoard" reloadable="true" source="org.eclipse.jst.jee.server:ErrorMVCBoard"/></Host>
+      <Context docBase="ErrorMVCBoard" path="/ErrorMVCBoard" reloadable="true" source="org.eclipse.jst.jee.server:ErrorMVCBoard"/><Context docBase="Study_homepage" path="/Study_homepage" reloadable="true" source="org.eclipse.jst.jee.server:Study_homepage"/><Context docBase="MyMVCBoard" path="/MyMVCBoard" reloadable="true" source="org.eclipse.jst.jee.server:MyMVCBoard"/></Host>
     </Engine>
   </Service>
 </Server>
