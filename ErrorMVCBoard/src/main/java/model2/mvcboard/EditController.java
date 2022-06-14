@@ -43,16 +43,20 @@ public class EditController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
+    	//파일업로드 처리 : 물리적경로, 제한 용량, MR객체생성
     	String saveDirectory = req.getServletContext().getRealPath("/Uploads");
         ServletContext application = this.getServletContext();
         int maxPostSize = Integer.parseInt(application.getInitParameter("maxPostSize"));
         MultipartRequest mr = FileUtil.uploadFile(req, saveDirectory, maxPostSize);
    
+        //폼값전송
         String idx = mr.getParameter("idx");
         String prevOfile = mr.getParameter("prevOfile");
         String prevSfile = mr.getParameter("prevSfile");
         
         String name = mr.getParameter("name");
+        String deleteFile = mr.getParameter("deleteFile"); //체크박스처리시..
+        
         String title = mr.getParameter("title");
         String content = mr.getParameter("content");
         
@@ -66,23 +70,33 @@ public class EditController extends HttpServlet {
         dto.setContent(content);
         dto.setPass(pass);
         
-        String fileName = mr.getFilesystemName("ofile");
-        if (fileName != null) {
-            String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
-            String ext = fileName.substring(fileName.lastIndexOf("."));
-            String newFileName = now + ext;
-            File oldFile = new File(saveDirectory + File.separator + fileName);
-            File newFile = new File(saveDirectory + File.separator + newFileName);
-            oldFile.renameTo(newFile);
-            dto.setOfile(fileName);  
-            dto.setSfile(newFileName); 
-            FileUtil.deleteFile(req, "/Uploads", prevSfile);
-        }
-        else {
-            dto.setOfile(prevOfile);
-            dto.setSfile(prevSfile);
+        //파일삭제 처리 : 체크박스 체크시
+        if(deleteFile.equals("1")) {
+        	 dto.setOfile("");
+             dto.setSfile("");
+             FileUtil.deleteFile(req, "/Uploads", prevSfile);
+        }else {
+        	
+        	   String fileName = mr.getFilesystemName("ofile");
+        	   
+        	if (fileName != null) {
+                String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
+                String ext = fileName.substring(fileName.lastIndexOf("."));
+                String newFileName = now + ext;
+                File oldFile = new File(saveDirectory + File.separator + fileName);
+                File newFile = new File(saveDirectory + File.separator + newFileName);
+                oldFile.renameTo(newFile);
+                dto.setOfile(fileName);  
+                dto.setSfile(newFileName); 
+                FileUtil.deleteFile(req, "/Uploads", prevSfile);
+            }
+            else {
+                dto.setOfile(prevOfile);
+                dto.setSfile(prevSfile);
+            }
         }
         
+
         MVCBoardDAO dao = new MVCBoardDAO();
         int result = dao.updatePost(dto);
         dao.close();
