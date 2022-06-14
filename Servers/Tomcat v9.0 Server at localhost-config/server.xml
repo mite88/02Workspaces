@@ -155,8 +155,6 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
       
-      
-      
       <Context docBase="ErrorMVCBoard" path="/ErrorMVCBoard" reloadable="true" source="org.eclipse.jst.jee.server:ErrorMVCBoard"/><Context docBase="Study_homepage" path="/Study_homepage" reloadable="true" source="org.eclipse.jst.jee.server:Study_homepage"/><Context docBase="MyMVCBoard" path="/MyMVCBoard" reloadable="true" source="org.eclipse.jst.jee.server:MyMVCBoard"/></Host>
     </Engine>
   </Service>

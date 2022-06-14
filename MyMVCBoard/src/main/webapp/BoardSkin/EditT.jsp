@@ -1,3 +1,4 @@
+<%@page import="javax.naming.Context"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -25,15 +26,80 @@
 		}
 	}
 	
+	//파일넣기
+	function addFile(file){
+		var data = new FormData(document.getElementById('writeFrm'));
+		
+		$.ajax({
+			url : '<%=request.getContextPath() %>/addFile.do', 
+            type : 'POST', 
+            processData: false,    
+            contentType: false,      
+            cache: false,           
+            enctype: 'multipart/form-data',
+            dataType : 'text',
+            timeout: 600000,
+            data : data, 
+			success : function(result) {
+				//alert(result)
+				document.getElementsByName("filename")[0].value = file;
+				document.getElementsByName("prevOfile")[0].value = file;
+				document.getElementsByName("prevSfile")[0].value = result;
+			},
+		    
+            error : function(xhr, status) {
+                alert(xhr + " : " + status);
+            }
+		}); //$.ajax
+	}
+	
+	//파일삭제
+	function delFile(form){
+	 
+		if(confirm("Remove this file? ")){
+			var targetLi = $(this).closest("li");
+			
+			var cell = document.getElementById("file_list1");
+			while ( cell.hasChildNodes() )
+			{
+			     cell.removeChild( cell.firstChild );       
+			}
+
+		}
+		
+		//alert(form.prevOfile.value);
+		$.ajax({
+				url : '<%=request.getContextPath() %>/deleteFile.do', 
+	            type : 'POST', 
+	            data : {delfile : form.prevSfile.value}, 
+				success : function(result) {
+					console.log(result);
+
+					form.prevOfile.value="";
+					form.prevSfile.value="";
+					form.filename.value="";
+				},
+			    
+	            error : function(xhr, status) {
+	                alert(xhr + " : " + status);
+	            }
+			}); //$.ajax
+	}
+	
+	
+	
+
 	//버튼 클릭
 	function file_check() {
 		document.getElementsByName("ofile")[0].click();
 	}
 	
+	
+
 	//파일선택
 	function file_choice(f) {
 		//alert(f.value);
-		
+
 		//윈도우와 다른거에 따른 파일경로명 추출 - 저도 인터넷에서 검색하다 찾은거라 ...
 		//https://sir.kr/qa/337817
 		if (window.FileReader) {
@@ -42,7 +108,7 @@
 			var filename = f.value.split('/').pop().split('\\').pop();
 		}
 
-		document.getElementsByName("filename")[0].value = filename;
+		addFile(filename);
 	}
 </script>
 
@@ -68,10 +134,10 @@ input[type="file"] {
         <div class="col-9 pt-3">
             <h3>게시판 작성 - <small>자유게시판</small></h3>
             
-            <form action="../BoardSkin/edit.do" name="writeFrm" method="post" 
-            enctype="multipart/form-data" onsubmit="return validateForm(this);">
+            <form action="../BoardSkin/edit.do" name="writeFrm" id="writeFrm" method="post" 
+            onsubmit="return validateForm(this);">
             
-            	<input type="hidden" name="idx" value="${dto.idx}"/>
+            	<input type="hidden" name="idx" id="idx" value="${dto.idx}"/>
 				<input type="hidden" name="prevOfile" value="${dto.ofile}"/>
 				<input type="hidden" name="prevSfile" value="${dto.sfile}"/>
 		
@@ -118,8 +184,10 @@ input[type="file"] {
                             <label>파일삭제하실 파일은 체크해주세요</label><br>
                             <hr />
                              <c:if test="${not empty dto.ofile}">
-								${dto.ofile}
-								 <input class="form-check-input" type="checkbox" value="Ok" name="del_file">
+								<label id="file_list1">${dto.ofile}
+									 <input class="form-check-input" type="checkbox" value="Ok" name="del_file">
+									 <button type="button" onclick="delFile(this.form);">del</button>
+								</label>
 							</c:if>
 							
                         </td>

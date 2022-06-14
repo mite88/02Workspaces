@@ -40,33 +40,32 @@ public class EditController extends HttpServlet {
 		String saveDirectory = req.getServletContext().getRealPath("/Uploads");
 
 		// application내장 객체를 통해 web.xml에 등록된 초기화 파라미터 얻기
-		ServletContext application = getServletContext();
+		//ServletContext application = getServletContext();
 		// 업로드 할 최대용량
-		int maxPostSize = Integer.parseInt(application.getInitParameter("maxPostSize"));
+		//int maxPostSize = Integer.parseInt(application.getInitParameter("maxPostSize"));
 
 		/*
 		 * 파일업로드 진행
 		 */
-		MultipartRequest mr = FileUtil.uploadFile(req, saveDirectory, maxPostSize);
+		//MultipartRequest mr = FileUtil.uploadFile(req, saveDirectory, maxPostSize);
 
 		// 업로드 실패시 경고창 띄우고 쓰기페이지로 이동
 		// 작성시 파일이 없더라도 객체는 생성
-		if (mr == null) {
-			JSFunction.alertBack(resp, "첨부파일 용량 초과 및 경로 확인");
-			return;
-		}
+		/*
+		 * if (mr == null) { JSFunction.alertBack(resp, "첨부파일 용량 초과 및 경로 확인"); return; }
+		 */
 
 		// 파일업로드 완료
 
 		// 폼값 받기 - hidden속성
-		String idx = mr.getParameter("idx");
-		String prevOfile = mr.getParameter("prevOfile");
-		String prevSfile = mr.getParameter("prevSfile");
+		String idx = req.getParameter("idx");
+		String prevOfile = req.getParameter("prevOfile");
+		String prevSfile = req.getParameter("prevSfile");
 
 		// 폼값 받기 - 입력한것
-		String name = mr.getParameter("name");
-		String title = mr.getParameter("title");
-		String content = mr.getParameter("content");
+		String name = req.getParameter("name");
+		String title = req.getParameter("title");
+		String content = req.getParameter("content");
 
 		// session영역의 pass값 가져오기
 		HttpSession session = req.getSession();
@@ -79,8 +78,12 @@ public class EditController extends HttpServlet {
 		dto.setTitle(title);
 		dto.setContent(content);
 		dto.setPass(pass);
+		
+		dto.setOfile(prevOfile);
+		dto.setSfile(prevSfile);
 
 		// mr 객체를 통해 서버에 저장된 파일명가져옴
+		/*
 		String fileName = mr.getFilesystemName("ofile");
 
 		String ofileChack = mr.getParameter("del_file");
@@ -88,6 +91,7 @@ public class EditController extends HttpServlet {
 		System.out.println("ofileChack:" + ofileChack);
 
 		// 파일존재시 파일명 변경 처리
+		
 		if (fileName != null) {
 			// 파일수정시...
 
@@ -119,6 +123,8 @@ public class EditController extends HttpServlet {
 			dto.setOfile(prevOfile);
 			dto.setSfile(prevSfile);
 		}
+		*/
+		
 
 		MVCBoardDAO dao = new MVCBoardDAO();
 		int result = dao.updateEdit(dto);

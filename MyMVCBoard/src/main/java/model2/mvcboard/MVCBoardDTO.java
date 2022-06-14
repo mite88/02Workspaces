@@ -72,6 +72,10 @@ public class MVCBoardDTO {
 		this.visitcount = visitcount;
 	} 
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
 	
 }

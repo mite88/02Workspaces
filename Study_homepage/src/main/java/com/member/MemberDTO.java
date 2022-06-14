@@ -104,7 +104,7 @@ public class MemberDTO {
 		this.user_phone = user_phone;
 	}
 	/**
-	 * @param user_hoddy the user_hoddy to set
+	 * @param user_hoddy2 the user_hoddy to set
 	 */
 	public void setUser_hoddy(String user_hoddy) {
 		this.user_hoddy = user_hoddy;

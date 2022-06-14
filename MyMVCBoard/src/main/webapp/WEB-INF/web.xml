@@ -51,17 +51,18 @@
 		<param-name>POSTS_PER_PAGE</param-name>
 		<param-value>2</param-value>
 	</context-param>
-	
-	<!-- 한페이지당 출력할 페이지 수  -->
+
+	<!-- 한페이지당 출력할 페이지 수 -->
 	<context-param>
 		<param-name>PAGES_PER_BLOCK</param-name>
 		<param-value>2</param-value>
 	</context-param>
-	
+
 	<!-- 파일용량 설정 -->
 	<context-param>
 		<param-name>maxPostSize</param-name>
 		<param-value>1024000</param-value>
 	</context-param>
+
 
 </web-app>

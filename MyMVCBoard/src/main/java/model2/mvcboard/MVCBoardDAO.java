@@ -277,6 +277,8 @@ public class MVCBoardDAO extends DBConnPool {
 			psmt.setString(5, dto.getSfile());
 			psmt.setString(6, dto.getIdx());
 			psmt.setString(7, dto.getPass());
+			
+			
 			// 쿼리문실행
 			result = psmt.executeUpdate();
 

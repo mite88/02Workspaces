@@ -1,11 +1,9 @@
 <%--
 /**
- * <pre>
- * 1. 프로젝트명 : 
+ * 1. 프로젝트명 : Login.jsp
  * 2. 작성일 : 2022. 6. 4. 오후 7:06:47
  * 3. 작성자 : mite88
- * 4. 설명 : 
- * </pre>
+ * 4. 설명 : 로그인
  */
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,14 +13,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="<%=request.getContextPath()%>/resources/jQuery/jquery-3.6.0.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/jQuery/jquery-3.6.0.min.js"></script>
 
-<link
-	href="<%=request.getContextPath()%>/resources/bootstrap-5.1.3/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="<%=request.getContextPath()%>/resources/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+<link href="<%=request.getContextPath()%>/resources/bootstrap-5.1.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="<%=request.getContextPath()%>/resources/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
 
 <style type="text/css">
 .login,
@@ -38,6 +32,7 @@
 </style>
 
 <script type="text/javascript">
+//아이디 비번 입력체크
 function loginCheck(form) {
 	//${pageContext.request.contextPath}/member/register.do
 		if (form.user_id.value == "") {

@@ -17,7 +17,6 @@ import utils.JSFunction;
 
 @WebServlet("/member/login.do")
 public class LoginController extends HttpServlet {
-	JDBConnect jdbc= new JDBConnect();
 	
 	//여기서  doGet, doPost를 만들겁니다
 	@Override
@@ -27,17 +26,21 @@ public class LoginController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//아이디와 비번을 가져옵니다.
 		String user_id = req.getParameter("user_id");
 		String user_pw = req.getParameter("user_pw");
 		
+		//DAO객체를 생성합니다
 		MemberDAO mDao = new MemberDAO();
 		
+		//DAO의 memberSelect()의 결과값을 DTO에 저장합니다
+		
 		MemberDTO dto = mDao.memberSelect(user_id, user_pw);
-		System.out.println(dto.getUser_name());
+		//System.out.println(dto.getUser_name());
 		
-		jdbc.close();
+		mDao.close(); //반납
 		
-		
+		//회원정보를 찾으면...
 		if(dto.getUser_id() != null) {
 			//세션생셩
 			HttpSession session = req.getSession();

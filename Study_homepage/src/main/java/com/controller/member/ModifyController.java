@@ -13,11 +13,11 @@ import com.member.MemberDAO;
 import com.member.MemberDTO;
 
 import common.JDBConnect;
+import utils.JSFunction;
 
 @WebServlet("/member/modify.do")
 public class ModifyController extends HttpServlet {
-	JDBConnect jdbc= new JDBConnect();
-
+	
 	//여기서  doGet, doPost를 만들겁니다
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,7 +31,7 @@ public class ModifyController extends HttpServlet {
 		MemberDTO dto = dao.memberSelect(user_id, "");
 		System.out.println(dto.getUser_name());
 		
-		jdbc.close();
+		dao.close(); //반납
 		
 		//회원정보 전달
 		req.setAttribute("dto", dto);
@@ -46,6 +46,48 @@ public class ModifyController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/member/Modify.jsp").forward(req, resp);
+		
+req.setCharacterEncoding("UTF-8"); //인코딩 지정 xml에서 작업했다면 안해도되지만...
+		
+		String user_id = req.getParameter("user_id");
+		String user_pw = req.getParameter("user_pw1");
+		String user_name = req.getParameter("user_name");
+		String user_email = req.getParameter("user_email1")+"@"+req.getParameter("user_email2");
+		String user_phone = req.getParameter("user_phone1")+"-"+req.getParameter("user_phone2")+"-"+req.getParameter("user_phone3");
+		//checkBox의 여러 내용을 저장하기위해 getParameterValues 사용
+		String[] user_hoddy = req.getParameterValues("user_hoddy");
+		String user_job = req.getParameter("user_job");
+		String user_info = req.getParameter("user_info");
+		String memberLevel = "user";
+		
+		//megister_date은 기본으로 sysdate를 지정하였으므로 할필요없습니다
+		
+		MemberDAO mDao = new MemberDAO();
+		MemberDTO mDto = new MemberDTO();
+		
+		mDto.setUser_id(user_id);
+		mDto.setUser_pw(user_pw);
+		mDto.setUser_name(user_name);
+		mDto.setUser_email(user_email);
+		mDto.setUser_phone(user_phone);
+		String hoddy_formatted = String.join(", ", user_hoddy);
+		mDto.setUser_hoddy(hoddy_formatted);
+		mDto.setUser_job(user_job);
+		mDto.setUser_info(user_info);
+		mDto.setMemberLevel(memberLevel);
+		
+		int joinResult = mDao.memberUpdate(mDto);
+		
+		mDao.close(); //반납
+		
+		if (joinResult == 1) {
+
+			JSFunction.alertLocation(resp, "회원수정성공", "../index.do");
+		} else {
+			
+			JSFunction.alertBack(resp, "회원수정실패");
+
+		}
+
 	}
 }
