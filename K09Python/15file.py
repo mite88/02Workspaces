@@ -1,92 +1,120 @@
-#15file.py
 '''
-open():파일 다룰때 사용, 첫번째 인자인 file경로만 필수인자임
-형식]
-    open(파일경로, mode='', buffering='', encoding='')
-    
-    mode - 파일 열기모드
-    r:읽기
-    w:쓰기
-    a:추가(마지막부분에 새 내용 추가)
-    b:2진모드(바이너리모드) 컴퓨터가 알아볼수 있는 파일생성
-    t:텍스트모드(default)사람이 알아볼수 있는형태의 텍스트 파일 생성
+open()
+    : 파일을 다룰때 사용되는 내장함수로 첫번째 인자인 file경로만 필수인자이다. 
+    형식]
+        open(파일경로, mode='', buffering='', encoding='')
+        
+    mode : 파일열기모드
+        r : 읽기모드
+        w : 쓰기모드
+        a : 추가모드. 파일의 마지막 부분에 새로운 내용을 추가한다. 
+        b : 2진모드(바이너리모드)로 컴퓨터가 알아볼수 있는 파일을 생성한다.
+        t : 텍스트모드로 디폴트 값이다. 사람이 알아볼수 있는 형태의 텍스트
+            파일을 생성한다. 차후 메모장으로 열수있다. 
 '''
-#파일생성(없으면 자동생성됨)
+
 print("="*30)
 print("새파일01.txt")
-f_open = open("새파일01.txt",mode='wt', encoding='utf-8')
+print("="*30)
+
+# 새로운 파일을 생성하여 반복문으로 내용을 입력한다. wt이므로 읽기/텍스트 모드
+f_open = open("새파일01.txt", mode='wt', encoding='utf-8')
+# 20번 반복하여 문자열을 입력한다. 
 for i in range(1, 21):
-    data = "%d번째 줄입니다 \n" % i
-    f_open.write(data)
+    data = "%d번째 줄입니다.\n" % i
+    f_open.write(data)  
 f_open.close()
 
-#파일읽기
-f_read = open("새파일01.txt",mode='rt', encoding='utf-8')
+# 파일 일기
+f_read = open("새파일01.txt", mode='rt', encoding='utf-8')
 while True:
-    #읽을 내용읽기(한줄)
-    line =f_read.readline()
-    #읽을내용없으면 빠져나감
-    if not line: break
-    print(line)
+    # 파일 내용 한줄을 읽는다.     
+    line = f_read.readline()  
+    # 더이상 읽을 내용이 없다면 반복문을 탈출한다. 
+    if not line: break    
+    # 출력
+    print(line)  
 f_read.close()
 
-#기존파일에 내용추가
-f_add = open("새파일01.txt",mode='at', encoding='utf-8')
-#개행문자없으면 줄바꿈안됨
-f_add.write("추가하는 내용입니다")
-#리스트를 통해 여러줄 내용입력
-f_add.writelines(["줄바꿈은 되나요?\n", "안되면 개행문자 넣어주세여"])
-f_add.write("마지막 라인입니다")
+# 기존 파일에 내용 추가하기
+f_add = open('새파일01.txt', mode='at', encoding='utf-8')
+# 한줄을 추가한다. 하지만 개행문자(\n)가 없어 줄바꿈 처리는 되지않는다.
+f_add.write("추가하는 내용입니다.") 
+# 리스트를 통해 여러줄의 내용을 입력할 수 있다. 
+f_add.writelines(["줄바꿈은 되나요?\n", "안되면 개행문자를 넣어주세요."]) 
+f_add.write("마지막 라인입니다.")
 f_add.close()
+
+
 
 print("="*30)
 print("새파일02.txt")
 print("="*30)
-
 # 자동으로 파일객체 닫기 및 여러줄 쓰기/읽기
+# 파일에 내용 입력하기
+with open("새파일02.txt", mode='wt', encoding='utf-8') as myfile:
+	for i in range(1, 16):
+		data = "%d라인 입력합니다.\n" % i
+		myfile.write(data)
+# 파일의 내용 읽기
+with open("새파일02.txt", mode='rt', encoding='utf-8') as myfile:
+	line = None
+	while line != '':
+		line = myfile.readline()
+		print(line.strip('\n'))
 
-#파일쓰기
-with open("새파일02.txt",mode='wt', encoding='utf-8') as myfile:
-    for i in range(1,16):
-        data = "%d라인 입력 \n" % i
-        myfile.write(data)
 
-#파일읽기
-with open("새파일02.txt",mode='rt', encoding='utf-8') as myfile:
-    line =None
-    while  line != '':
-        line =myfile.readline()
-        print(line.strip('\n'))
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 '''
 피클링(pickling)
-파이썬 객체를 파일에 저장하는 과정
-(복원은 언피클링)
-'''      
-#피클링을위한 모듈 임포트 
-import pickle
+    : 파이썬 객체를 파일에 저장하는 과정을 의미한다. 
+    복원하는것을 언피클링 이라고 한다. 
+'''
+# 피클링을 위한 모듈 임포트
+import pickle 
 
-#파일에 저장할 내용들...
-name='kosmo'
-age = 99
-address ='서울시 금천구 가산동'
-times ={'JAVA':20, 'HTML':2, 'Oracle':10, 'Python':3}
+# 파일에 저장할 내용 준비. 문자열, 숫자, 딕셔너리..
+name = 'kosmo'  
+age = 99   
+address = '서울시 금천구 가산동'
+times = {'JAVA': 20, 'HTML': 2, 'Oracle': 10, 'Python': 3} 
 
-#쓰기모드로 바이너리 파일오픈 (파일없으면 자동생성)
+# 쓰기모드로 바이너리 파일을 오픈한다. 만약 파일이 없다면 자동생성된다. 
 with open('kosmo.p', 'wb') as file:
-    #dump() : 데이터 저장
-    pickle.dump(name, file)
+    #dump() 함수를 통해 데이터를 저장한다. 
+    pickle.dump(name, file)  
     pickle.dump(age, file)
     pickle.dump(address, file)
     pickle.dump(times, file)
- 
-#읽기모드   
+    
+# 바이너리 파일을 읽기모드로 오픈한 후 load()함수를 통해 복원한다. 
 with open('kosmo.p', 'rb') as file:
-    #load() : 데이터 복원
     name = pickle.load(file)
     age = pickle.load(file)
     address = pickle.load(file)
     times = pickle.load(file)
+    # 복원한 내용을 출력한다. 
     print("이름", name)
     print("나이", age)
     print("주소", address)

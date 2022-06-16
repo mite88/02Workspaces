@@ -66,4 +66,16 @@
 		<url-pattern>/index.do</url-pattern>
 	</servlet-mapping> 
 	
+	<!-- 파일용량 설정 -->
+	<context-param>
+		<param-name>maxPostSize</param-name>
+		<param-value>1024000</param-value>
+	</context-param>
+	
+		<!-- 전역변수 개념처럼 됨, 컨텍스트 초기화 파라미터(매개변수) -->
+	<context-param>
+		<param-name>INIT_PARAM</param-name>
+		<param-value>web.xml에 저장한 초기화 매개변수</param-value>
+	</context-param>
+	
 </web-app>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <h2>라이브 투표 하기</h2>
+
+    {% if lasest_question_list%}
+        <ul>
+            {% for question in lasest_question_list %}
+            <li>
+                <a href="/livepolls/{{question.id}}/">
+                    {{question.question_text}}
+                </a>
+            </li>
+            {%endfor%}
+        </ul>
+    {%else%}
+        <p>등록된 항목없음</p>
+    {%endif%}
+</body>
+</html>
