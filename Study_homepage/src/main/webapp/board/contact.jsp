@@ -37,7 +37,7 @@
 	<div class="container-fluid">
 
 		<!-- Bootstrap 5 starter form -->
-		<form id="contactForm" action="../board/contact.do"  method="post"  >
+		<form id="contactForm" action="../board/contact.do"  method="post"  enctype="multipart/form-data">
 
 			<!-- Name input -->
 			<div class="mb-3">

@@ -38,4 +38,6 @@ urlpatterns = [
     #방법2 : 파일 2개로
     #설문관련 요청이 들어오면 뒷부분 앱수준의 urls.py에서 매핑함
     path("livepolls/", include('livepolls.urls')),
+    
+    path("tempapps/", include('tempapps.urls')),
 ]

@@ -5,18 +5,39 @@
 <title>Insert title here</title>
 </head>
 <body>
+    <!--투표의 질문을문서의 제목으로 출력-->
     <h2>{{ question.question_text}}</h2>
 
+    <!--
+        투표 진행시 문제가 발생한 경우 에러메서지 출력 
+        이부분은 detail()에서 사용안됨
+    -->
     {% if error_message %}
         <p><strong>{{error_message}}</strong></p>
     {%endif%}
     
-    <form ation="" method="post">
+    <!--투표 처리할 폼태그 정의-->
+    <!--
+        템플릿 문법 중 url은 주어진 네임스페이스와 이름을 통해 urls.py
+        에 정의된 패턴을 찾아 반환
+        아래의 경우 livepolls네임스페이스의 vote를 찾아 해당 url반환함
+        =>action="/livepolls/vote/"
+    -->
+    <form action="{% url 'livepolls:vote' question.id %}" method="post">
+    <!--폼값 전송시 CSRF공격 방어를 위한 hidden박스가 자동 생성됨-->
     {% csrf_token%}
 
+    <!--
+        클래스(테이블).choice_set.all
+        : 외래키로 걸린 choice테이블을 가져옴+모두 ㅇㅁㅇ
+    -->
     {% for choice in question.choice_set.all %}
+        <!--
+            forloop.counter : for문 내에서 실제 반복횟수를 반환해주는객체
+        -->
         <input type="radio" name="choice" id="choice{{forloop.counter}}"
             value="{{choice.id}}" />
+        <!--choice_text는 Choice테이블의 컬럼명으로 투표항목을의미함-->
         <label for="choice{{forloop.counter}}">{{choice.choice_text}}</label>
     {%endfor%}
     <input type="submit" value="Vote"/>

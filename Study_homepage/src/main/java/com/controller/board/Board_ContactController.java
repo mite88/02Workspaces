@@ -1,5 +1,6 @@
 package com.controller.board;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletContext;
@@ -28,19 +29,18 @@ public class Board_ContactController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
+		 ServletContext application = this.getServletContext();
 		common.MailSend ms = new MailSend();
-
 		
-		int re = ms.sendMail(req.getParameter("name"), 
-		req.getParameter("emailAddress"), 
-		req.getParameter("message"), 
-		req.getParameter("file"));
+		int re = ms.sendMail(req, resp, application);
 
 		System.out.println("re:"+re);
+		
+		
 		// 메일전송완료시...
 		if (re == 1) {
-
+			 //다운한 파일 지우기
+		    FileUtil.deleteFile(req, "/Uploads", mr.getParameter("file"));
 			JSFunction.alertLocation(resp, "전송완료", "../index.do");
 		} else {
 

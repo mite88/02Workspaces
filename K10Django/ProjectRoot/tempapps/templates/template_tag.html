@@ -1,0 +1,126 @@
+<!--
+    static폴더를 사용하기위함 
+    settings.py에 정의되어있음
+-->
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template_tag.html</title>
+    <style>
+        body {
+            font-size: 20px;
+        }
+    </style>
+    <!-- static 디렉토리에 저장된 css파일 링크 -->
+    <link rel="stylesheet" href="{% static 'style2.css '%}">
+</head>
+
+<body>
+    <!--static 디렉토리는 settings.py에서 설정 변경가능함-->
+    <h2>static 사용하기</h2>
+    <h3>static 폴더 사용하기 출력됨</h3> 
+    <img src="{% static 'apple.png' %}" alt=""> 
+    <img src="/static/mango.png" alt=""> 
+    <img src="/static/banana.png" alt="">
+
+    <!-- 정적 파일은 항상 static디렉토리를 사용해야함 -->
+    <h3>사용자 폴더 사용하기 - 출력되지 않음</h3>
+    <img src="/images/winter.png" alt="">
+    
+    <h2>템플릿태그</h2>
+    <h3>for 기본</h3> 
+    
+    <!-- books는 딕셔너리 원소를 가진 리스트로 반복시 .으로 key에 접근 -->
+    {% for b in books %}
+        <li>{{ b.name }}</li> 
+    {% endfor %}
+
+    <!--값이 없을때 if문을 별도로 사용하지 않아도됨-->
+    <h3>for... empty</h3> 
+    {% for h in hobbys %}
+        <li>{{ h.name }} </li> 
+    {% empty %}
+        <li> 내용없음</li> 
+    {% endfor %}
+
+    <!--
+        counter : 1부터 카운트
+        counter0 }} :0부터 카운트
+        revcounter }} : 끝에서부터 카운트(1부터)
+        revcounter0 }} : 끝에서부터 카운트(0부터)
+        first : 반복이 처음이면 true
+        Last : 반복이 마지막이면 true
+        parentloop : 상위루프(단일for문은 의미없음)
+    -->
+    <h3>for에서 사용되는 변수</h3> 
+    {% for b in books %} 
+        <li>
+        {{ forloop.counter }} - 
+        {{ forloop.counter0 }} - 
+        {{ forloop.revcounter }} - 
+        {{ forloop.revcounter0 }} - 
+         {{forloop.first }} - 
+         {{ forloop.Last }} -
+        {{ forloop.parentloop }} {# 아무것도 안나옴 #} 
+        </li> 
+    {% endfor %}
+    
+    <h3> 중첩된 for문</h3> 
+    {% for f in favorites %}
+        {% for b in books %}
+        <li>
+            <!--부모의 속성이 출력됨-->
+            {{ forloop.parentloop }}
+        </li>
+        {% endfor %} 
+    {% endfor %}
+
+    <!--renge(1,11)로 선언한 변수라서 1~10까지반복함-->
+    <h3> 일반적인 for문 사용하기</h3> 
+    {% for i in iVar %}
+        {{ i }} <br> 
+    {% endfor %}
+
+    <h2>if</h2> 
+    {% if hobbys %}
+        hobbys의 갯수 : {{ hobbys|length }} 
+    {% elif books %}
+        books의 갯수 : {{ books|length }}
+    {% else %} 
+        모두 False임 
+    {% endif %} 
+    <br> 
+    
+    {% if num > 50 and num < 200 %}
+        num 은 50보다 크다 
+    {% else %}
+        num 은 50보다 작다
+    {% endif %}
+
+    <h2>with</h2> 
+    <!--특정값저장, with블럭내에서만 사용가능-->
+    {% with total=books|length %}
+        with블럭안 : {{ total }} <br> 
+    {% endwith %}
+
+    <!--출력안됨-->
+    with 블럭밖 : {{ total }}
+
+
+    <!--
+        URLConf에 지정된 네임스페이스를 통해 확장성 있는 URL 생성
+     -->
+    <h2>url</h2> 
+    <li>url1 : {% url 'tempapps:my_filter' %}</li> 
+    <li>url2 : {% url 'tempapps:my_tag' %}</li> 
+    <li>url3 : {% url 'livepolls:detail' 10 %}</li> 
+    <li>url4 : {% url 'livepolls:results' 20 %}</li>
+
+    
+</body>
+</html>

@@ -1,0 +1,81 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template_filter.html</title>
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+</head>
+
+<body>
+    <h3>템플릿 필터 사용하기</h3>
+
+    <!-- 
+        템플릿에서 변수 출력 시 EL과 같은 역활인 
+        콧수염활호(Mustache Tag) 사용함
+    -->
+    <h4 class="red">변수 출력</h4>
+    숫자 : {{num1}},{{num2}}<br>
+    한글 : {{hanStr}}<br>
+    <!--html태그는 기본적으로 사용할수 없도록 특수기호로 변환후 출력됨-->
+    영어 : {{engStr}}
+
+    <h4 class="green">변수에 도트(.) 사용</h4>
+    딕셔너리 : {{dictVar.a}}, {{dictVar.b}}<br>
+    {#  {{listVar[0]}} => 리스트를 이와같이 표현하면 에러발생  #}
+    리스트 : {{listVar.0}}, {{listVar.2}}<br>
+
+    <h4>lower : 소문자로 변경</h4>
+    {{engStr|lower}}
+
+    <!--\r\n을 줄바꿈으로 대체, <p>태그감쌈-->
+    <h4>escape 및 linebreaks : 특수문자 이스케이프 및 줄바꿈</h4>
+    {{engStr|escape|linebreaks}}
+
+    <!--인자로 주어진 3이 적용되어 세개의 단어까지 자름-->
+    <h4>truncatewords : 단어단위로 자르기</h4>
+    {{ hanStr|truncatewords:3 }} <br>
+    {{ engStr|truncatewords:3 }}
+
+    <!--인자로 주어진 4이 적용되어 세개의 문자만 자름-->
+    <h4>truncatechars : 문자단위로 자르기</h4>
+    {{ hanStr|truncatechars:4 }} <br>
+    {{ engStr|truncatechars:4 }}
+
+    <!-- 변수에 값이 없을 시 디폴트값 지정하여 출력 -->
+    <h4>default : 디폴트값 지정</h4>
+    {{ nostr|default:"값없음" }}
+
+    <h4>length : 문자열의 길이</h4>
+    {{ engStr|length }}
+
+    <h4>striptags : HTML태그 모두제거</h4>
+    {{ engStr|striptags }}
+
+    <h4> 복수형 점미사 : pluralize</h4>
+    1일때 : {{ num1|pluralize }} <br> {#단수라서 안나옴#}
+    10일때(기본): {{ num2| pluralize }} <br>  {#복수형으로 나옴#}
+    10일때(커스텀) : {{ num2|pluralize:"sss" }} {#단어뒤에 커스텀한 내용이 나옴#}
+
+    <h4>add : 덧셈결과</h4>
+    {{ num1|add:"2" }} <br>
+    {{ num2|add:"2" }} <br>
+    {{ engStr|add:"2" }} <!--문자열의 경우 숫자와 연결되어 나옴-->
+
+    <!--
+        장고프레임워크에선 기본적으로 HTML태그가 실행되지 않게 처리함
+        <script>와 같은 태그로 인해 해킹의 우려가 있기때문인데
+        사용하려면 autoescape를 사용함
+    -->
+    <h4>HTML 태그 렌더링하기</h4>
+    {% autoescape off %}
+    {{ engStr }}
+    {% endautoescape %}
+
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결과</title>
+</head>
+<body>
+    <h1>{{question.question_text}}</h1>
+    <!--Question테이블과 외래키 관례인 테이블의 현재 선택한 질문 하위에 답변 항목가져옴-->
+    <ul>
+        {% for choice in question.choice_set.all %}
+        <!--  답변--투표횟수-vote문자열  -->
+        <li>
+            {{choice.choice_text}} -- 
+            {{choice.votes}} vote{{choice.votes|pluralize}}
+            <!-- pluralize: 목수형점미사붙여줌 -->
+        </li>
+        {%endfor%}
+
+        <a href="{% url 'livepolls:detail' question.id %}">재투표</a>
+
+        <a href="/">Main</a>
+    </ul>
+</body>
+</html>
