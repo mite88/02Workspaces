@@ -13,9 +13,12 @@ urlpatterns = [
     #템플릿태그
     path("template.tag/", views.templateTag, name="my_tag"), 
     #폼사용하기
-    #path("template.create/", views.templateFilter, name="my_formCreate"), 
+    path("form.create/", views.formCreate, name="formCreate"), 
     
-    #path("thanks/", views.thanks), 
+    path("thanks/", views.thanks), 
+    
+    #글쓰기 폼실습
+    path("boardWrite/", views.boardWrite), 
 
 ]
  

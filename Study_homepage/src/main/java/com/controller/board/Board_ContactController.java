@@ -22,7 +22,7 @@ public class Board_ContactController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		req.getRequestDispatcher("/board/contact.jsp").forward(req, resp);
+		req.getRequestDispatcher("/user/board/contact.jsp").forward(req, resp);
 
 	}
 
@@ -40,7 +40,7 @@ public class Board_ContactController extends HttpServlet {
 		// 메일전송완료시...
 		if (re == 1) {
 			 //다운한 파일 지우기
-		    FileUtil.deleteFile(req, "/Uploads", mr.getParameter("file"));
+		    //FileUtil.deleteFile(req, "/Uploads", mr.getParameter("file"));
 			JSFunction.alertLocation(resp, "전송완료", "../index.do");
 		} else {
 

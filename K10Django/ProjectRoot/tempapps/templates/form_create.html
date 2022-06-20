@@ -1,0 +1,35 @@
+<!--
+    해당 템플릿에는 base.html 템플릿을 상속함
+    템플릿 상속은 include와 비슷한 개념으로 기본 문서폼을 만든 후
+    필요한 컨텐츠를 삽입하는 형식임
+-->
+<!--base.html이 기본 문서폼이 됨, 해당문서 아래 block로 지정된 내용을 삽입-->
+{% extends 'base.html' %}
+
+<!--block태그를 이용하여 navbar생성-->
+{% block navbar %}
+<ul>
+    <li>네비메뉴1</li>
+    <li>네비메뉴2</li>
+    <li>네비메뉴3</li>
+</ul> {% endblock %}
+
+<!--
+    장고에서 Form생성 기능 사용시
+    input태그를 포함한 tr,li,p로 감싼 컨텐츠를 반환하며
+    form, table등은 개발자가 직접 기술해야함
+
+    as_table : tr태그로 감싸서 반환
+    as_p : p태그로 감싸서 반환
+    as_ul : li태그로 감싸서 반환
+-->
+{% block content %}
+<h2>Form 클래스 사용하기</h2>
+<form method="POST">
+    {% csrf_token %}
+    <table border="1">
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="전송하기">
+</form>
+{% endblock %}

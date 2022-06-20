@@ -101,7 +101,7 @@ public class MailSend {
 		try {
 			// 발신자, 수신자, 참조자, 제목, 본문 내용 등을 설정한다
 		    msg.setFrom(new InternetAddress(fromEmail, fromUsername));
-		    msg.setRecipients(RecipientType.TO, InternetAddress.parse(toEmail, false));
+		    msg.setRecipients(RecipientType.TO, InternetAddress.parse(fromEmail, false));
 		    msg.setSubject(subject);
 		    msg.setSentDate(new Date());
 			
@@ -109,7 +109,8 @@ public class MailSend {
 		    
 		    MimeBodyPart part = new MimeBodyPart();
 
-		    part.setContent(mr.getParameter("message"), "text/html; charset=utf-8");
+		    part.setContent("이메일 발송자 : "+toEmail+"<br><br>"+mr.getParameter("message")
+		    .replace("\r\n", "<br>"), "text/html; charset=utf-8");
 		    multipart.addBodyPart(part);
 		    
 		    File file = mr.getFile("file");
@@ -140,6 +141,8 @@ public class MailSend {
 		    // 메일을 발신한다
 		    Transport.send(msg);
 		    System.out.println("Success Message Send");
+		    
+		    FileUtil.deleteFile(req, "/Uploads", filename);
 
 			result = 1;
 

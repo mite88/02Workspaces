@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+/*icon css추가*/
+.icon-demo-size-1_5:before {
+   font-size:1.5rem;
+}
+.icon-demo-size-2:before {
+   font-size:2rem;
+}
+.icon-demo-size-3:before {
+   font-size:4rem;
+}
+.icon-demo-size-4:before {
+   font-size:4rem;
+}
+
+.icon-demo-stroke-200:before {
+    stroke-width: 2;
+}

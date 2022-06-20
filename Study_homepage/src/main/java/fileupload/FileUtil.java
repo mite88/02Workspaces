@@ -93,8 +93,10 @@ public class FileUtil {
 		
 		//파일존재시 삭제
 		if(file.exists()) {
+			System.out.println("file delete");
 			file.delete();
 		}
+		
 	}
 	
 }

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'livepolls.apps.LivepollsConfig',
     'tempapps.apps.TempappsConfig',
+    'books.apps.BooksConfig'
 ]
 
 MIDDLEWARE = [

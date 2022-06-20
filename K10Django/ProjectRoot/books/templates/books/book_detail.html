@@ -1,0 +1,27 @@
+{% extends 'base_books.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서관리</title>
+</head>
+<body>
+{% block content %}
+    <h2>{{object.title}}</h2>
+    <ul>
+        <li>
+            Authors:
+            {% for author in object.authors.all %}
+                {{author}}
+                {% if not forloop.last %},{% else%} {% endif%}
+            {% endfor %}
+        </li>    
+        <li>Publisher : {{object.publisher}}</li>
+        <li>Publication date : {{object.publication_date}}</li>
+    </ul>
+{% endblock content %}
+
+</body>
+</html>

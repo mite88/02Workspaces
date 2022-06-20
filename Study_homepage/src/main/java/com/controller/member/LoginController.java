@@ -21,7 +21,7 @@ public class LoginController extends HttpServlet {
 	//여기서  doGet, doPost를 만들겁니다
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/member/Login.jsp").forward(req, resp);
+		req.getRequestDispatcher("/user/member/Login.jsp").forward(req, resp);
 	}
 	
 	@Override

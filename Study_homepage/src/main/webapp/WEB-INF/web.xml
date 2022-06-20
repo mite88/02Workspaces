@@ -66,10 +66,10 @@
 		<url-pattern>/index.do</url-pattern>
 	</servlet-mapping> 
 	
-	<!-- 파일용량 설정 -->
+	<!-- 파일용량 설정 10매가 -->
 	<context-param>
 		<param-name>maxPostSize</param-name>
-		<param-value>1024000</param-value>
+		<param-value>1073741824</param-value>
 	</context-param>
 	
 		<!-- 전역변수 개념처럼 됨, 컨텍스트 초기화 파라미터(매개변수) -->

@@ -37,6 +37,6 @@ public class IdCheckController extends HttpServlet {
 		}
 		
 		req.setAttribute("result", result);
-		req.getRequestDispatcher("/member/idcheck.jsp").forward(req, resp);
+		req.getRequestDispatcher("/user/member/idcheck.jsp").forward(req, resp);
 	}
 }

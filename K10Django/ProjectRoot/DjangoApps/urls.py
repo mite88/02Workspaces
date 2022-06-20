@@ -40,4 +40,7 @@ urlpatterns = [
     path("livepolls/", include('livepolls.urls')),
     
     path("tempapps/", include('tempapps.urls')),
+    
+    #도서관관리
+    path("books/", include('books.urls')),
 ]

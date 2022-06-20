@@ -1,0 +1,35 @@
+<!--메인화면-->
+
+<!--템플릿 상속-->
+{% extends 'base_books.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서관리</title>
+</head>
+<body>
+<!--content변수 하위의 모든 내용 저장함-->
+{% block content %}
+    <h2>Books Management System</h2>
+    <ul>
+    <!--Views.py 에서 생성한 context['model_list']를 대상으로반복출력함-->
+    {% for modelname in model_list %}
+        <!--
+            with : 블럭안에서만 사용가능한 지역변수를 생성하는 템플릿 태그
+            add : 문자열연결, lower : 소문자로
+        -->
+        {% with "books:"|add:modelname|lower|add:"_list" as urlvar%}
+        <li>
+            <!--/books/book/ 형태로 출력됨-->
+            <a href="{% url urlvar %}">{{ modelname }}</a>
+        </li>
+        {% endwith %} 
+    {% endfor %}
+    </ul>
+{% endblock content %}
+
+</body>
+</html>

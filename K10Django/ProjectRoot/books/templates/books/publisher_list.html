@@ -1,0 +1,26 @@
+<!--메인화면-->
+
+<!--템플릿 상속-->
+{% extends 'base_books.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서관리</title>
+</head>
+<body>
+<!--content변수 하위의 모든 내용 저장함-->
+{% block content %}
+    <h2>Author list</h2>
+    <ul>
+    
+    {% for modelname in model_list %}
+        <a href="{% url 'books:publisher_detail' publisher.id %}">{{author.name}}</a>
+    {% endfor %}
+    </ul>
+{% endblock content %}
+
+</body>
+</html>
