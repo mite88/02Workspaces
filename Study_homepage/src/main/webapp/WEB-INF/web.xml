@@ -42,29 +42,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
   
-  	<!-- 메인서블릿 -->
-	<!--
-	<servlet-name> 임의의 이름을 만들어 줍니다.
-	<servlet-class> 매핑할 클래스 파일명을 패키지명을 포함하여 입력 
-	<url-pattern> servlet-class의 클래스를 매핑할 임의의 이름을 입력 합니다.
-	주위할 점은 '/'로 시작해야 합니다.
-	-->
-
-	<!--서블릿등록-->
-  
-  	<servlet>
-		<servlet-name>home</servlet-name>
-		<servlet-class>com.controller.home.HomeController</servlet-class>
-	</servlet> 
-
-	<!--
-	서블릿 내부명과 URL 명과의 매핑정보
-	-->
-		
-	<servlet-mapping>
-		<servlet-name>home</servlet-name>
-		<url-pattern>/index.do</url-pattern>
-	</servlet-mapping> 
+  	
 	
 	<!-- 파일용량 설정 10매가 -->
 	<context-param>

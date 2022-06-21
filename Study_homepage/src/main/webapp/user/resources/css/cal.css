@@ -1,0 +1,14 @@
+ .fc-day-content {height: 130px;}
+    @media (max-width: 992px){
+        .fc-day-content {height: 90px !important;}
+    }
+    @media (max-width: 767px){
+        .fc-day-content {height: 80px !important;}
+    }
+    @media (max-width: 640px){
+        .fc-day-content {height: 45px !important;}
+    }
+    @media (max-width: 500px){
+        .fc-day-content {height: 35px !important;}
+    }
+    .fc-event-container > .fc-event-more {display: none;}

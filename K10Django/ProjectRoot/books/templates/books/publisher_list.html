@@ -15,9 +15,11 @@
 {% block content %}
     <h2>Author list</h2>
     <ul>
-    
-    {% for modelname in model_list %}
-        <a href="{% url 'books:publisher_detail' publisher.id %}">{{author.name}}</a>
+   
+    {% for publisher in object_list %}
+         <li>
+            <a href="{% url 'books:publisher_detail' publisher.id %}">{{publisher.name}}</a>
+        </li>
     {% endfor %}
     </ul>
 {% endblock content %}
