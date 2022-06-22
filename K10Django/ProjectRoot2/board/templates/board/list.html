@@ -7,6 +7,10 @@
     <title>게시판 목록</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        #paging li{display: inline;}
+    </style>
+
 </head>
 <body>
     <div class="container-flex bg-white p-5">
@@ -24,6 +28,43 @@
             {% endfor %}
         </table>
         <a href="/board/write/">글쓰기</a>
+
+        <ul id="paging">
+            <!--이전페이지-->
+            {% if postlist.has_previous %}
+            <li>
+                <a href="?page={{postlist.previous_page_number}}">이전</a>
+            </li>
+            {% else %}
+            <li><a href="#">이전</a></li>
+            {% endif %}
+
+            <!--페이지 리스트-->
+            {% for page_number in postlist.paginator.page_range %}
+                {% if page_number >= postlist.number|add:-5 and page_number <= postlist.number|add:5  %}
+                    {% if page_number == postlist.number %}
+                    <li>
+                        <a href="#">{{page_number}}</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="?page={{page_number}}">{{page_number}}</a>
+                    </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <!--다음페이지-->
+            {% if postlist.has_next %}
+            <li>
+                <a href="?page={{postlist.next_page_number}}">다음</a>
+            </li>
+            {% else %}
+            <li><a href="#">다음</a></li>
+            {% endif %}
+
+        </ul>
+
     </div>
 </body>
 </html>

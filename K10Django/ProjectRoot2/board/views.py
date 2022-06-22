@@ -3,12 +3,17 @@ from django.shortcuts import redirect, render
 from .models import Post
 import os
 from django.conf import settings
+from django.core.paginator import Paginator
 
 def index(request):
     return render(request, 'board/index.html')
 
 def list(request):
+    page = request.GET.get('page', 1)
     postlist = Post.objects.all().order_by('-id')
+    
+    paginator = Paginator(postlist, 10)
+    postlist = paginator.get_page(page)
     return render(request, 'board/list.html', {'postlist':postlist})
 
 def write(request):
@@ -43,6 +48,7 @@ def edit(request, pk):
             
             print(os.path.join(settings.MEDIA_ROOT, request.POST['mainphoto']))
             os.remove(os.path.join(settings.MEDIA_ROOT, request.POST['mainphoto']))
+            
         except:
             post.titles = request.POST['titles']
             post.contents = request.POST['contents']
