@@ -76,8 +76,7 @@
 									<i class="fa fa-check text-primary me-3"></i>Design Approach
 								</p>
 								<p>
-									<i class="fa fa-check text-primary me-3"></i>Innovative
-									Solutions
+									<i class="fa fa-check text-primary me-3"></i>Innovative Solutions
 								</p>
 								<p>
 									<i class="fa fa-check text-primary me-3"></i>Project Management
@@ -89,6 +88,7 @@
 
 						<!-- 캘린더 -->
 						<div class="row my-5">
+							<input type="hidden" name="code" id="code" value="1">
 							<div id='calendar'></div>
 						</div>
 

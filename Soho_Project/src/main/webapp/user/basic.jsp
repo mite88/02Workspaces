@@ -23,7 +23,7 @@
 	<jsp:include page="layout/header.jsp"></jsp:include>
 	
 	<div class="container-xxl project py-5">
-		<div class="container">
+		<div class="container-fluid ">
 			<div class="text-center mx-auto mb-5 wow fadeInUp"
 				data-wow-delay="0.1s"
 				style="max-width: 600px; visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">

@@ -37,7 +37,7 @@ public class MailSend {
 	public int sendMail(HttpServletRequest req, HttpServletResponse resp, ServletContext application) {
 		int result = 0;// 결과
 		// 파일업로드 처리 : 물리적경로, 제한 용량, MR객체생성
-		String saveDirectory = req.getServletContext().getRealPath("/Uploads");
+		String saveDirectory = req.getServletContext().getRealPath("/Uploads/contact");
 		int maxPostSize = Integer.parseInt(application.getInitParameter("maxPostSize"));
 		MultipartRequest mr = FileUtil.uploadFile(req, saveDirectory, maxPostSize);
 
@@ -101,7 +101,7 @@ public class MailSend {
 		try {
 			// 발신자, 수신자, 참조자, 제목, 본문 내용 등을 설정한다
 		    msg.setFrom(new InternetAddress(fromEmail, fromUsername));
-		    msg.setRecipients(RecipientType.TO, InternetAddress.parse(fromEmail, false));
+		    msg.setRecipients(RecipientType.TO, InternetAddress.parse(toEmail, false));
 		    msg.setSubject(subject);
 		    msg.setSentDate(new Date());
 			
@@ -142,7 +142,7 @@ public class MailSend {
 		    Transport.send(msg);
 		    System.out.println("Success Message Send");
 		    
-		    FileUtil.deleteFile(req, "/Uploads", filename);
+		    FileUtil.deleteFile(req, "/Uploads/contact", filename);
 
 			result = 1;
 

@@ -1,6 +1,9 @@
 package com.controller.user;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.office.OfficeDAO;
+import com.office.OfficeDTO;
 
 import utils.JSFunction;
 
@@ -47,6 +53,18 @@ public class AboutController extends HttpServlet {
 			// 지점찾기
 			page_name="/user/about/location.jsp";
 			title_name ="지점찾기";
+			
+			
+			OfficeDAO dao = new OfficeDAO();
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+
+					
+			List<OfficeDTO> offlice_list = dao.officeSelect(map); //리스트
+			dao.close(); //자원해제
+
+			req.setAttribute("offlice_list", offlice_list);
+			
 		}else {
 			JSFunction.alertBack(resp, "페이지 오류");
 		}

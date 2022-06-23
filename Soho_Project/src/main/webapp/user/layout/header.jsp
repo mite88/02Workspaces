@@ -138,8 +138,8 @@
                 <div class="nav-item dropdown">
                     <a href="/contact.do" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Contact</a>
                     <div class="dropdown-menu border-0 m-0">
-                        <a href="<%=request.getContextPath()%>/contact.do/1" class="dropdown-item">공지</a>
-                        <a href="<%=request.getContextPath()%>/contact.do/2" class="dropdown-item">홍보</a>
+                        <a href="<%=request.getContextPath()%>/contact.do/list/1" class="dropdown-item">공지</a>
+                        <a href="<%=request.getContextPath()%>/contact.do/list/2" class="dropdown-item">홍보</a>
                         <a href="<%=request.getContextPath()%>/contact.do/inquiry" class="dropdown-item">문의</a>
                         <a href="<%=request.getContextPath()%>/contact.do/faq" class="dropdown-item">faq</a>
                         <a href="<%=request.getContextPath()%>/contact.do/franchise" class="dropdown-item">제휴문의</a>

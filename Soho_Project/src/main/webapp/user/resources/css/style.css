@@ -559,3 +559,32 @@ nav .btn_div{width: auto;}
 @media screen and (max-width: 768px) {
 	.footer span.mb-2{display:block}
 }
+
+/*지점소개*/
+/* With arrow tabs */
+section {
+    padding: 60px 0;
+}
+
+section .section-title {
+    text-align: center;
+    color: #007b5e;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+
+#office_info .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #444;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 4px solid !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+#office_info .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    font-size: 20px;
+}

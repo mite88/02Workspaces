@@ -25,7 +25,7 @@ public class FileUtil {
 
 	}
 
-	public static void downlpad(HttpServletRequest req, HttpServletResponse resp, 
+	public static void download(HttpServletRequest req, HttpServletResponse resp, 
 			String diretory, String sfileName, String ofileName) {
 
 		String sDirectory = req.getServletContext().getRealPath(diretory);

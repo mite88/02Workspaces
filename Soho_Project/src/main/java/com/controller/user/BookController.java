@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.books.BooksDAO;
 import com.books.BooksDTO;
 import com.google.gson.Gson;
+import com.office.OfficeDAO;
+import com.office.OfficeDTO;
 
 import utils.JSFunction;
 
@@ -55,32 +57,46 @@ public class BookController extends HttpServlet {
 			// 리스트
 			String start_datetmime = req.getParameter("start_datetmime"); 
 			String end_datetmime =req.getParameter("end_datetmime"); 
+			int offilce_code = Integer.parseInt(req.getParameter("code"));  //사무실코드
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			
-			List<BooksDTO> Lists = dao.BookLists(map, start_datetmime, end_datetmime); //리스트
+			List<BooksDTO> Lists = dao.BookLists(map, start_datetmime, end_datetmime, offilce_code); //리스트
 			dao.close(); //자원해제
 			
 			resp.setContentType("application/json");
 			resp.setCharacterEncoding("UTF-8");
 			
-			 map.put("Lists", Lists);
+			map.put("Lists", Lists);
+			 
+			//전체 지점리스트 용
+			OfficeDAO o_dao = new OfficeDAO();
+
+					
+			List<OfficeDTO> offlice_list = o_dao.officeSelect(map); //리스트
+			o_dao.close(); //자원해제
 			
+			dao.close(); //자원해제
+			o_dao.close(); //자원해제
+			
+			map.put("offlice_list", offlice_list);
+
 			String gson = new Gson().toJson(map);
 			System.out.println(map);
+			
 			PrintWriter out = resp.getWriter();
 			out.write(gson);
-			out.flush();
-			out.close();
+			//out.flush();
+			//out.close();
 		} 
 		
-		if(page_name!="" && !command.contentEquals("/books.do/select_ajax.do")) {
+		if(page_name!="" && !command.contains("/books.do/select_ajax")) {
 			req.setAttribute("title_name", title_name);
 			req.setAttribute("result", 1);
 			
 			dispatcher = req.getRequestDispatcher(page_name);
 			dispatcher.forward(req, resp);
-		}else if( command.contentEquals("/books.do/select_ajax.do")){
+		}else if( command.contains("/books.do/select_ajax")){
 			
 		}else {
 			JSFunction.alertBack(resp, "페이지 오류");

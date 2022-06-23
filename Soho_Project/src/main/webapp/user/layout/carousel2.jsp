@@ -32,10 +32,6 @@
 	}
 }
 
-.navbar .nav-link {
-	color: #fff !important;
-}
-
 .mask {
 	position: absolute;
 	top: 0;
@@ -51,8 +47,7 @@
 
 
 <!-- Carousel wrapper -->
-<div id="carouselExampleDark" class="carousel slide carousel-fade shadow-2-strong"
-	data-mdb-ride="carousel">
+<div id="carouselExampleDark" class="carousel slide carousel-fade shadow-2-strong" data-mdb-ride="carousel">
 	<!-- Indicators -->
 	<div class="carousel-indicators">
 		<button type="button" data-bs-target="#carouselExampleDark"

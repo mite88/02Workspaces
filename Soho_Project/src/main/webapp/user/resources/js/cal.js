@@ -61,18 +61,29 @@ document.addEventListener('DOMContentLoaded', function() {
 		editable: true,
 		dayMaxEvents: true, // allow "more" link when too many events
 		events: function(info, successCallback, failureCallback) {
-				
+			
 			$.ajax({
 				url: 'select_ajax?start_datetmime=' + moment(info.startStr).format('YYYY-MM-DD')
-					+ '&end_datetmime=' + moment(info.endStr).format('YYYY-MM-DD'),
+					+ '&end_datetmime=' + moment(info.endStr).format('YYYY-MM-DD')+"&code="+document.querySelector("#code").value,
 				type: 'GET',
 				dataType: 'json',
 				success: function(json) {
+					$(".fc-toolbar-chunk:eq(2)").append('<select class="office_num"><option value="">Select Month</option></select>');
 
 					var events = [];
 
-					var values = json.Lists; //java에서 정의한 ArrayList명을 적어준다.
+					var o_values = json.offlice_list; //java에서 정의한 ArrayList명을 적어준다.
 
+					$.each(o_values, function(index, val) {
+						//alert(val.code);
+						$(".fc-toolbar-chunk .office_num").append(
+							'<option value="'+val.code+'">'+val.o_name+'</option>'
+						);
+
+					});
+					
+					
+					var values = json.Lists; //java에서 정의한 ArrayList명을 적어준다.
 					$.each(values, function(index, val) {
 
 						events.push({
@@ -80,7 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
 							title: val.title,
 							start:  moment(val.start).format('YYYY-MM-DD HH:mm:ss'),
 							end:   moment(val.end).format('YYYY-MM-DD HH:mm:ss'),
-							message : val.message
+							message : val.message,
+							code: val.office_num,
 						})
 
 					});
@@ -89,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					successCallback(events);
 
 				}, error: function(request, status, error) {
-					alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+					alert("code:" + request.status + "\n" + "error:" + error);
 				}
 
 			});
@@ -99,7 +111,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	});
 
+
 	calendar.render();
+
+	$(document).on("change", ".office_num", function() {
+		//alert("!"+this.value);
+		$(".fc-toolbar-chunk:eq(2) .office_num").remove();
+		$("#code").val(this.value);
+		calendar.refetchEvents();
+		//calendar.changeView('dayGridMonth', this.value);
+		//calendar.gotoDate( new Date(2022, this.value-1, 1));
+   });
 
 	
 	//예약폼

@@ -16,19 +16,20 @@ public class BooksDAO extends DBConnPool {
 
 
 	// 예약정보
-	public List<BooksDTO> BookLists(Map<String, Object> map, String s, String e) {
+	public List<BooksDTO> BookLists(Map<String, Object> map, String s, String e, int offilce_code) {
 		List<BooksDTO> bbs = new ArrayList<BooksDTO>();
 		
 
 		try {
 			
 			// 아이디가 맞는지 확인용
-			String sql = "select * from books where start between"+
-			" ? and ?";
+			String sql = "select * from books where offile_num = ? "
+					+ "and start between ? and ?";
 
 			psmt = con.prepareStatement(sql);
-			psmt.setTimestamp(1, Timestamp.valueOf(s+" 00:00:00.0"));
-			psmt.setTimestamp(2, Timestamp.valueOf(e+" 23:59:59.999"));
+			psmt.setInt(1, offilce_code);
+			psmt.setTimestamp(2, Timestamp.valueOf(s+" 00:00:00.0"));
+			psmt.setTimestamp(3, Timestamp.valueOf(e+" 23:59:59.999"));
 			
 			rs = psmt.executeQuery();
 

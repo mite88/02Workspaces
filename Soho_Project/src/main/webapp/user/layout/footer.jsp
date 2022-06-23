@@ -14,7 +14,7 @@
 	pageEncoding="UTF-8"%>
 <!-- Footer Start -->
 <div
-	class="container-fluid bg-dark text-body footer pt-5 px-0 wow fadeIn"
+	class="container-fluid bg-dark text-body footer px-0 wow fadeIn"
 	data-wow-delay="0.1s">
 	<div class="container py-5">
 		<div class="row g-5">

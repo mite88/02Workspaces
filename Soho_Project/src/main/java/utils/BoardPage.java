@@ -1,37 +1,39 @@
 package utils;
-
-public class BoardPage {
+	
 	/*
-	int totalCount : 총게시물수
-	int pageSize : 현페이지 게시물수(web.xml - POSTS_PER_PAGE)
-	int blockPage : 한블럭당 페이지 번호(web.xml - PAGES_PER_BLOCK)
-	int pageNum : 현페이지번호
-	String reqUrl : 게시판 목록실행 한 파일경로
+	int totalCount : 총 게시물의 갯수
+	int pageSize : 한 페이지에 출력할 게시물의 갯수(web.xml에 POSTS_PER_PAGE로 저장됨)
+	int blockPage : 한 블럭당 출력할 페이지번호의 갯수(web.xml에 PAGES_PER_BLOCK로 저장됨)
+	int pageNum : 현재 진입한 목록의 페이지 번호(최초 진입시에는 무조건 1페이지)
+	String reqUrl : 게시판 목록을 실행한 JSP파일 경로(request.getRequestURI()을 통해 경로를 얻어온다.)
 	 */
+public class BoardPage {
 	public static String pageingStr(int totalCount, int pageSize,
 			int blockPage, int pageNum, String reqUrl, String searchField, String searchWord) {
 		
 		String pageingStr = "";
 		
-		//페이지수 계산
-		int totalPages = (int)(Math.ceil( ((double) totalCount / pageSize )));
+		//전체 페이지수를 계산한다.
+		int totalPages = (int)(Math.ceil(((double) totalCount/ pageSize)));
 		
-		//이전 페이지 블록 바로가기 링크 출력
 		/*
-		 현 페이지가 1페이지면
-		 ((( 1-1 ) / 5 ) * 5) + 1 = 1
-		 
-		 현 페이지가 5페이지면
-		 ((( 5-1 ) / 5 ) * 5) + 1 = 1
-		 
-		  현 페이지가 6페이지면
-		 ((( 6-1 ) / 5 ) * 5) + 1 = 6
+		이전 페이지 블록 바로가기 링크 출력
+		 현재 1페이지라 가정하면 
+		 	(((1-1) / 5) * 5) + 1 = 1
+		 현재 5페이지라 가정하면 
+		 	(((5-1) / 5) * 5) + 1 = 1
+		 현재 6페이지라 가정하면 
+		 	(((6-1) / 5) * 5) + 1 = 6
+		 현재 11페이지라 가정하면 
+		 	(((11-1) / 5) * 5) + 1 = 11
 		*/
-		int pageTemp = (((pageNum -1) / blockPage) * blockPage) +1;
+		int pageTemp = (((pageNum-1)/ blockPage)* blockPage)+ 1;
 		
+		System.out.println(totalPages+"/"+blockPage);
 		/*
-		pageTemp가 1이 아닐때만 이전블록으로 바로가기 링크를 화면에 출력함
-		 * */
+		pageTemp가 1이 아닐때만, 즉 첫번째 블럭이 아닐때만 이전블록으로 
+		바로가기 링크를 화면에 출력한다. 
+		*/
 		if(pageTemp != 1) {
 			pageingStr += "<li class='page-item'>";
 			if(searchWord != null && searchWord !="") {
@@ -52,11 +54,8 @@ public class BoardPage {
 			pageingStr +="</li>";
 		}
 		
-		/*
-		각 페이지 번호로 바로가기 링크 출력
-		
-		앞에서 계산한 pageTemp를 blockPage만큼 반복하여 출력
-		*/
+		//각 페이지 번호로 바로가기 링크 출력
+		//앞에서 계산한 pageTemp를 blockPage만큼 반복해서 출력한다.
 		int blockCount = 1;
 		while (blockCount <= blockPage &&  pageTemp <= totalPages) {
 			if(pageTemp == pageNum) {
@@ -112,9 +111,7 @@ public class BoardPage {
 			
 			pageingStr +="</li>";
 		}
-	
 		return pageingStr;
 	}
-
-
+	
 }
