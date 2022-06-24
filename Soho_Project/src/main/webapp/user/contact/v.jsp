@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +40,28 @@
 </style>
 </head>
 <body>
+
+<!-- 파일 형식지정용 -->
+<c:set var="filetype" value="${fn:split(dto.ofile, '.')}" />
+<c:set var="filetype_img" 
+value="${(fn:toLowerCase(filetype[1]) eq 'jpg') 
+or (fn:toLowerCase(filetype[fn:length(filetype)-1]) eq 'png') 
+or (fn:toLowerCase(filetype[fn:length(filetype)-1]) eq 'jpeg') 
+or (fn:toLowerCase(filetype[fn:length(filetype)-1]) eq 'gif')}" />
+
+<c:set var="filetype_video" 
+value="${(fn:toLowerCase(filetype[fn:length(filetype)-1]) eq 'mp4') 
+or (fn:toLowerCase(filetype[fn:length(filetype)-1]) eq 'ogv') 
+or (fn:toLowerCase(filetype[fn:length(filetype)-1]) eq 'WebM')
+or (fn:toLowerCase(filetype[fn:length(filetype)-1]) eq 'avi')}" />
+
+<c:set var="filetype_audio" 
+value="${(fn:toLowerCase(filetype[fn:length(filetype)-1]) eq 'wav')  
+or (fn:toLowerCase(filetype[fn:length(filetype)-1]) eq 'Ogg') 
+or (fn:toLowerCase(filetype[fn:length(filetype)-1]) eq 'mp3')}" />
+
+
+
 <!-- header -->
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 	
@@ -81,7 +104,37 @@
 				
 					<div class="row">
 		               <div class="col-lg-12 text-center">
-		                   <img class="img-fluid  mt-5 mb-3 " src="https://technext.github.io/mark/images/project-details-large.jpg" alt="alternative">
+		                 
+		                   
+		                   <c:if test="${not empty dto.ofile and filetype_img}">
+								<img alt="img" class="img-fluid" src="<%=request.getContextPath()%>/Uploads/contact/${dto.sfile}">
+							</c:if>
+							
+						  	<c:if test="${not empty dto.ofile and filetype_video}">
+								<div class="embed-responsive embed-responsive-16by9">
+								  	<iframe class="embed-responsive-item" src="<%=request.getContextPath() %>/Uploads/contact/${dto.sfile}"></iframe>
+								</div>
+							</c:if>
+							
+							<c:if test="${not empty dto.ofile and filetype_audio}">
+								<div class="embed-responsive embed-responsive-16by9">
+								    <audio controls class="embed-responsive-item">
+								        <source src="<%=request.getContextPath() %>/Uploads/contact/${dto.sfile}"/>
+								    </audio>
+
+								</div>
+							</c:if>
+							
+							<c:if test="${not empty dto.video_url}">
+								<div class="ratio ratio-16x9">
+								 	<iframe src="${dto.video_url}"></iframe>
+								</div>
+							
+								
+							</c:if>
+		                   
+		                   
+		                   
 		               </div> <!-- end of col -->
 		           </div>
 
@@ -90,6 +143,7 @@
 
 						<div class="row my-5">
 							<div class="col-lg-12 text-center">
+							
 							${ dto.content}
 							</div>
 						</div>

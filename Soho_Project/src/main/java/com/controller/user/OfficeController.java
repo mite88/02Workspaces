@@ -1,6 +1,9 @@
 package com.controller.user;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.office.OfficeDAO;
+import com.office.OfficeDTO;
 
 import utils.JSFunction;
 
@@ -35,6 +41,18 @@ public class OfficeController extends HttpServlet {
 			// 사무실소개
 			page_name="/user/office/office.jsp";
 			title_name ="사무실소개";
+			
+			
+			OfficeDAO dao = new OfficeDAO();
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+
+					
+			List<OfficeDTO> office_list = dao.officeSelect(map); //리스트
+			dao.close(); //자원해제
+
+			req.setAttribute("office_list", office_list);
+
 		}
 		
 		if(page_name!="") {

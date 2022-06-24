@@ -13,6 +13,7 @@ public class ContactDTO {
 		private java.sql.Date postdate;	//작성일
 		private String ofile;			//원본파일명
 		private String sfile;			//서버에 저장된 파일명
+		private String video_url;       //영상 url
 		private int downcount;			//다운로드 횟수
 		private String pass;			//비밀번호
 		private int visitcount;			//게시물 조회수
@@ -63,6 +64,12 @@ public class ContactDTO {
 		 */
 		public String getSfile() {
 			return sfile;
+		}
+		/**
+		 * @return the video_url
+		 */
+		public String getVideo_url() {
+			return video_url;
 		}
 		/**
 		 * @return the downcount
@@ -131,6 +138,12 @@ public class ContactDTO {
 			this.sfile = sfile;
 		}
 		/**
+		 * @param video_url the video_url to set
+		 */
+		public void setVideo_url(String video_url) {
+			this.video_url = video_url;
+		}
+		/**
 		 * @param downcount the downcount to set
 		 */
 		public void setDowncount(int downcount) {
@@ -148,6 +161,7 @@ public class ContactDTO {
 		public void setVisitcount(int visitcount) {
 			this.visitcount = visitcount;
 		}
+		
 		
 		
 		

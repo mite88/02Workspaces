@@ -91,9 +91,10 @@ public class ContactDAO extends DBConnPool {
 					dto.setPostdate(rs.getDate(6));
 					dto.setOfile(rs.getString(7));
 					dto.setSfile(rs.getString(8));
-					dto.setDowncount(rs.getInt(9));
-					dto.setPass(rs.getString(10));
-					dto.setVisitcount(rs.getInt(11));
+					dto.setVideo_url(rs.getString(9));
+					dto.setDowncount(rs.getInt(10));
+					dto.setPass(rs.getString(11));
+					dto.setVisitcount(rs.getInt(12));
 
 					board.add(dto);
 				}
@@ -120,9 +121,11 @@ public class ContactDAO extends DBConnPool {
 				default값이 입력되듯 자동증가값이 자동으로 입력된다.
 				 */
 				String query = "INSERT INTO contact ( "
-								+ " name, , type, title, content, ofile, sfile, pass) "
+								+ " name, , type, title, content, ofile, sfile, video_url, pass) "
 								+ " VALUES ( "
-								+ " ?,?,?,?,?,?)";
+								+ " ?,?,?,?,?,?,?)";
+				
+				
 				
 				psmt = con.prepareStatement(query);
 				psmt.setString(1, dto.getName());
@@ -131,7 +134,8 @@ public class ContactDAO extends DBConnPool {
 				psmt.setString(4, dto.getContent());
 				psmt.setString(5, dto.getOfile());
 				psmt.setString(6, dto.getSfile());
-				psmt.setString(7, dto.getPass());
+				psmt.setString(7, dto.getVideo_url());
+				psmt.setString(8, dto.getPass());
 				System.out.println(query);
 				result = psmt.executeUpdate();
 			}
@@ -165,9 +169,10 @@ public class ContactDAO extends DBConnPool {
 					dto.setPostdate(rs.getDate(6));
 					dto.setOfile(rs.getString(7));
 					dto.setSfile(rs.getString(8));
-					dto.setDowncount(rs.getInt(9));
-					dto.setPass(rs.getString(10));
-					dto.setVisitcount(rs.getInt(11));
+					dto.setVideo_url(rs.getString(9));
+					dto.setDowncount(rs.getInt(10));
+					dto.setPass(rs.getString(11));
+					dto.setVisitcount(rs.getInt(12));
 				}
 				
 			}
@@ -272,7 +277,7 @@ public class ContactDAO extends DBConnPool {
 			try {
 				//update쿼리문 작성
 				String query = "UPDATE contact "
-							+ " SET type=?, title=?, name=?, content=?, ofile=?, sfile=? "
+							+ " SET type=?, title=?, name=?, content=?, ofile=?, sfile=?, video_url=? "
 							+ " WHERE idx=? and pass=?";
 				//동적쿼리문 실행을 위해 prepared객체 생성 및 인파라미터 설정
 				psmt = con.prepareStatement(query);
@@ -282,8 +287,9 @@ public class ContactDAO extends DBConnPool {
 				psmt.setString(4, dto.getContent());
 				psmt.setString(5, dto.getOfile());
 				psmt.setString(6, dto.getSfile());
-				psmt.setInt(7, dto.getIdx());
-				psmt.setString(8, dto.getPass());
+				psmt.setString(7, dto.getVideo_url());
+				psmt.setInt(8, dto.getIdx());
+				psmt.setString(9, dto.getPass());
 				
 				//쿼리 실행 및 결과 반환(update된 행의 갯수)
 				result = psmt.executeUpdate();

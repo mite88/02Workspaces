@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		selectable: true,
 		selectMirror: true,
 		select: function(arg) {
-			event_edit(calendar, arg);
+			//event_edit(calendar, arg);
 		},
 		windowResize: function(view) {
 			calendar.changeView('dayGridMonth');
@@ -31,18 +31,20 @@ document.addEventListener('DOMContentLoaded', function() {
 				arg.event.remove()
 			}*/
 			
-			var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+			//$(".fc-toolbar-chunk:eq(2) .office_num").value($("#code").val());
+			
+			var myModal = new bootstrap.Modal(document.getElementById('viewModal'));
 			myModal.show();
 			
 			//데이터출력
-			document.querySelector('#exampleModal #number').value=info.event.id;
-			document.querySelector('#exampleModal #title').value=info.event.title;
-			document.querySelector('#exampleModal #startDate').value=moment(info.event.startStr).format('YYYY-MM-DD');
-			document.querySelector('#exampleModal #endDate').value=moment(info.event.endStr).format('YYYY-MM-DD');
-			document.querySelector('#exampleModal #message-text').value=info.event.extendedProps.message;
+			document.querySelector('#viewModal #number').value=info.event.id;
+			document.querySelector('#viewModal #title').value=info.event.title;
+			document.querySelector('#viewModal #startDate').value=moment(info.event.startStr).format('YYYY-MM-DD');
+			document.querySelector('#viewModal #endDate').value=moment(info.event.endStr).format('YYYY-MM-DD');
+			document.querySelector('#viewModal #message-text').value=info.event.extendedProps.message;
 
 			//readonly지정
-			document.querySelectorAll("#exampleModal input, #exampleModal textarea").forEach(function (input) {
+			document.querySelectorAll("#viewModal input, #viewModal textarea").forEach(function (input) {
 			    input.readOnly=true; // readonly 처리
 			 })
 		},
@@ -61,6 +63,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		editable: true,
 		dayMaxEvents: true, // allow "more" link when too many events
 		events: function(info, successCallback, failureCallback) {
+			//console.log(info);
+
+			
+			$(".fc-toolbar-chunk:eq(2) .office_num").remove();
+			$("#editModal .clone_select .code").remove();
 			
 			$.ajax({
 				url: 'select_ajax?start_datetmime=' + moment(info.startStr).format('YYYY-MM-DD')
@@ -68,6 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				type: 'GET',
 				dataType: 'json',
 				success: function(json) {
+					
+					$("#editModal .clone_select").append('<select class="code"><option value="">Select Month</option></select>');
 					$(".fc-toolbar-chunk:eq(2)").append('<select class="office_num"><option value="">Select Month</option></select>');
 
 					var events = [];
@@ -76,11 +85,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					$.each(o_values, function(index, val) {
 						//alert(val.code);
+						$("#editModal .clone_select .code").append(
+							'<option value="'+val.code+'">'+val.o_name+'</option>'
+						);
+						
 						$(".fc-toolbar-chunk .office_num").append(
 							'<option value="'+val.code+'">'+val.o_name+'</option>'
 						);
 
 					});
+					
+					$(".fc-toolbar-chunk:eq(2) .office_num").val($("#code").val());
 					
 					
 					var values = json.Lists; //java에서 정의한 ArrayList명을 적어준다.
@@ -103,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				}, error: function(request, status, error) {
 					alert("code:" + request.status + "\n" + "error:" + error);
 				}
-
+				
 			});
 			//end ajax
 
@@ -113,66 +128,78 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 	calendar.render();
+	
 
+
+	//지점변경시..
 	$(document).on("change", ".office_num", function() {
 		//alert("!"+this.value);
+		
 		$(".fc-toolbar-chunk:eq(2) .office_num").remove();
+		$("#editModal .clone_select .code").remove();
 		$("#code").val(this.value);
 		calendar.refetchEvents();
 		//calendar.changeView('dayGridMonth', this.value);
 		//calendar.gotoDate( new Date(2022, this.value-1, 1));
    });
+   
+   //예약폼생성
+   $('#editBtn').on('click', function() {
+			
+		event_edit();
+	});
 
 	
 	//예약폼
-	function event_edit(calendar, arg) {
-
-		var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+	function event_edit() {
+		
+		var myModal = new bootstrap.Modal(document.getElementById('editModal'));
 		myModal.show();
 
-		console.log(calendar);
+		console.log("!!");
+		
+		
+		//데이터출력
+		document.querySelector('#editModal #number').value="";
+		document.querySelector('#editModal #title').value="";
+		document.querySelector('#editModal #startDate').value="";
+		document.querySelector('#editModal #endDate').value="";
+		document.querySelector('#editModal #message-text').value="";
 
-		$('#submitButton').on('click', function() {
-			var title = $('#exampleModal #title').val();
-			var startDate = $('#exampleModal #start').val();
-			var endDate = $('#exampleModal #end').val();
-			var message = $('#exampleModal #message-text').val();
-			var xObj = { title: title, start: startDate, end: endDate, message: message };
+		//readonly지정
+		document.querySelectorAll("#editModal input, #editModal textarea").forEach(function (input) {
+		    input.readOnly=false; // readonly 처리
+		 })
 
-			createClnd(calendar, xObj);
+		$('#editModal #submitButton').on('click', function() {
+			
+			createClnd();
 		});
 
 	}
+	
+	editBtn
 
-	var ctx = "${path}";
+
 
 	//등록 액션    
-	function createClnd(cal, xobj) {
+	function createClnd() {
 		if (!confirm("일정을 등록 하시겠습니까?")) return false;
-		var $obj = calFunc.getFormValue();
+		var title = $('#editModal #title').val();
+		var startDate = $('#editModal #startDate').val();
+		var endDate = $('#editModal #endDate').val();
+		var message = $('#editModal #message-text').val();
+		var code=$("#editModal .clone_select .code").val();
+		
+		var user_id = $("#user_id").val();
 
 		$.ajax({
-			url: ctx + "/create_ajax.do",
+			url:  "create_ajax?title="+title+"&start="+startDate
+			+"&end="+endDate+"&message="+message+"&code="+code+"&user_id="+user_id,
 			type: "POST",
 			contentType: "application/json;charset=UTF-8",
-			data: JSON.stringify($obj)
-		}).done(function(data) {
-			var result = jQuery.parseJSON(data);
-
-			$('#exampleModal').modal('hide');
-			//calendar.unselect();
-			//모든 소스에서 이벤트를 다시 가져와 화면에 다시 렌더링
-			cal.refetchEvents();
-		}).fail(function(e) {
-			alert("실패하였습니다." + e);
-		}).always(function() {
-			//모듈 값 초기화
-			$('#exampleModal #title').val("");
-			$('#exampleModal #title').val("");
-			$('#exampleModal #title').val("");
-			$('#exampleModal #message-text').val("");
 		});
-
+		location.reload(true);
 
 	}
 
@@ -186,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		var $obj = calFunc.getFormValue();
 
 		$.ajax({
-			url: ctx + "/adms/calendar/management/update_ajx.do",
+			url:  "update_ajax",
 			type: "POST",
 			contentType: "application/json;charset=UTF-8",
 			data: JSON.stringify($obj)
@@ -207,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		var $obj = calFunc.getFormValue();
 		$.ajax({
-			url: ctx + "/adms/calendar/management/delete_ajx.do",
+			url: "delete_ajax.do",
 			type: "POST",
 			contentType: "application/json;charset=UTF-8",
 			data: JSON.stringify($obj)

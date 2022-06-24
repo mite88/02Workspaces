@@ -128,7 +128,7 @@
 			
 					<nav>
 					  <div class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-light border-0 rounded-nav" id="nav-tab" role="tablist">
-					    <c:forEach items='${offlice_list }' var="row" varStatus="loop">
+					    <c:forEach items='${office_list }' var="row" varStatus="loop">
 
 						    <c:if test="${loop.first}">
 						    	<!-- 첫번째만추가 -->
@@ -146,7 +146,7 @@
 				
 					<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
 					
-						 <c:forEach items='${offlice_list }' var="row2" varStatus="loop">
+						 <c:forEach items='${office_list }' var="row2" varStatus="loop">
 						 
 							 <c:if test="${loop.first}">
 						    	<!-- 첫번째만추가 -->

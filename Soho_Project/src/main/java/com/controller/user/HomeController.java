@@ -25,12 +25,12 @@ public class HomeController extends HttpServlet {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 				
-		List<OfficeDTO> offlice_list = dao.officeSelect(map); //리스트
+		List<OfficeDTO> office_list = dao.officeSelect(map); //리스트
 		dao.close(); //자원해제
 
-		req.setAttribute("offlice_list", offlice_list);
+		req.setAttribute("office_list", office_list);
 		
-		System.out.println("offlice_list"+offlice_list);
+		System.out.println("office_list"+office_list);
 		req.getRequestDispatcher("/user/index.jsp").forward(req, resp);
 	}
 	

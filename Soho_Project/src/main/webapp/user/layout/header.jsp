@@ -60,7 +60,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/ko.min.js"></script>
 </head>
 <body>
-
+	<!-- session정보 -->
+	<input type="hidden" name="user_id" id="user_id" value="${USER_ID}" />
+	<input type="hidden" name="user_name" id="user_name" value="${USER_NAME}" />
 <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border position-relative text-primary" style="width: 6rem; height: 6rem;" role="status"></div>
@@ -129,7 +131,13 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Books</a>
                     <div class="dropdown-menu border-0 m-0">
                         <a href="<%=request.getContextPath()%>/books.do/books" class="dropdown-item">예약하기</a>
-                        <a href="<%=request.getContextPath()%>/books.do/confirm" class="dropdown-item">예약확인</a>
+                        <c:choose>
+							<c:when test="${not empty USER_ID}">
+								 <a href="<%=request.getContextPath()%>/books.do/confirm" class="dropdown-item">예약확인</a>
+							</c:when>
+						
+						</c:choose>
+                       
                     </div>
                 </div>
                

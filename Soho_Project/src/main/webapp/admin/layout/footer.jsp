@@ -10,12 +10,12 @@
 					<li class="list-inline-item"><a href="./license.html"
 						class="link-secondary">License</a></li>
 					<li class="list-inline-item"><a
-						href="https://github.com/tabler/tabler" target="_blank"
+						href="https:github.com/tabler/tabler" target="_blank"
 						class="link-secondary" rel="noopener">Source code</a></li>
 					<li class="list-inline-item"><a
-						href="https://github.com/sponsors/codecalm" target="_blank"
-						class="link-secondary" rel="noopener"> <!-- Download SVG icon from http://tabler-icons.io/i/heart -->
-							<svg xmlns="http://www.w3.org/2000/svg"
+						href="https:github.com/sponsors/codecalm" target="_blank"
+						class="link-secondary" rel="noopener"> <!-- Download SVG icon from http:tabler-icons.io/i/heart -->
+							<svg xmlns="http:www.w3.org/2000/svg"
 								class="icon text-pink icon-filled icon-inline" width="24"
 								height="24" viewBox="0 0 24 24" stroke-width="2"
 								stroke="currentColor" fill="none" stroke-linecap="round"
@@ -40,10 +40,10 @@
 	</div>
 </footer>
 <!-- Libs JS -->
-<script src="./dist/libs/apexcharts/dist/apexcharts.min.js" defer></script>
-<script src="./dist/libs/jsvectormap/dist/js/jsvectormap.min.js" defer></script>
-<script src="./dist/libs/jsvectormap/dist/maps/world.js" defer></script>
-<script src="./dist/libs/jsvectormap/dist/maps/world-merc.js" defer></script>
+<script src="<%=request.getContextPath()%>/admin/dist/libs/apexcharts/dist/apexcharts.min.js" defer></script>
+<script src="<%=request.getContextPath()%>/admin/dist/libs/jsvectormap/dist/js/jsvectormap.min.js" defer></script>
+<script src="<%=request.getContextPath()%>/admin/dist/libs/jsvectormap/dist/maps/world.js" defer></script>
+<script src="<%=request.getContextPath()%>/admin/dist/libs/jsvectormap/dist/maps/world-merc.js" defer></script>
 <!-- Tabler Core -->
-<script src="./dist/js/tabler.min.js" defer></script>
-<script src="./dist/js/demo.min.js" defer></script>
+<script src="<%=request.getContextPath()%>/admin/dist/js/tabler.min.js" defer></script>
+<script src="<%=request.getContextPath()%>/admin/dist/js/demo.min.js" defer></script>

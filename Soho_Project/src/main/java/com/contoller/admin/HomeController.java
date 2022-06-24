@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin/index.do")
+@WebServlet("/admin.do")
 public class HomeController extends HttpServlet {
 
 	//여기서  doGet, doPost를 만들겁니다

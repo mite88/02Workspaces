@@ -1,5 +1,11 @@
 package com.member;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+
+import com.contact.ContactDTO;
+
 import common.DBConnPool;
 
 public class MemberDAO extends DBConnPool {
@@ -37,6 +43,76 @@ public class MemberDAO extends DBConnPool {
 			System.out.println("회원가입에러" + e.getMessage());
 		}
 		return result;
+	}
+
+	// Contact테이블의 게시물의 갯수를 카운트 하여 반환한다.
+	// 목록의 페이징 처리나 게시물의 가상번호 부여에 사용한다.
+	public int selectCount(Map<String, Object> map) {
+		int totalCount = 0;
+		String query = "SELECT COUNT(*) FROM member ";
+		if (map.get("searchWord") != null) {
+			query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' " + " AND TYPE="
+					+ map.get("type");
+		} 
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			rs.next();
+			totalCount = rs.getInt(1);
+		} catch (Exception e) {
+			System.out.println("게시물 카운트중 예외 발생");
+			e.printStackTrace();
+		}
+
+		return totalCount;
+	}
+
+	public List<MemberDTO> selectListPage(Map<String, Object> map) {
+		List<MemberDTO> member_board = new Vector<MemberDTO>();
+
+		String query = " " + " SELECT * FROM member ";
+
+		if (map.get("searchWord") != null) {
+			query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' " + " AND TYPE="
+					+ map.get("type");
+		}
+		query += "	ORDER BY megister_date DESC LIMIT ?, ?";
+
+		System.out.println("쿼리문=" + query);
+
+		try {
+			psmt = con.prepareStatement(query);
+			// 페이지 스타트, 엔드 값 얻어오기
+			/*
+			 * setString()으로 인파라미터를 설정하면 문자형이 되므로 값 양쪽에 싱글쿼테이션이 자동으로 삽입된다. 여기서는 정수값을 전달해야
+			 * 하므로 setInt()를 사용하고, 인수로 전달되는 변수를 정수로 변경한다.
+			 */
+			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				// 테이블이 변경되었으므로 저장하는 부분은 수정이 필요함..
+				MemberDTO dto = new MemberDTO();
+
+				dto.setUser_id(rs.getString(1));
+				dto.setUser_pw(rs.getString(2));
+				dto.setUser_name(rs.getString(3));
+				dto.setUser_email(rs.getString(4));
+				dto.setUser_phone(rs.getString(5));
+				dto.setUser_hoddy(rs.getString(6));
+				dto.setUser_job(rs.getString(7));
+				dto.setUser_info(rs.getString(8));
+				dto.setMegister_date(rs.getDate(9));
+				dto.setMemberLevel(rs.getString(10));
+
+				member_board.add(dto);
+			}
+		} catch (Exception e) {
+			System.out.println("게시물 조회 중 예외 발생");
+			e.printStackTrace();
+		}
+		return member_board;
 	}
 
 	// 회원정보(추후에 로그인 및 아이디 체크등 정보확인용으로 작업할겁니다)
