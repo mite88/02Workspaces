@@ -10,9 +10,10 @@
  *2022. 6. 21.    mite88   
  */
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,9 @@
 </style>
 </head>
 <body>
-	
+<c:set var="now" value="<%=new java.util.Date()%>" />
+<c:set var="now_month2" value="<%=new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 60)%>"/>
+
 	<!-- 로그인 여부에 따른 설정 -->
 	<c:choose>
 		<c:when test="${empty USER_ID}">
@@ -204,11 +207,12 @@
 								</div>
 
 								<div class="mb-3">
-									<label for="startDate">Start</label> <input id="startDate"
-										class="form-control" type="date" /> <span
-										id="startDateSelected"></span> <label for="endDate">End</label>
-									<input id="endDate" class="form-control" type="date" /> <span
-										id="endDateSelected"></span>
+									<label for="startDate">Start</label> 
+									<input id="startDate" class="form-control" type="date"  min="<fmt:formatDate value="${now}" pattern = "yyyy-MM-dd"/>" /> 
+									<span id="startDateSelected"></span> 
+									<label for="endDate">End</label>
+									<input id="endDate" class="form-control" type="date" min="<fmt:formatDate value="${now_month2}" pattern="yyyy-MM-dd"/>" /> 
+									<span id="endDateSelected"></span>
 								</div>
 
 

@@ -1,0 +1,54 @@
+.post-box {
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.toolbar {
+    border-bottom: 1px solid #ced4da;
+}
+
+.toolbar button {
+    font-size: 18px;
+    padding: .375rem .25rem;
+}
+
+.toolbar .dropdown {
+    margin: 0;
+}
+
+.toolbar .box {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.post-box .form-floating,
+.post-box .form-control {
+    border: none;
+}
+
+.btn-outline-blue {
+    background-color: transparent;
+    border: 1px solid #6096BA;
+    color: #6096BA;
+}
+
+.btn-outline-blue:hover,
+.btn-outline-blue:focus {
+    background-color: #6096BA;
+    color: white;
+}
+
+.btn-outline-secondary:focus {
+    background-color: #6c757d;
+    color: white;
+}
+
+.publish-btn {
+    display: flex;
+    justify-content: right;
+}
+
+.private-btn {
+    display: flex;
+    justify-content: space-between;
+}

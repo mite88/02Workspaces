@@ -1,0 +1,60 @@
+.welcome-img {
+    height: 140px;
+}
+
+.welcome-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.progress,
+.progress-bar {
+    border-radius: 10px;
+}
+
+.progress-bar {
+    background-color: #6096BA;
+}
+
+.monthly-plan {
+    max-width: 200px;
+    margin: auto;
+}
+
+.monthly-plan .form-select {
+    color: #6096BA;
+    border: none;
+    width: 65%;
+    margin: auto;
+    text-align: center;
+}
+
+.weekly-header {
+    align-items: center;
+}
+
+.weekly-header .dropdown {
+    margin-right: 0;
+}
+
+.weekly-header .btn {
+    padding: 0;
+}
+
+
+@media screen and (min-width: 576px) {
+    .monthly-border {
+        border-left: 1px solid #E7ECEF;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .monthly-border {
+        border-top: 1px solid #E7ECEF;
+        padding-top: 30px;
+    }
+
+    .weekly-header h5 {
+        font-size: 12px;
+    }
+}

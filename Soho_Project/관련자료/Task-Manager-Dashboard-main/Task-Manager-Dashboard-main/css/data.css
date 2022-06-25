@@ -1,0 +1,44 @@
+.card img:hover {
+    cursor: pointer;
+}
+
+.card-body {
+    font-size: 14px;
+}
+
+.card-img-top {
+    transition: all .5s;
+}
+
+.img-scale {
+    transform: scale(1.5);
+    z-index: 9999;
+}
+
+.icon a {
+    text-decoration: none;
+}
+
+.icon p {
+    color: #274C77;
+}
+
+.icon-box {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.color-stats {
+    font-size: 12px;
+}
+
+.share-people {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.share-people img {
+    width: 60px;
+}
