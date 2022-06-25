@@ -195,8 +195,8 @@ public class MemberDAO extends DBConnPool {
 			if (!pw.equals("")) {
 				sql += "user_pw=?, ";
 			}
-			sql += "user_name=?, user_email=?, " + "user_phone=?, user_hoddy=?, user_job=?, user_info=? "
-					+ "where user_id=?";
+			sql += "user_name=?, user_email=?, " + "user_phone=?, user_hoddy=?, user_job=?, user_info=?, memberLevel=? ";
+			sql += "where user_id=?";
 
 			// query문 확인
 			System.out.println("memberUpdate:" + sql);
@@ -212,8 +212,9 @@ public class MemberDAO extends DBConnPool {
 				psmt.setString(4, hoddy_formatted);
 				psmt.setString(5, mDto.getUser_job());
 				psmt.setString(6, mDto.getUser_info());
+				psmt.setString(7,  mDto.getMemberLevel());
 
-				psmt.setString(7, mDto.getUser_id());
+				psmt.setString(8, mDto.getUser_id());
 			} else {
 				psmt.setString(1, mDto.getUser_pw());
 				psmt.setString(2, mDto.getUser_name());
@@ -223,9 +224,13 @@ public class MemberDAO extends DBConnPool {
 				psmt.setString(5, hoddy_formatted);
 				psmt.setString(6, mDto.getUser_job());
 				psmt.setString(7, mDto.getUser_info());
+				psmt.setString(8,  mDto.getMemberLevel());
 
-				psmt.setString(8, mDto.getUser_id());
+				psmt.setString(9, mDto.getUser_id());
 			}
+			
+			
+			
 
 			result = psmt.executeUpdate();
 

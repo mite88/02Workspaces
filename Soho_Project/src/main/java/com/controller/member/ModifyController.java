@@ -49,7 +49,7 @@ public class ModifyController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-req.setCharacterEncoding("UTF-8"); //인코딩 지정 xml에서 작업했다면 안해도되지만...
+		req.setCharacterEncoding("UTF-8"); //인코딩 지정 xml에서 작업했다면 안해도되지만...
 		
 		String user_id = req.getParameter("user_id");
 		String user_pw = req.getParameter("user_pw1");

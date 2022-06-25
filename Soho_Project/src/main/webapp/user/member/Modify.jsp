@@ -273,7 +273,7 @@
 											value="${user_phone2}"> <span
 											class="input-group-text">-</span> <input type="text"
 											class="form-control" id="user_phone3" name="user_phone3"
-											placeholder="user_phone3" value="${user_phone2}">
+											placeholder="user_phone3" value="${user_phone3}">
 
 									</div>
 								</div>
@@ -329,6 +329,18 @@
 										<textarea class="form-control" id="user_info" name="user_info"
 											rows="3">${dto.user_info}</textarea>
 									</div>
+								</div>
+								
+								<!-- 등급 -->
+								<div class="col-12 d-none">
+									<label for="memberLevel" class="form-label">회원등급</label>
+									<select class="form-select" id="memberLevel" name="memberLevel" disabled>
+										<option value="">Choose...</option>
+										<option value="admin" ${row2.memberLevel=='admin'?'selected':'' }>admin</option>
+										<option value="user" ${row2.memberLevel=='user'?'selected':'' }>user</option>
+										<option value="vip" ${row2.memberLevel=='vip'?'selected':'' }>vip</option>
+	
+									</select>
 								</div>
 
 								<hr class="my-4">

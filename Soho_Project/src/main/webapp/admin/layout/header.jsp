@@ -14,6 +14,17 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/admin/dist/css/style.css">
 
+
+<!-- Libs JS -->
+<script src="<%=request.getContextPath()%>/admin/dist/libs/apexcharts/dist/apexcharts.min.js" defer></script>
+<script src="<%=request.getContextPath()%>/admin/dist/libs/jsvectormap/dist/js/jsvectormap.min.js" defer></script>
+<script src="<%=request.getContextPath()%>/admin/dist/libs/jsvectormap/dist/maps/world.js" defer></script>
+<script src="<%=request.getContextPath()%>/admin/dist/libs/jsvectormap/dist/maps/world-merc.js" defer></script>
+<!-- Tabler Core -->
+<script src="<%=request.getContextPath()%>/admin/dist/js/tabler.min.js" defer></script>
+<script src="<%=request.getContextPath()%>/admin/dist/js/demo.min.js" defer></script>
+<script  src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+
 <style type="text/css">
 nav .navbar-nav a.nav-link {
 	font-weight: bold;
@@ -118,7 +129,7 @@ nav .navbar-nav  a.nav-link.active {
 							<div class="dropdown-menu">
 								<div class="dropdown-menu-columns">
 									<div class="dropdown-menu-column">
-										<a class="dropdown-item" href="<%=request.getContextPath()%>/admin.do/member"> 회원관리</a> 
+										<a class="dropdown-item" href="<%=request.getContextPath()%>/admin.do/member/list"> 회원관리</a> 
 									</div>
 									
 								</div>
@@ -157,8 +168,7 @@ nav .navbar-nav  a.nav-link.active {
 							<div class="dropdown-menu">
 								<div class="dropdown-menu-columns">
 									<div class="dropdown-menu-column">
-										<a class="dropdown-item" href="<%=request.getContextPath()%>/activity.html"> 게시판관리</a> 
-										<a class="dropdown-item" href="<%=request.getContextPath()%>/activity.html"> 게시물관리</a> 
+										<a class="dropdown-item" href="<%=request.getContextPath()%>/admin.do/contact/list"> 게시판관리</a> 
 									</div>
 									
 								</div>

@@ -20,7 +20,7 @@ import utils.BoardPage;
 import utils.BookBoardPage;
 import utils.JSFunction;
 
-@WebServlet("/admin.do/member")
+@WebServlet("/admin.do/member/*")
 public class MemberController extends HttpServlet {
 
 	//여기서  doGet, doPost를 만들겁니다
@@ -40,6 +40,8 @@ public class MemberController extends HttpServlet {
 			String command = uri.substring(path.length()); // 요청 분기
 			String page_name="";//페이지 이동위치
 			String title_name="";//페이지 제목
+			
+			int result = 0;
 
 			
 			//포워딩에 사용하기 위한 변수
@@ -48,7 +50,7 @@ public class MemberController extends HttpServlet {
 
 			System.out.println(command);
 
-			if (command.contains("/admin.do/member") && method.equals("GET")) {
+			if (command.contains("/admin.do/member/list") && method.equals("GET")) {
 				// 가입리스트
 				page_name="/admin/member/list.jsp";
 				title_name ="가입자 리스트";
@@ -115,7 +117,7 @@ public class MemberController extends HttpServlet {
 				dao.close();
 				
 				//페이지 번호 생성을 위한 유틸리티 클래스 호출
-				String pagingImg = BoardPage.pageingStr(totalCount, pageSize, blockPage, pageNum,  path+"/admin.do/member", searchField, searchWord);
+				String pagingImg = BoardPage.pageingStr(totalCount, pageSize, blockPage, pageNum,  path+"/admin.do/member/list", searchField, searchWord);
 				map.put("pagingImg", pagingImg);
 				map.put("totalCount", totalCount);
 				map.put("pageSize", pageSize);
@@ -130,18 +132,81 @@ public class MemberController extends HttpServlet {
 				req.setAttribute("memberLists", memberLists);
 				req.setAttribute("map", map);
 
-			}else if (command.contentEquals("/books.do/select_ajax") && method.equals("GET")) {
+			}else if (command.contains("/admin.do/member/modify") ) {
+				//회원수정
+				
+				req.setCharacterEncoding("UTF-8"); //인코딩 지정 xml에서 작업했다면 안해도되지만...
+				
+				String user_id = req.getParameter("user_id");
+				String user_pw = req.getParameter("user_pw1");
+				String user_name = req.getParameter("user_name");
+				String user_email = req.getParameter("user_email1")+"@"+req.getParameter("user_email2");
+				String user_phone = req.getParameter("user_phone1")+"-"+req.getParameter("user_phone2")+"-"+req.getParameter("user_phone3");
+				//checkBox의 여러 내용을 저장하기위해 getParameterValues 사용
+				String[] user_hoddy = req.getParameterValues("user_hoddy");
+				String user_job = req.getParameter("user_job");
+				String user_info = req.getParameter("user_info");
+				String memberLevel = req.getParameter("memberLevel");
+				
+				//megister_date은 기본으로 sysdate를 지정하였으므로 할필요없습니다
+				
+				MemberDAO mDao = new MemberDAO();
+				MemberDTO mDto = new MemberDTO();
+				
+				mDto.setUser_id(user_id);
+				mDto.setUser_pw(user_pw);
+				mDto.setUser_name(user_name);
+				mDto.setUser_email(user_email);
+				mDto.setUser_phone(user_phone);
+				String hoddy_formatted = String.join(", ", user_hoddy);
+				mDto.setUser_hoddy(hoddy_formatted);
+				mDto.setUser_job(user_job);
+				mDto.setUser_info(user_info);
+				mDto.setMemberLevel(memberLevel);
+				
+				result = mDao.memberUpdate(mDto);
+				
+				mDao.close(); //반납
+				
+				
 			
+			
+			}else if (command.contains("/admin.do/member/delete") ) {
+				//회원탈퇴
+				String user_id = req.getParameter("del_id");
+				String user_pw = req.getParameter("del_pw"); //prompt에서 
+
+				System.out.println("prompt:"+user_pw);
+				
+				//DB 연결
+				dao = new MemberDAO();
+				dto = new MemberDTO();
+				
+				dto.setUser_id(user_id);
+				dto.setUser_pw(user_pw);
+
+				//삭제
+				result = dao.memberDelete(dto);
+				
+				dao.close(); //반납
+				
 			
 			}
 			
-			if(page_name!="" && !command.contains("_ajax")) {
+			if(page_name!="" && !command.contains("/admin.do/member/delete") && !command.contains("/admin.do/member/modify")) {
 				req.setAttribute("title_name", title_name);
 				req.setAttribute("result", 1);
 				
 				dispatcher = req.getRequestDispatcher(page_name);
 				dispatcher.forward(req, resp);
-			}else if( command.contains("_ajax")){
+			}else if(command.contains("/admin.do/member/delete") || command.contains("/admin.do/member/modify")){
+
+				//삭제완료시...
+				if(result == 1) {
+					JSFunction.alertLocation(resp, "완료", "../../admin.do");
+				}else {
+					JSFunction.alertBack(resp, "실패");
+				}
 				
 			}else {
 				JSFunction.alertBack(resp, "페이지 오류");
