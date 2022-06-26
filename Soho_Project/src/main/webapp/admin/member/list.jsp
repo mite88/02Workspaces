@@ -55,6 +55,23 @@
 							<div class="card">
 
 								<div class="card-body">
+								
+								
+									<!-- 검색 폼 -->
+								<form method="get">
+
+									<div class="input-group">
+										<select name="searchField" class="form-select input-group-text">
+												<option value="user_id">아이디</option>
+												<option value="user_name">이름</option>
+												<option value="user_email">이메일</option>
+												<option value="user_phone">전화번호</option>
+										</select> 
+										<input type="text"  class="form-control" name="searchWord" /> 
+							            <button type="submit" class="btn btn-primary">검색하기</button>
+							        </div>
+
+								</form>
 
 									<!-- 목록 테이블 -->
 									<table id="contact_list" class="table text-center">

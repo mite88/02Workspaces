@@ -6,8 +6,7 @@
  * 4. 설명 : 회원수정(+탈퇴버튼)
  */
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -15,13 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="<%=request.getContextPath()%>/resources/jQuery/jquery-3.6.0.min.js"></script>
-<link
-	href="<%=request.getContextPath()%>/resources/bootstrap-5.1.3/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="<%=request.getContextPath()%>/resources/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/jQuery/jquery-3.6.0.min.js"></script>
 
 <script>
 	//회원가입 유효성검사

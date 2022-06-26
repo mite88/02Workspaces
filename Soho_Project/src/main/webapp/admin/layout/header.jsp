@@ -168,7 +168,7 @@ nav .navbar-nav  a.nav-link.active {
 							<div class="dropdown-menu">
 								<div class="dropdown-menu-columns">
 									<div class="dropdown-menu-column">
-										<a class="dropdown-item" href="<%=request.getContextPath()%>/admin.do/contact/list"> 게시판관리</a> 
+										<a class="dropdown-item" href="<%=request.getContextPath()%>/admin.do/contact/list/?type=all"> 게시판관리</a> 
 									</div>
 									
 								</div>

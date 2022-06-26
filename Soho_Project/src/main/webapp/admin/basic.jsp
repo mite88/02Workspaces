@@ -56,6 +56,9 @@
 		</div>
 		<!--page-wrapper end-->
 		
+		<!-- header -->
+		<jsp:include page="layout/footer.jsp" />
+		
 	</div>
 </body>
 </html>

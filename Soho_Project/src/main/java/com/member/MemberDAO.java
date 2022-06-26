@@ -51,8 +51,7 @@ public class MemberDAO extends DBConnPool {
 		int totalCount = 0;
 		String query = "SELECT COUNT(*) FROM member ";
 		if (map.get("searchWord") != null) {
-			query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' " + " AND TYPE="
-					+ map.get("type");
+			query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' " ;
 		} 
 		try {
 			stmt = con.createStatement();
@@ -73,8 +72,7 @@ public class MemberDAO extends DBConnPool {
 		String query = " " + " SELECT * FROM member ";
 
 		if (map.get("searchWord") != null) {
-			query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' " + " AND TYPE="
-					+ map.get("type");
+			query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' ";
 		}
 		query += "	ORDER BY megister_date DESC LIMIT ?, ?";
 

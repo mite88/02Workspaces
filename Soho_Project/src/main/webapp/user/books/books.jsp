@@ -10,10 +10,24 @@
  *2022. 6. 21.    mite88   
  */
 --%>
+<%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%
+ Date date= new Date();
+ Calendar cal = Calendar.getInstance();
+ cal.setTime (date);
+ cal.add (Calendar.DATE, 60);
+ date = cal.getTime();
+
+ Date date2= new Date();
+ Calendar cal2 = Calendar.getInstance();
+ cal2.setTime (date);
+ cal2.add (Calendar.DATE, 120);
+ date2 = cal2.getTime();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,8 +44,7 @@
 </style>
 </head>
 <body>
-<c:set var="now" value="<%=new java.util.Date()%>" />
-<c:set var="now_month2" value="<%=new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 60)%>"/>
+<!-- 현재일 및 두달뒤부터 가능하게 설정 -->
 
 	<!-- 로그인 여부에 따른 설정 -->
 	<c:choose>
@@ -46,6 +59,11 @@
 		
 			<!-- header -->
 			<jsp:include page="../layout/header.jsp"></jsp:include>
+			
+			<!-- bootstrap-datepicker -->
+			<script src="<%=request.getContextPath()%>/user/resources/lib/bootstrap-datepicker-master/js/bootstrap-datepicker.js"></script>
+			<script src="<%=request.getContextPath()%>/user/resources/lib/bootstrap-datepicker-master/js/bootstrap-datepicker.kr.js"></script>
+			<link rel="stylesheet" href="<%=request.getContextPath()%>/user/resources/lib/bootstrap-datepicker-master/css/bootstrap-datepicker.css">
 		
 			<!-- fullcalendar CDN -->
 			<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
@@ -149,8 +167,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="exampleModalLabel">New message</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"
-								aria-label="Close"></button>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
 							<form>
@@ -162,13 +179,48 @@
 									<input type="text" class="form-control" id="title">
 								</div>
 
+							
+								<%-- <div class="mb-3">
+									<label for="startDate">Start</label> 
+									<input id="startDate" class="form-control" type="date"  
+									min="<fmt:formatDate value="<%=date%>" pattern = "yyyy-MM-dd"/>" /> 
+									<span id="startDateSelected"></span> 
+									<label for="endDate">End</label>
+									<input id="endDate" class="form-control" type="date" 
+									min="<fmt:formatDate value="<%=date2%>" pattern = "yyyy-MM-dd"/>" /> 
+									<span id="endDateSelected"></span>
+								</div> --%>
+
 								<div class="mb-3">
-									<label for="startDate">Start</label> <input id="startDate"
-										class="form-control" type="date" /> <span
-										id="startDateSelected"></span> <label for="endDate">End</label>
-									<input id="endDate" class="form-control" type="date" /> <span
-										id="endDateSelected"></span>
+									<div class="input-group has-validation">
+										<input class="from_date form-control" placeholder="Select start date" type="text" id="startDate" name="startDate">
+										<span class="input-group-text">~</span> 
+										<input class="to_date form-control" placeholder="Select end date" type="text" id="endDate" name="endDate">
+									</div>
 								</div>
+								
+								<script>
+								
+								$(".from_date").datepicker({
+								    format: 'yyyy-mm-dd',
+								    autoclose: true,
+								    startDate: '+2m',
+								    language : "kr",
+								}).on('changeDate', function (selected) {
+									var date = new Date(selected.date.valueOf());
+									var startDate =   new Date(date.setDate(date.getDate() + 60));
+
+								    $('.to_date').datepicker('setStartDate', startDate);
+								}).on('clearDate', function (selected) {
+								    $('.to_date').datepicker('setStartDate', null);
+								});
+
+								$(".to_date").datepicker({
+								    format: 'yyyy-mm-dd',
+								    autoclose: true,
+								    language : "kr"
+								});
+								</script>
 
 
 								<div class="mb-3">
@@ -178,10 +230,8 @@
 							</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-bs-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" id="submitButton">Send
-								message</button>
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary" id="submitButton">Send message</button>
 						</div>
 					</div>
 				</div>
@@ -208,10 +258,10 @@
 
 								<div class="mb-3">
 									<label for="startDate">Start</label> 
-									<input id="startDate" class="form-control" type="date"  min="<fmt:formatDate value="${now}" pattern = "yyyy-MM-dd"/>" /> 
+									<input id="startDate" class="form-control" type="date" /> 
 									<span id="startDateSelected"></span> 
 									<label for="endDate">End</label>
-									<input id="endDate" class="form-control" type="date" min="<fmt:formatDate value="${now_month2}" pattern="yyyy-MM-dd"/>" /> 
+									<input id="endDate" class="form-control" type="date" /> 
 									<span id="endDateSelected"></span>
 								</div>
 

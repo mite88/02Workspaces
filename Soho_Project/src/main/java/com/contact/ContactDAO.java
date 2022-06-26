@@ -19,14 +19,26 @@ public class ContactDAO extends DBConnPool {
 		public int selectCount(Map<String, Object> map) {
 			int totalCount = 0;
 			String query = "SELECT COUNT(*) FROM contact ";
+
 			if(map.get("searchWord") != null) {
 				query += " WHERE " + map.get("searchField")
-						+ " LIKE '%" + map.get("searchWord")+ "%' "
-						+ " AND TYPE="+map.get("type");
-			}else
-			{
-				query += " WHERE TYPE="+map.get("type");
+						+ " LIKE '%" + map.get("searchWord")+ "%' ";
+				
+				if(map.get("type") != null  )
+				{
+					query += " and TYPE="+map.get("type");
+					
+				}
+				
+			}else {
+				if(map.get("type") != null  )
+				{
+					query += " where TYPE="+map.get("type");
+					
+				}
 			}
+			
+			
 			try {
 				stmt = con.createStatement();
 				rs = stmt.executeQuery(query);
@@ -51,18 +63,30 @@ public class ContactDAO extends DBConnPool {
 		 */
 		public List<ContactDTO> selectListPage(Map<String, Object> map){
 			List<ContactDTO> board = new Vector<ContactDTO>();
+			
+			System.out.println("``"+map.get("type"));
 
 			String query = " " 
 						+ " SELECT * FROM contact ";
 
 			if(map.get("searchWord") != null) {
 				query += " WHERE " + map.get("searchField")
-						+ " LIKE '%" + map.get("searchWord")+ "%' "
-						+ " AND TYPE="+map.get("type");
-			}else
-			{
-				query += " WHERE TYPE="+map.get("type");
+						+ " LIKE '%" + map.get("searchWord")+ "%' ";
+				
+				if(map.get("type") != null  )
+				{
+					query += " and TYPE="+map.get("type");
+					
+				}
+				
+			}else {
+				if(map.get("type") != null  )
+				{
+					query += " where TYPE="+map.get("type");
+					
+				}
 			}
+			
 			query += "	ORDER BY idx DESC LIMIT ?, ?";
 			System.out.println("쿼리문=" + query);
 
@@ -121,9 +145,9 @@ public class ContactDAO extends DBConnPool {
 				default값이 입력되듯 자동증가값이 자동으로 입력된다.
 				 */
 				String query = "INSERT INTO contact ( "
-								+ " name, , type, title, content, ofile, sfile, video_url, pass) "
+								+ " name, type, title, content, ofile, sfile, video_url, pass) "
 								+ " VALUES ( "
-								+ " ?,?,?,?,?,?,?)";
+								+ " ?,?,?,?,?,?,?,?)";
 				
 				
 				
@@ -278,7 +302,7 @@ public class ContactDAO extends DBConnPool {
 				//update쿼리문 작성
 				String query = "UPDATE contact "
 							+ " SET type=?, title=?, name=?, content=?, ofile=?, sfile=?, video_url=? "
-							+ " WHERE idx=? and pass=?";
+							+ " WHERE idx=?";
 				//동적쿼리문 실행을 위해 prepared객체 생성 및 인파라미터 설정
 				psmt = con.prepareStatement(query);
 				psmt.setInt(1, dto.getType());
@@ -289,7 +313,6 @@ public class ContactDAO extends DBConnPool {
 				psmt.setString(6, dto.getSfile());
 				psmt.setString(7, dto.getVideo_url());
 				psmt.setInt(8, dto.getIdx());
-				psmt.setString(9, dto.getPass());
 				
 				//쿼리 실행 및 결과 반환(update된 행의 갯수)
 				result = psmt.executeUpdate();
