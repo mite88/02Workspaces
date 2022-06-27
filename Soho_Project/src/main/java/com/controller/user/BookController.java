@@ -76,6 +76,17 @@ public class BookController extends HttpServlet {
 				offilce_code = Integer.parseInt(req.getParameter("code"));  //사무실코드
 
 			}
+
+
+			//검섹어 관련 파라미터 처리
+			String searchField = req.getParameter("searchField");
+			String searchWord = req.getParameter("searchWord");
+			
+			if(searchWord != null) {
+				//검색어를 입력한 경우에만 Model(데이터베이스)로 전달하기 위해 저장함
+				map.put("searchField", searchField);
+				map.put("searchWord", searchWord);
+			}
 			
 			//게시물의 갯수를 카운트 함. 검색어가 있는 경우 Map컬렉션을 통해 전달됨.
 			int totalCount = dao.selectCount(map, user_id);
@@ -123,7 +134,8 @@ public class BookController extends HttpServlet {
 			dao.close(); //자원해제
 			
 			//페이지 번호 생성을 위한 유틸리티 클래스 호출
-			String pagingImg = BookBoardPage.pageingStr(totalCount, pageSize, blockPage, pageNum,  path+"/books.do/confirm/");
+			String pagingImg = BookBoardPage.pageingStr
+					(totalCount, pageSize, blockPage, pageNum,  path+"/books.do/confirm/",searchField, searchWord);
 			map.put("pagingImg", pagingImg);
 			map.put("totalCount", totalCount);
 			map.put("pageSize", pageSize);

@@ -6,8 +6,8 @@
  * 4. 설명 : 로그인
  */
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,13 +71,14 @@ function loginCheck(form) {
 								
 								<form onsubmit="return loginCheck(this);" method="post">
 									<div class="form-group mb-3">
-										<input name="user_id" type="text" placeholder="id입력" class="form-control rounded-pill border-0 shadow-sm px-4">
+										<input name="user_id" type="text" placeholder="id입력" class="form-control rounded-pill border-0 shadow-sm px-4" value="${cookie.userId.value}">
 									</div>
 									<div class="form-group mb-3">
 										<input name="user_pw" type="password" placeholder="Password" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
 									</div>
 									<div class="custom-control custom-checkbox mb-3">
-										<input id="id_check" type="checkbox" checked class="custom-control-input"> 
+					
+										<input id="id_check" name="id_check" type="checkbox" checked class="custom-control-input" > 
 										<label for="customCheck1" class="custom-control-label">Remember Id</label>
 									</div>
 									
@@ -86,7 +87,7 @@ function loginCheck(form) {
 										Login</button>
 										
 										<button type="button" class="btn  btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm"
-										 onclick="location.href='${pageContext.request.contextPath}/member/register.do'">
+										 onclick="location.href='${pageContext.request.contextPath}/member.do/register'">
 										Join</button>
 									</div>
 

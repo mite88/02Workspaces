@@ -139,7 +139,7 @@
 			var cells = rows[trNum].getElementsByTagName("td");
 			//alert(trNum);
 
-			var content_text = cells[2].childNodes[1].innerHTML;
+			var content_text = cells[3].childNodes[1].innerHTML;
 			console.log(content_text);
 
 			

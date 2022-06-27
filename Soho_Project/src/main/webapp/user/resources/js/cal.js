@@ -36,7 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			var myModal = new bootstrap.Modal(document.getElementById('viewModal'));
 			myModal.show();
 			
+			//console.log(info.event);
+			
 			//데이터출력
+			document.querySelector('#viewModal #o_name').value=info.event.extendedProps.o_name;
 			document.querySelector('#viewModal #number').value=info.event.id;
 			document.querySelector('#viewModal #title').value=info.event.title;
 			document.querySelector('#viewModal #startDate').value=moment(info.event.startStr).format('YYYY-MM-DD');
@@ -76,21 +79,21 @@ document.addEventListener('DOMContentLoaded', function() {
 				dataType: 'json',
 				success: function(json) {
 					
-					$("#editModal .clone_select").append('<select class="code"><option value="">Select Month</option></select>');
-					$(".fc-toolbar-chunk:eq(2)").append('<select class="office_num"><option value="">Select Month</option></select>');
+					$("#editModal .clone_select").append('<select class="code"><option value="">지점선택</option></select>');
+					$(".fc-toolbar-chunk:eq(2)").append('<select class="office_num"><option value="">지점선택</option></select>');
 
 					var events = [];
 
 					var o_values = json.offlice_list; //java에서 정의한 ArrayList명을 적어준다.
 
-					$.each(o_values, function(index, val) {
+					$.each(o_values, function(index, val1) {
 						//alert(val.code);
 						$("#editModal .clone_select .code").append(
-							'<option value="'+val.code+'">'+val.o_name+'</option>'
+							'<option value="'+val1.code+'">'+val1.o_name+'</option>'
 						);
 						
 						$(".fc-toolbar-chunk .office_num").append(
-							'<option value="'+val.code+'">'+val.o_name+'</option>'
+							'<option value="'+val1.code+'">'+val1.o_name+'</option>'
 						);
 
 					});
@@ -99,10 +102,12 @@ document.addEventListener('DOMContentLoaded', function() {
 					
 					
 					var values = json.Lists; //java에서 정의한 ArrayList명을 적어준다.
+					
+					//console.log(values);
 					$.each(values, function(index, val) {
-
 						events.push({
 							id: val.number,
+							o_name: val.o_name,
 							title: val.title,
 							start:  moment(val.start).format('YYYY-MM-DD HH:mm:ss'),
 							end:   moment(val.end).format('YYYY-MM-DD HH:mm:ss'),

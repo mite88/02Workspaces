@@ -1,53 +1,39 @@
-package com.controller.member;
+package com.controller.user.member;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.member.MemberDAO;
 import com.member.MemberDTO;
+import com.member.MemberDAO;
 
-import common.JDBConnect;
+import utils.AES256;
 import utils.JSFunction;
 
-@WebServlet("/member.do/modify")
-public class ModifyController extends HttpServlet {
-	
+@WebServlet("/member.do/register")
+public class RegisterController extends HttpServlet {
+
 	//여기서  doGet, doPost를 만들겁니다
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//세션의 정보를 통해 회원정보조회
-		HttpSession session = req.getSession();
-		
-		//session은 object 형이기때문에 toString()으로 해서 변환시킴
-		String user_id = session.getAttribute("USER_ID").toString();
-		
-		MemberDAO dao = new MemberDAO();
-		MemberDTO dto = dao.memberSelect(user_id, "");
-		System.out.println(dto.getUser_name());
-		
-		dao.close(); //반납
-		
-		//회원정보 전달
-		req.setAttribute("dto", dto);
-		
-		//합쳐진 값 나누기위해 값 전달하기
-		req.setAttribute("user_phone1", dto.getUser_phone().split("-")[0]);
-		req.setAttribute("user_phone2", dto.getUser_phone().split("-")[1]);
-		req.setAttribute("user_phone3", dto.getUser_phone().split("-")[2]);
-		
-		req.setAttribute("title_name", "회원수정");
-		
-		req.getRequestDispatcher("/user/member/Modify.jsp").forward(req, resp);
+		req.setAttribute("title_name", "회원가입");
+		req.getRequestDispatcher("/user/member/Register.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//req.getRequestDispatcher("/member/Register.jsp").forward(req, resp);
+		
+		/*
+		회원가입 전송 부분 
+		*/
 		
 		req.setCharacterEncoding("UTF-8"); //인코딩 지정 xml에서 작업했다면 안해도되지만...
 		
@@ -66,9 +52,19 @@ public class ModifyController extends HttpServlet {
 		
 		MemberDAO mDao = new MemberDAO();
 		MemberDTO mDto = new MemberDTO();
+		AES256 aes = new AES256();//비번 암호화
 		
 		mDto.setUser_id(user_id);
-		mDto.setUser_pw(user_pw);
+		
+		System.out.println(user_pw);
+		
+		try {
+			mDto.setUser_pw(aes.encrypt(user_pw));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		mDto.setUser_name(user_name);
 		mDto.setUser_email(user_email);
 		mDto.setUser_phone(user_phone);
@@ -78,18 +74,16 @@ public class ModifyController extends HttpServlet {
 		mDto.setUser_info(user_info);
 		mDto.setMemberLevel(memberLevel);
 		
-		int joinResult = mDao.memberUpdate(mDto);
-		
+		int joinResult = mDao.memberInsert(mDto);
 		mDao.close(); //반납
 		
 		if (joinResult == 1) {
 
-			JSFunction.alertLocation(resp, "회원수정성공", "../index.do");
+			JSFunction.alertLocation(resp, "회원가입성공", "../index.do");
 		} else {
 			
-			JSFunction.alertBack(resp, "회원수정실패");
+			JSFunction.alertBack(resp, "회원가입실패");
 
 		}
-
 	}
 }

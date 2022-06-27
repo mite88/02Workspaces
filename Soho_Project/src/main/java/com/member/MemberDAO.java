@@ -113,6 +113,9 @@ public class MemberDAO extends DBConnPool {
 		return member_board;
 	}
 
+	
+	
+	
 	// 회원정보(추후에 로그인 및 아이디 체크등 정보확인용으로 작업할겁니다)
 	public MemberDTO memberSelect(String id, String pw) {
 		MemberDTO dto = new MemberDTO(); // 객체생성
@@ -168,6 +171,48 @@ public class MemberDAO extends DBConnPool {
 					dto.setMemberLevel(rs.getString(10));
 
 				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("로그인에러" + e.getMessage());
+			e.getStackTrace();
+
+		}
+
+		return dto;
+	}
+	
+	//특정 회원편(관리자)
+	//회원정보
+		public MemberDTO memberLogin_admin(String id, String pw) {
+		MemberDTO dto = new MemberDTO(); // 객체생성
+		try {
+			System.out.println("id:" + id);
+			System.out.println("pw:" + pw);
+
+			// 아이디와 비번이 맞는지 확인용
+			String sql = "select * from member where user_id = ? and user_pw = ? and memberLevel=?";
+
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
+			psmt.setString(3, "admin"); //관리자용
+			rs = psmt.executeQuery();
+
+			// rs.next(); // 해당결과는 한행뿐이기 때문에 if문을 쓰지않음
+			if (rs.next()) {
+
+				dto.setUser_id(rs.getString(1));
+				dto.setUser_pw(rs.getString(2));
+				dto.setUser_name(rs.getString(3));
+				dto.setUser_email(rs.getString(4));
+				dto.setUser_phone(rs.getString(5));
+				dto.setUser_hoddy(rs.getString(6));
+				dto.setUser_job(rs.getString(7));
+				dto.setUser_info(rs.getString(8));
+				dto.setMegister_date(rs.getDate(9));
+				dto.setMemberLevel(rs.getString(10));
+
 			}
 
 		} catch (Exception e) {

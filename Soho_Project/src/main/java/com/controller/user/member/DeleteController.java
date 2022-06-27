@@ -1,4 +1,4 @@
-package com.controller.member;
+package com.controller.user.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +16,7 @@ import com.member.MemberDTO;
 
 import com.member.MemberDAO;
 
+import utils.AES256;
 import utils.JSFunction;
 
 @WebServlet("/member.do/delete")
@@ -30,6 +31,8 @@ public class DeleteController extends HttpServlet {
 		/*
 		회원탈퇴부분
 		*/
+		
+		AES256 aes = new AES256();//비번 암호화
 		
 		//id의 경우 해당 from안에서 가져와야하기 때문에 session을 이용하여 가져옴
 		//세션의 정보를 통해 회원정보조회
@@ -46,7 +49,12 @@ public class DeleteController extends HttpServlet {
 		MemberDTO dto = new MemberDTO();
 		
 		dto.setUser_id(user_id);
-		dto.setUser_pw(user_pw);
+		try {
+			dto.setUser_pw(aes.encrypt(user_pw));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		//삭제
 		int result = dao.memberDelete(dto);

@@ -53,6 +53,15 @@
 </style>
 </head>
 <body>
+<c:choose>
+		<c:when test="${empty ADMIN_ID}">
+			<script>
+				alert("로그인 후 이용 가능합니다");
+				location.href="<%=request.getContextPath()%>/admin.do/login";
+				
+			</script>
+		</c:when>
+		<c:otherwise>
 
 	<!-- 파일 형식지정용 -->
 	<c:set var="filetype" value="${fn:split(dto.ofile, '.')}" />
@@ -217,5 +226,8 @@ or (fn:toLowerCase(filetype[fn:length(filetype)-1]) eq 'mp3')}" />
 		<jsp:include page="../layout/footer.jsp" />
 
 	</div>
+	</c:otherwise>
+
+	</c:choose>
 </body>
 </html>

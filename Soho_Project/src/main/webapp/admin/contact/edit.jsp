@@ -141,6 +141,15 @@ input[type="file"] {
 
 </head>
 <body>
+<c:choose>
+		<c:when test="${empty ADMIN_ID}">
+			<script>
+				alert("로그인 후 이용 가능합니다");
+				location.href="<%=request.getContextPath()%>/admin.do/login";
+				
+			</script>
+		</c:when>
+		<c:otherwise>
 	<div class="page">
 
 		<!-- header -->
@@ -252,5 +261,8 @@ input[type="file"] {
 		<jsp:include page="../layout/footer.jsp" />
 
 	</div>
+	</c:otherwise>
+
+	</c:choose>
 </body>
 </html>

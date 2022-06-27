@@ -14,7 +14,7 @@
 
 #carouselExampleDark, .carousel-inner, .carousel-item, .carousel-item.active
 	{
-	height: 100vh;
+	
 }
 
 .carousel-item {

@@ -244,7 +244,7 @@
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+							<h5 class="modal-title" id="exampleModalLabel">예약조회</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"
 								aria-label="Close"></button>
 						</div>
@@ -252,8 +252,13 @@
 							<form>
 								<input type="hidden" class="form-control" id="number">
 								<div class="mb-3">
-									<label for="recipient-name" class="col-form-label">title:</label>
+									<label for="title" class="col-form-label">title:</label>
 									<input type="text" class="form-control" id="title">
+								</div>
+								
+								<div class="mb-3">
+									<label for="office_name" class="col-form-label">지점명:</label>
+									<input type="text" class="form-control" id="o_name">
 								</div>
 
 								<div class="mb-3">

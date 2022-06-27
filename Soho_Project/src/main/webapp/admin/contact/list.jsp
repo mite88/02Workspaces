@@ -13,6 +13,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <title>${title_name}</title>
 
+
 <style type="text/css">
 @media only screen and (max-width: 800px) {
 	
@@ -26,6 +27,15 @@
 
 </head>
 <body>
+<c:choose>
+		<c:when test="${empty ADMIN_ID}">
+			<script>
+				alert("로그인 후 이용 가능합니다");
+				location.href="<%=request.getContextPath()%>/admin.do/login";
+				
+			</script>
+		</c:when>
+		<c:otherwise>
 	<div class="page">
 
 		<!-- header -->
@@ -66,17 +76,17 @@
 
 											<label class="form-selectgroup-item"> 
 											<input type="submit" name="type" value="all" class="form-selectgroup-input"> 
-											<span class="form-selectgroup-label">전체</span>
+											<span class="form-selectgroup-label type_span_all">전체</span>
 											</label>
 											
 											<label class="form-selectgroup-item"> 
 											<input type="submit" name="type" value="1" class="form-selectgroup-input"> 
-											<span class="form-selectgroup-label">공지</span>
+											<span class="form-selectgroup-label type_span_1">공지</span>
 											</label>
 											
 											<label class="form-selectgroup-item"> 
 											<input type="submit" name="type" value="2" class="form-selectgroup-input"> 
-											<span class="form-selectgroup-label">홍보</span>
+											<span class="form-selectgroup-label type_span_2">홍보</span>
 											</label>
 
 										</div>
@@ -165,6 +175,29 @@
 	<!-- footer -->
 	<jsp:include page="../layout/footer.jsp" />
 
+<script>
+$(document).ready(function(){
+	 var styleObj = {  'background': '#206bc4',  'color': '#fff' };
+	var type = getParameterByName("type");
+	if(type =='1' || type =='2' ){
+		$(".type_span_"+ type).css( styleObj);
+	}else{
+		$(".type_span_all").css( styleObj);
+	}
+});
+
+//파라미터 받기용
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+</script>
+</c:otherwise>
+
+	</c:choose>
 
 </body>
 </html>

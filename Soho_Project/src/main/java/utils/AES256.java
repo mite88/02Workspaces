@@ -1,18 +1,20 @@
 package utils;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 //암호화 클래스
-public class AES256 {
+public class AES256  {
 
     public static String alg = "AES/CBC/PKCS5Padding";
     private final String key = "01234567890123456789012345678901";
     private final String iv = key.substring(0, 16); // 16byte
 
-    public String encrypt(String text) throws Exception {
+    public String encrypt(String text) throws Exception{
         Cipher cipher = Cipher.getInstance(alg);
         SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(), "AES");
         IvParameterSpec ivParamSpec = new IvParameterSpec(iv.getBytes());

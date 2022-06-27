@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MemberDTO {
 	private String user_id; //아이디 최대 18자까지, 기본키
-	private String user_pw; //비밀번호 최대 20자까지
+	private String user_pw; //비밀번호 암호화용
 	private String user_name; //이름
 	private String user_email; //이메일
 	private String user_phone; //휴대폰번호

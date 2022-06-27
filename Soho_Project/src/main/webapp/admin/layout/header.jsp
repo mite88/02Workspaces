@@ -47,7 +47,7 @@ nav .navbar-nav  a.nav-link.active {
 			</button>
 			<h1
 				class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-				<a href="<%=request.getContextPath()%>/"> <img src="<%=request.getContextPath()%>/static/logo.svg" width="110"
+				<a href="<%=request.getContextPath()%>/admin.do"> <img src="<%=request.getContextPath()%>/user/resources/img/icons/icon-1.png" width="110"
 					height="32" alt="Tabler" class="navbar-brand-image">
 				</a>
 			</h1>
@@ -66,36 +66,11 @@ nav .navbar-nav  a.nav-link.active {
 						<i class="ti ti-sun icon-demo-size-1_5"></i>
 					</a>
 
-					<!-- 알림 -->
-					<div class="nav-item dropdown d-none d-md-flex me-3">
-						<a href="#" class="nav-link px-0" data-bs-toggle="dropdown"
-							tabindex="-1" aria-label="Show notifications"> 
-							<i class="ti ti-bell icon-demo-size-1_5" ></i>
-							<span class="badge bg-red"></span>
-						</a>
-						
-					</div>
 				</div>
 				
-				<div class="nav-item dropdown">
-					<a href="#" class="nav-link d-flex lh-1 text-reset p-0"
-						data-bs-toggle="dropdown" aria-label="Open user menu"> <span
-						class="avatar avatar-sm"
-						style="background-image: url(/placeimg.com/48/48/any)"></span>
-						<div class="d-none d-xl-block ps-2">
-							<div>admin</div>
-							<div class="mt-1 small text-muted">UI Designer</div>
-						</div>
-					</a>
-					<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-						<a href="#" class="dropdown-item">Set status</a> <a href="#"
-							class="dropdown-item">Profile & account</a> <a href="#"
-							class="dropdown-item">Feedback</a>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item">Settings</a> <a href="#"
-							class="dropdown-item">Logout</a>
-					</div>
-				</div>
+				<a href="<%=request.getContextPath()%>/admin.do/login" class="dropdown-item">Logout</a>
+				
+				
 			</div>
 		</div>
 	</header>
@@ -129,7 +104,8 @@ nav .navbar-nav  a.nav-link.active {
 							<div class="dropdown-menu">
 								<div class="dropdown-menu-columns">
 									<div class="dropdown-menu-column">
-										<a class="dropdown-item" href="<%=request.getContextPath()%>/admin.do/member/list"> 회원관리</a> 
+										<a class="dropdown-item" href="<%=request.getContextPath()%>/admin.do/member/list"> 회원관리</a>
+										<a class="dropdown-item" href="<%=request.getContextPath()%>/admin.do/office/list"> 제휴관리</a>  
 									</div>
 									
 								</div>
@@ -146,10 +122,8 @@ nav .navbar-nav  a.nav-link.active {
 							</a>
 							<div class="dropdown-menu">
 								<div class="dropdown-menu-columns">
-									<div class="dropdown-menu-column">
-									
-										<a class="dropdown-item" href="<%=request.getContextPath()%>/activity.html"> 사무실관리 </a> 
-										<a class="dropdown-item" href="<%=request.getContextPath()%>/activity.html"> 예약캘린더 </a> 
+									<div class="dropdown-menu-column">	
+										<a class="dropdown-item" href="<%=request.getContextPath()%>/admin.do/books/list"> 예약관리 </a> 
 										
 									</div>
 									
@@ -176,7 +150,7 @@ nav .navbar-nav  a.nav-link.active {
 						</li>
 						
 						<!-- 기본설정-->
-						<li class="nav-item dropdown"><a
+						<%-- <li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#navbar4"
 							data-bs-toggle="dropdown" data-bs-auto-close="outside"
 							role="button" aria-expanded="false" href="<%=request.getContextPath()%>/form-elements.html"> 
@@ -186,14 +160,12 @@ nav .navbar-nav  a.nav-link.active {
 							<div class="dropdown-menu">
 								<div class="dropdown-menu-columns">
 									<div class="dropdown-menu-column">
-										<a class="dropdown-item" href="<%=request.getContextPath()%>/activity.html"> 기본관리</a> 
 										<a class="dropdown-item" href="<%=request.getContextPath()%>/activity.html"> 팝업/베너관리</a> 
-										<a class="dropdown-item" href="<%=request.getContextPath()%>/activity.html"> 기본관리</a> 
 									</div>
 									
 								</div>
 							</div>
-						</li>
+						</li> --%>
 						
 					</ul>
 					<!-- menu end -->

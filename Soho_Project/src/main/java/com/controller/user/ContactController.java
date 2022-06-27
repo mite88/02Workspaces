@@ -1,4 +1,4 @@
-package com.controller.contact;
+package com.controller.user;
 
 import java.io.IOException;
 import java.util.HashMap;

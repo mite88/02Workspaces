@@ -26,6 +26,15 @@
 
 </head>
 <body>
+<c:choose>
+		<c:when test="${empty ADMIN_ID}">
+			<script>
+				alert("로그인 후 이용 가능합니다");
+				location.href="<%=request.getContextPath()%>/admin.do/login";
+				
+			</script>
+		</c:when>
+		<c:otherwise>
 	<div class="page">
 
 		<!-- header -->
@@ -375,8 +384,22 @@
 	
 	
 	<script>
+	$(".offcanvas-body input").attr("readonly", true);
+	$(".offcanvas-body textarea").attr("readonly", true);
+	$(".offcanvas-body #user_id").attr("readonly", true);
+	$(".offcanvas-body button").attr("disabled", true);
+	$(".offcanvas-body select").attr("disabled", true);
 	
 	//초기
+	$(".offcanvas-header .text-reset").click( function() {
+		//alert("!!!");
+		$(".offcanvas-body input").attr("readonly", true);
+		$(".offcanvas-body textarea").attr("readonly", true);
+		$(".offcanvas-body #user_id").attr("readonly", true);
+		$(".offcanvas-body button").attr("disabled", true);
+		$(".offcanvas-body select").attr("disabled", true);
+	} );
+	
 	//수정하기 클릭시 활성화
 	function frmEditFunc() {
 
@@ -524,5 +547,8 @@
 	}
 </script>
 
+</c:otherwise>
+
+	</c:choose>
 </body>
 </html>

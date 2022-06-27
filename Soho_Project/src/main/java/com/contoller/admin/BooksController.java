@@ -11,18 +11,19 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import com.books.BooksDAO;
+import com.books.BooksDTO;
 import com.contact.ContactDAO;
 import com.contact.ContactDTO;
-import com.member.MemberDAO;
-import com.member.MemberDTO;
+import com.office.OfficeDAO;
+import com.office.OfficeDTO;
 
-import utils.AES256;
 import utils.BoardPage;
 import utils.BookBoardPage;
 import utils.JSFunction;
 
-@WebServlet("/admin.do/member/*")
-public class MemberController extends HttpServlet {
+@WebServlet("/admin.do/books/*")
+public class BooksController extends HttpServlet {
 
 	//여기서  doGet, doPost를 만들겁니다
 	//포멧지정
@@ -32,9 +33,8 @@ public class MemberController extends HttpServlet {
 		@Override
 		protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-			MemberDTO dto = new MemberDTO();
-			MemberDAO dao = new MemberDAO();
-			AES256 aes = new AES256();//비번 암호화
+			BooksDTO dto = new BooksDTO();
+			BooksDAO dao = new BooksDAO();
 			
 			String uri = req.getRequestURI(); // URI값
 			String path = req.getContextPath(); // 컨텍스트 경로
@@ -52,16 +52,16 @@ public class MemberController extends HttpServlet {
 
 			System.out.println(command);
 
-			if (command.contains("/admin.do/member/list") && method.equals("GET")) {
+			if (command.contains("/admin.do/books/list") && method.equals("GET")) {
 				// 가입리스트
-				page_name="/admin/member/list.jsp";
-				title_name ="가입자 리스트";
+				page_name="/admin/books/list.jsp";
+				title_name ="예약 리스트";
 				
 				System.out.println("!!");
-					
-				//파라미터 및 View로 전달할 데이터를 저장하기 위해 Map컬렉션을 생성
+			
 				Map<String, Object> map = new HashMap<String, Object>();
 				
+
 				//검섹어 관련 파라미터 처리
 				String searchField = req.getParameter("searchField");
 				String searchWord = req.getParameter("searchWord");
@@ -71,6 +71,7 @@ public class MemberController extends HttpServlet {
 					map.put("searchField", searchField);
 					map.put("searchWord", searchWord);
 				}
+				
 				//게시물의 갯수를 카운트 함. 검색어가 있는 경우 Map컬렉션을 통해 전달됨.
 				int totalCount = dao.selectCount(map);
 				
@@ -113,13 +114,11 @@ public class MemberController extends HttpServlet {
 				map.put("end", end);
 				/* 페이지 처리 end */
 
-				//현재 페이지에 출력할 게시물을 얻어옴.
-				List<MemberDTO> memberLists = dao.selectListPage(map);
-				//커넥션풀에 자원 반납
-				dao.close();
+				List<BooksDTO> Lists = dao.BookUser_Lists2(map); //리스트
+				dao.close(); //자원해제
 				
 				//페이지 번호 생성을 위한 유틸리티 클래스 호출
-				String pagingImg = BoardPage.pageingStr(totalCount, pageSize, blockPage, pageNum,  path+"/admin.do/member/list", searchField, searchWord);
+				String pagingImg = BookBoardPage.pageingStr(totalCount, pageSize, blockPage, pageNum,  path+"/admin.do/books/list/", searchField, searchWord);
 				map.put("pagingImg", pagingImg);
 				map.put("totalCount", totalCount);
 				map.put("pageSize", pageSize);
@@ -129,90 +128,76 @@ public class MemberController extends HttpServlet {
 				System.out.println("totalCount:"+totalCount);
 				System.out.println("pageSize:"+pageSize);
 				System.out.println("pageNum"+pageNum);
-				System.out.println("pageTemp:"+pageTemp+"/searchField:"+searchField+"/searchWord:"+searchWord);
+
 				//View로 전달할 객체들을 request영역에 저장한다.
-				req.setAttribute("memberLists", memberLists);
+
+				//전체 지점리스트 용
+				OfficeDAO o_dao = new OfficeDAO();
+
+				List<OfficeDTO> office_list = o_dao.officeSelect(map); //리스트
+				o_dao.close(); //자원해제
+				
+				dao.close(); //자원해제
+				o_dao.close(); //자원해제
+				
+				map.put("office_list", office_list);
+				
+				req.setAttribute("office_list", office_list);
+				req.setAttribute("Lists", Lists);
 				req.setAttribute("map", map);
 
-			}else if (command.contains("/admin.do/member/modify") ) {
+			}else if (command.contains("/admin.do/books/modify") ) {
 				//회원수정
 				
-				req.setCharacterEncoding("UTF-8"); //인코딩 지정 xml에서 작업했다면 안해도되지만...
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
 				
-				String user_id = req.getParameter("user_id");
-				String user_pw = req.getParameter("user_pw1");
-				String user_name = req.getParameter("user_name");
-				String user_email = req.getParameter("user_email1")+"@"+req.getParameter("user_email2");
-				String user_phone = req.getParameter("user_phone1")+"-"+req.getParameter("user_phone2")+"-"+req.getParameter("user_phone3");
-				//checkBox의 여러 내용을 저장하기위해 getParameterValues 사용
-				String[] user_hoddy = req.getParameterValues("user_hoddy");
-				String user_job = req.getParameter("user_job");
-				String user_info = req.getParameter("user_info");
-				String memberLevel = req.getParameter("memberLevel");
+				System.out.println(req.getParameterValues("pay_type"));
 				
-				//megister_date은 기본으로 sysdate를 지정하였으므로 할필요없습니다
+				//System.out.println(req.getParameter("start"));
+				//System.out.println(req.getParameter("number"));
+		
+				dto.setTitle(req.getParameter("title"));
+				dto.setStart(Timestamp.valueOf(req.getParameter("startDate") +" 00:00:00.0"));
+				dto.setEnd(Timestamp.valueOf(req.getParameter("endDate")+" 23:59:59.999"));
+				dto.setMessage(req.getParameter("message-text"));
 				
-				MemberDAO mDao = new MemberDAO();
-				MemberDTO mDto = new MemberDTO();
+				dto.setPay_type(req.getParameter("pay_type"));
 				
-				mDto.setUser_id(user_id);
-				try {
-					mDto.setUser_pw(aes.encrypt(user_pw));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				mDto.setUser_name(user_name);
-				mDto.setUser_email(user_email);
-				mDto.setUser_phone(user_phone);
-				String hoddy_formatted = String.join(", ", user_hoddy);
-				mDto.setUser_hoddy(hoddy_formatted);
-				mDto.setUser_job(user_job);
-				mDto.setUser_info(user_info);
-				mDto.setMemberLevel(memberLevel);
+				dto.setUser_id(req.getParameter("user_id"));
+				dto.setOffice_num(Integer.parseInt(req.getParameter("office_number")));
+				dto.setNumber(Long.parseLong(req.getParameter("number")));
 				
-				result = mDao.memberUpdate(mDto);
+				dao = new BooksDAO();
+				result =dao.BooksUpdate(dto);
 				
-				mDao.close(); //반납
-				
-				
-			
-			
-			}else if (command.contains("/admin.do/member/delete") ) {
+				dao.close();
+
+			}else if (command.contains("/admin.do/books/delete") ) {
 				//회원탈퇴
-				String user_id = req.getParameter("del_id");
-				String user_pw = req.getParameter("del_pw"); //prompt에서 
 
-				System.out.println("prompt:"+user_pw);
-				
+
 				//DB 연결
-				dao = new MemberDAO();
-				dto = new MemberDTO();
+				dao = new BooksDAO();
+				dto = new BooksDTO();
 				
-				dto.setUser_id(user_id);
+				dto.setNumber(Long.parseLong( req.getParameter("d_number")));
 				
-				try {
-					dto.setUser_pw(aes.encrypt(user_pw));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
 				//삭제
-				result = dao.memberDelete(dto);
+				result = dao.BooksDelete(dto);
 				
 				dao.close(); //반납
 				
 			
 			}
 			
-			if(page_name!="" && !command.contains("/admin.do/member/delete") && !command.contains("/admin.do/member/modify")) {
+			if(page_name!="" && !command.contains("/admin.do/books/delete") && !command.contains("/admin.do/books/modify")) {
 				req.setAttribute("title_name", title_name);
 				req.setAttribute("result", 1);
 				
 				dispatcher = req.getRequestDispatcher(page_name);
 				dispatcher.forward(req, resp);
-			}else if(command.contains("/admin.do/member/delete") || command.contains("/admin.do/member/modify")){
+			}else if(command.contains("/admin.do/books/delete") || command.contains("/admin.do/books/modify")){
 
 				//삭제완료시...
 				if(result == 1) {

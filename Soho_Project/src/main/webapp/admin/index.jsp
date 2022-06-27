@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <!--
 * Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
@@ -19,6 +20,15 @@
 
 </head>
 <body>
+<c:choose>
+		<c:when test="${empty ADMIN_ID}">
+			<script>
+				alert("로그인 후 이용 가능합니다");
+				location.href="<%=request.getContextPath()%>/admin.do/login";
+				
+			</script>
+		</c:when>
+		<c:otherwise>
 	<div class="page">
 
 		<!-- header -->
@@ -442,5 +452,8 @@
 		// @formatter:on
 	</script>
 	
+</c:otherwise>
+
+	</c:choose>
 </body>
 </html>
