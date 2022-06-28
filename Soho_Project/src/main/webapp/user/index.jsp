@@ -14,11 +14,14 @@
 
 <body>
 
+
 	<!-- header -->
 	<jsp:include page="layout/header.jsp"></jsp:include>
-
+	
 	<!-- carousel -->
 	<jsp:include page="layout/carousel2.jsp"></jsp:include>
+	
+	<jsp:include page="popup.jsp"></jsp:include>
 
 
 	<div class="container-xxl py-5">

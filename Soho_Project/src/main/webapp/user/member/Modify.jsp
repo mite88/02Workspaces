@@ -19,7 +19,16 @@
 <script>
 	//회원가입 유효성검사
 	function registValdidate(form) {
+		var id_RegExp = /^[a-zA-Z0-9]{8,16}$/; //id 정규식
+    	var pw_RegExp = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,20}$/; //password 정규식
+    	var name_RegExp = /^[가-힣]{2,}|[a-zA-Z]{2,}$/; //name 정규식(|로 하여 구분함)
+    	var email_RegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//email정규식
+    	var phone_RegExp = /^\d{3}-\d{3,4}-\d{4}$/; //폰번호 정규식
 
+		var email_str = form.user_email1.value+"@"+form.user_email2.value; //이메일
+    	var mobile_str = form.user_phone1.value+"-"+form.user_phone2.value+"-"+form.user_phone3.value;//전화
+    
+		
 		//invalid 지우기
 		var invalid_text = document.querySelectorAll("div[class*='invalid']");
 
@@ -37,8 +46,13 @@
 			form.user_pw2.value = "";
 			form.user_pw1.focus();
 			return false;
-		} else if (!checkExistData(form.user_name.value, "invalid-name",
-				"이름을 입력해주세요")) {
+		} else if (!checkExistData(form.user_pw1.value, "invalid-pw", pw_RegExp,
+				"비밀번호를 입력해주세요", "비밀번호 형식을 맞쳐주세요")) {
+			//pw
+			form.user_pw1.focus();
+			return false;
+		}else if (!checkExistData(form.user_name.value, "invalid-name", name_RegExp,
+				"이름을 입력해주세요","이름을 입력해주세요")) {
 			//이름:길이
 			form.user_name.focus();
 			return false;
@@ -50,8 +64,19 @@
 			form.user_email1.focus();
 			return false;
 
-		} else if (form.user_phone1.value == '' || form.user_phone2.value == ''
-				|| form.user_phone3.value == '') {
+		} else if(!checkExistData(email_str, "invalid-email", email_RegExp,
+    			"이메일을 입력해주세요"
+    			, "이메일을 입력해주세요")){
+    		//이메일
+    		form.user_email1.focus();
+    		return false;
+    	}else if(!checkExistData(mobile_str, "invalid-phone", phone_RegExp,
+    			"폰번호를 입력해주세요"
+    			, "폰번호를 입력해주세요")){
+    		//폰번호
+    		form.user_phone1.focus();
+    		return false;
+    	} else if (form.user_phone1.value == '' || form.user_phone2.value == '' || form.user_phone3.value == '') {
 			//휴대폰번호
 			//alert("휴대폰번호를 입력해주세요");
 			document.getElementsByClassName("invalid-phone")[0].innerText = " 휴대폰번호를 입력해주세요";
@@ -130,10 +155,19 @@
 	}
 
 	// 유효검사 알림창 전용함수    
-	function checkExistData(inp, input, msg1) {
-		if (inp == "") {
+	function checkExistData(inp,input, RegExp, msg1, msg2) {
+		//단순 글자 입력(두번째는 이메일 전용)
+		if (inp == "" || inp == "@") {
 			//alert(msg1);
 			document.getElementsByClassName(input)[0].innerText = msg1;
+			document.getElementsByClassName(input)[0].style.color = "red";
+			return false;
+		}
+		
+		//정규식이 맞지않을때
+		if(inp != "" && !RegExp.test(inp)){
+			//alert(msg2);
+			document.getElementsByClassName(input)[0].innerText = msg2;
 			document.getElementsByClassName(input)[0].style.color = "red";
 			return false;
 		}
@@ -183,7 +217,7 @@
 
 								<!-- id -->
 								<div class="col-12">
-									<label for="user_id" class="form-label">ID</label>
+									<label for="user_id" class="form-label">ID(영문숫자 8~16글자)</label>
 									<div class="input-group mb-3">
 										<input type="text" class="form-control" id="user_id"
 											name="user_id" placeholder="" value="${dto.user_id}" readonly>
@@ -194,7 +228,7 @@
 
 								<!-- pw -->
 								<div class="col-sm-6">
-									<label for="user_pw1" class="form-label">패스워드</label> <input
+									<label for="user_pw1" class="form-label">패스워드(영문숫자특수문자 6~20글자)</label> <input
 										type="text" class="form-control" id="user_pw1" name="user_pw1"
 										placeholder="">
 								</div>

@@ -34,14 +34,16 @@
     <!-- Editable user database that can also be used by
          UserDatabaseRealm to authenticate users
     -->
+    
+
     <Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
 	
 	​
 	 <!-- Mysql-->	 
-	<Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" loginTimeout="10" maxWaitMillis ="5000" name="jdbc_mysql" password="1234" testOnBorrow="true" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/kosmo_db" username="kosmo_user"/>
+	<Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" maxTotal="100" maxIdle="30" maxWaitMillis="10000" name="jdbc_mysql" password="1234" testOnBorrow="true" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/kosmo_db" username="kosmo_user"/>
 	​
 	<!-- MariaDb-->	 
-	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" loginTimeout="10" maxWaitMillis ="5000" name="jdbc_maria" password="1234" testOnBorrow="true" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/kosmo_db" username="kosmo_user"/>
+	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxTotal="100" maxIdle="30" maxWaitMillis="10000" name="jdbc_maria" password="1234" testOnBorrow="true" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/kosmo_db" username="kosmo_user"/>
 		
 	<!-- OracleDb -->	  
 	<Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" initialSize="0" maxIdle="20" maxTotal="20" maxWaitMillis="5000" minIdle="5" name="dbcp_myoracle" password="1234" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="musthave"/>		  

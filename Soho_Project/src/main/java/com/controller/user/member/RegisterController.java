@@ -31,6 +31,18 @@ public class RegisterController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//req.getRequestDispatcher("/member/Register.jsp").forward(req, resp);
 		
+		
+		//다크모드땜에 구분해야함 ㅇㅊㅇ
+		String uri = req.getRequestURI(); // URI값
+		String path = req.getContextPath(); // 컨텍스트 경로
+
+		String command = uri.substring(path.length()); // 요청 분기
+
+
+		if (command.contains("/admin.do/books/list") ) {
+			
+		}
+		
 		/*
 		회원가입 전송 부분 
 		*/

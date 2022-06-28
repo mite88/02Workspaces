@@ -51,7 +51,7 @@
 		<c:when test="${empty USER_ID}">
 			<script>
 				alert("로그인 후 이용 가능합니다");
-				window.history.back();
+				location.href="<%=request.getContextPath()%>";
 				
 			</script>
 		</c:when>
@@ -166,7 +166,7 @@
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+							<h5 class="modal-title" id="exampleModalLabel">상담예약</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">

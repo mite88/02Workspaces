@@ -7,8 +7,10 @@ import java.util.Vector;
 import com.contact.ContactDTO;
 
 import common.DBConnPool;
+import utils.AES256;
 
 public class MemberDAO extends DBConnPool {
+	AES256 aes = new AES256();//비번 암호화
 
 	// 생성자의 super()을 통해 커넥션풀을 활성화 시켜줍시다
 	public MemberDAO() {
@@ -94,7 +96,15 @@ public class MemberDAO extends DBConnPool {
 				MemberDTO dto = new MemberDTO();
 
 				dto.setUser_id(rs.getString(1));
-				dto.setUser_pw(rs.getString(2));
+				
+				try {
+					dto.setUser_pw(aes.decrypt(rs.getString(2)));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//dto.setUser_pw(rs.getString(2));
 				dto.setUser_name(rs.getString(3));
 				dto.setUser_email(rs.getString(4));
 				dto.setUser_phone(rs.getString(5));
@@ -160,7 +170,13 @@ public class MemberDAO extends DBConnPool {
 				if (rs.next()) {
 
 					dto.setUser_id(rs.getString(1));
-					dto.setUser_pw(rs.getString(2));
+					//dto.setUser_pw(rs.getString(2));
+					try {
+						dto.setUser_pw(aes.decrypt(rs.getString(2)));
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					dto.setUser_name(rs.getString(3));
 					dto.setUser_email(rs.getString(4));
 					dto.setUser_phone(rs.getString(5));

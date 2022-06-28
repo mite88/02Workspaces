@@ -101,6 +101,7 @@ public class ContactController extends HttpServlet {
 	        dto.setVideo_url(mr.getParameter("video_url"));
 	        dto.setContent(mr.getParameter("content"));
 	        dto.setPass(mr.getParameter("pass"));
+	        dto.setType(Integer.parseInt(mr.getParameter("type")));
 
 	        //서버에 업로드 된 파일명을 얻어온다. 
 	        String fileName = mr.getFilesystemName("ofile");
@@ -170,7 +171,8 @@ public class ContactController extends HttpServlet {
 	        dto.setName(name);
 	        dto.setTitle(title);
 	        dto.setContent(content);
-	         dto.setVideo_url(video_url);
+	        dto.setVideo_url(video_url);
+	        dto.setType(Integer.parseInt(mr.getParameter("type")));
 	         
 	        // System.out.println("deleteFile:"+(deleteFile.equals("1")));
 	         
@@ -181,7 +183,7 @@ public class ContactController extends HttpServlet {
 	             dto.setSfile("");
 	             FileUtil.deleteFile(req, "/Uploads/contact", prevSfile);
 	        }else {
-	        	System.out.println("!````");
+	        	//System.out.println("!````");
 	        	   String fileName = mr.getFilesystemName("ofile");
 	        	   
 	        	if (fileName != null) {
@@ -260,10 +262,10 @@ public class ContactController extends HttpServlet {
 			dispatcher = req.getRequestDispatcher(page_name);
 			dispatcher.forward(req, resp);
 		}else if( result > 0) {
-			resp.sendRedirect("../../contact/list/?type=all");
+			resp.sendRedirect("http://localhost:8082/Soho_Project/admin.do/contact/list/?type=all");
 		}else {
 			JSFunction.alertLocation(resp, "완료",
-					"../../contact/list/?type=all");
+					"http://localhost:8082/Soho_Project/admin.do/contact/list/?type=all");
 			//JSFunction.alertBack(resp, "페이지 오류");
 		}
 		
@@ -367,12 +369,12 @@ public class ContactController extends HttpServlet {
 		//커넥션풀을 통해 DB연결
 		dao = new ContactDAO();
 		//일련번호를 파라미터로 받음
-		int idx = Integer.parseInt(req.getParameter("idx"));
+		String idx =req.getParameter("idx");
 		System.out.println(idx);
 		//조회수 증가
-		dao.updateVisitCount(idx);
+		dao.updateVisitCount(Integer.parseInt(idx));
 		//게시물 조회
-		dto = dao.selectView(idx);
+		dto = dao.selectView(Integer.parseInt(idx));
 		dao.close();
 		
 		//내용에 대해 줄바꿈 처리를 위해 <br>태그로 변환한다.

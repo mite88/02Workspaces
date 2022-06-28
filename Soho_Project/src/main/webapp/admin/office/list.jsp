@@ -178,7 +178,7 @@
 							</a>
 							<div class="dropdown-menu dropdown-menu-end" style="">
 								<a class="dropdown-item" href='javascript:void(0)' id='btn2' onclick="frmEditFunc()">지점수정</a> 
-								<a class="dropdown-item" href="#">예약확인</a> 
+								<a class="dropdown-item" href="<%=request.getContextPath()%>/admin.do/books/list?searchField=o_name&searchWord=${row2.o_name }">예약확인</a> 
 								
 								<!-- 지점탈퇴 -->
 								<form action="<%=request.getContextPath()%>/admin.do/office/delete" method="post"  name="delFrm_${row2.code }" id="delFrm_${row2.code}">

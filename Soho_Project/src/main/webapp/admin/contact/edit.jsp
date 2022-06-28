@@ -17,7 +17,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>관리자</title>
+<title>${title_name}</title>
 <script type="text/javascript">
 //글쓰기 폼에서 누락된 내용이 있는지 확인하는 함수
 function validateForm(form) {   
@@ -163,8 +163,8 @@ input[type="file"] {
 					<div class="row g-2 align-items-center">
 						<div class="col">
 							<!-- Page pre-title -->
-							<div class="page-pretitle">Overview</div>
-							<h2 class="page-title">Dashboard</h2>
+							<div class="page-pretitle">게시판관리</div>
+							<h2 class="page-title">${title_name}</h2>
 						</div>
 					</div>
 				</div>
@@ -189,12 +189,18 @@ input[type="file"] {
 									<!-- 기존의 서버에 저장된 파일명 -->
 
 
-
 										<div class="mb-3">
-											<label class="form-label required">작성자</label> <input
-												type="text" class="form-control" autocomplete="off"
+											<input
+												type="hidden" class="form-control" autocomplete="off"
 												name="name" readonly value="${dto.name }">
+											
+											<label class="form-label required">게시판 타입</label> 	
+											<select class="form-select" aria-label="Default select example" name="type">
+											  <option value="1" ${dto.type=='1'?'selected':'' }>공지게시판</option>
+											  <option value="2" ${dto.type=='2'?'selected':'' }>홍보게시판</option>
+											</select>
 										</div>
+										
 
 										<div class="mb-3">
 											<label class="form-label required">제목</label> <input

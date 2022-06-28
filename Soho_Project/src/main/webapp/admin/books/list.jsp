@@ -54,7 +54,7 @@
 					<div class="row g-2 align-items-center">
 						<div class="col">
 							<!-- Page pre-title -->
-							<div class="page-pretitle">Overview</div>
+							<div class="page-pretitle">예약관리</div>
 							<h2 class="page-title">${title_name}</h2>
 						</div>
 					</div>
