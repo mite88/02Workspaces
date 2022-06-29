@@ -518,10 +518,7 @@
 
 	//회원탈퇴
 	function frmFunc(form) {
-		//비번입력을 받아 탈퇴합니다
-		var inputString = prompt('탈퇴를 하실려면 비밀번호를 입력해주세요.', '비밀번호입력');
-
-		form.del_pw.value = inputString;
+		
 		form.submit();
 
 	}

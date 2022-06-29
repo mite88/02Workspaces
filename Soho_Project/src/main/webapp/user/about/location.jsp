@@ -36,7 +36,12 @@
 						
 			            <tr>
 							<td class="name">${row.o_name }</td>
-							<td class="addr">${row.o_addr}</td>
+							<c:if test="${loop.first}">
+								<td class="addr open">${row.o_addr}</td>
+							</c:if>
+							<c:if test="${not loop.first}">
+								<td class="addr">${row.o_addr}</td>
+							</c:if>
 							
 							<td class="btn_url"> <a href="https://map.kakao.com/?eName=${row.o_addr}" target="_blank">길찾기</a></td>
 			                <td class="content d-none">
@@ -128,6 +133,7 @@
 		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 		var zoomControl = new kakao.maps.ZoomControl();
 		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		
 
 		$('td.addr').click(function() {
 			// 지도를 생성합니다    
@@ -205,6 +211,8 @@
 		    // 지도 중심좌표를 접속위치로 변경합니다
 		    map.setCenter(locPosition);      
 		}    
+		
+		$(".open").trigger("click"); 
 
 
 		$('#searchBtn').click(function(){

@@ -53,6 +53,21 @@
     }
     </script>
 <script>
+function fn_checkPass(pw) {
+
+	var pw_RegExp = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,20}$/; //password 정규식
+	
+	if (pw_RegExp.test(pw.value)) {
+		return true;
+	} else {
+		console.log("!");
+		
+		return false;
+	}
+
+}
+
+
 	//회원가입 유효성검사
     function registValdidate(form){
     	//이번엔 참고하시라고 유효성검사에 정규식을 조금 넣어볼까합니다만...
@@ -68,6 +83,10 @@
     	var tel_str = form.tel1.value+"-"+form.tel2.value+"-"+form.tel3.value;//일반전화
     	//alert(form.mobile1.value);
 		
+    	
+    	
+    	
+    	
     	if(!checkExistData(form.userid.value, id_RegExp,
     			"아이디를 입력해주세요", "아이디는  8~16자의 영문과 숫자만 가능합니다.")){
     		//id
@@ -197,7 +216,7 @@
             <tr>
                 <td><span class="red">*</span> 비밀번호</td>
                 <td>
-                    <input type="password" class="w01" name="pass1" value="" />                   
+                    <input type="password" class="w01" name="pass1" value="" onkeypress="fn_checkPass(this);"/>                   
                 </td>
             </tr>
             <tr>

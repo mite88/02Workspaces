@@ -181,22 +181,15 @@ public class MemberController extends HttpServlet {
 			}else if (command.contains("/admin.do/member/delete") ) {
 				//회원탈퇴
 				String user_id = req.getParameter("del_id");
-				String user_pw = req.getParameter("del_pw"); //prompt에서 
 
-				System.out.println("prompt:"+user_pw);
 				
 				//DB 연결
 				dao = new MemberDAO();
 				dto = new MemberDTO();
 				
 				dto.setUser_id(user_id);
+				dto.setUser_pw("");
 				
-				try {
-					dto.setUser_pw(aes.encrypt(user_pw));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 
 				//삭제
 				result = dao.memberDelete(dto);

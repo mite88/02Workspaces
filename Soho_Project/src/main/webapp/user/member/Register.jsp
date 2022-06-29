@@ -223,12 +223,12 @@
 								<!-- pw -->
 								<div class="col-sm-6">
 									<label for="user_pw1" class="form-label">패스워드(영문숫자특수문자 6~20글자)</label> 
-									<input type="text" class="form-control" id="user_pw1" name="user_pw1" placeholder="">
+									<input type="password" class="form-control" id="user_pw1" name="user_pw1" placeholder="">
 								</div>
 
 								<div class="col-sm-6">
 									<label for="user_pw2" class="form-label">패스워드 확인</label> <input
-										type="text" class="form-control" id="user_pw2" name="user_pw2"
+										type="password" class="form-control" id="user_pw2" name="user_pw2"
 										placeholder="">
 								</div>
 

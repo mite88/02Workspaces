@@ -372,7 +372,7 @@ public class ContactController extends HttpServlet {
 		String idx =req.getParameter("idx");
 		System.out.println(idx);
 		//조회수 증가
-		dao.updateVisitCount(Integer.parseInt(idx));
+		//dao.updateVisitCount(Integer.parseInt(idx));
 		//게시물 조회
 		dto = dao.selectView(Integer.parseInt(idx));
 		dao.close();

@@ -303,15 +303,22 @@ public class MemberDAO extends DBConnPool {
 	public int memberDelete(MemberDTO mDto) {
 
 		int result = 0;
+		String pw = mDto.getUser_pw();
 
-		System.out.println("id:" + mDto.getUser_id());
-		System.out.println("pw:" + mDto.getUser_pw());
 		try {
-			String query = "delete from member where user_id = ? and user_pw = ? ";
+			String query = "delete from member where user_id = ? ";
+			
+			if (!pw.equals("")) {
+				query +=" and user_pw = ? ";
+			}
 
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, mDto.getUser_id());
-			psmt.setString(2, mDto.getUser_pw());
+			
+			if (!pw.equals("")) {
+				psmt.setString(2, mDto.getUser_pw());
+			}
+
 
 			result = psmt.executeUpdate(); // 적용된행의갯수반환
 
