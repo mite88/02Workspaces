@@ -17,5 +17,6 @@ https://ijuju88.notion.site/1cbebe1d9b4e4aa09d6155c341e135c1
 * * *
 >  개인프로젝트(20226.22~28)
 * Soho_Project
+https://www.miricanvas.com/v/1185ioz
 
 
