@@ -186,6 +186,7 @@ input[type="file"] {
 									<input type="hidden" name="idx" value="${ dto.idx }" />
 									<!-- 기존의 원본파일명 -->
 									<input type="hidden" name="prevOfile" value="${ dto.ofile }" />
+									<input type="hidden" name="prevSfile" value="${ dto.sfile }" />
 									<!-- 기존의 서버에 저장된 파일명 -->
 
 

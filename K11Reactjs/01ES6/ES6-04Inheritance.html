@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        class Car {
+            //생성자 함수
+            constructor(b) {
+                //멤버변수
+                this.brand = b;
+            }
+            //멤버변수(화살표)
+            showCar = () => {
+                return '내 자동차의 제조사는 ' + this.brand + ' 입니다.';
+            }
+        }
+
+        console.error("ES6 Class 생성 ");
+        mycar = new Car("아우디");
+        console.log(mycar.brand);
+        console.log(mycar.showCar()); 
+    </script>
+
+    <script>
+        //자식클래스
+        class Model extends Car {
+            //생성자
+            constructor(b, m) {
+                //부모생성자 호출
+                super(b);
+                this.model = m;
+            }
+            //상속했기에 부모쪽 멤버함수 호출가능
+            showModel() {
+                return this.showCar() + '내 자동차의 이름은' +
+                    this.model + ' 입니다.';
+            }
+        }
+        console.error("ES6의 상속");
+        modelCar = new Model("Ford", "Mustang");
+        console.log(modelcar.showModel()); 
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

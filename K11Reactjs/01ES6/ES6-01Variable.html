@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--
+        ECMA(European Computer Manufactures Association)
+
+        자바스크립트 표준 단체에서 재정하는 표준언어로
+        현재 사용하는 JS는 주로 ES5이고 가장 최신은 ES6
+        ES4는 논쟁요소가 많아 폐기, ES5부터 다시 재정함
+    -->
+    <script>
+        //const : 상수로 선언시 사용
+        const num = 100;
+
+        //함수선언
+        let sumLimit = function (start, end) {
+            let sum = 0; 
+            for (var i = start; i <= end; i++) {
+                sum += i;
+            }
+            return sum;
+        }
+
+        //let : 변수 선언시 사용(var과 동일)
+        let result = sumLimit(1, 10);
+        console.log("변수 result=" + result);
+        console.log("상수 num=" + num); 
+        //상수이므로 재정의 안됨
+        //num = 200;
+
+        console.log('======================');
+
+        //블럭의 유효범의(Block Scope)
+
+        //var 키워드론 for문밖의 값이 for문을 벗아나도 소멸되지 않고 출력
+        var a = 10; 
+        for (var a = 1; a <= 10; a++) {
+            console.log('for문안의 a=' + a);
+        }
+        console.log('for문밖의 a = ' + a);
+
+        console.log('==========================');
+        //let 키워드의 경우 블럭밖에서 출력하려하면 소멸되어 값을 못찾음
+        let b = 10;
+        for (let b = 1; b <= 10; b++) {
+            //1~10
+            console.log('for문안의 b =' + b);
+            //for문내의 지역변수로 생성
+            let ball = " 야구공";
+        }
+        //전역변수 출력
+        console.log('for문밖의 b =' + b);
+
+        //에러
+        console.log('ball(if문 이후)=' + ball);
+    </script>
+
+    </body>
+</html>

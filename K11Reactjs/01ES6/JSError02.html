@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        /*
+        var 키워드를 통해 변수 선언시 해당 변수는 Hoisting가 되는데
+        이는 정의된 변수가 해당 스코프의 최상단으로 끌어올려지는 현상을 말한다
+        */
+
+        //undefined은 되지만 에러가 안남 
+        console.log("변수 x 선언전="+x);
+        //아래코드를 주석처리하면 윗줄에 에러남
+        var x =10;
+        console.log("변수 x 선언후="+x);
+
+        //호이스팅에 의해 변수 선언후 같은 변수 선언이 가능함
+        console.log("y(변수 정의 전)="+y);
+        y=100;
+        console.log("y(변수 정의 후)="+y);//100
+        var y= 200;
+
+        //변수 선언후 재정의가 가능함
+        var z=99;
+        var z=199;
+        console.log("z="+z);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

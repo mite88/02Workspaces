@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">클릭하세요</button>
+    <p id="demo"></p>
+    <script>
+        class Animal{
+            //생성자
+            constructor(){
+                this.name = "고양이";
+            }
+            /*
+            멤버함수 내에서 this사용시 해당클래스를 가르키나
+            호출하는 주체에 따라 바뀜
+            - 로딩시 : window객체
+            - 버튼클릭시 : button객체
+            */
+            changeName = function(){
+                document.getElementById("demo").innerHTML +=this;
+            }
+        }
+
+        //객체생성
+        myAnimal = new Animal();
+
+        //실행되자마자 호출
+        window.addEventListener("load", myAnimal.changeName);
+
+        //버튼클릭시 호출
+        document.getElementById("btn").addEventListener
+        ("click", myAnimal.changeName);
+    </script>
+</body>
+</html>
