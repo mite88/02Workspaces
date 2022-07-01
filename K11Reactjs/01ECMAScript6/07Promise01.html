@@ -11,12 +11,18 @@
 
 <body>
     <script>
+        //2.전달된 함수를 callBackFunc 매개변수로 받아 호출가능함
         function myGetData(callBackFunc) {
+            //매개변수로 사용할 빈객체
             params = {};
+            //jQuery의 $.get()함수를 통해 비동기 요청
             $.get('./myData.txt', params, function (resData) {
+                //성공시 txt파일 내용 콜백
                 callBackFunc(resData);
             });
         }
+
+        //1.함수 호출시 인수로 또다른 함수 전달함
         myGetData(function (argData) {
             console.error("프로미스사용하기1");
             console.log(argData);

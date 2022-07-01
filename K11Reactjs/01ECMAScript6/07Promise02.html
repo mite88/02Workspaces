@@ -11,21 +11,30 @@
 
 <body>
     <script>
-        function myGetData(callBackFunc) {
+        /*
+        프로미스(Promise)
+        비동기 처리를 순차적으로 실행시 단점을 해결하기위한 라이브러리
+        -3가지상태 : Pending(대기상태), Fulfilled(이행상태),Rejected(실패) 
+        */
+        function myGetData() {
             params = {};
             return new Promise(function(resolve, reject){
                 $.get('./myData.txt', params, function (resData) {
                     if(resData)
+                        //이행상태일때 호출
                         resolve(resData);
                     else
+                        //실패상태일때 호출
                         reject(new Error("요청 실패"));
                 });
             });
         }
         myGetData().then(function (argData) {
+            //프로미스가 이행상태일때
             console.error("then...");
             console.log(argData);
         }).catch(function(errData){
+            //실해상태일때
             console.error("reject...");
             console.log(errData);
         });

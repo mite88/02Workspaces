@@ -1,0 +1,90 @@
+02Render.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+</head>
+
+<body>
+    <h2>State 01</h2>
+    <h3>state 생성 및 초기화, 출력하기</h3>
+    <div id="myAreal"></div>
+
+    <script type="text/babel">
+        class Person extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    name: "홍길동",
+                    age: 28,
+                    hobby: "자전거",
+                    birth: 2000
+                };
+            }
+            render() {
+                return (
+                    <div>
+                        <h1>W Se {this.state.name}</h1>
+                        <p>
+                            나이 : {this.state.age} <br />
+                            취미 : {this.state.hobby} <br />
+                            태어난해 : {this.state.birth} <br />
+                        </p>
+                    </div>
+                );
+            }
+        }
+        ReactDOM.render(<Person />, document.getElementById('myAreal'));
+    </script>
+
+    <h2>State 02</h2>
+    <h3>함수 호출로 state 변경하기</h3>
+    <div id="myArea2"></div>
+    <script type="text/babel">
+        class Car extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    brand: "KIA",
+                    model: "모닝",
+                    color: "검은색은 Black",
+                    year: 2002
+                };
+            }
+            changeColor = () => {
+                this.setState({
+                    color: "파란색은 blue",
+                    model: "프라이드"
+                });
+            }
+            render() {
+                return (
+                    <div>
+                        <h1>My {this.state.brand}</h1>
+                        <p>
+                            내차정보 <br />
+                            색깔 : {this.state.color} <br />
+                            모델명 : {this.state.model} <br />
+                            제조사 : {this.state.year} <br />
+                        </p>
+                        <button type="button" onClick={this.changeColor}>
+                            색깔변경
+                        </button>
+                    </div >
+                );
+            }
+        }
+        ReactDOM.render(<Car />, document.getElementById('myArea2'));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+02Render.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+
+    <h2>
+        초기화단계(Mounting),
+        업데이트단계(Updating),
+        소멸단계(Unmounting)
+        의 3단계
+    </h2>
+
+    <h4>초기화단계(Mounting)</h4>
+    <h4>1.constructor() - 생성자</h4>
+    <div id="myMounting1"></div>
+
+    <script type="text/babel">
+        class MyClass1 extends React.Component {
+            constructor(props) {
+                super();
+                this.state = { favoriteFruit: "망고스틴" };
+            }
+            render() {
+                return (
+                    <h5>내가 좋아하는 과일은 {this.state.favoriteFruit}</h5>
+                );
+            }
+        }
+        ReactDOM.render(<MyClass1 />, document.getElementById('myMounting1'));
+
+    </script>
+
+    <h4>2.getDerivedStateFromProps () </h4>
+    <div id="myMounting2"></div>
+
+    <script type="text/babel">
+        class MyClass2 extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { favoriteMovie: "알라딘 : 지니 짱~" };
+            }
+            static getDerivedStateFromProps(props, state) {
+                return { favoriteMovie: props.favMovie };
+            }
+            render() {
+                return (
+                    <h5>최근 존잼 영화는 : {this.state.favoriteMovie}</h5>
+                );
+            }
+        }
+        ReactDOM.render(<MyClass2 favMovie="어벤져스 : EndGame" />,
+            document.getElementById('myMounting2'));
+
+    </script>
+
+    <h4>3.render() </h4>
+    <div id="myMounting3">render()메소드는 필수적으로 사용하는 함수이므로생략</div>
+
+    <h4>4.componentDidMount() </h4>
+    <div id="myMounting4"></div>
+
+    <script type="text/babel">
+        class MyClass4 extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { works: "야근 각? -_-;" };
+            }
+            componentDidMount() {
+                setTimeout(() => {
+                    this.setState({
+                        works: " 즐퇴하자~^^*"
+                    })
+                }, 2000)
+            }
+            render() {
+                return (
+                    <h5>오늘은{this.state.works}</h5 >
+                );
+            }
+        }
+        ReactDOM.render(<MyClass4 />,
+            document.getElementById('myMounting4')); 
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="mydiv1"></div>
+    <div id="mydiv2"></div>
+
+    <script type="text/babel">
+        /*
+        ReactDOM.render()
+        HTML코드를 웹브라우저의 지정된 DOM엘리먼트에
+        렌더링 해줌
+
+        ReactDOM.render(HTML코드(JSX) or 컴포넌트, 표시할 DOM 엘리먼트);
+        */
+        const myElement = (
+            /*
+            Uncaught SyntaxError SyntaxError: Inline Babel script: Adjacent 
+            JSX elements must be wrapped in an enclosing tag (11:12)
+
+            이는 최상위엘리먼트는 하나만존재해야하기 때문에
+            엘리먼트가 여러개이면 에러가 남
+            */
+            <div>
+                <h3>렌더링시 최상위 태그는 하나만 있어야함</h3>
+                <table border="1">
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                    <tr>
+                        <td>알라딘</td>
+                    </tr>
+                    <tr>
+                        <td>자스민</td>
+                    </tr>
+
+                </table>
+            </div>
+        );
+
+        //클래스형 컴포넌트 정의
+        class Myclass extends React.Component {
+            render() {
+                return <h1>React.Component를 상속한 MyClass</h1>
+            }
+
+        }
+
+        //상수로 선언한 HTML과 컴포넌트를각 엘리먼트에 렌더링함
+        ReactDOM.render(myElement, document.getElementById('mydiv1'))
+        ReactDOM.render(<Myclass />, document.getElementById('mydiv2'))
+    </script>
+</body>
+
+</html>

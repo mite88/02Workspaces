@@ -1,0 +1,100 @@
+02Render.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <h2>Props01</h2>
+    <h3>컴포넌트로 HTML 속성 Props 보내기 </h3>
+    <div id="myDiv"></div>
+    <script type="text/babel">
+        class Colorful extends React.Component {
+            render() {
+                return <h4>난 {this.props.color} 컬러가 좋더라</h4>;
+
+            }
+        }
+        ReactDom.render(<Colorful color="빨간색" />,
+            document.getElementById('myDiv')); 
+    </script>
+
+    <h2>Props02</h2>
+    <h3>HTML 속성을 변수처리후 Props 보내기 </h3>
+    <div id="myDiv2"></div>
+    <script type="text/babel">
+        class Food extends React.Component {
+            render() {
+                return <h4>오늘점심은
+                    <big>{this.props.koreanFood}</big>
+                    먹자~~ ! !</h4>
+            }
+        }
+        const myFood = <Food korean Food="김치찌개" />;
+        ReactDOM.render(myFood, document.getElementById('myDiv2')); 
+    </script>
+
+    <h2>Props03</h2>
+    <h3>컴포넌트 속성으로 Props 보내기</h3>
+    <div id="myDiv3"></div>
+    <script type="text/babel">
+        class Person extends React.Component {
+            render() {
+                return <h4>제 직업은 {this.props.job} 입니다.</h4>;
+            }
+        }
+        class Jobs extends React.Component {
+            render() {
+                const jobName = "요리사";
+                return (
+                    <div>
+                        <h4>당신의 직업은?</h4>
+                        <Person job={jobName} />
+                    </div>
+                );
+            }
+        }
+        ReactDom.render(<Jobs />, document.getElementById('myDiv3'));
+    </script>
+
+
+    <h2>Props04</h2>
+    <h3> 객체를 포함한 컴포넌트를 props 전달하기 </h3>
+    <div id="myDiv4"></div>
+    <script type="text/babel">
+        class Car extends React.Component {
+            render() {
+                return (
+                    < div>
+                        <h4>제조사 : {this.props.brand.name}</h4>
+                        <h4>모델명 : {this.props.brand.model}</h4>
+                    </div>
+                );
+            }
+        }
+        class ShowRoom extends React.Component {
+            render() {
+                const carinfo = { name: "KIA", model: "K7" };
+                return (
+                    <div>
+                        <h4>선호하는 자동차는? </h4>
+                        <Car brand={carinfo} />
+                    </div>
+                );
+            }
+        }
+        ReactDOM.render(<ShowRoom />, document.getElementById('myDiv4')); 
+    </script>
+    
+</body>
+
+</html>

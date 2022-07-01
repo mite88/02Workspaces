@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        /*
+        map()함수
+
+        콜백함수를 실행한 결과를 통해새로운 배열을 만들때 사용
+        (filter()와 동일)
+        */
+        console.error("mapTest1() called..기본사용법");
+        //기존배열의 각 원소에 *2 결과를 새로운배열 생성
+        (function mapTest1() {
+            var testArray = [1, 2, 3, 4, 5];
+            var returnArray = testArray.map(
+                function (currVal, currIdx, arr) {
+                    console.log(currVal); console.log(currIdx);
+                    console.log(arr);
+                    return currVal * 2;
+                });
+            console.log(returnArray);
+        })();
+
+        /*
+        객채형 JSON배열의 각 원소로
+        새로운 JSON객체 생성
+        */
+        console.error("mapTest2() called. .JSON객체 배열 활용하기");
+        (function mapTest2() {
+            var testJson = [{ name: "이건", salary: 50000000 },
+            { name: "홍길동", salary: 1000000 },
+            { name: "임신구", salary: 3000000 },
+            { name: "이승룡", salary: 2000000 }];
+
+            var newJson = testJson.map(function (currVal, currIdx, arr) {
+                console.log(currVal);
+                //빈 객체 생성
+                var returnObj = {};
+                
+                returnObj[currVal.name] = currVal.salary;
+                return returnObj;
+            });
+            console.log(newJson);
+        })(); 
+    </script>
+</body>
+
+</html>

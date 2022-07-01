@@ -1,0 +1,35 @@
+02Render.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="mydiv"></div>
+
+    <script type="text/babel">
+        //JS의 class를 통해 리엑트 컴포넌트 생성
+        class Hello extends React.Component{
+            /*
+            컴퐅넌트의 render()함수(자동으로 호출, 동적인 엘리먼트추가됨)
+            로 출력내용 반환
+            */
+            render(){
+                return <h1>Hello React..!</h1>
+            }
+    
+        }
+
+        //컴포넌트를 지정할 엘리먼트에 출력함.
+        //형식] <컴포넌트명 />
+        ReactDOM.render(<Hello />, document.getElementById('mydiv'))
+    </script>
+</body>
+</html>
