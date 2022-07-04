@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <h2>폼 전송(Submit)</h2>
+    <div id="myDiv4"></div>
+    <script type="text/babel">
+        class MyForm4 extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { userAge: "나이초기화" };
+            }
+            mySubmitHandler = (event) => {
+                event.preventDefault();
+                alert("전송된 폼값 : " + this.state.userAge);
+            }
+            myChangeHandler = (event) => {
+                this.setState({ userAge: event.target.value });
+            }
+
+            render() {
+                return (
+                    <form onSubmit={this.mySubmitHandler}>
+                        <h3>입력한 나이 : {this.state.userAge}</h3>
+                        <p>나이를 입력하세요</p>
+                        <input type="text" onChange={this.myChangeHandler} />
+                        <input type="submit" value="클릭" />
+                    </form>
+                );
+            }
+        }
+
+        ReactDOM.render(<MyForm4 />, document.getElementById('myDiv4'))
+    </script>
+</body>
+
+</html>

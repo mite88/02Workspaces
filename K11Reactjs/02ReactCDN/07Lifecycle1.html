@@ -1,4 +1,4 @@
-02Render.html
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +15,15 @@
 
 <body>
 
+    <!--
+        초기화 단계
+        -DOM요소 삽입시 (컴포넌트 객체 생성시) 한번수행
+        - 컴포넌트 마운트 시 호출되는 수명주기 순서
+        1. constructor()
+        2. getDerivedStateFromProps()
+        3. render()
+        4. componentDidMount()
+    -->
     <h2>
         초기화단계(Mounting),
         업데이트단계(Updating),
@@ -23,14 +32,27 @@
     </h2>
 
     <h4>초기화단계(Mounting)</h4>
+
+    <!--
+        props매개변수가 컴포넌트 기본값이 적용된 상태에서 호출
+        가장먼저 호출되며, 내부에 반드시 super()해야함
+        필요없으면 기술하지 않아도됨
+    -->
     <h4>1.constructor() - 생성자</h4>
     <div id="myMounting1"></div>
 
     <script type="text/babel">
         class MyClass1 extends React.Component {
+            //전달되는 props를 매개변수로 받기(가장먼저 호출되기에)
             constructor(props) {
-                super();
-                this.state = { favoriteFruit: "망고스틴" };
+                //전달되는 props가 존재시 super()에도 기술해야함
+                super(props);
+                //전달되는 값이 존재하지 않을시 state초기화
+                //this.state = { favoriteFruit: "망고스틴" };
+
+                //props 존재시 state초기화 가능
+                this.state = { favoriteFruit: this.props.myFruit };
+
             }
             render() {
                 return (
@@ -38,20 +60,36 @@
                 );
             }
         }
-        ReactDOM.render(<MyClass1 />, document.getElementById('myMounting1'));
+        //필요하지 않을시 props생략가능
+        //ReactDOM.render(<MyClass1 />, document.getElementById('myMounting1'));
+
+        //필요시 props를 통해 데이터 전달 후 state값 초기화
+        ReactDOM.render(<MyClass1 myFruit ="구아바"/>, document.getElementById('myMounting1'));
 
     </script>
 
+    <!--
+        state의 속성값을 새로운 값으로 변경시 사용
+        생성자로 전달된 props를 통해 state 변경
+    -->
     <h4>2.getDerivedStateFromProps () </h4>
     <div id="myMounting2"></div>
 
     <script type="text/babel">
         class MyClass2 extends React.Component {
+            //2.생성자에선 전달된 props사용하지 않고 하드코딩으로 초기화함
             constructor(props) {
                 super(props);
+                //state 1차 초기화
                 this.state = { favoriteMovie: "알라딘 : 지니 짱~" };
             }
+
+            //3. render() 함수 호출 전에 미리 호출함
             static getDerivedStateFromProps(props, state) {
+                //생성자가 전달받은 props 그래로 전달하고, state값 변경
+                //만약 아래를 주석하면 state가 변경안되서 '알라딘'이 출력됨
+                
+                //return을 통해 state를 변경함
                 return { favoriteMovie: props.favMovie };
             }
             render() {
@@ -60,6 +98,7 @@
                 );
             }
         }
+        //1.컴포넌트 렌더링시  props 전달
         ReactDOM.render(<MyClass2 favMovie="어벤져스 : EndGame" />,
             document.getElementById('myMounting2'));
 
@@ -68,6 +107,10 @@
     <h4>3.render() </h4>
     <div id="myMounting3">render()메소드는 필수적으로 사용하는 함수이므로생략</div>
 
+    <!--
+        render() 함수의 반환값이 실제 DOM에 반영된 직후 호출됨
+        Timer를 삽입하기 적합함
+    -->
     <h4>4.componentDidMount() </h4>
     <div id="myMounting4"></div>
 
@@ -77,6 +120,7 @@
                 super(props);
                 this.state = { works: "야근 각? -_-;" };
             }
+            //렌더링 후 2초 뒤 state변경되어 새롭게 렌더링 됨
             componentDidMount() {
                 setTimeout(() => {
                     this.setState({

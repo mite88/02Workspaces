@@ -1,4 +1,3 @@
-02Render.html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,14 +14,23 @@
 </head>
 
 <body>
+    <!--
+        state
+        -React 컴포넌트의 상태 저장시 쓰임
+        -props와 비슷하나 컴포넌트 내부에 존재하여 상태값 변경 가능
+        -값 변경시 setState() 함수 사용
+        -변경시 render()함수가 호출 안되서 화면갱신이 안됨
+    -->
     <h2>State 01</h2>
     <h3>state 생성 및 초기화, 출력하기</h3>
     <div id="myAreal"></div>
 
     <script type="text/babel">
         class Person extends React.Component {
+            //생성자 정의
             constructor() {
                 super();
+                //state생성-JSON
                 this.state = {
                     name: "홍길동",
                     age: 28,
@@ -30,6 +38,7 @@
                     birth: 2000
                 };
             }
+            //각 state값 출력(props와 동일함)
             render() {
                 return (
                     <div>
@@ -43,6 +52,7 @@
                 );
             }
         }
+        //렌더링
         ReactDOM.render(<Person />, document.getElementById('myAreal'));
     </script>
 
@@ -51,8 +61,10 @@
     <div id="myArea2"></div>
     <script type="text/babel">
         class Car extends React.Component {
+            //생성자 정의
             constructor(props) {
                 super(props);
+                //state 정의
                 this.state = {
                     brand: "KIA",
                     model: "모닝",
@@ -60,7 +72,10 @@
                     year: 2002
                 };
             }
+            //화살표 함수로 멤버함수 생성 
+            //var 함수명 = function(){}과 같은 무기명함수
             changeColor = () => {
+                //setState()함수로 state값 변경
                 this.setState({
                     color: "파란색은 blue",
                     model: "프라이드"
@@ -76,6 +91,11 @@
                             모델명 : {this.state.model} <br />
                             제조사 : {this.state.year} <br />
                         </p>
+
+                        {/*
+                        버튼 이벤트 헨들러 사용시 Camel case형태로 기술해야함 
+                        onclick (x) onclick(o)    
+                        */}
                         <button type="button" onClick={this.changeColor}>
                             색깔변경
                         </button>

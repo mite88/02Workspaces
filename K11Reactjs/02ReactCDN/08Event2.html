@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+
+    <h3>파라미터 전달하기 - 화살표함수</h3>
+    <div id="myDiv4"></div>
+
+    <script type="text/babel">
+        class Baseball extends React.Component {
+            //화살표 함수 선언
+            hitBall = (str) => {
+                alert(str);
+            }
+            /*
+            화살표 함수르 통해 매개변수를 전달해야 한다면
+            이벤트 핸들러에 작성시 아래와 같이 화살표 함수 원형을 그래도 기술해야함
+            (안하면 로딩시 바로 호출되고 이벤트는 실행이 안됨 ㅇㅊㅇ)
+            */
+            render() {
+                return (
+                    <button onClick={() => this.hitBall("홈~~런!!")}>
+                        매개변수전달</button >
+
+                );
+            }
+        }
+        ReactDOM.render(<Baseball />, document.getElementById('myDiv4')); </script>
+
+    <h3>파라미터 전달하기 - 일반함수</h3>
+    <div id="myDiv5"></div>
+
+    <script type="text/babel">
+        class Baseball extends React.Component {
+            hitBall(str) {
+                alert(str);
+            }
+            render() {
+                /*
+                bind()함수의 첫번째 매개변수는 this가 되고, 두번째 매개변수가 함수 호출시 
+                전달할 파라미터가 되야함
+                */
+                return (
+                    <button onClick={this.hitBall.bind(this, "홈~옴~런!!")}>
+                        매개변수전달</button >
+                );
+            }
+        }
+        ReactDOM.render(<Baseball />, document.getElementById('myDiv5')); 
+    </script>
+
+    <h3>이벤트 객체 전달하기 - 화살표함수</h3>
+    <div id="myDiv6"></div>
+
+    <script type="text/babel">
+        class Eventobjsend1 extends React.Component {
+            /*
+            전달되는 이벤트를 매개변수로 받아 type출력시
+            해당 이벤트명이 출력됨
+            */
+            sendEvent = (msg, evt) => {
+                console.log('화살표함수', msg, evt.type);
+                //이벤트 객체 출력
+                console.log(evt);
+            }
+            /*
+            화살표 함수 사용시 이벤트 객체 전달하려면
+            event객체를 인수로 전달해야함
+            */
+            render() {
+                return (
+                    <div>
+                        <button onClick={(event) => 
+                            this.sendEvent("onClick 이벤트", event)}>
+                            눌러보세요1</button> <br />
+                        <input type="text" onKeyUp={(event) => 
+                            this.sendEvent("onKeyUp 이벤트", event)
+                        }
+                            placeholder='써보세요1' />
+                    </div>
+                );
+            }
+        }
+        ReactDOM.render(<Eventobjsend1 />,
+            document.getElementById('myDiv6')); 
+    </script>
+
+    <h3>이벤트 객체 전달하기 - 일반함수</h3>
+    <div id="myDiv7"></div>
+
+    <script type="text/babel">
+        class Eventobjsend2 extends React.Component {
+            //일반함수 사용시 이벤트 객체 전달시 this사용을 위해 바인딩
+            //마지막 인자를 event객체를 별도로 전달하지 않아도 됨
+            sendEvent(msg, evt) {
+                console.log(' ', msg, evt.type);
+            }
+            render() {
+                return (
+                    <div>
+                        <button onClick={this.sendEvent.bind(this, "onClick 이벤트")}>
+                            눌러보세요2</button> <br />
+                        <input type="text" onKeyUp={this.sendEvent.bind(this, "onKeyUp 이벤트")}
+                            placeholder='써보세요2' />
+                    </div>
+
+                );
+            }
+        }
+        ReactDOM.render(<Eventobjsend2 />,
+            document.getElementById('myDiv7'));
+    </script>
+</body>
+
+</html>

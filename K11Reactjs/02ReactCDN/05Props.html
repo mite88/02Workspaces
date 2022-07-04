@@ -1,4 +1,3 @@
-02Render.html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,16 +13,26 @@
 </head>
 
 <body>
+    <!--
+        Porps(프롭스)
+        -React구성요소에 전달되는 일종의 파라미터
+        -주로 HTML속성을 통해 컴포넌트로 전달
+        -개발에서 많이 사용되는 용어인 Properties의 줄임말
+        -사용자가 컴포넌트로 전달해서 변경하지 않고 보관되는 읽기 전용 데이터
+        -변경시 부모 컴포넌트에서 변경해야함
+    -->
     <h2>Props01</h2>
     <h3>컴포넌트로 HTML 속성 Props 보내기 </h3>
     <div id="myDiv"></div>
     <script type="text/babel">
         class Colorful extends React.Component {
             render() {
+                //1-2:전달받은 props를 표현식을 통해 사용함
                 return <h4>난 {this.props.color} 컬러가 좋더라</h4>;
 
             }
         }
+        //1-1 : 컴포넌트를 랜더링시 color이라는 props 전달
         ReactDom.render(<Colorful color="빨간색" />,
             document.getElementById('myDiv')); 
     </script>
@@ -34,11 +43,13 @@
     <script type="text/babel">
         class Food extends React.Component {
             render() {
+                //2-2:전달된 props를 사용하여 출력
                 return <h4>오늘점심은
                     <big>{this.props.koreanFood}</big>
                     먹자~~ ! !</h4>
             }
         }
+        //2-1:컴포넌트를 상수로 선언 후 렌더링
         const myFood = <Food korean Food="김치찌개" />;
         ReactDOM.render(myFood, document.getElementById('myDiv2')); 
     </script>
@@ -47,14 +58,19 @@
     <h3>컴포넌트 속성으로 Props 보내기</h3>
     <div id="myDiv3"></div>
     <script type="text/babel">
+        //자식컴포넌트 선언
         class Person extends React.Component {
             render() {
                 return <h4>제 직업은 {this.props.job} 입니다.</h4>;
             }
         }
+
+        //부모 컴포넌트 선언(앞에 선언한 Person컴포넌트 포함)
         class Jobs extends React.Component {
             render() {
+                //props로 전달할 데이터를 상수로 선언
                 const jobName = "요리사";
+                //렌더링시 앞에 선언한 Person컴포넌트를 충첩하여 기술
                 return (
                     <div>
                         <h4>당신의 직업은?</h4>
@@ -63,6 +79,7 @@
                 );
             }
         }
+        //Jobs컴포넌트 렌더링
         ReactDom.render(<Jobs />, document.getElementById('myDiv3'));
     </script>
 
@@ -73,6 +90,7 @@
     <script type="text/babel">
         class Car extends React.Component {
             render() {
+                //props로 전달할 데이터가 2개 이상 : JSON객체이용
                 return (
                     < div>
                         <h4>제조사 : {this.props.brand.name}</h4>
@@ -85,6 +103,7 @@
             render() {
                 const carinfo = { name: "KIA", model: "K7" };
                 return (
+                    //속성을 통해  Props전달
                     <div>
                         <h4>선호하는 자동차는? </h4>
                         <Car brand={carinfo} />

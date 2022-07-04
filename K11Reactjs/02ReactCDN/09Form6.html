@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <h2>폼값 검증</h2>
+    <div id="myDiv6"></div>
+    <script type="text/babel">
+        class MyForm6 extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { 
+                    user_id : '',
+                    user_pass : '',
+                    user_age : null,
+                    errormessage : ''
+                };
+            }
+            mySubmitHandler = (event) => {
+                event.preventDefault();
+
+                let user_id = this.state.user_id;
+                let user_pass = this.state.user_pass;
+                let user_age = this.state.user_age;
+                let err = '';
+
+                if(user_id == ''){
+                    alert("아이디를 입력하세요");
+                    return;
+                }
+                if(user_pass == ''){
+                    alert("패스워드를 입력하세요");
+                    return;
+                }
+                if(!Number(user_age)){
+                    alert("나이는 숫자만 입력하세요");
+                    return;
+                }
+
+                err = <strong>폼값 검증 완료</strong>;
+                this.setState({errormessage : err});
+            }
+
+          
+            myChangeHandler = (event) => {
+                let _key = event.target.name;
+                let _val = event.target.value;
+
+                this.setState({[_key] : _val});
+            }
+
+            render() {
+                return (
+                    <form onSubmit={this.mySubmitHandler}>
+                        <h3>회원가입</h3>
+                        <h4>{this.state.content}</h4>
+                        아이디:
+                        <input type="text" name="user_id" onChange={this.myChangeHandler} />
+                        <br/>
+                        패스워드:
+                        <input type="password" name="user_pass" onChange={this.myChangeHandler} />
+                        <br/>
+                        나이(숫자만):
+                        <input type="number" name="user_age" onChange={this.myChangeHandler} />
+                        <br/>
+                        {this.state.errormessage}
+                        <br/>
+                        <input type="submit"/>
+                    </form>
+                );
+            }
+        }
+
+        ReactDOM.render(<MyForm6 />, document.getElementById('myDiv6'));
+    </script>
+</body>
+
+</html>
