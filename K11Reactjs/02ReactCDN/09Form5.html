@@ -19,6 +19,7 @@
         class MyForm5 extends React.Component {
             constructor(props) {
                 super(props);
+                //3개 입력상자의 내용 저장을 위한 state생성
                 this.state = { 
                     movie : '',
                     actor : null,
@@ -26,11 +27,15 @@
                 };
             }
           
+            //각입력상자에서 입력값의 변화에 따라 호출되는 함수
             myChangeHandler = (event) => {
+                //이벤트 객체를 통해 입력상자의 name, value속성값 얻어옴
                 let _name = event.target.name;
                 let _value = event.target.value;
 
+                //변화된 값을 감지하어 동일한 이름의 state를 찾아 값 변경함
                 this.setState({[_name] : _value});
+                //컴포넌트에서 변화된 내용들은 크롬 확장자 프로그램에서 확인하는게 좋음 
                 console.log('myChangeHandler', this.state);
             }
 

@@ -21,10 +21,18 @@
                 super(props);
                 this.state = { userAge: "나이초기화" };
             }
+
+            /*
+            <form>에서 submit 이벤트 발생시 호출되는 함수
+                이벤트 객체를 통해 화면의 깜빡임없이 데이터를 처리하기위해
+                preventDefault()함수 호출
+            */
             mySubmitHandler = (event) => {
+                //onSubmit 이벤트리스너 false와 같음
                 event.preventDefault();
                 alert("전송된 폼값 : " + this.state.userAge);
             }
+            //입력상자에서 내용 변경시 호출되며 state값을 변경함(재 렌더링)
             myChangeHandler = (event) => {
                 this.setState({ userAge: event.target.value });
             }
@@ -35,6 +43,7 @@
                         <h3>입력한 나이 : {this.state.userAge}</h3>
                         <p>나이를 입력하세요</p>
                         <input type="text" onChange={this.myChangeHandler} />
+                        {/*input 태그 작성시 pair형태로 작성하는걸 권장함*/}
                         <input type="submit" value="클릭" />
                     </form>
                 );

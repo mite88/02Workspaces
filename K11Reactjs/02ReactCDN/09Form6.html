@@ -19,6 +19,7 @@
         class MyForm6 extends React.Component {
             constructor(props) {
                 super(props);
+                //입력 상자 및 출력할 메세지 지정
                 this.state = { 
                     user_id : '',
                     user_pass : '',
@@ -26,9 +27,12 @@
                     errormessage : ''
                 };
             }
+            //폼값이 submit일때 호출되는 함수 
             mySubmitHandler = (event) => {
+                //이벤트 차단용
                 event.preventDefault();
 
+                //state를 통해 입력값 얻기
                 let user_id = this.state.user_id;
                 let user_pass = this.state.user_pass;
                 let user_age = this.state.user_age;
@@ -42,6 +46,7 @@
                     alert("패스워드를 입력하세요");
                     return;
                 }
+                //나이가 숫자인지 여부확인
                 if(!Number(user_age)){
                     alert("나이는 숫자만 입력하세요");
                     return;
@@ -51,7 +56,7 @@
                 this.setState({errormessage : err});
             }
 
-          
+            //입력값 변경마다 대괄호 표기법으로 각 state값 변경
             myChangeHandler = (event) => {
                 let _key = event.target.name;
                 let _val = event.target.value;
