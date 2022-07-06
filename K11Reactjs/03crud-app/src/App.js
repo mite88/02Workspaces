@@ -16,6 +16,7 @@ import UpdateForm from './components/UpdateForm';
 class App extends Component {
     constructor(props) {
         super(props);
+        //게시물 일련번호 부여용 시퀀스, 새게시물 작성시 마다 +1됨
         this.max_content_id = 3;
         //steate 생성 및 초기화
         this.state = {
@@ -42,6 +43,8 @@ class App extends Component {
         if (this.state.mode === 'welcome') {
             _title = this.state.welcome.title;
             _desc = this.state.welcome.desc;
+
+            //웹 애플리케이션 처음 실행시 내용출력
             _article = <Content title={_title} desc={_desc}></Content>;
 
         } else if (this.state.mode === 'read') {
@@ -59,42 +62,81 @@ class App extends Component {
                 }
                 i++;
             }
+            //내용출력
             _article = <Content title={_title} desc={_desc}></Content>;
 
-        }else if(this.state.mode === 'create'){
-            _article = <CreateForm onSubmitValue={function(_title, _desc){
+        } else if (this.state.mode === 'create') {
+            //onSubmitValue속성을 통해 자식으로 2개의 값을 전달받을 props 전달
+            _article = <CreateForm onSubmitValue={function (_title, _desc) {
                 console.log(_title, _desc);
 
-                this.max_content_id = this.max_content_id +1;
+                //일련번호(id) +1증가하여 부여함
+                this.max_content_id = this.max_content_id + 1;
 
+                /*
+                새로 생성한 일련번호, 폼값 전송된 항목을 새로운 객체로 생성후 concat()로
+                state의 contents에 추가함
+                */
                 var _contents = this.state.contents.concat(
-                    {id:this.max_content_id, title : _title, desc:_desc}
+                    { id: this.max_content_id, title: _title, desc: _desc }
                 );
 
+                /*
+                state값 변경 후 새롭게 렌더링하여 화면에 다시 로드
+                */
                 this.setState({
-                    contents:_contents,
-                    mode:'read',
-                    selected_content_id : this.max_content_id 
+                    contents: _contents,
+                    mode: 'read',
+                    selected_content_id: this.max_content_id
                 })
             }.bind(this)}></CreateForm>;
-            
-        }else if(this.state.mode === 'update'){
-            let _readData = this.state.contents[this.state.selected_content_id-1];
 
+        } else if (this.state.mode === 'update') {
+            //배열의 인덱스가 0이라서 -1해줌(이부분은 나중에 수정해야함 ㅇㅊㅇ)
+            //let _readData = this.state.contents[this.state.selected_content_id-1];
+
+            let _readData;
+            var i = 0
+            while (i < this.state.contents.length) {
+                var data = this.state.contents[i];
+                if (data.id === this.state.selected_content_id) {
+                    _readData = data;
+                    break;
+                }
+                i++;
+            }
+
+            //게시물 수정을 위한 수점폼 컴포넌트추가 현재 조회중인 게시물을 props로 전달
             _article = <UpdateForm readData={_readData}
-            onSubmitValue={function(_id, _title, _desc){
-                console.log(_id, _title, _desc);
+                onSubmitValue={function (_id, _title, _desc) {
+                    //값 확인
+                    console.log(_id, _title, _desc);
 
-                var _contents = Array.from(this.state.contents);
-                _contents[this.state.selected_content_id-1]
-                = {id:Number(_id), title:_title, desc:_desc};
+                    //기존배열을 복사함(Array.from)
+                    var _contents = Array.from(this.state.contents);
+                    //수정할 게시물 id에서 1빼서 배열 인덱스를 통해 수정한 객체 저장함
+                    //수정된 객체를 폼값으로 전송된 값으로 새롭게 생성한 JSON객체임
+                    /* _contents[this.state.selected_content_id-1]
+                    = {id:Number(_id), title:_title, desc:_desc}; */
 
-                this.setState({
-                    contents : _contents,
-                    mode : 'read'
-                });
-            }.bind(this)}>
+                    var i = 0
+                    while (i < _contents.length) {
+                        var data = _contents[i];
+                        if(data.id === Number(_id)){
+                            _contents[i]= {id:Number(_id), title:_title, desc:_desc};
+                            break;
+                        }
+                        i++;
+                    }
+                    //변경된 배열을 state적용후 렌더링함
+                    this.setState({
+                        contents: _contents,
+                        mode: 'read'
+                    });
+                }.bind(this)}>
             </UpdateForm>;
+        } else if (this.state.mode === 'delete') {
+            //여기서 처리시 렌더링 2번해야해서 비효율적
         }
         return (
 
@@ -104,13 +146,13 @@ class App extends Component {
                 (model를 welcome로 변경하는 역할임)
                 */}
                 <Subject title={this.state.subject.title}
-                    sub={this.state.subject.sub} 
+                    sub={this.state.subject.sub}
                     onChangePage={function () {
                         //alert("이벤트 확인용(부모)");
                         this.setState({ mode: 'welcome' });
                     }.bind(this)}>
                 </Subject>
-                
+
                 {/* 
                 Navi컴포넌트로 onChangePage라는 props전달
                 자식 호출시 mode를 read로 변경 후  매개변수로 전달된 값으로
@@ -126,16 +168,41 @@ class App extends Component {
                     }.bind(this)}>
                 </Navi>
                 {/*mode값 변경기능이 있는 onChangeMode라는 props 전달 */}
-                <Buttons onChangeMode={function(btn_mode){
-                    this.setState({
-                        mode:btn_mode
-                    });
+                <Buttons onChangeMode={function (btn_mode) {
+
+                    if (btn_mode === 'delete') {
+                        //React에선 window를 생략하면 에러남 ㅇㅊㅇ;;;
+                        if (window.confirm('삭제할까요?')) {
+                            //기존 배열 복사
+                            var _contents = Array.from(this.state.contents);
+                            var i = 0
+                            //그중 삭제할 항목 찾기
+                            while (i < _contents.length) {
+                                if (_contents[i].id === this.state.selected_content_id) {
+                                    //splice()를 이용하여 해당 항목을 삭제함
+                                    _contents.splice(i, 1);
+                                    break;
+                                }
+                                i++;
+                            }
+                            //읽을 항목이 없어졌으므로 mode는 welcome로 변경함
+                            this.setState({
+                                contents: _contents,
+                                mode: 'welcome'
+                            });
+                        }
+                    } else {
+                        //mode가 다르면 단순히 state만 변경함
+                        this.setState({
+                            mode: btn_mode
+                        });
+                    }
                 }.bind(this)}>
                 </Buttons>
 
                 {_article}
 
-               {/*  <Content title={_title} desc={_desc}></Content>
+                {/*  <Content title={_title} desc={_desc}></Content>
                 <CreateForm></CreateForm> */}
             </div>
         );
