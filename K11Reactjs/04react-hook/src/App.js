@@ -28,7 +28,10 @@ function App() {
 (함수 자신이 render()역할을 하므로..)
 */
 function FuncComponent(props) {
-
+  /*
+  함수형 컴포넌트에선 return이 render()역할을 하여 
+  특정함수 호출 및 렌더링 전 전처리가 안됨
+  */
   console.log('#Life','FuncComponent==> 함수실행');
 
   /*
@@ -94,9 +97,14 @@ class ClassComponent extends React.Component {
   UNSAFE_componentWillMount(){
     console.error("ClassComponent => componentWillmount()호출됨");
   }
+  //render()가 호출 된 후 자동 호출되는수명주기 함수
   componentDidMount() {
     console.error("ClassComponent => componentDidMount() 호출됨");
   }
+  /*
+  최초 렌더링시에 호출되지 않고, state값 변경 후 제 렌더링이 될때 호출
+  해당 함수는 true 반환시에만 호출됨
+  */
   shouldComponentUpdate() {
     console.error("ClassComponent => shouldComponentUpdate()  호출됨");
   }
