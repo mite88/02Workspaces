@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class Left extends Component {
     render() {
         return (
-            <div class="col-lg-2" id="lay_left">
+            <div className="col-lg-2" id="lay_left">
             <p>LEFT</p>
         </div>
         );
