@@ -65,9 +65,33 @@
 	
 	<h3>DI(Dependency Injection) :  의존성주입</h3>
 	<ul>
-		<li><a href="di/mydi1.do" target="_blank">
-		XML설정파일을 통한 빈 생성1(생성자와 setter)</a></li>
+		<li><a href="di/mydi1.do" target="_blank"> XML설정파일을 통한 빈
+				생성1(생성자와 setter)</a></li>
+
+		<li><a href="di/mydi2.do" target="_blank"> XML 설정파일을 통한 빈
+				생성2(다양한 멤버변수) </a></li>
+
+		<li><a href="di/mydi3.do" target="_blank"> 어노테이션을 통한 빈 생성 </a></li>
 	</ul>
+	
+	<h3>Environment객체를 이용한 외부파일 참조하기</h3>
+	<ul>
+		<li><a href="environment/main1" target="_blank"> 
+		외부파일 참조하기1(Environment객체 사용)</a></li>
+	</ul>
+	
+	<h3>파일업로드</h3>
+	<ul>
+		<li><a href="./fileUpload/uploadPath.do" target="_blank"> 
+		upload폴더의 물리적 경로 확인하기</a></li>
+		
+		<li><a href="./fileUpload/uploadForm.do" target="_blank"> 
+		파일업로드 폼</a></li>
+		
+		<li><a href="./fileUpload/uploadList.do" target="_blank"> 
+		파일목록보기</a></li>
+	</ul>
+
 
 </body>
 </html>

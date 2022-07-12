@@ -1,7 +1,8 @@
 package di;
 
+//그래프 상에서 원을 표현한 클래스(getter/setter)
 public class Circle {
-
+	//중심점에서 해당하는 Point객체 및 반지름을 멤버변수로 선언
 	Point point;
 	int radian;
 	
