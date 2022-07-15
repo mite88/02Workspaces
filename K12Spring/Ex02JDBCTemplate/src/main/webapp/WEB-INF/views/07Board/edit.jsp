@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 	<script type="text/javascript">
@@ -15,11 +19,7 @@
 				f.name.focus();
 				return false;
 			}
-			if (f.pass.value == "") {
-				alert("패스워드를 입력하세요");
-				f.pass.focus();
-				return false;
-			}
+			
 			if (f.title.value == "") {
 				alert("제목을 입력하세요");
 				f.title.focus();
@@ -35,14 +35,14 @@
 	<div class="container">
 		<h2>비회원제 게시판 - 글수정 폼</h2>
 
-		<form name="writeFrm" method="post" action="./writeAction.do"
+		<form name="writeFrm" method="post" action="./editAction.do"
 			onsubmit="return checkValidate(this);">
 			
 			<input type="hidden" name="idx" value="${viewRow.idx}" />
 			<input type="hidden" name="nowPage" value="${param.nowPage}"/>
 			<input type="hidden" name="pass" value="${viewRow.pass}"/>
-			
-			<table border=1 width=800>
+
+			<table class="table table-bordered">
 				<colgroup>
 					<col width="25%" />
 					<col width="*" />
@@ -62,9 +62,9 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<button type="submit">작성완료</button>
-						<button type="reset">RESET</button>
-						<button type="button" onclick="location.href='./list.do';">
+						<button class="btn btn-secondary" type="submit">작성완료</button>
+						<button class="btn btn-secondary" type="reset">RESET</button>
+						<button class="btn btn-secondary" type="button" onclick="location.href='./list.do';">
 							리스트바로가기</button>
 					</td>
 				</tr>

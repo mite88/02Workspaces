@@ -16,6 +16,10 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판쓰기</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 	<script type="text/javascript">
@@ -47,34 +51,34 @@
 
 		<form name="writeFrm" method="post" action="./writeAction.do"
 			onsubmit="return checkValidate(this);">
-			<table border=1 width=800>
+			<table class="table table-bordered">
 				<colgroup>
 					<col width="25%" />
 					<col width="*" />
 				</colgroup>
 				<tr>
 					<td>작성자</td>
-					<td><input type="text" name="name" style="width: 50%;" /></td>
+					<td><input type="text" class="form-control" name="name" style="width: 50%;" /></td>
 				</tr>
 				<tr>
 					<td>패스워드</td>
-					<td><input type="password" name="pass" style="width: 30%;" />
+					<td><input type="password" class="form-control" name="pass" style="width: 30%;" />
 					</td>
 				</tr>
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="title" style="width: 90%;" /></td>
+					<td><input type="text" class="form-control" name="title" style="width: 90%;" /></td>
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea name="contents"
+					<td><textarea name="contents" class="form-control" 
 							style="width: 90%; height: 200px;"></textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<button type="submit">작성완료</button>
-						<button type="reset">RESET</button>
-						<button type="button" onclick="location.href='./list.do';">
+						<button type="submit" class="btn btn-secondary">작성완료</button>
+						<button type="reset" class="btn btn-secondary">RESET</button>
+						<button type="button" class="btn btn-secondary" onclick="location.href='./list.do';">
 							리스트바로가기</button>
 					</td>
 				</tr>

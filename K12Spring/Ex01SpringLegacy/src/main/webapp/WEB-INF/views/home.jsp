@@ -62,8 +62,8 @@
 		<li><a href="validate/memberRegist.do" target="_blank"> 회원가입
 				바로가기</a></li>
 	</ul>
-	
-	<h3>DI(Dependency Injection) :  의존성주입</h3>
+
+	<h3>DI(Dependency Injection) : 의존성주입</h3>
 	<ul>
 		<li><a href="di/mydi1.do" target="_blank"> XML설정파일을 통한 빈
 				생성1(생성자와 setter)</a></li>
@@ -73,25 +73,54 @@
 
 		<li><a href="di/mydi3.do" target="_blank"> 어노테이션을 통한 빈 생성 </a></li>
 	</ul>
-	
+
 	<h3>Environment객체를 이용한 외부파일 참조하기</h3>
 	<ul>
-		<li><a href="environment/main1" target="_blank"> 
-		외부파일 참조하기1(Environment객체 사용)</a></li>
-	</ul>
-	
-	<h3>파일업로드</h3>
-	<ul>
-		<li><a href="./fileUpload/uploadPath.do" target="_blank"> 
-		upload폴더의 물리적 경로 확인하기</a></li>
-		
-		<li><a href="./fileUpload/uploadForm.do" target="_blank"> 
-		파일업로드 폼</a></li>
-		
-		<li><a href="./fileUpload/uploadList.do" target="_blank"> 
-		파일목록보기</a></li>
+		<li><a href="environment/main1" target="_blank"> 외부파일
+				참조하기1(Environment객체 사용)</a></li>
 	</ul>
 
+	<h3>파일업로드</h3>
+	<ul>
+		<li><a href="./fileUpload/uploadPath.do" target="_blank">
+				upload폴더의 물리적 경로 확인하기</a></li>
+
+		<li><a href="./fileUpload/uploadForm.do" target="_blank">
+				파일업로드 폼</a></li>
+
+		<li><a href="./fileUpload/uploadList.do" target="_blank">
+				파일목록보기</a></li>
+	</ul>
+
+	<hr />
+
+	<h3>@Controller, @Service, @Repository 어노테이션</h3>
+	<h4>Auto scan으로 자동으로 생성된 빈</h4>
+	<ul>
+		<li><a href="./service/myService.do" target="_blank">
+				myService바로가기</a></li>
+
+		<li><a href="./resources/lottoForm.html" target="_blank">
+				Lotto바로가기</a></li>
+	</ul>
+
+	<h3>HTML / JSP 파일 사용하기</h3>
+	<ul>
+		<li>
+			<a href="./notFound.html" target="_blank">html 파일사용x</a>
+			&nbsp;&nbsp;&nbsp; 
+			<a href="./resources/found.html" target="_blank">html사용o</a>
+		</li>
+		<li>
+			<a href="./randomNum.jsp" target="_blank">jsp 파일 사용하기</a> 
+		</li> 
+		<li> 
+			<a href="./htmlJspUsed/includeUse.do" target="_blank">
+			요청명 방식으로 파일 인클루드 하기
+			</a>
+		</li>
+
+	</ul>
 
 </body>
 </html>
