@@ -73,13 +73,13 @@ public class BbsController {
 		//Service객체로 Model을 전달한다. 
 		command.execute(model);
 		
-		return "bootSkin/listT";
+		return "07Board/list";
 	}
 
 	//글쓰기 페이지로 진입하기 위한 매핑처리	
 	@RequestMapping("/board/write.do")
 	public String write(Model model) {
-		return "bootSkin/writeT";
+		return "07Board/write";
 	}
 	//전송방식이 post  이므로 value, method까지 같이 기술해서 매핑한다.
 	@RequestMapping(value="/board/writeAction.do", method=RequestMethod.POST)
@@ -108,15 +108,15 @@ public class BbsController {
 		command = new ViewCommand();
 		command.execute(model);
 
-		return "bootSkin/viewT";
+		return "07Board/view";
 	}
 	//패스워드 검증 페이지 매핑	
 	@RequestMapping("/board/password.do")
 	public String password(Model model,	HttpServletRequest req)
 	{
 		//일련번호는 request를 통해 전달받은후 Model에 저장
-		model.addAttribute("idx", req.getParameter("idx"));
-		return "bootSkin/passwordT";
+		model.addAttribute("idx", req.getParameter("idx"));		
+		return "07Board/password";
 	}
 	//패스워드 검증 후 수정 혹은 삭제 처리
 	@RequestMapping("/board/passwordAction.do")
@@ -140,7 +140,7 @@ public class BbsController {
 			//idx는 컨트롤러에서 받아 model에 저장한 후 View에서 EL로 출력한다. 
 			//따라서 검증에 실패한 경우 idx는 별도로 model에 저장한후 View를 호출해야한다.
 			model.addAttribute("idx", idx);
-			modePage = "bootSkin/passwordT";
+			modePage = "07Board/password";
 		}
 		else {
 			//검증에 성공한 경우 수정 혹은 삭제 처리를 한다. 
@@ -152,7 +152,7 @@ public class BbsController {
 				model.addAttribute("req", req);
 				command = new EditCommand();
 				command.execute(model);
-				modePage = "bootSkin/editT";
+				modePage = "07Board/edit";
 			}
 			else if(mode.equals("delete")){
 				//삭제를 선택한 경우라면 별도의 이동없이 즉시 삭제하면 된다. 
@@ -200,7 +200,7 @@ public class BbsController {
 		command.execute(model);
 
 		model.addAttribute("idx", req.getParameter("idx"));
-		return "bootSkin/replyT";
+		return "07Board/reply";
 	}
 	
 	//답변글 쓰기 처리

@@ -112,7 +112,7 @@ public class ListCommand implements BbsCommandImpl {
 					reSpace += "&nbsp;&nbsp;";
 				}
 				row.setTitle(reSpace 
-						+ "<img src='../resources/images/re3.gif'>" 
+						+ "<img src='../images/re3.gif'>" 
 						+ row.getTitle());
 			}
 		}	
@@ -122,13 +122,10 @@ public class ListCommand implements BbsCommandImpl {
 		
 		
 		//페이지번호 출력 및 게시물 갯수 저장
-		System.out.println("!!!!"+req.getContextPath());
-		
-		
-		String pageingImg = PagingUtil.pageingImg(totalRecordCount,
+		String pagingImg = PagingUtil.pagingImg(totalRecordCount,
 				pageSize, blockPage, nowPage,
 				req.getContextPath()+"/board/list.do?"+addQueryString);
-		model.addAttribute("pageingImg", pageingImg);
+		model.addAttribute("pagingImg", pagingImg);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("nowPage", nowPage);
 		//검색이 있는경우 쿼리스트링을 View로 전달한다. 

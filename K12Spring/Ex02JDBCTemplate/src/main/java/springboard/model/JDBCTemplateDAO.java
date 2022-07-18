@@ -273,7 +273,9 @@ public class JDBCTemplateDAO {
 
 	public void reply(final SpringBbsDTO dto){
 		
-		//replyPrevUpdate(dto.getBgroup(), dto.getBstep());
+		//답변글을 추가하기전 bstep(그룹내의 정렬)을 전체적으로 정리한다. 
+		replyPrevUpdate(dto.getBgroup(), dto.getBstep());
+		
 		/*
 		글쓰기의 경우 원본글이므로 idx와 bgroup은 같은 값을 가진다. 
 		답변글은 원본글을 기반으로 작성되므로 idx는 새로운 시퀀스를 사용하면되고
@@ -305,14 +307,23 @@ public class JDBCTemplateDAO {
 			}
 		});
 	}
-	
-	
-	public void replyPrevUpdate(int gBroup, int bStep) {
-		String sql = "update set springboard bstep=bstep+1 "
-				+ " where bgroup=? and bstep=?";
+	/*
+	답변글을 입력하기전 현재 step보다 큰 게시물들을 step+1 처리해서
+	일괄적으로 뒤로 밀어주는 작업을 진행한다.
+	 */
+	public void replyPrevUpdate(int bGroup, int bStep) {
+		String sql = "UPDATE springboard SET bstep=bstep+1 "
+				+ " WHERE bgroup=? AND bstep>?";
 		
-		template.update(sql, new Object[] {
-				
-			});
+		template.update(sql, new PreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, bGroup);
+				ps.setInt(2, bStep);
+			}
+		});
 	}
 }
+
+
+
