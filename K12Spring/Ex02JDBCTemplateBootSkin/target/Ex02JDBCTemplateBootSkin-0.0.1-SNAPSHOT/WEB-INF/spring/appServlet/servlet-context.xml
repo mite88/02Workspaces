@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<mvc:annotation-driven/>
+
+	<!-- 정적파일 경로 세팅 -->
+	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+	<mvc:resources location="/resources/" mapping="/images/**"></mvc:resources>
+	
+
+	<!-- ViewResolver를 통한 JSP 경로 세팅 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+
+	<context:component-scan base-package="com.kosmo.jdbctemplate" />
+	<!--  
+	JdbcTemplate 기본 버전에서는 springboard 패키지 하위의 컨트롤러만 scan의
+	대상이었으나 Auto버전에서는 하위의 모든 클래스를 scan대상으로 범위를 확대한다. 
+	new없이 빈(객체)를 생성해야 하므로 DAO, Service객체를 미리 빈으로 만들어놔야
+	하기 때문이다. 
+	-->
+    <context:component-scan base-package="springboard" />
+	
+	
+	<!--  SPRING JDBC를 사용하기 위한 빈 생성 -->
+	<!-- 첫번째 자바빈 : 오라클 연결정보를 가지고 있는 자바빈으로 '데이터근원지'라고한다.
+			해당 빈을 통해 DB에 연결할 수 있다. -->	
+	<bean name="dataSource" 
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="kosmo" />
+		<property name="password" value="1234" />
+	</bean>
+	<!-- 두번째 자바빈 : Spring-JDBC를 사용하기 위한 빈으로 앞에서 생성한 
+				dataSource를 기반으로 생성한다. -->
+	<bean name="template" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+
+	
+	
+</beans>
