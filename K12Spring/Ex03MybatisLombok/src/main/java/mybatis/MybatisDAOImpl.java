@@ -1,12 +1,13 @@
 package mybatis;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
-import common;
+import common.*;
 
 /*
 해당 인터페이스는 컨트롤러와 DAO사이 매개역할을 하는 서비스객체로 사용된다.

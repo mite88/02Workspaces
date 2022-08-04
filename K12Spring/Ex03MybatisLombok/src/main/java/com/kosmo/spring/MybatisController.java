@@ -1,6 +1,7 @@
 package com.kosmo.spring;
 
 import java.lang.reflect.Parameter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import common;
+import common.*;
 import mybatis.MemberVO;
 import mybatis.MyBoardDTO;
 import mybatis.MybatisDAOImpl;

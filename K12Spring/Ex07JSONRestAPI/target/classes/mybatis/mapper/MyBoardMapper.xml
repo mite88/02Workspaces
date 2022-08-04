@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.IBoardDAO">
+
+ 	<select id="getTotalCount" resultType="int" parameterType="mybatis.ParameterDTO">
+ 		SELECT COUNT(*) from board
+ 		<if test="searchTxt != null and !searchTxt.equals('')">
+ 		WHERE
+	 		<foreach collection="searchTxt" item="str" open="(" close=")" separator="or">
+	 		${searchField} like '%'||#{str}||'%'
+	 		</foreach>
+ 		</if>
+ 	</select>
+ 	
+ 	<select id="listPage" resultType="mybatis.BoardDTO" parameterType="mybatis.ParameterDTO">
+ 		SELECT * FROM(
+ 			SELECT Tb.*, rownum rNum FROM(
+ 				SELECT * FROM board 
+ 				<if test="searchTxt != null and !searchTxt.equals('')">
+				WHERE
+				<foreach collection="searchTxt" item="str" open="(" close=")"
+					separator="or">
+					${searchField} like '%'||#{str}||'%'
+				</foreach>
+		 		</if>
+ 				ORDER BY num DESC
+ 			)Tb
+ 		)
+ 		WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]> #{end}
+ 	</select>
+ 	
+ 	<select id="view" resultType="mybatis.BoardDTO" parameterType="mybatis.ParameterDTO">
+ 		SELECT * FROM board where num=#{num}
+ 	</select>
+ 	
+ </mapper>

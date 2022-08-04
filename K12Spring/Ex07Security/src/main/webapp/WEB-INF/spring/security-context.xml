@@ -6,10 +6,10 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
 	<security:http>
-		<security:intercept-url
+		<!-- <security:intercept-url
 			pattern="/security1-1/**" access="hasRole('USER')" />
 		<security:intercept-url pattern="/**"
-			access="permitAll" />
+			access="permitAll" /> -->
 
 		<security:form-login />
 		<security:logout />

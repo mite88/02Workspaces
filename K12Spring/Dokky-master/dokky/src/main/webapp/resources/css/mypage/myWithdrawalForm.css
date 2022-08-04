@@ -1,0 +1,102 @@
+@charset "utf-8";
+/* CSS Document */
+	@media screen and (max-width:500px){ 
+		.myWithdrawalFormWrap { 
+				   width: 80%; 
+				    display: inline-block;
+				    margin-left: 15%;
+				    margin-top: 1%;
+				    min-height: 500px; 
+					display: inline-block;
+					border: 2px solid #dbdbdb;
+					border-radius: 10px;
+				}     
+        }
+        @media screen and (min-width: 501px) and (max-width:1600px){
+	        .myWithdrawalFormWrap {
+				    width: 80%; 
+				    display: inline-block;
+				    margin-left: 17%;
+				    margin-top: 1%;
+				    min-height: 500px; 
+					display: inline-block;
+					border: 2px solid #dbdbdb;
+					border-radius: 10px;
+				}
+        }
+        @media screen and (min-width: 1601px){    
+          .myWithdrawalFormWrap { 
+		  	        width: 51%; 
+				    display: inline-block;
+				    margin-left: 29%;
+				    margin-top: 1%;
+				    min-height: 500px; 
+					display: inline-block;
+					border: 2px solid #dbdbdb;
+					border-radius: 10px;
+			}
+        }
+ 		
+ 		#menuWrap{ 
+		    margin: 15px; 
+		    padding: 5px;
+		    width: 97.8%; 
+		}
+		
+		#menuWrap .tab button {
+		    background-color: white;
+		    cursor: pointer; 
+		    padding: 10px;
+		    font-size: 17px;
+		    color: #7151fc; 
+		    width: 16%;
+		    border-radius: 10px;
+		    border: 1px solid #7151fc;   
+		}
+		#menuWrap .tab button:hover {
+			background-color: #7151fc;
+			color: white;  
+		}
+		
+		.myWithdrawalContentWrap {    
+		    border: 2px solid #dbdbdb;
+		    margin: 15px;
+		    border-radius: 10px;
+		    padding: 15px;
+		    height: 360px;
+		    width: 93%;
+		}
+		
+		.myWithdrawalContent {
+		    width: 80%;
+		    margin: 7px;
+   		}
+   		
+   		.contentVal{
+   			color: #333333;
+	   		font-weight: 600;
+	    	font-size: 15px;
+   		}
+    
+   		.myWithdrawalButtonWrap{
+   			width: 27%;
+   		} 
+	
+		 .withdrawalButton{
+		 	font-size: 17px;
+		    display: inline-block;
+		    padding: 8px;
+		    border-radius: 8px;
+		    border: none;
+		    margin-top: 18px;
+		    background-color: #7151fc;
+		    color: white;
+		    width: 200px;
+		    cursor:pointer;
+	    }
+	    
+    	.active{
+			background-color: #7151fc !important;
+			color: white !important;   
+		}
+    

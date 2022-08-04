@@ -1,0 +1,64 @@
+.divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+
+.btn-facebook {
+    background-color: #405D9D;
+    color: #fff;
+}
+.btn-twitter {
+    background-color: #42AEEC;
+    color: #fff;
+}
+
+/* tab menu */
+.nav-mytabs {
+  margin-top: 2rem;
+}
+ 
+.nav-mytabs li:not(:last-child) {
+  margin-right: 7px;
+}
+ 
+.nav-mytabs a {
+  position: relative;
+  top: 4px;
+  padding: 10px 25px;
+  border-radius: 2px 2px 0 0;
+  background: #f2f2f2;
+  color: black;
+  opacity: 0.7;
+  transition: all 0.1s ease-in-out;
+}
+ 
+.nav-mytabs a.active, 
+.nav-mytabs a:hover {
+  opacity: 1;
+  top: 0;
+}
+ 
+.mytab-content {
+  position: relative;
+  z-index: 2;
+  padding: 25px;
+  border-radius: 0 4px 4px 4px;
+  background: #f2f2f2;
+}
